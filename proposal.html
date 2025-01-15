@@ -12,72 +12,91 @@
     <section>
         <h2>Problem Description</h2>
         <p>Singers, whether performing solo or in groups, require regular vocal warm-ups to maintain vocal health, extend their range, and ensure a quality performance. However, one information problem they often face is limited access to engaging, high-quality, and diverse vocal warm-up exercises. The lack of variety can result in boredom or insufficient preparation, especially for singers in groups who may have varying ranges and skill levels. Many singers feel their warm-ups fail to adequately address their unique needs, leaving them unprepared or fatigued during performances.</p>
-        <p>Currently, singers often rely on prerecorded warm-ups available on platforms like YouTube. However, searching for and organizing warm-ups that meet their specific needs can be time-consuming. With most videos lasting over 10 minutes, it is challenging to identify which exercises are included without listening to the entire video. Alternatively, singers rely on an experienced group member to lead the exercises. However, this approach often unintentionally caters to a limited range or skill level, leaving some members without an effective warm-up tailored to their needs. Existing solutions fall short in providing personalized, adaptive, and fun warm-up experiences for singers.</p>
+        <p>Currently, singers often rely on prerecorded warm-ups available on platforms like YouTube, Spotify, and TikTok. However, with most videos lasting over 10 minutes, it is challenging to identify which exercises are included without listening to the entire video. These platforms also lack filters that support singers' specific needs. Singers often rely on keywords and algorithms to discover warm-ups that meet their specific needs, which can be time-consuming. Moreover, built-in methods in these platforms for collecting and organizing vocal warm-ups are not singer-friendly. Alternatively, singers join groups and rely on an experienced group member to lead the exercises. However, this approach often unintentionally caters to a limited vocal range or skill level, leaving some members without an effective warm-up tailored to their needs. Hence, existing solutions fall short in providing personalized, adaptive, and fun warm-up experiences for singers.</p>
+    </section>
+
+    <section class="reference">
+        <h3>Reference:</h3>
+        <ul>
+            <li><a href="https://www.uofmhealth.org/conditions-treatments/ear-nose-throat/maintaining-vocal-health" target="_blank">Maintaining Vocal Health | University of Michigan Health</a></li>
+            <li><a href="https://www.ensembleschools.com/grace-music/reasons-vocal-warmups-important/" target="_blank">Vocal Warm-Up is Essential for Singers</a></li>
+            <li><a href="https://singingsuccess.com/top-5-vocal-warm-up-mistakes/" target="_blank">5 Vocal Warm-Up Mistakes</a></li>
+        </ul>
     </section>
 
 
     <section>
         <h2>Proposed Application</h2>
-        <p>We propose developing an online tool that make vocal warmup & exercises more accessible to singers. Meiyao will keep writing this description</p>
-        <ol>
-            <li>Users of the application:</li>
-            <ol type="a">
-                <li>Individual vocal hobbyists who struggles to find structured, professional vocal warm-ups on their own</li>
-                <li>A group of singers (choir, a cappella) who struggles to have the perfect vocal warm-up routine that suits everyone’s need and wants</li>
-            </ol>
+        <p>We propose developing an online tool that make vocal warmup & exercises more accessible to singers.</p>
 
-            <li>What will users <em>do</em> with the web app:</li>
-            <ol type="a">
-                <li>Upload favorite vocal warm-ups / techniques to the crowdsourced database for all users to discover and engage with.n</li>
-                <li>Create a “vocal warm-up playlist” for choir rehearsals or personal use.</li>
-                <li>For larger groups, have an admin to approve vocal warm-ups suggested by individual singers.</li>
-            </ol>
+        <h3>01. Users of the application:</h3>
+        <ol type="a">
+            <li>Individual vocal hobbyists who struggles to find structured, professional vocal warm-ups on their own</li>
+            <li>A group of singers (choir, a cappella) who struggles to have the perfect vocal warm-up routine that suits everyone’s need and wants</li>
+        </ol>
 
-            <li>Data types</li>
+        <h3>02. Interactive Features:</h3>
+        <ol type="a">
+            <li>(1 feature) Upload favorite vocal warm-ups / techniques to the crowdsourced database, adding tags, for all singers to discover and engage with.</li>
+            <li>(1 feature) Record vocal warm-ups (≤ 3 minute) on the platform.</li>
+            <li>(0.5 feature) Filter and organize a “vocal warm-up playlist” for choir rehearsals or personal use.</li>
+            <li>(backup/optional) Individual singers in a larger group can propose or submit warm-ups for choir rehearsal, subject to approval by the admin.</li>
+        </ol>
+
+        <h3>03. Data / Information:</h3>
+            <h4>Text/prompts displayed on screen + interactive timer</h4>
             <ol type="a">
-                <li>Text/prompts displayed on screen + timer</li>
-                <ol type="i">
-                    <li>breath control</li>
+                <li>breath control</li>
+                <ul>
+                    <li>"sssssss—"</li>
+                    <li>box breathing</li>
+                    <li>Dog panting</li>
+                </ul>
+                <li>tongue twisters</li>
+                <ul>
+                    <li>“Unique New York. You need New York. You know you need unique New York.”</li>
+                    <li>"Red leather, yellow leather. Red leather, yellow leather."</li>
+                    <li>"She makes a proper cup of coffee in a copper coffee pot"</li>
+                </ul>
+            </ol>
+            
+            <h4>Audio (.mp3) or YouTube Videos)</h4>
+            <ol type="a">
+                <li>
+                    Existing vocal warm-up on YouTube<br>
+                    These are YouTube video links crowdsourced by individual singers, with user defined tags, durations, and voice parts. During rehearsals or personal training, our web application will embed the YouTube video in a singer friendly format.
                     <ul>
-                        <li>"sssssss—"</li>
-                        <li>box breathing</li>
-                        <li>Dog panting</li>
-                    </ul>
-                    <li>tongue twisters</li>
-                    <ul>
-                        <li>“Unique New York. You need New York. You know you need unique New York.”</li>
-                        <li>"Red leather, yellow leather. Red leather, yellow leather."</li>
-                        <li>"She makes a proper cup of coffee in a copper coffee pot"</li>
-                    </ul>
-                    <li>Techniques (text + YouTube link)</li>
-                    <ul>
-                        <li>Yawn-sigh</li>
-                        <li>Humming warm-up</li>
-                        <li>Vocal straw exercises</li>
+                        <li>Yawn-sign</li>
+                        <li>Straw Exercises</li>
                         <li>Lip Buzz</li>
                         <li>Tongue Trill</li>
-                        <li>Jaw Loosening exercise</li>
+                        <li>Jaw Loosening Exercise</li>
                         <li>Two-Octave pitch glide warm-ups</li>
                         <li>Vocal Sirens</li>
+                        <li>Riff and Runs</li>
                     </ul>
-                </ol>
-                <li>audio (mp3 or YouTube links)</li>
-                <ol type="i">
-                    <li>riff and runs</li>
-                    <li>original vocal warm-ups recorded by users</li>
-                    <ol>
-                        <li>A record, edit, save, upload feature</li>
-                    </ol>
-                </ol>
-            </ol>
-            <li>How will this web-app solve the problem</li>
-            <ol type="a">
-                <li>Users can discover fresh vocal warm-ups everyday</li>
-                <li>A group of singers can have a shared vocal warm-up playlist, like Spotify, to use during rehearsals.</li>
+                </li>
+                <li>Original vocal warm-ups recorded or uploaded by users, with user defined tags, durations, and voice parts. These audio clips are under 3 minutes long and will undergo content moderation to ensure they comply with community guidelines.</li>
             </ol>
         </ol>
+
+        <h3>04. Our Solution:</h3>
+        <p>Our web-app empowers singers across level with access to engaging, high-quality, and diverse warm-up experiences.</p>
+        <h4>Lowering the Barrier for Contribution</h4>
+        <p>Our web-app streamline the process of producing and sharing vocal warm-ups for <em>Content Producers</em>, enables the singer community to crowdsource up-to-date vocal training resources more easily.</p>
+        <h4>Increased Discoverability</h4>
+        <p>Our web-app provide individual singers access to a diverse range of high-quality, authentic, and novel vocal warm-ups crowdsourced by experts. Singers can filter and discover new warm-ups everyday to prevent fatigue and boredom.</p>
+        <h4>Usability for All</h4>
+        <p>Our web-app makes it easier to engage with vocal warm-up contents by allowing singers to curate and organize their saved warm-ups into a personalized playlist. In a group setting, the "minority" voice parts can request their favorite warm-ups during the rehearsal, making sure their specific needs are addressed.</p>
     </section>
     
+    <section class="reference">
+        <h3>Web & Mobile App that We Referenced:</h3>
+        <ul>
+            <li><a href="https://www.warm-me-up.com/" target="_blank">Warm Me Up</a></li>
+            <li><a href="https://www.tonegym.co/tool/item?id=vocal-warmup" target="_blank">Tone Gym</a></li>
+        </ul>
+    </section>
 
 </body>
 </html>
