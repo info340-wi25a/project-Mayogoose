@@ -1,3 +1,4 @@
+/* General Stylin (Runa) */
 body {
     background-color: black;
     color: white;
@@ -70,4 +71,6 @@ a:hover {
 section + section {
     margin-top: 20px;
 }
+
+/* Organizing Content (Refer Spotify) */
 
