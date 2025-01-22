@@ -24,6 +24,10 @@ h2 {
     padding-bottom: 5px;
 }
 
+h3{
+    color: #FFD700; 
+}
+
 section {
     padding: 20px;
     margin: 10px auto;
