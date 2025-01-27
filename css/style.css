@@ -1,7 +1,4 @@
 
-html {
-    background-color: black;
-}
 
 nav {
     display: flex;
@@ -11,7 +8,6 @@ nav {
 }
 
 h1 {
-    color: white;
     font-size: 2rem;
 }
 
