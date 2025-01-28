@@ -1,8 +1,12 @@
+*{
+    box-sizing:border-box;
+}
+
 nav {
     display: flex;
     align-items: left;
     justify-content: space-between;
-    margin: 4rem 7rem;
+    margin: 4rem 5rem;
 }
 
 h1 {
@@ -16,4 +20,35 @@ h1 {
 
 .search-input::placeholder {
     color: #767676 !important;
+}
+
+.albums-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.album {
+    width: 225px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+.album img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+@media (min-width: 768px)
+{
+    nav {
+        margin: 4rem 12rem;
+    }
+
+    .albums-container {
+        margin: 0rem 7rem;
+    }
 }
