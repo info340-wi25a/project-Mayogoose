@@ -22,7 +22,7 @@
 
     <div class="container mt-5">
         <div class="row justify-content-center">
-          <div class="col-md-5">
+          <div class="col-md-10">
                 <form class="d-flex">
                 <input 
                     type="search" 
@@ -30,6 +30,26 @@
                     placeholder="Search for vocal warm-ups" 
                     aria-label="Search">
                 </form>
+
+                <div class="d-flex justify-content-left mt-3">
+                    <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3">All</button>
+                    <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3">For you</button>
+                </div>
+                
+                <div class="d-flex justify-content-start align-items-center mt-4">
+                    <button class="btn btn-sm rounded-pill px-3 d-flex align-items-center" style="gap: 0;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-right: -4px;" viewBox="0 0 16 16">
+                            <!-- Up Arrow -->
+                            <path d="M8 3.5a.5.5 0 0 1 .374-.832l3 3a.5.5 0 1 1-.748.664L8.5 4.707V12.5a.5.5 0 0 1-1 0V4.707L5.374 6.332a.5.5 0 1 1-.748-.664l3-3a.5.5 0 0 1 .374-.168z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-left: -4px;" viewBox="0 0 16 16">
+                            <!-- Down Arrow -->
+                            <path d="M8 12.5a.5.5 0 0 1 .374.832l-3-3a.5.5 0 1 1 .748-.664L7.5 11.293V3.5a.5.5 0 0 1 1 0v7.793l1.626-1.625a.5.5 0 1 1 .748.664l-3 3a.5.5 0 0 1-.374.168z"/>
+                        </svg>
+                        Recents
+                    </button>
+                </div>
+
           </div>
         </div>
     </div>
