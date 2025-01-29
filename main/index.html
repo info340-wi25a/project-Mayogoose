@@ -33,7 +33,10 @@
 
                 <div class="d-flex justify-content-left mt-3">
                     <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3">All</button>
-                    <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3">For you</button>
+                    <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="foryou">For you</button>
+                    <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="soprano">Soprano</button>
+                    <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="tenor">Tenor</button>
+                    <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="bass">Bass</button>
                 </div>
                 
                 <div class="d-flex justify-content-start align-items-center mt-4">
@@ -110,6 +113,39 @@
                 <b style="font-weight: 800;">blahidoahofa</b>
                 <p style="color:gray;">fdafdfa</p>
             </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#" class="nav-item">
+            <img src="../img/home.png" alt="Home Icon">
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item create-button" data-bs-toggle="modal" data-bs-target="#createModal">
+            + Create
+        </a>
+        <a href="#" class="nav-item">
+            <img src="../img/library.png" alt="Library Icon">
+            <span>Your Library</span>
+        </a>
+    </div>
+
+    <!-- modal, or whatever that is -->
+    <div class="modal fade modal-bottom-sheet" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog custom-bottom-modal">
+          <div class="modal-content custom-bottom-modal">
+            <div class="modal-body text-center">
+              <!-- Draggable Indicator -->
+              <div class="modal-drag"></div>
+      
+              <!-- Options -->
+              <p class="modal-option"><span class="modal-plus">+</span> <strong>New Warmup</strong></p>
+              <p class="modal-option disabled"><span class="modal-plus">+</span> <strong>New Playlist</strong></p>
+      
+              <!-- Close Button -->
+              <button type="button" class="btn btn-modal-close" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
     </div>
     
