@@ -1,7 +1,10 @@
-html {
-    background-color: black;
-  }
-  .logo {
+/* amelia css */
+/* homepage */
+* {
+    box-sizing: border-box;
+}
+
+nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -69,40 +72,435 @@ html {
   }
   .tags {
     display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 16px;
+    align-items: center;
+    gap: 10px; /* Adjust space between text and lines */
   }
-  .tag {
-    background-color: #555;
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 14px;
+  
+  .line {
+    flex-grow: 1;
+    height: 0.1px;
+    background-color: grey;
+    margin-bottom: 0.9rem;
   }
-  .button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .button-yellow{
-    background-color: #ff0;
-    color: black;
-    bottom: anchor-size(width);
-    text-align: center;
-    font-size: 32px;
-  }
-  .button-gray {
-    background-color: #6C757D;
+
+/* Upload from microphone */
+.record-box {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-radius: 20px;
+}
+
+.record-box .click-text {
+    display: none;
+}
+
+/* Runa's add song */
+body {
+    background-color: #121212;
     color: white;
-  }
-  .text-gray {
-    color: #aaa;
-  }
-  .material-icons {
-    font-size: 40px;
-    vertical-align: middle;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile {
+    font-size: 18px;
     cursor: pointer;
-    margin: 0 4px;
-  }
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    padding: 10px 15px;
+    width: 300px;
+    max-width: 90%;
+}
+
+.search-bar i {
+    color: gray;
+    margin-right: 10px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: black;
+    width: 100%;
+}
+
+/* Add Button */
+.add-btn {
+    background: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.add-btn i {
+    color: black;
+    font-size: 20px;
+}
+
+/* Suggested Warm-ups */
+main {
+    padding: 20px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+.warmups {
+    display: grid;
+    gap: 20px;
+}
+
+/* Song Items */
+.warmup {
+    display: flex;
+    align-items: center;
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.warmup img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.warmup-info .title {
+    font-weight: bold;
+}
+
+.warmup-info .artist {
+    font-size: 14px;
+    color: gray;
+}
+
+/* Responsive Layout */
+@media (min-width: 598px) {
+    .warmup {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+    }
+}
+
+@media (min-width: 900px) {
+    .warmups {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Shrinking on Small Screens */
+@media (max-width: 598px) {
+    header {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .profile {
+        font-size: 16px;
+    }
+
+    .search-bar {
+        width: 250px;
+        padding: 8px 10px;
+    }
+
+    .add-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .warmup img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Runa's after */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: black;
+    color: white;
+}
+
+.container {
+    padding: 20px;
+    padding-bottom: 80px;
+}
+
+/* Header styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-circle {
+    width: 24px;
+    height: 24px;
+    background-color: #ffeb3b;
+    border-radius: 50%;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Playlist header */
+.playlist-header {
+    margin-bottom: 30px;
+}
+
+.playlist-cover {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.playlist-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.playlist-info h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.playlist-controls {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.play-button {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.play-icon {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 20px;
+    border-color: transparent transparent transparent black;
+    margin-left: 4px;
+}
+
+.party-button {
+    padding: 8px 20px;
+    background: #333;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Songs list */
+.songs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.song-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.song-info {
+    flex: 1;
+}
+
+.song-info h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.song-info p {
+    font-size: 14px;
+    color: #999;
+}
+
+.more-options {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 24px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* Mobile navigation */
+.mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #111;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.nav-icon {
+    font-size: 20px;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+
+    .playlist-header {
+        display: flex;
+        gap: 40px;
+    }
+
+    .playlist-cover {
+        width: 300px;
+        margin-bottom: 0;
+    }
+
+    .songs-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+    }
+
+    .song-img {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+
+/* Responsive Layout for upload */
+@media (min-width: 768px)
+{
+    /* Amelia's index page */
+    .albums-container {
+        margin: 0rem 7rem;
+    }
+
+    .bottom-nav {
+        display: none !important;
+    }
+
+    /* Meiyao's upload page */
+    .record-box .press-text {
+        display: none;
+    }
+    .record-box .click-text {
+        display: block;
+    }
+    .material-symbols-outlined {
+        font-size: 6rem;
+        color: #EBEF2F;
+    }
+    .upload-box {
+        padding: 4rem;
+    }
+}
