@@ -1,54 +1,60 @@
-<!-- Add songs in the new playlist -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intune - Playlist View</title>
-    <link rel="stylesheet" href="../organize/add songs.css">
-
+    <title>Intune</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="logo">&#128994; Intune</h1>
-            <img src="profile.jpg" alt="Profile" class="profile-pic">
-        </header>
-        
-        <div class="playlist-cover">
-            <img src="playlist-cover.jpg" alt="Playlist Cover" class="cover-img">
-            <h2>My Playlist #1</h2>
-            <button class="play-button">▶</button>
-            <button class="party-mode">Party</button>
+    <header>
+        <h1 class="logo">Intune</h1>
+        <div class="profile">Profile</div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for vocal warm-ups">
         </div>
-        
-        <section class="song-list">
-            <ul>
-                <li>
-                    <img src="warmup1.jpg" class="song-img">
-                    <div class="song-info">
-                        <p class="song-title">Warm-up 1</p>
-                        <p class="song-artist">General Exercise</p>
-                    </div>
-                    <button class="options">⋮</button>
-                </li>
-                <li>
-                    <img src="warmup2.jpg" class="song-img">
-                    <div class="song-info">
-                        <p class="song-title">Warm-up 2</p>
-                        <p class="song-artist">General Exercise</p>
-                    </div>
-                    <button class="options">⋮</button>
-                </li>
-            </ul>
-        </section>
+        <button class="add-btn">
+            <i class="fas fa-plus"></i>
+        </button>
     </div>
-    
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item">🏠 Home</a>
-        <a href="#" class="nav-item active">🎵 Your Library</a>
-        <a href="#" class="nav-item">👤 Profile</a>
-    </nav>
+
+    <main>
+        <h2>Suggested Warm-ups</h2>
+        <div class="warmups">
+            <div class="warmup">
+                <img src="song-cover-placeholder.png" alt="Song Cover">
+                <div class="warmup-info">
+                    <p class="title">Warmup 1</p>
+                    <p class="artist">Artist 1</p>
+                </div>
+            </div>
+            <div class="warmup">
+                <img src="song-cover-placeholder.png" alt="Song Cover">
+                <div class="warmup-info">
+                    <p class="title">Warmup 2</p>
+                    <p class="artist">Artist 2</p>
+                </div>
+            </div>
+            <div class="warmup">
+                <img src="song-cover-placeholder.png" alt="Song Cover">
+                <div class="warmup-info">
+                    <p class="title">Warmup 3</p>
+                    <p class="artist">Artist 3</p>
+                </div>
+            </div>
+            <div class="warmup">
+                <img src="song-cover-placeholder.png" alt="Song Cover">
+                <div class="warmup-info">
+                    <p class="title">Warmup 4</p>
+                    <p class="artist">Artist 4</p>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
-
