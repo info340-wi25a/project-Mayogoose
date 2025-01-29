@@ -9,10 +9,6 @@ nav {
     margin: 4rem 5rem;
 }
 
-h1 {
-    font-size: 2rem;
-}
-
 .search-input {
     background-color: white !important;
     color: black;
@@ -51,4 +47,103 @@ h1 {
     .albums-container {
         margin: 0rem 7rem;
     }
+}
+
+
+
+/* Meiyao's upload CSS */
+/* General Styling */
+h1 {
+    font-size: 2rem;
+    line-height: 1rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    line-height: 1rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+p {
+    font-size: 0.8rem;
+    color: grey;
+}
+
+main {
+    margin: 1.5rem;
+}
+
+.instructions {
+    margin-bottom: 2rem;
+}
+
+/* Content */
+
+.card {
+    /* flexbox */
+    display: flex;
+    justify-content: center;
+    height: 100%; /* Take up available space */
+
+    /* styling */
+    padding: 2rem;
+    border-radius: 20px;
+    background-color: #181818;
+ }
+
+ /* Upload from Local Device */
+.upload-box {
+    /* flexbox */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%; /* Take up available space */
+
+    /* styling */
+    padding: 2rem;
+    border-style: dashed;
+    border-color: #EBEF2F;
+    border-radius: 20px;
+    background-color: #242424;
+}
+
+.upload-box p {
+    text-align: center;
+}
+
+.material-symbols-outlined {
+    font-size: 4rem;
+    color: #EBEF2F;
+}
+
+.upload-button {
+    background: none;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    border-color: #EBEF2F;
+}
+
+/* Upload from YouTube */
+.link-box {
+    margin: 2rem 0 2rem 0;
+}
+
+
+.form-comtrol {
+    border-color: #EBEF2F;
+    border-radius: 20px;
+    background: none;
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+}
+
+/* Upload from microphone */
+.record-box {
+    text-align: center;
+    flex-wrap: wrap;
+    border-radius: 20px;
 }
