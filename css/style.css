@@ -53,9 +53,10 @@ html {
     text-align: center;
   }
   .album-cover {
-    width: 160px;
-    height: 160px;
-    margin-bottom: 16px;
+    width: 400px;
+    height: 400px;
+    margin-bottom: 100px;
+    margin-top: 100px;
   }
   .input {
     width: 100%;
@@ -85,13 +86,12 @@ html {
     font-size: 16px;
     cursor: pointer;
   }
-  .button-blue {
-    background-color: #007BFF;
-    color: white;
-  }
-  .button-green {
-    background-color: #28A745;
-    color: white;
+  .button-yellow{
+    background-color: #ff0;
+    color: black;
+    bottom: anchor-size(width);
+    text-align: center;
+    font-size: 32px;
   }
   .button-gray {
     background-color: #6C757D;
@@ -101,7 +101,7 @@ html {
     color: #aaa;
   }
   .material-icons {
-    font-size: 24px;
+    font-size: 40px;
     vertical-align: middle;
     cursor: pointer;
     margin: 0 4px;
