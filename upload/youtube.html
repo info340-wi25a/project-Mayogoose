@@ -1,0 +1,69 @@
+<!-- YouTube Preview Page -->
+<!-- Meiyao -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Meiyao">
+        <meta name="description" content="description of your page">
+        <title>Upload Warmup</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=upload_file" />
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body class="bg-black" data-bs-theme="dark">
+        <nav>
+            <img src="../img/logo.png" alt="logo" height="40">
+            <div class="profile">
+                <img src="../img/profile.png" alt="profile" onClick="">
+            </div>
+        </nav>
+        <main>
+            <div class="instructions">
+                <h1>Create Warmup</h1>
+                <p>Upload a new vocal warm-up for the community!</p>
+            </div> 
+
+            <div class="card">
+                <div class="instructions">
+                    <h2>Preview</h2>
+                    <p>Double check before uploading!</p>
+                </div>
+
+                <!-- Upload from local device -->
+                <div>
+                    <h3>Upload from Local Device:</h3>
+                    <div class="upload-box">
+                        <span class="material-symbols-outlined">
+                            upload_file
+                        </span>
+                        <p> Max 10 MB files are allowed, each file 2 minutes max.<br>Only supports .mp3</p>
+                        <button class="upload-button">Add file</button>
+                    </div>
+                </div>
+                    
+                <!-- Upload from URL links -->
+                <div class="link-box">
+                    <label for="linkInput" class="form-label"> Upload from URL / YouTube:</label>
+                    <input type="link" class="form-comtrol" id="linkInput" placeholder="Enter a link to upload a vocal warm-up, http://...">
+                </div>
+
+                <!-- OR divider -->
+                <div class="line-container">
+                    <div class="line"></div>
+                        <p>OR</p>
+                    <div class="line"></div>
+                </div>
+
+                <!-- Upload from voice recording -->
+                <div class="record-box"> 
+                    <h3>Record a New Vocal Warm-up!</h3>
+                    <img src="../img/microphone-icon.svg" alt="Microphone" onClick="">
+                    <p class="press-text">Press to Record</p>
+                    <p class="click-text">Click to Record</p>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
