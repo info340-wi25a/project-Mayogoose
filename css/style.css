@@ -6,7 +6,9 @@ nav {
     display: flex;
     align-items: left;
     justify-content: space-between;
-    margin: 4rem 5rem;
+    background-color: #181818;
+    padding: 1rem;
+    border-radius: 0 0 25px 25px;
 }
 
 .search-input {
@@ -37,19 +39,6 @@ nav {
     border-radius: 8px;
     overflow: hidden;
 }
-
-@media (min-width: 768px)
-{
-    nav {
-        margin: 4rem 12rem;
-    }
-
-    .albums-container {
-        margin: 0rem 7rem;
-    }
-}
-
-
 
 /* Meiyao's upload CSS */
 /* General Styling */
@@ -86,6 +75,7 @@ main {
     /* flexbox */
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     height: 100%; /* Take up available space */
 
     /* styling */
@@ -98,9 +88,10 @@ main {
 .upload-box {
     /* flexbox */
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
+    align-items: center;
     height: 100%; /* Take up available space */
+    width: 100%;
 
     /* styling */
     padding: 2rem;
@@ -141,9 +132,55 @@ main {
     padding: 0.2rem 0.6rem;
 }
 
+/* An "OR" divider for visual hierarchy */
+.line-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust space between text and lines */
+  }
+  
+  .line {
+    flex-grow: 1;
+    height: 0.1px;
+    background-color: grey;
+    margin-bottom: 0.9rem;
+  }
+
 /* Upload from microphone */
 .record-box {
-    text-align: center;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
     flex-wrap: wrap;
+    gap: 20px;
     border-radius: 20px;
+}
+
+.record-box .click-text {
+    display: none;
+}
+
+
+/* Responsive Layout for upload */
+@media (min-width: 768px)
+{
+    /* Amelia's index page */
+    .albums-container {
+        margin: 0rem 7rem;
+    }
+
+    /* Meiyao's upload page */
+    .record-box .press-text {
+        display: none;
+    }
+    .record-box .click-text {
+        display: block;
+    }
+    .material-symbols-outlined {
+        font-size: 6rem;
+        color: #EBEF2F;
+    }
+    .upload-box {
+        padding: 4rem;
+    }
 }
