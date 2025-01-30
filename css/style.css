@@ -87,16 +87,7 @@ nav {
 
 /* modal */
 
-.modal.show {
-    margin: 0 !important;
-    position: fixed !important;
-    bottom: 0 !important;
-    background: rgba(0, 0, 0, 0.5) !important;
-}
-
 .custom-bottom-modal {
-    width: 100% !important;
-    margin: 0 auto !important;
     position: absolute !important;
     bottom: 0 !important;
     left: 0 !important;
