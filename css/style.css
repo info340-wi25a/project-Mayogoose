@@ -237,13 +237,13 @@ main {
 }
 
 
-.form-comtrol {
+.form-control {
     border-color: #EBEF2F;
     border-radius: 20px;
     background: none;
     width: 100%;
     font-size: 0.8rem;
-    padding: 0.2rem 0.6rem;
+    padding: 0.3rem 0.6rem;
 }
 
 /* An "OR" divider for visual hierarchy */
@@ -272,6 +272,22 @@ main {
 
 .record-box .click-text {
     display: none;
+}
+
+/* Meiyao's YouTube Page */
+.instructions img {
+    width: 100%;
+    height: auto;
+}
+
+.select-menu .select-box {
+    display: flex;
+    width: 100%;
+    background: black;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border-color: #EBEF2F;
+    margin: 0rem 1.5rem 1.5rem 0rem;
 }
 
 /* Runa's add song */
@@ -391,12 +407,6 @@ h2 {
     color: gray;
 }
 
-/* Meiyao's YouTube Page */
-.card img {
-    width: 100%;
-    height: auto;
-}
-
 /* Responsive Layout */
 @media (min-width: 598px) {
     .warmup {
@@ -478,7 +488,7 @@ header {
 .logo-circle {
     width: 24px;
     height: 24px;
-    background-color: #ffeb3b;
+    background-color: #EBEF2F;
     border-radius: 50%;
 }
 
