@@ -391,6 +391,12 @@ h2 {
     color: gray;
 }
 
+/* Meiyao's YouTube Page */
+.card img {
+    width: 100%;
+    height: auto;
+}
+
 /* Responsive Layout */
 @media (min-width: 598px) {
     .warmup {
