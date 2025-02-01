@@ -75,9 +75,7 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 1rem 0;
     z-index: 1000;
-    
 }
 
 .bottom-nav .nav-item {
@@ -165,6 +163,25 @@ nav {
 .btn-modal-close:hover {
     background: white !important;
     color: black !important;
+}
+
+/* filter modal */
+.modal-header,
+.modal-footer {
+    border: none !important;
+}
+
+#filtermodal {
+    max-width: 500px;
+    width: 90%;
+}
+
+#filtermodal .modal-dialog {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 400px !important;
 }
 
 /* Meiyao's upload CSS */
@@ -722,15 +739,14 @@ header {
 {
     /* Amelia's index page */
 
-    .albums-container {
-        gap: 5px;
-        margin-left: 100px;
-        margin-right: 100px;
+    .pagecontent {
+        margin-left: 50px;
+        margin-right: 50px;
     }
-    
-    .album {
-        margin-left: 20px;
-        margin-right: 20px;
+
+    .justify-content-center {
+        margin-left: -80px !important;
+        margin-right: -80px !important;
     }
     
     .album img {
@@ -741,6 +757,12 @@ header {
     .bottom-nav {
         display: none !important;
     }
+
+    /* filter modal */
+    #filtermodal .modal-dialog {
+        width: 800px !important;
+    }
+
 
     /* Meiyao's upload page */
     .record-box .press-text {
