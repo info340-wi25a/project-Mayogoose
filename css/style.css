@@ -4,13 +4,30 @@
     box-sizing: border-box;
 }
 
+.pagecontent {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
 nav {
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: space-between;
     background-color: #181818;
-    padding: 1rem;
+    padding: 1rem 2rem;
     border-radius: 0 0 25px 25px;
+}
+
+.mt-4 {
+    margin-top: 0rem !important;
+}
+
+.mt-5 {
+    padding-bottom: 0px !important;
+}
+
+.recentbuttext {
+    padding-top: 15px;
 }
 
 .search-input {
@@ -26,18 +43,24 @@ nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 50px;
 }
 
 .album {
-    width: 225px;
-    border-radius: 8px;
+    width: 175px;
+    height: 250px;
     overflow: hidden;
-    margin: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .album img {
-    width: 200px;
-    border-radius: 8px;
+    width: 175px;
+    height: 175px;
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -84,7 +107,7 @@ nav {
     opacity: 1;
 }
 
-/* modal */
+/* modal (create buttom thingy) */
 
 .custom-bottom-modal {
     position: absolute !important;
@@ -698,8 +721,21 @@ header {
 @media (min-width: 768px)
 {
     /* Amelia's index page */
+
     .albums-container {
-        margin: 0rem 7rem;
+        gap: 5px;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    
+    .album {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+    .album img {
+        width: 175px;
+        height: 175px;
     }
 
     .bottom-nav {
