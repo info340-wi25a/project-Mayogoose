@@ -213,6 +213,7 @@ main {
     border-color: #EBEF2F;
     border-radius: 20px;
     background-color: #242424;
+    margin-bottom: 1.5rem;
 }
 
 .upload-box p {
@@ -309,6 +310,7 @@ select {
     padding: 0.5rem;
     color: white;
     margin: 0.5rem;
+    margin-right: 0.1rem;
 }
 
 /* Runa's add song */
