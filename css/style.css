@@ -171,11 +171,6 @@ nav {
     border: none !important;
 }
 
-#filtermodal {
-    max-width: 500px;
-    width: 90%;
-}
-
 #filtermodal .modal-dialog {
     position: fixed !important;
     top: 50% !important;
@@ -183,6 +178,54 @@ nav {
     transform: translate(-50%, -50%) !important;
     width: 400px !important;
 }
+
+#filtermodal .modal-content {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.filter-btn {
+    border-radius: 20px; /* Rounded corners */
+    padding: 8px 13px;
+    margin: 5px;
+    border: 2px solid #ccc;
+    background: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.filter-btn.active {
+    background: black;
+    color: white;
+    border-color: black;
+}
+
+.filter-checkbox {
+    display: none;
+}
+
+.modal-footer .btn {
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-footer .btn-primary {
+    color: white;
+    background-color: gray;
+    border: 2px solid black;
+}
+
+.modal-footer .btn-secondary {
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+}
+
+
 
 /* Meiyao's upload CSS */
 /* General Styling */
@@ -761,6 +804,10 @@ header {
     /* filter modal */
     #filtermodal .modal-dialog {
         width: 800px !important;
+    }
+
+    #filtermodal .modal-content {
+        max-height: 75vh;
     }
 
 
