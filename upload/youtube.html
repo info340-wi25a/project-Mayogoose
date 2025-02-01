@@ -34,29 +34,40 @@
                 </div>
                     
                 <!-- Warm-up Name -->
-                <div class="link-box">
-                    <label for="linkInput" class="form-label"> Warm-up Name:</label>
-                    <input type="link" class="form-control" id="linkInput" placeholder="Give it a name to help other singers discover this warm-up!">
+                <div class="input-box">
+                    <h3> Warm-up Name:</h3>
+                    <input type="link" class="form-control" id="linkInput" placeholder="e.g. Soprano Tongue Trill">
                 </div>
 
                 <!-- Labels -->
-
-                <!-- Choose a playlist select menu -->
-                <div class="select-menu">
-                    <h3>Choose a Playlist</h3>
-                    <div class="select-box">
-                        <span id="selected-option">15 min Soprano Warm-up</span>
-                        <span class="arrow"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg></span>
+                <div class="input-box">
+                    <h3> Label:</h3>
+                    <div class="label-box">
+                        <p class="label">Head Voice x</p>
+                        <p class="label">Beginner x</p>
+                        <p class="label">Classical x</p>
                     </div>
                 </div>
 
                 <!-- Choose a playlist select menu -->
-                <div class="select-menu">
+                <div class="dropdown-container">
+                    <h3>Choose a Playlist</h3>
+                    <select name="playlist" id="count">
+                        <option value="soprano">15 min Soprano Warm-up</option>
+                        <option value="alto">Chill Alto Warm-up</option>
+                        <option value="base">Intensive Base Training</option>
+                        <option value="tenor">Fun Tenor Exercises</option>
+                    </select>
+                </div>
+
+                <!-- Visibility select menu -->
+                <div class="dropdown-container">
                     <h3>Visibility</h3>
-                    <div class="select-box">
-                        <span id="selected-option">Public</span>
-                        <span class="arrow"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg></span>
-                    </div>
+                    <select name="playlist" id="count">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                        <option value="unlisted">Unlisted</option>
+                    </select>
                 </div>
 
                 <!--  bottom nav -->
