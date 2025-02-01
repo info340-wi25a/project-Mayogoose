@@ -36,7 +36,7 @@ nav {
 }
 
 .album img {
-    width: 1rem;
+    width: 200px;
     border-radius: 8px;
     overflow: hidden;
 }
