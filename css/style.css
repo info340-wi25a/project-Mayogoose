@@ -1,7 +1,11 @@
+<<<<<<<<< Temporary merge branch 1
+html {
+=========
 /* amelia css */
 /* homepage */
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+>>>>>>>>> Temporary merge branch 2
 }
 
 nav {
@@ -13,9 +17,14 @@ nav {
     border-radius: 0 0 25px 25px;
 }
 
+<<<<<<<<< Temporary merge branch 1
+h1 {
+    font-size: 2rem;
+=========
 .search-input {
     background-color: white !important;
     color: black;
+>>>>>>>>> Temporary merge branch 2
 }
 
 .search-input::placeholder {
