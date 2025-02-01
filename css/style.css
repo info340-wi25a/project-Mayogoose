@@ -36,8 +36,7 @@ nav {
 }
 
 .album img {
-    width: 100%;
-    height: auto;
+    width: 1rem;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -181,6 +180,7 @@ main {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
     height: 100%; /* Take up available space */
 
     /* styling */
@@ -204,6 +204,7 @@ main {
     border-color: #EBEF2F;
     border-radius: 20px;
     background-color: #242424;
+    margin-bottom: 1.5rem;
 }
 
 .upload-box p {
@@ -223,18 +224,18 @@ main {
 }
 
 /* Upload from YouTube */
-.link-box {
-    margin: 2rem 0 2rem 0;
+.input-box {
+    margin-bottom: 1.5rem;
 }
 
 
-.form-comtrol {
-    border-color: #EBEF2F;
+.form-control, button {
+    display: flex;
     border-radius: 20px;
     background: none;
-    width: 100%;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.6rem;
+    font-size: 1rem;
+    padding: 0.3rem 1.2rem;
+    border: 1px solid #EBEF2F;
 }
 
 /* An "OR" divider for visual hierarchy */
@@ -263,6 +264,54 @@ main {
 
 .record-box .click-text {
     display: none;
+}
+
+/* Meiyao's YouTube Page */
+.instructions {
+    width: 100%;
+}
+
+.instructions img {
+    width: 100%;
+    border-radius: 1.5rem;
+}
+
+select {
+    display: flex;
+    width: 100%;
+    background: none;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border-color: #EBEF2F;
+    margin: 0rem 1.5rem 1.5rem 0rem;
+    color: white;
+}
+
+.label-box {
+    display: flex;
+    border-radius: 20px;
+    background: none;
+    font-size: 1rem;
+    border: 1px solid #EBEF2F;
+}
+
+.label {
+    border: 0.5px solid #EBEF2F;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: white;
+    margin: 0.5rem;
+    margin-right: 0.1rem;
+}
+
+.caption {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.add-cover {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Runa's add song */
@@ -463,7 +512,7 @@ header {
 .logo-circle {
     width: 24px;
     height: 24px;
-    background-color: #ffeb3b;
+    background-color: #EBEF2F;
     border-radius: 50%;
 }
 
