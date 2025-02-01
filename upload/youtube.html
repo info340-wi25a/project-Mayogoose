@@ -1,4 +1,4 @@
-<!-- YouTube Preview Page -->
+<!-- Upload page, navigate here when user press add warm-ups -->
 <!-- Meiyao -->
 
 <!DOCTYPE html>
@@ -28,40 +28,61 @@
             <div class="card">
                 <div class="instructions">
                     <h2>Preview</h2>
-                    <p>Double check before uploading!</p>
-                </div>
-
-                <!-- Upload from local device -->
-                <div>
-                    <h3>Upload from Local Device:</h3>
-                    <div class="upload-box">
-                        <span class="material-symbols-outlined">
-                            upload_file
-                        </span>
-                        <p> Max 10 MB files are allowed, each file 2 minutes max.<br>Only supports .mp3</p>
-                        <button class="upload-button">Add file</button>
-                    </div>
+                    <p>Double checks before uploading!</p>
+                    <!-- YouTube Preview -->
+                    <img src="../img/youtube.png" alt="YouTube thumbnail of a vocal straw exercise" onclick="">
                 </div>
                     
-                <!-- Upload from URL links -->
-                <div class="link-box">
-                    <label for="linkInput" class="form-label"> Upload from URL / YouTube:</label>
-                    <input type="link" class="form-comtrol" id="linkInput" placeholder="Enter a link to upload a vocal warm-up, http://...">
+                <!-- Warm-up Name -->
+                <div class="input-box">
+                    <h3> Warm-up Name:</h3>
+                    <input type="link" class="form-control" id="linkInput" placeholder="e.g. Soprano Tongue Trill">
                 </div>
 
-                <!-- OR divider -->
-                <div class="line-container">
-                    <div class="line"></div>
-                        <p>OR</p>
-                    <div class="line"></div>
+                <!-- Labels -->
+                <div class="input-box">
+                    <h3> Label:</h3>
+                    <div class="label-box">
+                        <p class="label">Head Voice x</p>
+                        <p class="label">Beginner x</p>
+                        <p class="label">Classical x</p>
+                    </div>
                 </div>
 
-                <!-- Upload from voice recording -->
-                <div class="record-box"> 
-                    <h3>Record a New Vocal Warm-up!</h3>
-                    <img src="../img/microphone-icon.svg" alt="Microphone" onClick="">
-                    <p class="press-text">Press to Record</p>
-                    <p class="click-text">Click to Record</p>
+                <!-- Choose a playlist select menu -->
+                <div class="dropdown-container">
+                    <h3>Choose a Playlist</h3>
+                    <select name="playlist" id="count">
+                        <option value="soprano">15 min Soprano Warm-up</option>
+                        <option value="alto">Chill Alto Warm-up</option>
+                        <option value="base">Intensive Base Training</option>
+                        <option value="tenor">Fun Tenor Exercises</option>
+                    </select>
+                </div>
+
+                <!-- Visibility select menu -->
+                <div class="dropdown-container">
+                    <h3>Visibility</h3>
+                    <select name="playlist" id="count">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                        <option value="unlisted">Unlisted</option>
+                    </select>
+                </div>
+
+                <!--  bottom nav -->
+                <div class="bottom-nav">
+                    <a href="#" class="nav-item">
+                        <img src="../img/home.png" alt="Home Icon">
+                        <span>Home</span>
+                    </a>
+                    <a href="#" class="nav-item create-button" data-bs-toggle="modal" data-bs-target="#createModal">
+                        + Create
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="../img/library.png" alt="Library Icon">
+                        <span>Your Library</span>
+                    </a>
                 </div>
             </div>
         </main>
