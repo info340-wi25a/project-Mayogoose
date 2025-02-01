@@ -238,7 +238,7 @@ main {
 }
 
 
-.form-control {
+.form-control, button {
     display: flex;
     border-radius: 20px;
     background: none;
@@ -311,6 +311,16 @@ select {
     color: white;
     margin: 0.5rem;
     margin-right: 0.1rem;
+}
+
+.caption {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.add-cover {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Runa's add song */
