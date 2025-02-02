@@ -64,6 +64,17 @@ nav {
     overflow: hidden;
 }
 
+/* create for desktop */
+
+.d-flex.justify-content-left.mt-3 select {
+    height: 30px !important;
+    width: 300px !important;
+    margin-left: auto;
+    padding: 2px 10px;
+    background-color: gray !important;
+    display: none;
+}
+
 /* buttom nav bar */
 .bottom-nav {
     position: fixed;
@@ -104,6 +115,12 @@ nav {
     font-size: 1rem;
     opacity: 1;
 }
+
+.mt-3 button {
+    height: 30px !important;
+}
+
+
 
 /* modal (create buttom thingy) */
 
@@ -439,7 +456,7 @@ header {
     background: white;
     border-radius: 50px;
     padding: 10px 15px;
-    width: 300px;
+    width: 500px;
     max-width: 90%;
 }
 
@@ -459,6 +476,7 @@ header {
 
 /* Add Button */
 .add-btn {
+    font-size: 30px; 
     background: white;
     border: none;
     width: 45px;
@@ -482,6 +500,7 @@ main {
 
 h2 {
     font-size: 22px;
+    margin-bottom: 15px; 
 }
 
 .warmups {
@@ -507,6 +526,7 @@ h2 {
 
 .warmup-info .title {
     font-weight: bold;
+    color: white;
 }
 
 .warmup-info .artist {
@@ -522,14 +542,9 @@ h2 {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: Arial, sans-serif;
     background-color: black;
     color: white;
-}
-
-.container {
-    padding: 20px;
-    padding-bottom: 80px;
 }
 
 /* Header styles */
@@ -537,23 +552,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 15px 20px;
+    width: 100%;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-circle {
-    width: 24px;
-    height: 24px;
-    background-color: #EBEF2F;
-    border-radius: 50%;
-}
-
-.logo h1 {
     font-size: 24px;
     font-weight: bold;
 }
@@ -567,21 +570,26 @@ header {
 
 /* Playlist header */
 .playlist-header {
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+    position: relative;
 }
 
 .playlist-cover {
-    width: 100%;
-    aspect-ratio: 1;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 16px;
+    border-radius: 10px;
+    margin-top: -30px;
 }
 
 .playlist-info {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-top: 30px;
 }
 
 .playlist-info h2 {
@@ -589,15 +597,12 @@ header {
     font-weight: bold;
 }
 
-.playlist-controls {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-}
-
 .play-button {
-    width: 48px;
-    height: 48px;
+    position: absolute;
+    bottom: 10px;
+    right: 300px;
+    width: 50px;
+    height: 50px;
     background: white;
     border: none;
     border-radius: 50%;
@@ -605,6 +610,7 @@ header {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .play-icon {
@@ -616,14 +622,15 @@ header {
     margin-left: 4px;
 }
 
-.party-button {
-    padding: 8px 20px;
+.tag-button {
+    padding: 6px 14px;
     background: #333;
     border: none;
     border-radius: 20px;
     color: white;
     font-size: 14px;
-    cursor: pointer;
+    position: absolute;
+    right: 400px;
 }
 
 /* Songs list */
@@ -631,6 +638,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-top: 50px;
 }
 
 .song-item {
@@ -789,6 +797,10 @@ header {
         display: none !important;
     }
 
+    .d-flex.justify-content-left.mt-3 select {
+        display: block;
+    }
+
     /* filter modal */
     #filtermodal .modal-dialog {
         width: 800px !important;
@@ -812,6 +824,16 @@ header {
     }
     .upload-box {
         padding: 4rem;
+    }
+
+    /* Meiyao's YouTube */
+    .card {
+        display: flex;
+
+    }
+
+    .instructions img {
+        width: 30%;
     }
 }
 
