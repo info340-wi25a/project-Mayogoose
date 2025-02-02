@@ -431,52 +431,6 @@ h2 {
     color: gray;
 }
 
-/* Responsive Layout */
-@media (min-width: 598px) {
-    .warmup {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        align-items: center;
-    }
-}
-
-@media (min-width: 900px) {
-    .warmups {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-/* Shrinking on Small Screens */
-@media (max-width: 598px) {
-    header {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .logo {
-        font-size: 18px;
-    }
-
-    .profile {
-        font-size: 16px;
-    }
-
-    .search-bar {
-        width: 250px;
-        padding: 8px 10px;
-    }
-
-    .add-btn {
-        width: 35px;
-        height: 35px;
-    }
-
-    .warmup img {
-        width: 40px;
-        height: 40px;
-    }
-}
-
 /* Runa's after */
 * {
     margin: 0;
@@ -659,6 +613,45 @@ header {
     font-size: 20px;
 }
 
+/* Responsive Layout */
+/* Shrinking on Small Screens */
+@media (max-width: 598px) {
+    header {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .profile {
+        font-size: 16px;
+    }
+
+    .search-bar {
+        width: 250px;
+        padding: 8px 10px;
+    }
+
+    .add-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .warmup img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .warmup {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+    }
+}
+
+
 /* Desktop styles */
 @media (min-width: 768px) {
     .container {
@@ -691,12 +684,7 @@ header {
         width: 64px;
         height: 64px;
     }
-}
 
-
-/* Responsive Layout for upload */
-@media (min-width: 768px)
-{
     /* Amelia's index page */
     .albums-container {
         margin: 0rem 7rem;
@@ -719,6 +707,13 @@ header {
     }
     .upload-box {
         padding: 4rem;
+    }
+}
+
+
+@media (min-width: 900px) {
+    .warmups {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
