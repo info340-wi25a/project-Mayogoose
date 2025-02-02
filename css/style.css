@@ -534,6 +534,7 @@ h2 {
     color: gray;
 }
 
+
 /* Runa's after */
 * {
     margin: 0;
@@ -704,7 +705,7 @@ header {
     font-size: 20px;
 }
 
-/* Responsive Layout */
+/* Runa's Responsive Layout */
 /* Shrinking on Small Screens */
 @media (max-width: 598px) {
     header {
@@ -739,6 +740,52 @@ header {
         display: grid;
         grid-template-columns: auto 1fr;
         align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Reduce Playlist Cover Size */
+    .playlist-cover {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Adjust Play Button and Tag Button */
+    .play-button {
+        width: 40px;
+        height: 40px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .tag-button {
+        font-size: 12px;
+        right: 60px;
+        bottom: 10px;
+    }
+
+    /* Center Playlist Info */
+    .playlist-info h2 {
+        font-size: 20px;
+    }
+
+    /* Adjust Song Layout */
+    .songs-container {
+        margin-top: 30px;
+        padding: 10px;
+    }
+
+    .song-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .song-info h3 {
+        font-size: 14px;
+    }
+
+    .song-info p {
+        font-size: 12px;
     }
 }
 
