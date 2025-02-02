@@ -1,30 +1,38 @@
-<<<<<<<<< Temporary merge branch 1
-html {
-=========
 /* amelia css */
 /* homepage */
-*{
-    box-sizing:border-box;
->>>>>>>>> Temporary merge branch 2
+* {
+    box-sizing: border-box;
+}
+
+.pagecontent {
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 nav {
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: space-between;
     background-color: #181818;
-    padding: 1rem;
+    padding: 1rem 2rem;
     border-radius: 0 0 25px 25px;
 }
 
-<<<<<<<<< Temporary merge branch 1
-h1 {
-    font-size: 2rem;
-=========
+.mt-4 {
+    margin-top: 0rem !important;
+}
+
+.mt-5 {
+    padding-bottom: 0px !important;
+}
+
+.recentbuttext {
+    padding-top: 15px;
+}
+
 .search-input {
     background-color: white !important;
     color: black;
->>>>>>>>> Temporary merge branch 2
 }
 
 .search-input::placeholder {
@@ -35,19 +43,24 @@ h1 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 50px;
 }
 
 .album {
-    width: 225px;
-    border-radius: 8px;
+    width: 175px;
+    height: 250px;
     overflow: hidden;
-    margin: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .album img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+    width: 175px;
+    height: 175px;
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -62,9 +75,7 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 1rem 0;
     z-index: 1000;
-    
 }
 
 .bottom-nav .nav-item {
@@ -94,7 +105,7 @@ h1 {
     opacity: 1;
 }
 
-/* modal */
+/* modal (create buttom thingy) */
 
 .custom-bottom-modal {
     position: absolute !important;
@@ -154,6 +165,68 @@ h1 {
     color: black !important;
 }
 
+/* filter modal */
+.modal-header,
+.modal-footer {
+    border: none !important;
+}
+
+#filtermodal .modal-dialog {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 400px !important;
+}
+
+#filtermodal .modal-content {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.filter-btn {
+    border-radius: 20px; /* Rounded corners */
+    padding: 8px 13px;
+    margin: 5px;
+    border: 2px solid #ccc;
+    background: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.filter-btn.active {
+    background: black;
+    color: white;
+    border-color: black;
+}
+
+.filter-checkbox {
+    display: none;
+}
+
+.modal-footer .btn {
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-footer .btn-primary {
+    color: white;
+    background-color: gray;
+    border: 2px solid black;
+}
+
+.modal-footer .btn-secondary {
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+}
+
+
+
 /* Meiyao's upload CSS */
 /* General Styling */
 h1 {
@@ -190,6 +263,7 @@ main {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
     height: 100%; /* Take up available space */
 
     /* styling */
@@ -213,6 +287,7 @@ main {
     border-color: #EBEF2F;
     border-radius: 20px;
     background-color: #242424;
+    margin-bottom: 1.5rem;
 }
 
 .upload-box p {
@@ -232,18 +307,18 @@ main {
 }
 
 /* Upload from YouTube */
-.link-box {
-    margin: 2rem 0 2rem 0;
+.input-box {
+    margin-bottom: 1.5rem;
 }
 
 
-.form-comtrol {
-    border-color: #EBEF2F;
+.form-control, button {
+    display: flex;
     border-radius: 20px;
     background: none;
-    width: 100%;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.6rem;
+    font-size: 1rem;
+    padding: 0.3rem 1.2rem;
+    border: 1px solid #EBEF2F;
 }
 
 /* An "OR" divider for visual hierarchy */
@@ -272,6 +347,54 @@ main {
 
 .record-box .click-text {
     display: none;
+}
+
+/* Meiyao's YouTube Page */
+.instructions {
+    width: 100%;
+}
+
+.instructions img {
+    width: 100%;
+    border-radius: 1.5rem;
+}
+
+select {
+    display: flex;
+    width: 100%;
+    background: none;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border-color: #EBEF2F;
+    margin: 0rem 1.5rem 1.5rem 0rem;
+    color: white;
+}
+
+.label-box {
+    display: flex;
+    border-radius: 20px;
+    background: none;
+    font-size: 1rem;
+    border: 1px solid #EBEF2F;
+}
+
+.label {
+    border: 0.5px solid #EBEF2F;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: white;
+    margin: 0.5rem;
+    margin-right: 0.1rem;
+}
+
+.caption {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.add-cover {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Runa's add song */
@@ -391,52 +514,6 @@ h2 {
     color: gray;
 }
 
-/* Responsive Layout */
-@media (min-width: 598px) {
-    .warmup {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        align-items: center;
-    }
-}
-
-@media (min-width: 900px) {
-    .warmups {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-/* Shrinking on Small Screens */
-@media (max-width: 598px) {
-    header {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .logo {
-        font-size: 18px;
-    }
-
-    .profile {
-        font-size: 16px;
-    }
-
-    .search-bar {
-        width: 250px;
-        padding: 8px 10px;
-    }
-
-    .add-btn {
-        width: 35px;
-        height: 35px;
-    }
-
-    .warmup img {
-        width: 40px;
-        height: 40px;
-    }
-}
-
 /* Runa's after */
 * {
     margin: 0;
@@ -472,7 +549,7 @@ header {
 .logo-circle {
     width: 24px;
     height: 24px;
-    background-color: #ffeb3b;
+    background-color: #EBEF2F;
     border-radius: 50%;
 }
 
@@ -619,6 +696,45 @@ header {
     font-size: 20px;
 }
 
+/* Responsive Layout */
+/* Shrinking on Small Screens */
+@media (max-width: 598px) {
+    header {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .profile {
+        font-size: 16px;
+    }
+
+    .search-bar {
+        width: 250px;
+        padding: 8px 10px;
+    }
+
+    .add-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .warmup img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .warmup {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+    }
+}
+
+
 /* Desktop styles */
 @media (min-width: 768px) {
     .container {
@@ -651,20 +767,37 @@ header {
         width: 64px;
         height: 64px;
     }
-}
 
-
-/* Responsive Layout for upload */
-@media (min-width: 768px)
-{
     /* Amelia's index page */
-    .albums-container {
-        margin: 0rem 7rem;
+
+    .pagecontent {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .justify-content-center {
+        margin-left: -80px !important;
+        margin-right: -80px !important;
+    }
+    
+    .album img {
+        width: 175px;
+        height: 175px;
     }
 
     .bottom-nav {
         display: none !important;
     }
+
+    /* filter modal */
+    #filtermodal .modal-dialog {
+        width: 800px !important;
+    }
+
+    #filtermodal .modal-content {
+        max-height: 75vh;
+    }
+
 
     /* Meiyao's upload page */
     .record-box .press-text {
@@ -679,6 +812,13 @@ header {
     }
     .upload-box {
         padding: 4rem;
+    }
+}
+
+
+@media (min-width: 900px) {
+    .warmups {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
