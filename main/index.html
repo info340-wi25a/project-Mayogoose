@@ -34,11 +34,16 @@
                         aria-label="Search">
                     </form>
     
-                    <div class="d-flex justify-content-left mt-3">
+                    <div class="d-flex justify-content-left mt-3 align-items-center filter-container">
                         <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" >All</button>
                         <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="soprano">Soprano</button>
                         <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="tenor">Tenor</button>
-                        <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="filters" data-bs-toggle="modal" data-bs-target="#filtermodal">Open Filters</button>
+                        <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="filters" data-bs-toggle="modal" data-bs-target="#filtermodal">Filters</button>
+                        <select>
+                            <option value="" disabled selected>Create</option>
+                            <option value="warmup">New Warm-up</option>
+                            <option value="playlist">New Playlist</option>
+                        </select>
                     </div>
                     
                     <div class="d-flex justify-content-start align-items-center mt-4">
