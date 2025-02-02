@@ -4,13 +4,30 @@
     box-sizing: border-box;
 }
 
+.pagecontent {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
 nav {
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: space-between;
     background-color: #181818;
-    padding: 1rem;
+    padding: 1rem 2rem;
     border-radius: 0 0 25px 25px;
+}
+
+.mt-4 {
+    margin-top: 0rem !important;
+}
+
+.mt-5 {
+    padding-bottom: 0px !important;
+}
+
+.recentbuttext {
+    padding-top: 15px;
 }
 
 .search-input {
@@ -26,18 +43,24 @@ nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 50px;
 }
 
 .album {
-    width: 225px;
-    border-radius: 8px;
+    width: 175px;
+    height: 250px;
     overflow: hidden;
-    margin: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .album img {
-    width: 1rem;
-    border-radius: 8px;
+    width: 175px;
+    height: 175px;
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -52,9 +75,7 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 1rem 0;
     z-index: 1000;
-    
 }
 
 .bottom-nav .nav-item {
@@ -84,7 +105,7 @@ nav {
     opacity: 1;
 }
 
-/* modal */
+/* modal (create buttom thingy) */
 
 .custom-bottom-modal {
     position: absolute !important;
@@ -143,6 +164,68 @@ nav {
     background: white !important;
     color: black !important;
 }
+
+/* filter modal */
+.modal-header,
+.modal-footer {
+    border: none !important;
+}
+
+#filtermodal .modal-dialog {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 400px !important;
+}
+
+#filtermodal .modal-content {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.filter-btn {
+    border-radius: 20px; /* Rounded corners */
+    padding: 8px 13px;
+    margin: 5px;
+    border: 2px solid #ccc;
+    background: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.filter-btn.active {
+    background: black;
+    color: white;
+    border-color: black;
+}
+
+.filter-checkbox {
+    display: none;
+}
+
+.modal-footer .btn {
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-footer .btn-primary {
+    color: white;
+    background-color: gray;
+    border: 2px solid black;
+}
+
+.modal-footer .btn-secondary {
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+}
+
+
 
 /* Meiyao's upload CSS */
 /* General Styling */
@@ -686,13 +769,35 @@ header {
     }
 
     /* Amelia's index page */
-    .albums-container {
-        margin: 0rem 7rem;
+
+    .pagecontent {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .justify-content-center {
+        margin-left: -80px !important;
+        margin-right: -80px !important;
+    }
+    
+    .album img {
+        width: 175px;
+        height: 175px;
     }
 
     .bottom-nav {
         display: none !important;
     }
+
+    /* filter modal */
+    #filtermodal .modal-dialog {
+        width: 800px !important;
+    }
+
+    #filtermodal .modal-content {
+        max-height: 75vh;
+    }
+
 
     /* Meiyao's upload page */
     .record-box .press-text {
