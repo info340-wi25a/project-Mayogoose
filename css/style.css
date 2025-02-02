@@ -813,6 +813,16 @@ header {
     .upload-box {
         padding: 4rem;
     }
+
+    /* Meiyao's YouTube */
+    .card {
+        display: flex;
+
+    }
+
+    .instructions img {
+        width: 30%;
+    }
 }
 
 
