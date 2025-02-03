@@ -39,9 +39,10 @@
                             upload_file
                         </span>
                         <p> Max 10 MB files are allowed, each file 2 minutes max.<br>Only supports .mp3</p>
-                        <select class="upload-button">
-                            <option value="../upload/youtube.html">YouTube</option>
-                            <option value="../upload/audio.html">Audio</option>
+                        <select id="createSelect">
+                            <option value="" disabled selected></option>
+                            <option value="youtube.html">YouTube</option>
+                            <option value="audio.html">Audio</option>
                         </select>
                     </div>
                 </div>
@@ -83,6 +84,18 @@
                 </div>
             </div>
         </main>
+
+        <script>
+            document.getElementById('createSelect').addEventListener('change', function() {
+                const selectedValue = this.value;
+                if (selectedValue) {
+                    window.location.href = selectedValue;
+                }
+            });
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 
         <footer style="text-align: center; padding: 10px; font-size: 14px; color: white;">
             <p>© 2025 Intune. All rights reserved.</p>
