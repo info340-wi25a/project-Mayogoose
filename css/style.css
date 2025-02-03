@@ -182,6 +182,17 @@ nav {
     color: black !important;
 }
 
+.no-style-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.no-style-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 /* filter modal */
 .modal-header,
 .modal-footer {

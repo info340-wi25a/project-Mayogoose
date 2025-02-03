@@ -39,10 +39,10 @@
                         <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="soprano">Soprano</button>
                         <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="tenor">Tenor</button>
                         <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="filters" data-bs-toggle="modal" data-bs-target="#filtermodal">Filters</button>
-                        <select>
+                        <select id="createSelect">
                             <option value="" disabled selected>Create</option>
-                            <option value="warmup">New Warm-up</option>
-                            <option value="playlist">New Playlist</option>
+                            <option value="../upload/youtube.html">New Warm-up</option>
+                            <option value="../organize/new-playlist.html">New Playlist</option>
                         </select>
                     </div>
                     
@@ -143,8 +143,8 @@
                 <div class="modal-body text-center">
                   <div class="modal-drag"></div>
           
-                  <p class="modal-option"><span class="modal-plus">+</span> <strong>New Warmup</strong></p>
-                  <p class="modal-option disabled"><span class="modal-plus">+</span> <strong>New Playlist</strong></p>
+                  <p class="modal-option"><span class="modal-plus">+</span><strong><a class="no-style-link" href="../upload/upload.html">New Warmup</a></strong></p>
+                  <p class="modal-option disabled"><span class="modal-plus">+</span><strong><a class="no-style-link" href="../organize/new-playlist.html">New Playlist</a></strong></p>
           
                   <button type="button" class="btn btn-modal-close" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -213,7 +213,14 @@
     
     </div>
 
-    
+    <script>
+        document.getElementById('createSelect').addEventListener('change', function() {
+            const selectedValue = this.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        });
+    </script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
