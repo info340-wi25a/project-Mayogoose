@@ -425,6 +425,166 @@ select {
     justify-content: space-between;
 }
 
+/* Ellie's before */
+  
+  /* Container */
+  .container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  
+  /* Playlist Card */
+  .card-before {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 20px; 
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .album-cover {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+  }
+  
+  .card-before h2 {
+    font-size: 24px;
+    margin: 20px 0 10px;
+  }
+  
+  .tags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  
+  .tags .material-icons {
+    font-size: 36px;
+    cursor: pointer;
+  }
+  
+  .tags .material-icons:hover {
+    color: #ffeb3b; /* Highlight color */
+  }
+  
+  .button-gray {
+    background-color: #333;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .button-gray:hover {
+    background-color: #555;
+  }
+  
+  .text-gray {
+    color: #aaa;
+    margin: 20px 0;
+  }
+  
+  /* Button - Add Warm-Ups */
+  .button-yellow {
+    background-color: #ffeb3b;
+    color: black;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .button-yellow:hover {
+    background-color: #fdd835;
+  }
+  /* Ellie's new-playlist */
+ /* Card Styling */
+  .card-playlist {
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .card-playlist  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .album-cover {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 12px;
+    margin: 10px 0 20px;
+  }
+  
+  /* Input Field */
+  .input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 1rem;
+    margin: 20px 0;
+    border: 2px solid # ;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .input:focus {
+    border-color: #ffd700;
+  }
+  
+  /* Tags Styling */
+  .tags {
+    margin: 10px 0;
+  }
+  
+  .tag {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #f0f0f0;
+    color: #555;
+    border-radius: 20px;
+    margin: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .tag:hover {
+    background-color: #ffd700;
+    color: #fff;
+  }
+  
+  /* Button */
+  .button-yellow {
+    display: inline-block;
+    background-color: #ffd700;
+    color: #333;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-yellow:hover {
+    background-color: #ffbf00;
+  } 
 /* Runa's add song */
 body {
     background-color: #121212;
