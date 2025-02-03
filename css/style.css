@@ -536,7 +536,7 @@ select {
     padding: 10px;
     font-size: 1rem;
     margin: 20px 0;
-    border: 2px solid # ;
+    border: 2px solid ;
     border-radius: 8px;
     outline: none;
     transition: border-color 0.3s;
