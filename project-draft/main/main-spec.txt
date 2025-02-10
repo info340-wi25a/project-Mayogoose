@@ -1,0 +1,4 @@
+Feature (0.5) Filtering Contents
+1. Browse content
+2. Filter through content
+3. Collect warmups (heart) or add to existing playlists

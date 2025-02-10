@@ -1,0 +1,220 @@
+<!-- Discover page, what users first see when they open the website -->
+<!-- Amelia -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="Amelia Li, Meiyao Li, Runa He, Ellie Wu" content="your name">
+    <meta name="description" content="A web app for singers to share vocal warm-up with each other">
+    <title>InTune</title>
+    <link rel="icon" href="../img/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body class="bg-black" data-bs-theme="dark">
+
+    <nav>
+        <h1>InTune</h1>
+
+        <div class="profile">
+            <img src="../img/profile.png" alt="profile" onClick="">
+        </div>
+    </nav>
+
+    <div class="pagecontent">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10">
+                    <form class="d-flex">
+                    <input 
+                        type="search" 
+                        class="form-control rounded-pill me-2 search-input" 
+                        placeholder="Search for vocal warm-ups" 
+                        aria-label="Search">
+                    </form>
+    
+                    <div class="d-flex justify-content-left mt-3 align-items-center filter-container">
+                        <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" >All</button>
+                        <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="soprano">Soprano</button>
+                        <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="tenor">Tenor</button>
+                        <button class="btn btn-secondary me-2 btn-sm rounded-pill px-3 filter-btn" data-filter="filters" data-bs-toggle="modal" data-bs-target="#filtermodal">Filters</button>
+                        <select id="createSelect">
+                            <option value="" disabled selected>Create</option>
+                            <option value="../upload/upload.html">New Warm-up</option>
+                            <option value="../organize/new-playlist.html">New Playlist</option>
+                        </select>
+                    </div>
+                    
+                    <div class="d-flex justify-content-start align-items-center mt-4">
+                        <button class="btn btn-sm rounded-pill px-3 d-flex align-items-center" style="gap: 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-right: -4px;" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 1 .374-.832l3 3a.5.5 0 1 1-.748.664L8.5 4.707V12.5a.5.5 0 0 1-1 0V4.707L5.374 6.332a.5.5 0 1 1-.748-.664l3-3a.5.5 0 0 1 .374-.168z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-left: -4px;" viewBox="0 0 16 16">
+                                <path d="M8 12.5a.5.5 0 0 1 .374.832l-3-3a.5.5 0 1 1 .748-.664L7.5 11.293V3.5a.5.5 0 0 1 1 0v7.793l1.626-1.625a.5.5 0 1 1 .748.664l-3 3a.5.5 0 0 1-.374.168z"/>
+                            </svg>
+                            <p class="recentbuttext">Recents</p>
+                        </button>
+                    </div>
+    
+              </div>
+            </div>
+        </div>
+    
+        <div class="albums-container">
+            <div class="album">
+                <img src="../img/album covers/1.png">
+                <div class="albumcontent">
+                    <b style="font-weight: 800;">Soprano Major Scales</b>
+                    <p style="color:gray;">Playlist · Warm warm-ups</p>
+                </div>
+            </div>
+            <div class="album">
+                <img src="../img/album covers/2.png">
+                <div class="albumcontent">
+                    <b style="font-weight: 800;">Vocal Sirens</b>
+                    <p style="color:gray;">Playlist · Warm Ups</p>
+                </div>
+            </div>
+            <div class="album">
+                <img src="../img/album covers/3.png">
+                <div class="albumcontent">
+                    <b style="font-weight: 800;">Yawn-Sigh Techniques</b>
+                    <p style="color:gray;">Playlist · Warm Ups</p>
+                </div>
+            </div>
+            <div class="album">
+                <img src="../img/album covers/4.png">
+                <div class="albumcontent">
+                    <b style="font-weight: 800;">John Wick Chapter 4</b>
+                    <p style="color:gray;">Playlist · Warm Ups</p>
+                </div>
+            </div>
+            <div class="album">
+                <img src="../img/album covers/5.png">
+                <div class="albumcontent">
+                    <b style="font-weight: 800;">Better Range Warm Up</b>
+                    <p style="color:gray;">Playlist · Warm Ups</p>
+                </div>
+            </div>
+            <div class="album">
+                <img src="../img/album covers/6.png">
+                <div class="albumcontent">
+                    <b style="font-weight: 800;">Vocan Siren Warm Up</b>
+                    <p style="color:gray;">Playlist · Warm Ups</p>
+                </div>
+            </div>
+
+        </div>
+    
+        <div class="bottom-nav">
+            <a href="#" class="nav-item">
+                <img src="../img/home.png" alt="Home Icon">
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item create-button" data-bs-toggle="modal" data-bs-target="#createModal">
+                + Create
+            </a>
+            <a href="#" class="nav-item">
+                <img src="../img/library.png" alt="Library Icon">
+                <span>Your Library</span>
+            </a>
+        </div>
+    
+        <!-- create modal -->
+        <div class="modal fade modal-bottom-sheet" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+            <div class="modal-dialog custom-bottom-modal">
+              <div class="modal-content custom-bottom-modal">
+                <div class="modal-body text-center">
+                  <div class="modal-drag"></div>
+          
+                  <p class="modal-option"><span class="modal-plus">+</span><strong><a class="no-style-link" href="../upload/upload.html">New Warmup</a></strong></p>
+                  <p class="modal-option disabled"><span class="modal-plus">+</span><strong><a class="no-style-link" href="../organize/new-playlist.html">New Playlist</a></strong></p>
+          
+                  <button type="button" class="btn btn-modal-close" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- filter modal -->
+        <div class="modal" id="filtermodal">
+            <div class="modal-dialog modal-dialog-centered modal-sm"> 
+
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Filters</h5>
+                </div>
+
+                <div class="modal-body">
+                    <p style="font-weight: bold; color: white;">Voice Type</p>
+                    <div>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Soprano</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Alto</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Base</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Tenor</label>
+                    </div>
+                    <br>
+                    <p style="font-weight: bold; color: white;">Vocal Register</p>
+                    <div>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Chest Voice</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Head Voice</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Mixed</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Vocal Fry</label>
+                    </div>
+                    <br>
+                    <p style="font-weight: bold; color: white;">Difficulty Level</p>
+                    <div>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Beginner</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Intermediatee</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Advanced</label>
+                    </div>
+                    <br>
+                    <p style="font-weight: bold; color: white;">Style</p>
+                    <div>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Classical</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Musical</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Jazz</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Pop</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">A Cappella</label>
+                    </div>
+                    <br>
+                    <p style="font-weight: bold; color: white;">Durition</p>
+                    <div>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Gentle (5-10 min)</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Full Routine (15-30 min)</label>
+                        <label class="filter-btn"><input type="checkbox" class="filter-checkbox">Intensive (30 min +)</label>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+
+          </div>
+        </div>
+    
+    </div>
+
+    <footer style="text-align: center; padding: 10px; font-size: 14px; color: white;">
+        <p>© 2025 Intune. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('createSelect').addEventListener('change', function() {
+            const selectedValue = this.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
