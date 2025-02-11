@@ -1,5 +1,13 @@
-// Amelia's index.html from draft 1
-import { upload } from "../upload.jsx";
+// Amelia's index.html, main.jsx first render this page
+
+// Import other pages
+import { upload } from "../upload.jsx"; // meiyao: upload individual warmup
+import { NewPlaylist } from "../NewPlaylist.jsx"; // ellie: upload playlist
+
+// Import Components (1, 2, 3, 4, 8, 9)
+import { NavBar } from "../navigation/NavBar.jsx";
+
+
 
 
 
