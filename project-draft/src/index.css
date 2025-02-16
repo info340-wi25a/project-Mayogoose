@@ -1,0 +1,43 @@
+/* amelia */
+
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* button */
+.custom-button {
+    color: #fff;
+    background-color: #000;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 15px 30px;
+    font-size: 15px;
+}
+  
+.custom-button:hover {
+    background-color: #626262;
+}
+
+/* homepage */
+.homepageCover {
+    width: 175px;
+    height: 175px;
+    border-radius: 5px;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+.albumName {
+    margin-top: 0px;
+}
