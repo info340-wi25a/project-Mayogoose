@@ -6,8 +6,8 @@
     // "Add Warm-ups" link to Runa's page (use #6 Button)
 
 // Import other pages
-import { AddWarmup } from "../AddWarmup.jsx"; // runa's add warmup page
+import { AddWarmup } from "./AddWarmup.jsx"; // runa's add warmup page
 
 // Import Components (1, 5, 6, 9, 10, 11)
-import { NavBar } from "../navigation/NavBar.jsx"; // Component 1
+import { NavBar } from "./navigation/NavBar.jsx"; // Component 1
 
