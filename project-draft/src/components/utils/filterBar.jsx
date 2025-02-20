@@ -1,2 +1,4 @@
-// #3 filter bar with tags 确保点了tag后页面可以re-render
-// Owner: amelia
+// #5 用户type text 后给warmup或者playlist加tag
+// owner: meiyao
+
+// joel ross's chat feature, micro-manageing input
