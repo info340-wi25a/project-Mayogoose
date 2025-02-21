@@ -1,16 +1,10 @@
 // 6. button where text and hyperlink are variable, shared by everybody
 // Owner: Amelia
 
-export function Button({text, link}) {
-    const handleClick = () => {
-        window.location.href = link;
-    }
-
+export function Button({text}) {
     return (
-        <div>
-            <button onClick={handleClick} className="custom-button">
-                {text}
-            </button>
-        </div>
+        <span className="badge-pill">
+            {text}
+        </span>
     );
 }
