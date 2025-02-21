@@ -7,18 +7,18 @@ body {
 }
 
 /* button */
-.custom-button {
-    color: #fff;
-    background-color: #000;
-    border-radius: 999px;
+.badge-pill {
+    color: black;
+    background-color: #EFC52F;
+    border-radius: 90px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    padding: 15px 30px;
+    padding: 15px 40px;
     font-size: 15px;
 }
   
-.custom-button:hover {
-    background-color: #626262;
+.badge-pill:hover {
+    background-color: darkgoldenrod;
 }
 
 /* homepage */

@@ -8,8 +8,7 @@ import React from 'react';
 // // Import Components (1, 2, 3, 4, 8, 9)
 // import { NavBar } from "./navigation/NavBar.jsx";
 
-import { Button } from "./utils/Buttons.jsx";
-import { FilterBar } from "../utils/FilterBar.jsx";
+import { Button } from "../utils/NavButton.jsx";
 
 import data from '../../data/data.json'
 
@@ -18,12 +17,12 @@ function App(props) {
         <div>
             <div>
                 <p>button test:</p>
-                <Button text="to Intune" link="https://info340-wi25a.github.io/project-Mayogoose/main/index.html"/>
+                <Button text="A button" />
             </div>
             <br></br>
             <div>
                 <p>filter bar test:</p>
-                <FilterBar />
+
             </div>
             <br></br>
             <div>
