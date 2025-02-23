@@ -3,17 +3,17 @@ function PlaylistCard({ item }) {
     return (
         <div key={item.Id}>
             <img className="homepageCover" src={item.Img} alt={item.Name}/>
-            <p className="albumName">Soprano Major Scales</p>
+            <p className="albumName">{item.Name}</p>
         </div>
     );
 }
 
 // Used by App.jsx
-export function PlaylistCards({ data }) {
+export function PlaylistCards({ albumsData }) {
     return (
         <div className="grid-container">
-            {data.map((item) => (
-                <PlaylistCard item={item}/>
+            {albumsData.map((item) => (
+                <PlaylistCard key={item.Id} item={item}/>
             ))}
         </div>
     );

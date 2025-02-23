@@ -1,5 +1,6 @@
 // Amelia's index.html, main.jsx first render this page
 import React from 'react';
+import { useState } from 'react';
 
 // // Import other pages
 // import { upload } from "./Upload.jsx"; // meiyao: upload individual warmup
@@ -10,10 +11,23 @@ import React from 'react';
 
 import { Button } from "../utils/NavButton.jsx";
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
+import { SearchBar } from '../utils/SearchBar.jsx';
 
-import data from '../../data/data.json'
+import albumsData from '../../data/data.json'
 
-function App(props) {
+function App() {
+
+    const [query, setQuery] = useState("");
+
+    const getFilteredAlbums = (query, albums) => {
+        if (!query) {
+            return albums;
+        }
+        return albums.filter(album => album.Name.includes(query))
+    }    
+
+    const filteredAlbums = getFilteredAlbums(query, albumsData);
+
     return (
         <div>
             <div>
@@ -22,15 +36,12 @@ function App(props) {
             </div>
             <br></br>
             <div>
-                <p>filter bar test:</p>
-
-            </div>
-            <br></br>
-            <div>
                 <p>homepage content:</p>
-            </div>
-            <div>
-                <PlaylistCards data={data}/>
+                <SearchBar setQuery={setQuery}/>
+                <br></br>
+                <br></br>
+                <br></br>
+                <PlaylistCards albumsData={filteredAlbums}/>
             </div>
         </div>
     );
