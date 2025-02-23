@@ -9,6 +9,7 @@ import React from 'react';
 // import { NavBar } from "./navigation/NavBar.jsx";
 
 import { Button } from "../utils/NavButton.jsx";
+import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 
 import data from '../../data/data.json'
 
@@ -29,15 +30,7 @@ function App(props) {
                 <p>homepage content:</p>
             </div>
             <div>
-                <div className="grid-container">
-                    {data.map((item) => (
-                    <div key={item.Id}>
-                        <img className="homepageCover" src={item.Img} alt={item.Name}/>
-                        {/* <h1>{item.Name}</h1> */}
-                        <p className="albumName">Soprano Major Scales</p>
-                    </div>
-                    ))}
-                </div>
+                <PlaylistCards data={data}/>
             </div>
         </div>
     );
