@@ -1,7 +1,12 @@
 // #2 search bar
 // owner: amelia
 
+import React, { useState } from "react";
+
 export function SearchBar({ setQuery }) {
+
+    const [showModal, setShowModal] = useState(false);
+    
     const handleChange = (event) => {
         const value = event.target.value;
         setQuery(value);

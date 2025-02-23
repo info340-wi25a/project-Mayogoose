@@ -40,9 +40,49 @@
         "Style": ""
     },
     {
+        "Id": "4",
+        "Name": "warmup",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
         "Id": "5",
         "Name": "warmup",
         "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "6",
+        "Name": "warmup",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "7",
+        "Name": "warmup",
+        "Img": "../../../img/album-cover.jpeg",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "8",
+        "Name": "warmup",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
         "Voice Type": "",
         "Voice Register": "",
         "Difficulty Level": "",
