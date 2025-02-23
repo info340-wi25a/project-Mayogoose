@@ -1,9 +1,13 @@
 // 6. button where text and hyperlink are variable, shared by everybody
 // Owner: Amelia
 
-export function Button({text}) {
+import { useNavigate } from "react-router-dom";
+
+export function NavButton({text, destination}) {
+    const navigate = useNavigate();
+
     return (
-        <span className="badge-pill">
+        <span onClick={() => navigate(destination)} className="badge-pill">
             {text}
         </span>
     );

@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 // import { NavBar } from "./navigation/NavBar.jsx";
 
-import { Button } from "../utils/NavButton.jsx";
+import { NavButton } from "../utils/NavButton.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
@@ -37,6 +37,10 @@ function App() {
                     path="/"
                     element={
                         <div>
+                            <div>
+                               <p>nav button:</p>
+                               <NavButton text={"createwarmup"} destination={"/createWarmup"} />
+                            </div>
                             <br/>
                             <br/>
                             <SearchBar query={query} setQuery={setQuery} />
