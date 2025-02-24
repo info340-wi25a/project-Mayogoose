@@ -14,5 +14,3 @@ const WarmupItem = ({ title, description }) => {
 
 export default WarmupItem;
 
-
-
