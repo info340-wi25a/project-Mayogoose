@@ -585,6 +585,7 @@ select {
   .button-yellow:hover {
     background-color: #ffbf00;
   } 
+
 /* Runa's add song */
 body {
     background-color: #121212;
@@ -645,7 +646,7 @@ header {
     width: 100%;
 }
 
-/* Add Button */
+/* Add Button (Search Bar)*/
 .add-btn {
     font-size: 30px; 
     background: white;
@@ -659,10 +660,30 @@ header {
     cursor: pointer;
 }
 
-.add-btn i {
+/* Create Button */
+.button-yellow {
+    display: block;
+    margin: 20px auto;
+    background-color: #FFC107;
     color: black;
-    font-size: 20px;
+    font-size: 16px; 
+    font-weight: bold;
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 150px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
+.button-yellow:hover {
+    background-color: #e0a800;
+}
+
 
 /* Suggested Warm-ups */
 main {
@@ -703,6 +724,22 @@ h2 {
 .warmup-info .artist {
     font-size: 14px;
     color: gray;
+}
+
+/* Plus button inside warmup items */
+.add-warmup-btn {
+    color: white;
+    font-size: 24px;  /* 稍微减小字体大小以适应更小的按钮 */
+    background: grey;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: auto;
 }
 
 

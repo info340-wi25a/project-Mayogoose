@@ -1,0 +1,1 @@
+// hard code 3 options, with state
