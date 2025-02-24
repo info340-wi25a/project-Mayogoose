@@ -9,7 +9,7 @@ import React from 'react';
 // import { NavBar } from "./navigation/NavBar.jsx";
 
 import { Button } from "./utils/Buttons.jsx";
-import { FilterBar } from "../utils/FilterBar.jsx";
+import { FilterBar } from "./utils/FilterBar.jsx";
 
 import data from '../../data/data.json'
 
