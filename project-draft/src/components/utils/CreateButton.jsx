@@ -17,15 +17,14 @@ export function CreateButton({elements}) {
     };
 
     return (
-        <>
-            <div className="createWrap">
-                <select className="createButton" onChange={handleSelect} defaultValue="">
-                    <option value="" disabled>+</option>
-                    <option value="warmup">New Warm-up</option>
-                    {elements === "2" && <option value="playlist">New Playlist</option>}
-                </select>
-            </div>
-        </>
+
+        <div className="createWrap">
+            <select className="createButton" onChange={handleSelect} defaultValue="">
+                <option value="" disabled>+</option>
+                <option value="warmup">New Warm-up</option>
+                {elements === "2" && <option value="playlist">New Playlist</option>}
+            </select>
+        </div>
     );
     
 }
