@@ -2,6 +2,8 @@
 
 // import { NavBar } from "../navigation/NavBar.jsx";  Ellie
 // import { CreateFrom } from "../utils/CreateForm.jsx"; Meiyao
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import { NavButton } from "../utils/NavButton.jsx";
 
 function CreateWarmupForm(props) {
     return (
@@ -18,8 +20,11 @@ function CreateWarmupForm(props) {
                         upload_file
                     </span>
                     <p> Max 10 MB files are allowed, each file 2 minutes max. Only supports .mp3</p>
-                    <VisibilityBar />
                 </div>
+                {/* <VisibilityBar /> */}
+                <h2>Upload from URL:</h2>
+                {/* <InputBar /> */}
+                <NavButton text={"Create!"} destination={"/"}/>
             </div>
         </div>
     );
@@ -32,17 +37,9 @@ export default CreateWarmupForm;
 {/* <main>
 
             <div class="card">
-                <div class="instructions">
-                    <h2>Media Upload</h2>
-                    <p>Add your warm-up exercise here!</p>
-                </div>
-
                     
                 <!-- Upload from URL links -->
-                <div class="input-box">
-                    <label for="linkInput" class="form-label"> Upload from URL / YouTube:</label>
-                    <input type="link" class="form-control" id="linkInput" placeholder="Enter a link to upload a vocal warm-up, http://...">
-                </div>
+                
 
                 <!-- OR divider -->
                 <div class="line-container">
