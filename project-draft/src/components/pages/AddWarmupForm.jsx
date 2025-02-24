@@ -9,6 +9,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { NavBar } from "../utils/NavBar.jsx"; // Error happens here 到时候记得修改
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
 import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
@@ -22,7 +23,6 @@ const AddWarmupForm = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
   
-    // Use warmupData from data.json instead of mock data
     const warmupsList = warmupData.warmups;
   
     // // Handle search input changes
@@ -31,10 +31,13 @@ const AddWarmupForm = () => {
     //   // Add search logic here
     // };
   
-    // // Handle adding warmup to selection
+    // Prevent duplicate warmups
     const handleAddWarmup = (warmup) => {
-      setSelectedWarmups([...selectedWarmups, warmup]);
-    };
+      if (!selectedWarmups.some(selected => selected.id === warmup.id)) {
+          setSelectedWarmups([...selectedWarmups, warmup]);
+      }
+  };
+
   
     return (
       <div className="add-warmup-container">
@@ -43,10 +46,7 @@ const AddWarmupForm = () => {
         <div className="main-content">
           <h1>Add Warmups</h1>
           
-          <SearchBar 
-            query={searchQuery}
-            setQuery={setSearchQuery}
-          />
+          <SearchBar query={searchQuery} setQuery={setSearchQuery} />
   
           <div className="warmups-list">
             {warmupsList.map((warmup) => (
@@ -68,11 +68,14 @@ const AddWarmupForm = () => {
               />
             ))}
           </div>
-  
+          
+          {/* 到时候可以用meiyao的create button component */}
           <CreateButton 
-            text="Create Playlist"
+            text="Create"
             onClick={() => navigate('/myPlaylist')}
           />
+
+          <NavButton text="Back to Home" destination="/" />
         </div>
       </div>
     );
