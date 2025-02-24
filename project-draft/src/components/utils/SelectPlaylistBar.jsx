@@ -7,8 +7,8 @@
 
 import { useState } from "react";
 
-export function SelectPlaylistBar() { // array of objects
-    const playlists = playlistsData;
+export function SelectPlaylistBar({props}) { // array of objects
+    const playlists = props;
 
     const [playlist, setPlaylist] = useState("");
 
@@ -19,20 +19,16 @@ export function SelectPlaylistBar() { // array of objects
         }
     };
 
-    const selectPlaylistBar = playlist.map()
+    const selectPlaylistBar = playlists.map(playlist => (
+        <option value={playlist.Name}>{playlist.Name}</option>
+    ));
 
     return (
         // VisibilityBar not found in index.css
         <div> 
-            {selectPlaylistBar};
+            <select className="VisibilityButton" onChange={handleSelect}>
+                {selectPlaylistBar};  
+            </select>
         </div>
     );
 }
-
-
-
-// <select className="VisibilityButton" onChange={handleSelect}>
-{/* <option value="public">Public</option>
-<option value="private">Private</option>
-<option value="unlisted">Unlisted</option>
-</select> */}

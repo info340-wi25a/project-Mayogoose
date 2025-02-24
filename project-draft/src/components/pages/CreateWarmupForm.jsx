@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { NavButton } from "../utils/NavButton.jsx";
 import { InputBar } from "../utils/InputBar.jsx";
 import { VisibilityBar } from "../utils/VisibilityBar.jsx";
+import { SelectPlaylistBar } from "../utils/SelectPlaylistBar.jsx";
+
+import albumsData from "../../data/playlist.json";
 
 function CreateWarmupForm(props) {
     return (
@@ -21,7 +24,7 @@ function CreateWarmupForm(props) {
                 </div>
                 <h2>Name</h2>
                 <InputBar />
-                {/* SelectPlaylistBar */}
+                <SelectPlaylistBar props={albumsData} />
                 <h2>Visibility</h2>
                 <VisibilityBar />
             </div>
