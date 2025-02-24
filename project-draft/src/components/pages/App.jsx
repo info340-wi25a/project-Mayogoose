@@ -57,7 +57,7 @@ function App() {
                     }
                 />
                 <Route path="/createWarmup" element={<CreateWarmupForm />} />
-                <Route path="/addWarmup" element={<AddWarmupForm />} />
+                {/* <Route path="/addWarmup" element={<AddWarmupForm />} /> */}
             </Routes>
         </Router>
     );
