@@ -6,19 +6,19 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* button */
-.custom-button {
-    color: #fff;
-    background-color: #000;
-    border-radius: 999px;
+/* nav button */
+.badge-pill {
+    color: black;
+    background-color: #EFC52F;
+    border-radius: 90px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    padding: 15px 30px;
+    padding: 15px 35px;
     font-size: 15px;
 }
   
-.custom-button:hover {
-    background-color: #626262;
+.badge-pill:hover {
+    background-color: darkgoldenrod;
 }
 
 /* homepage */
@@ -33,11 +33,54 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
-    margin-left: 30px;
+    margin-left: 30 px;
     margin-right: 30px;
     margin-bottom: 30px;
 }
 
 .albumName {
     margin-top: 0px;
+}
+
+/* search bar */
+.wholeSearchContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.searchBarContainer {
+    display: flex;
+    align-items: center;
+    width: 73%;
+    border-radius: 50px;
+}
+
+.searchBar {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.createButton {
+    appearance: none;
+    border: none;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50%;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+}
+
+/* responsive */
+@media (min-width: 768px) {
+    .grid-container {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
 }
