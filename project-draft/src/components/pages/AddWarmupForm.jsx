@@ -7,3 +7,5 @@
 
 // Import Components (1, 2, 6, 9)
 import { NavBar } from "./navigation/NavBar.jsx"; // Component 1
+import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
+import { Button } from "../utils/Button.jsx"; // Component 6
