@@ -39,10 +39,6 @@ function App() {
                     element={
                         <div>
                             <NavBar />
-                            <div>
-                                <p>visbilitybar</p>
-                                <VisibilityBar />
-                            </div>
                             <br/>
                             <br/>
                             <SearchBar query={query} setQuery={setQuery} />
