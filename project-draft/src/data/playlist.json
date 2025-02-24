@@ -1,7 +1,7 @@
 [
     {
         "Id": "1",
-        "Name": "warmup",
+        "Name": "playlist1",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
@@ -11,7 +11,7 @@
     },
     {
         "Id": "2",
-        "Name": "warmup",
+        "Name": "playlist2",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
@@ -21,7 +21,7 @@
     },
     {
         "Id": "3",
-        "Name": "warmup",
+        "Name": "playlist3",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
@@ -31,7 +31,7 @@
     },
     {
         "Id": "4",
-        "Name": "warmup",
+        "Name": "playlist4",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
@@ -41,7 +41,7 @@
     },
     {
         "Id": "5",
-        "Name": "warmup",
+        "Name": "playlist5",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
@@ -51,7 +51,7 @@
     },
     {
         "Id": "6",
-        "Name": "warmup",
+        "Name": "playlist6",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
@@ -61,7 +61,7 @@
     },
     {
         "Id": "7",
-        "Name": "warmup",
+        "Name": "playlist7",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
@@ -71,7 +71,7 @@
     },
     {
         "Id": "8",
-        "Name": "warmup",
+        "Name": "playlist8",
         "Img": "../../../img/album-cover.jpeg",
         "Voice Type": "",
         "Voice Register": "",
@@ -80,7 +80,7 @@
     },
     {
         "Id": "9",
-        "Name": "warmup",
+        "Name": "playlist9",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",

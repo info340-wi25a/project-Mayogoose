@@ -14,7 +14,7 @@ import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
 import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
 import { CreateButton } from "../utils/CreateButton.jsx"; // Component 3
-import warmupData from '../../data/data.json'; // Add warmup data
+import warmupData from '../../data/playlist.json'; // Add warmup data
 
 
 const AddWarmupForm = () => {
