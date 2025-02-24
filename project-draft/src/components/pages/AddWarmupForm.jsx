@@ -9,12 +9,12 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { NavBar } from "../utils/NavBar.jsx"; // Error happens here 到时候记得修改
+import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
 import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
 import { CreateButton } from "../utils/CreateButton.jsx"; // Component 3
-import warmupData from '../../data/data.json'; // Add warmup data
+import warmupData from '../../data/warmup.json'; // Add warmup data
 
 
 const AddWarmupForm = () => {

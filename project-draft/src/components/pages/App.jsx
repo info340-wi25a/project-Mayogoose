@@ -20,8 +20,7 @@ import AddWarmupForm from "./AddWarmupForm.jsx"
 
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 
-import albumsData from '../../data/data.json'
-
+import albumsData from "../../data/playlist.json"
 
 
 function App() {
