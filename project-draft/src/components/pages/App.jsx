@@ -12,6 +12,7 @@ import { NavButton } from "../utils/NavButton.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
+import { VisibilityBar } from '../utils/VisibilityBar.jsx';
 
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 
@@ -39,8 +40,8 @@ function App() {
                         <div>
                             <NavBar />
                             <div>
-                                <p>nav button:</p>
-                                <NavButton text={"createwarmup"} destination={"/createWarmup"} />
+                                <p>visbilitybar</p>
+                                <VisibilityBar />
                             </div>
                             <br/>
                             <br/>
