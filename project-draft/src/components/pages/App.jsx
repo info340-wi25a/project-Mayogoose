@@ -1,12 +1,12 @@
 // Amelia's index.html, main.jsx first render this page
 import React from 'react';
 import { useState } from 'react';
-
+import { NavBar } from '../navigation/NavBar.jsx';
+import { Footer } from '../navigation/footer.jsx';
 // Import other pages
 // import { upload } from "./Upload.jsx"; // meiyao: upload individual warmup
 // import { NewPlaylist } from "./NewPlaylist.jsx"; // ellie: upload playlist
 
-// import { NavBar } from "./navigation/NavBar.jsx";
 
 import { NavButton } from "../utils/NavButton.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
@@ -37,9 +37,10 @@ function App() {
                     path="/"
                     element={
                         <div>
+                            <NavBar />
                             <div>
-                               <p>nav button:</p>
-                               <NavButton text={"createwarmup"} destination={"/createWarmup"} />
+                                <p>nav button:</p>
+                                <NavButton text={"createwarmup"} destination={"/createWarmup"} />
                             </div>
                             <br/>
                             <br/>
@@ -48,6 +49,7 @@ function App() {
                             <br/>
                             <br/>
                             <PlaylistCards albumsData={filteredAlbums} />
+                            <Footer />
                         </div>
                     }
                 />
