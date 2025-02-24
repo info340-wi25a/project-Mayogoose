@@ -1,0 +1,142 @@
+[
+    {
+        "Id": "1",
+        "Name": "Box Breathing",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "2",
+        "Name": "Lip Buzz",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "3",
+        "Name": "Tongue Trill",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "4",
+        "Name": "Vocal straw exercise",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "5",
+        "Name": "Riff and Runs",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "6",
+        "Name": "Vocal Sirens",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "7",
+        "Name": "Two-Octave Pitch Glide",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "8",
+        "Name": "Yawn Sigh",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "9",
+        "Name": "Tongue Twisters",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "10",
+        "Name": "Jaw Losening",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "11",
+        "Name": "MIX BELT Vocal Warm Up",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "12",
+        "Name": "WARM-UP FOR CLASSICAL SOPRANOS",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    },
+    {
+        "Id": "12",
+        "Name": "10 Minute Belting Warmup",
+        "Source": "",
+        "Img": "../../../img/album-cover.jpeg",
+        "alt": "",
+        "Voice Type": "",
+        "Voice Register": "",
+        "Difficulty Level": "",
+        "Style": ""
+    }
+]
