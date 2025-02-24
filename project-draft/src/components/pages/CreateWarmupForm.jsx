@@ -5,32 +5,44 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import { NavButton } from "../utils/NavButton.jsx";
 import { InputBar } from "../utils/InputBar.jsx";
+import { VisibilityBar } from "../utils/VisibilityBar.jsx";
 
 function CreateWarmupForm(props) {
     return (
-        <div class="card">
-            <div class="instructions">
-                    <h2>Media Upload</h2>
-                    <p>Add your warm-up exercise here!</p>
+        <div className="card">
+            <div className="instructions">
+                <h2>New Warmup</h2>
+                <p>Configure user's warmup</p>
+                <img classname="homepageCover" src="project-draft/img/playlist-cover.jpg"></img>
+            </div>
+            <InputBar />
+            {/* SelectPlaylistBar */}
+            <VisibilityBar />
+
+            <div className="instructions">
+                <h2>Media Upload</h2>
+                <p>Add your warm-up exercise here!</p>
             </div>
 
             <div>
                 <h2>Upload from Local Device:</h2>
-                <div class="upload-box">
-                    <span class="material-symbols-outlined">
+                <div className="upload-box">
+                    <span className="material-symbols-outlined">
                         upload_file
                     </span>
                     <p> Max 10 MB files are allowed, each file 2 minutes max. Only supports .mp3</p>
                 </div>
-                <div class="line-container">
-                    <div class="line"></div>
+                <div className="line-container">
+                    <div className="line"></div>
                         <p>OR</p>
-                    <div class="line"></div>
+                    <div className="line"></div>
                 </div>
-                {/* <VisibilityBar /> */}
                 <h2>Upload from URL:</h2>
-                <InputBar />
-                <NavButton text={"Create!"} destination={"/"}/>
+                <div className="d-flex flex-column">
+                    <InputBar />
+                    <NavButton text={"Create!"} destination={"/"}/>    
+                </div>
+                
             </div>
         </div>
     );
