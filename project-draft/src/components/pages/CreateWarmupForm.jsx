@@ -4,6 +4,7 @@
 // import { CreateFrom } from "../utils/CreateForm.jsx"; Meiyao
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import { NavButton } from "../utils/NavButton.jsx";
+import { InputBar } from "../utils/InputBar.jsx";
 
 function CreateWarmupForm(props) {
     return (
@@ -28,7 +29,7 @@ function CreateWarmupForm(props) {
                 </div>
                 {/* <VisibilityBar /> */}
                 <h2>Upload from URL:</h2>
-                {/* <InputBar /> */}
+                <InputBar />
                 <NavButton text={"Create!"} destination={"/"}/>
             </div>
         </div>
