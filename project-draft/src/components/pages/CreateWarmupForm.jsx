@@ -5,8 +5,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import { NavButton } from "../utils/NavButton.jsx";
 import { InputBar } from "../utils/InputBar.jsx";
+import { SelectBar } from "../utils/SelectBar.jsx";
 import { VisibilityBar } from "../utils/VisibilityBar.jsx";
-import { SelectPlaylistBar } from "../utils/SelectPlaylistBar.jsx";
+import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 
 import albumsData from "../../data/playlist.json";
 
@@ -23,32 +24,40 @@ function CreateWarmupForm(props) {
                     style={{ width: "200px", height: "auto" }} ></img>
                 </div>
                 <h2>Name</h2>
-                <InputBar />
-                <SelectPlaylistBar props={albumsData} />
+                <InputBar /> {/* collect name */}
+
+                <SelectPlaylistBar />
                 <h2>Visibility</h2>
                 <VisibilityBar />
             </div>
-            <div className="card">
 
+            {/* Source in warmup.json */}
+            <div className="card"> 
                 <div className="instructions">
                     <h1>Media Upload</h1>
                     <p>Add your warm-up exercise here!</p>
                 </div>
 
                 <div>
-                    <h2>Upload from Local Device:</h2>
-                    <div className="upload-box">
-                        <span className="material-symbols-outlined">
-                            upload_file
-                        </span>
-                        <p> Max 10 MB files are allowed, each file 2 minutes max. Only supports .mp3</p>
-                    </div>
+                    {/* Divider */}
                     <div className="line-container">
                         <div className="line"></div>
-                            <p>OR</p>
+                            <p>Step 1</p>
                         <div className="line"></div>
                     </div>
-                    <h2>Upload from URL:</h2>
+
+                    <h2>Upload Image:</h2>
+
+                    <UploadImageForm />
+                    
+                    {/* Divider */}
+                    <div className="line-container">
+                        <div className="line"></div>
+                            <p>Step 2</p>
+                        <div className="line"></div>
+                    </div>
+
+                    <h2>Upload Warmup from URL:</h2>
                     <div className="d-flex flex-column">
                         <InputBar />
                         <NavButton text={"Create!"} destination={"/"}/>    
@@ -63,42 +72,14 @@ function CreateWarmupForm(props) {
 export default CreateWarmupForm;
 
 
+function SelectPlaylistBar(props) {
+    // turn [{}, {}, {}] into [" ", " ", " "]
+    const playlists = albumsData;
+    const playlistNames = playlists.map(playlist => {
+        return playlist.Name;
+    })
 
-{/* <main>
-
-            <div class="card">
-                    
-                <!-- Upload from URL links -->
-                
-
-                <!-- OR divider -->
-                <div class="line-container">
-                    <div class="line"></div>
-                        <p>OR</p>
-                    <div class="line"></div>
-                </div>
-
-                <!-- Upload from voice recording -->
-                <div class="record-box"> 
-                    <h2>Record a New Vocal Warm-up!</h2>
-                    <img src="../img/microphone-icon.svg" alt="Microphone" onClick="">
-                    <p class="press-text">Press to Record</p>
-                    <p class="click-text">Click to Record</p>
-                </div>
-
-                <!--  bottom nav -->
-                <div class="bottom-nav">
-                    <a href="#" class="nav-item">
-                        <img src="../img/home.png" alt="Home Icon">
-                        <span>Home</span>
-                    </a>
-                    <a href="#" class="nav-item create-button" data-bs-toggle="modal" data-bs-target="#createModal">
-                        + Create
-                    </a>
-                    <a href="#" class="nav-item">
-                        <img src="../img/library.png" alt="Library Icon">
-                        <span>Your Library</span>
-                    </a>
-                </div>
-            </div>
-        </main> */}
+    return (
+        <SelectBar props={playlistNames}/>
+    )
+}

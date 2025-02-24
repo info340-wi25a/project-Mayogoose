@@ -1,91 +1,46 @@
 [
     {
         "Id": "1",
-        "Name": "playlist1",
+        "Name": "Breath Exercise",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
         "Voice Register": "",
         "Difficulty Level": "",
-        "Style": ""
+        "Style": "",
+        "warmupIDs": ["1", "4", "8"]
     },
     {
         "Id": "2",
-        "Name": "playlist2",
+        "Name": "Vocalization",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
         "Voice Register": "",
         "Difficulty Level": "",
-        "Style": ""
+        "Style": "",
+        "warmupIDs": ["5", "6", "7"]
     },
     {
         "Id": "3",
-        "Name": "playlist3",
+        "Name": "Diction",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
         "Voice Register": "",
         "Difficulty Level": "",
-        "Style": ""
+        "Style": "",
+        "warmupIDs": ["2", "3"]
     },
     {
         "Id": "4",
-        "Name": "playlist4",
+        "Name": "Mix Belt ",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
         "Voice Register": "",
         "Difficulty Level": "",
-        "Style": ""
-    },
-    {
-        "Id": "5",
-        "Name": "playlist5",
-        "Img": "../../../img/album-cover.jpeg",
-        "alt": "",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": ""
-    },
-    {
-        "Id": "6",
-        "Name": "playlist6",
-        "Img": "../../../img/album-cover.jpeg",
-        "alt": "",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": ""
-    },
-    {
-        "Id": "7",
-        "Name": "playlist7",
-        "Img": "../../../img/album-cover.jpeg",
-        "alt": "",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": ""
-    },
-    {
-        "Id": "8",
-        "Name": "playlist8",
-        "Img": "../../../img/album-cover.jpeg",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": ""
-    },
-    {
-        "Id": "9",
-        "Name": "playlist9",
-        "Img": "../../../img/album-cover.jpeg",
-        "alt": "",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": ""
+        "Style": "",
+        "warmupIDs": ["2", "3"]
     }
 ]
