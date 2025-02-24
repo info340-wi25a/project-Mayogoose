@@ -7,7 +7,12 @@
     // "Add Warm-ups" link to Runa's page (use #6 Button)
 
 import { NavBar } from "../navigation/NavBar.jsx"; // Ellie
-import { CreateFrom } from "../utils/CreateForm.jsx"; // Meiyao
+import React from 'react';
+import { useState } from 'react';
+
+// 添加新的组件导入
+import { InputBar } from "../utils/InputBar.jsx";
+
 
 export function CreatePlayListForm(props) {
     const [playlistName, setPlaylistName] = useState('');
@@ -44,33 +49,16 @@ export function CreatePlayListForm(props) {
 
         {/* Tags - Component #5 */}
         <div className="mb-8">
-          <TagBar 
+          <filterBar
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
             availableTags={tagOptions}
           />
         </div>
 
-        {/* Visibility Select - Component #11 */}
-        <div className="mb-8">
-          <SelectBar
-            value={visibility}
-            onChange={setVisibility}
-            options={[
-              { value: 'public', label: 'Public' },
-              { value: 'private', label: 'Private' },
-              { value: 'unlisted', label: 'Unlisted' }
-            ]}
-          />
-        </div>
+        
 
-        {/* Create Button - Component #6 */}
-        <div className="flex justify-center">
-          <Button 
-            text="Create" 
-            link="/add-warmup"
-          />
-        </div>
+
       </main>
     </div>
   );

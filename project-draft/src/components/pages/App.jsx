@@ -19,7 +19,7 @@ import { VisibilityBar } from '../utils/VisibilityBar.jsx';
 import AddWarmupForm from "./AddWarmupForm.jsx"
 
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
-
+import { CreatePlayListForm } from "./CreatePlaylistForm.jsx"
 import albumsData from '../../data/data.json'
 
 
@@ -58,6 +58,7 @@ function App() {
                 />
                 <Route path="/createWarmup" element={<CreateWarmupForm />} />
                 <Route path="/addWarmup" element={<AddWarmupForm />} />
+                <Route path="/create-playlist" element={<CreatePlayListForm />} />
             </Routes>
         </Router>
     );
