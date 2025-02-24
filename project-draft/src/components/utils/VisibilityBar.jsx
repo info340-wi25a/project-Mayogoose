@@ -21,7 +21,8 @@ export function VisibilityBar() {
     };
 
     return (
-        <div className="VisibilityBar">
+        // VisibilityBar not found in index.css
+        <div> 
             <select className="VisibilityButton" onChange={handleSelect}>
                 <option value="public">Public</option>
                 <option value="private">Private</option>
