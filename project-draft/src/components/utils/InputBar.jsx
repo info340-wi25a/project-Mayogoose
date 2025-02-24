@@ -13,7 +13,7 @@ export function InputBar({ placeholder = "Type here...", onChange, onEnterPress,
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event) => {
-    setInputValue(e.target.value);
+    setInputValue(event.target.value);
     if (onChange) {
       onChange(event.target.value);
     }
