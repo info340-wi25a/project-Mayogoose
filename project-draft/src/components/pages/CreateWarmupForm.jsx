@@ -21,6 +21,11 @@ function CreateWarmupForm(props) {
                     </span>
                     <p> Max 10 MB files are allowed, each file 2 minutes max. Only supports .mp3</p>
                 </div>
+                <div class="line-container">
+                    <div class="line"></div>
+                        <p>OR</p>
+                    <div class="line"></div>
+                </div>
                 {/* <VisibilityBar /> */}
                 <h2>Upload from URL:</h2>
                 {/* <InputBar /> */}
