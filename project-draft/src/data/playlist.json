@@ -33,25 +33,14 @@
         "warmupIDs": ["2", "3"]
     },
     {
-        "playlistId": "4",
-        "Name": "Mix Belt ",
+        "Id": "4",
+        "Name": "Intensive Exercise for Mezzo Soprano",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
         "Voice Register": "",
         "Difficulty Level": "",
         "Style": "",
-        "warmupIDs": ["2", "3"]
-    },
-    {
-        "playlistId": "5",
-        "Name": "Custom",
-        "Img": "../../../img/album-cover.jpeg",
-        "alt": "",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": "",
-        "warmupIDs": ["1", "8"]
+        "warmupIDs": ["1", "2", "4", "5", "7"]
     }
 ]

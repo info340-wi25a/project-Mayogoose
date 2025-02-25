@@ -12,7 +12,6 @@ import { NavButton } from "../utils/NavButton.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
-import { VisibilityBar } from '../utils/VisibilityBar.jsx';
 
 // Runa's warmup form
 // import { WarmupItem } from "../utils/WarmupItem.jsx"
