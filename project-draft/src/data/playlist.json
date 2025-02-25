@@ -34,13 +34,13 @@
     },
     {
         "Id": "4",
-        "Name": "Mix Belt ",
+        "Name": "Intensive Exercise for Mezzo Soprano",
         "Img": "../../../img/album-cover.jpeg",
         "alt": "",
         "Voice Type": "",
         "Voice Register": "",
         "Difficulty Level": "",
         "Style": "",
-        "warmupIDs": ["2", "3"]
+        "warmupIDs": ["1", "2", "4", "5", "7"]
     }
 ]

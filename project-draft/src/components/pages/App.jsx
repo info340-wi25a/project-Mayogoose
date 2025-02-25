@@ -14,7 +14,6 @@ import { NavButton } from "../utils/NavButton.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
-import { VisibilityBar } from '../utils/VisibilityBar.jsx';
 
 // Runa's warmup form
 // import { WarmupItem } from "../utils/WarmupItem.jsx"
@@ -22,13 +21,6 @@ import AddWarmupForm from "./AddWarmupForm.jsx"
 
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 import { CreatePlayListForm } from "./CreatePlaylistForm.jsx"
-<<<<<<< HEAD
-=======
-import albumsData from '../../data/playlist.json'
-
->>>>>>> 756c4689bef037e624f01d242374f6836f9ebe27
-
-
 
 function App() {
 
