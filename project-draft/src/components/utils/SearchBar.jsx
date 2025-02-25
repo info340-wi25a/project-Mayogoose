@@ -2,7 +2,7 @@
 // owner: amelia
 
 import React, { useState } from "react";
-import { CreateButton } from "./CreateButton";
+import { SelectButton } from "./SelectButton";
 
 export function SearchBar({ query, setQuery }) {
 
@@ -16,7 +16,7 @@ export function SearchBar({ query, setQuery }) {
             <div className="searchBarContainer">
                 <input type="text" className="searchBar" onChange={handleChange} placeholder="Search for something here..."/>
             </div>
-            <CreateButton elements="2"/>
+            <SelectButton elements="2"/>
         </div>
     );
 }

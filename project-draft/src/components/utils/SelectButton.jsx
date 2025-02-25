@@ -4,7 +4,7 @@
 
 import { useNavigate } from "react-router-dom";
 
-export function CreateButton({ elements }) {
+export function SelectButton({ elements }) {
     const navigate = useNavigate();
 
     const handleSelect = (event) => {
@@ -18,8 +18,8 @@ export function CreateButton({ elements }) {
     };
 
     return (
-        <div className="createWrap">
-            <select className="createButton" onChange={handleSelect} defaultValue="">
+        <div className="selectWrap">
+            <select className="selectButton" onChange={handleSelect} defaultValue="">
                 <option value="" disabled>+</option>
                 <option value="warmup">New Warm-up</option>
                 {elements === "2" && <option value="playlist">New Playlist</option>}

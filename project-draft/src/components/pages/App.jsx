@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { NavBar } from '../navigation/NavBar.jsx';
-import { Footer } from '../navigation/footer.jsx';
+import { Footer } from '../navigation/Footer.jsx';
 
 // Import other pages
 // import { upload } from "./Upload.jsx"; // meiyao: upload individual warmup
@@ -12,7 +12,6 @@ import { NavButton } from "../utils/NavButton.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
-import { VisibilityBar } from '../utils/VisibilityBar.jsx';
 
 // Runa's warmup form
 // import { WarmupItem } from "../utils/WarmupItem.jsx"
@@ -21,7 +20,6 @@ import AddWarmupForm from "./AddWarmupForm.jsx"
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 import { CreatePlayListForm } from "./CreatePlaylistForm.jsx"
 import albumsData from '../../data/playlist.json'
-
 
 
 
