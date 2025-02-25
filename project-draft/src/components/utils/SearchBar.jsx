@@ -2,7 +2,7 @@
 // owner: amelia
 
 import React, { useState } from "react";
-import { CreateButton } from "./CreateButton";
+import { CreateButton } from "./SelectButton";
 
 export function SearchBar({ query, setQuery }) {
 

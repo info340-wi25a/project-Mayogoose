@@ -10,10 +10,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
+import { Footer } from "../navigation/footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
 import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
-import { CreateButton } from "../utils/CreateButton.jsx"; // Component 3
+import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
 import warmupData from '../../data/warmup.json'; // Add warmup data
 
 
@@ -22,14 +23,13 @@ const AddWarmupForm = () => {
     const [selectedWarmups, setSelectedWarmups] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
-  
-    const warmupsList = warmupData.warmups;
-  
-    // // Handle search input changes
-    // const handleSearch = (query) => {
-    //   setSearchQuery(query);
-    //   // Add search logic here
-    // };
+
+    const warmupsList = warmupData.map(warmup => ({
+      id: warmup.Id, 
+      name: warmup.Name,
+      image: warmup.Img
+  }));
+    
   
     // Prevent duplicate warmups
     const handleAddWarmup = (warmup) => {
@@ -44,38 +44,41 @@ const AddWarmupForm = () => {
         <NavBar />
         
         <div className="main-content">
-          <h1>Add Warmups</h1>
-          
-          <SearchBar query={searchQuery} setQuery={setSearchQuery} />
-  
-          <div className="warmups-list">
-            {warmupsList.map((warmup) => (
-              <WarmupItem
-                key={warmup.id}
-                warmup={warmup}
-                onAdd={() => handleAddWarmup(warmup)}
-              />
-            ))}
+          <div className="search-select-container">
+            <SearchBar query={searchQuery} setQuery={setSearchQuery} />
+            <SelectButton text="Upload your own warm-ups" destination="/createWarmup" />  
           </div>
-  
-          <div className="selected-warmups">
-            <h2>Selected Warmups ({selectedWarmups.length})</h2>
-            {selectedWarmups.map((warmup) => (
-              <WarmupItem
-                key={warmup.id}
-                warmup={warmup}
-                isSelected={true}
-              />
-            ))}
-          </div>
-          
-          {/* 到时候可以用meiyao的create button component */}
-          <CreateButton 
-            text="Create"
-            onClick={() => navigate('/myPlaylist')}
-          />
 
-          <NavButton text="Back to Home" destination="/" />
+          <h2>Suggested Warm-ups</h2>
+                <div className="warmups-list">
+                    {warmupsList.map((warmup) => (
+                        <WarmupItem
+                            key={warmup.id}
+                            warmup={warmup}
+                            onAdd={handleAddWarmup}
+                        />
+                    ))}
+                </div>
+
+                {/* 选中的 warmups */}
+                <div className="selected-warmups">
+                    <h2>Selected Warmups ({selectedWarmups.length})</h2>
+                    {selectedWarmups.map((warmup) => (
+                        <WarmupItem
+                            key={warmup.id}
+                            warmup={warmup}
+                            isSelected={true}
+                        />
+                    ))}
+                </div>
+          
+          <NavButton 
+            text="Create!" 
+            destination="/PlaylistDetails" 
+            state={{ selectedWarmups }} 
+          />
+          
+          <Footer />
         </div>
       </div>
     );
