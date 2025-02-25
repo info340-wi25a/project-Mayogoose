@@ -11,8 +11,8 @@ export function CreateButton({elements}) {
         const value = event.target.value;
         if (value === "warmup") {
           navigate("/createWarmup");
-        } else if (value === "2") {
-          navigate("/organize");
+        } else if (value === "playlist") {
+          navigate("/create-playlist");
         }
     };
 
