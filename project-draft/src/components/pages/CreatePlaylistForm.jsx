@@ -9,17 +9,15 @@
 import { NavBar } from "../navigation/NavBar.jsx"; // Ellie
 import React from 'react';
 import { useState } from 'react';
-
-// 添加新的组件导入
 import { InputBar } from "../utils/InputBar.jsx";
 
 
 export function CreatePlayListForm(props) {
-    const [playlistName, setPlaylistName] = useState('');
+  const [playlistName, setPlaylistName] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
   const [visibility, setVisibility] = useState('public');
 
-  // 预设的标签选项
+  
   const tagOptions = ['Happy', 'Quick warmup', 'Instrumental'];
 
   return (

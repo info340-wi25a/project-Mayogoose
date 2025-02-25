@@ -23,7 +23,7 @@ export function SelectBar({props}) {
 
     return (
         <div> 
-            <select className="selectButton" onChange={handleSelect}>
+            <select className="select" onChange={handleSelect}>
                 {selectBar};  
             </select>
         </div>
