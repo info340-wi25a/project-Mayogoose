@@ -152,6 +152,7 @@ main {
     padding: 0.2rem 0.6rem;
     border-radius: 20px;
     border-color: #EBEF2F;
+    width: 100%;
 }
 
 
@@ -1012,4 +1013,8 @@ body {
 .flex-container {
     display: flex;
     flex-direction: column;
+  }
+
+  .uploadButton {
+    color: white;
   }
