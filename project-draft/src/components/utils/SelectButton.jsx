@@ -4,20 +4,20 @@
 
 import { useNavigate } from "react-router-dom";
 
-export function CreateButton({elements}) {
+export function CreateButton({ elements }) {
     const navigate = useNavigate();
 
     const handleSelect = (event) => {
         const value = event.target.value;
         if (value === "warmup") {
-          navigate("/createWarmup");
+            navigate("/createWarmup");
         } else if (value === "playlist") {
-          navigate("/create-playlist");
+            navigate("/create-playlist");
         }
+        event.target.value = "";
     };
 
     return (
-
         <div className="createWrap">
             <select className="createButton" onChange={handleSelect} defaultValue="">
                 <option value="" disabled>+</option>
@@ -26,5 +26,4 @@ export function CreateButton({elements}) {
             </select>
         </div>
     );
-    
 }
