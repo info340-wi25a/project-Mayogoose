@@ -292,8 +292,10 @@ main {
     flex-wrap: wrap;
     flex-direction: column;
     height: 100%; /* Take up available space */
+    width: 400px;
 
     /* styling */
+    margin-top: 2rem;
     padding: 2rem;
     border-radius: 20px;
     background-color: #181818;
@@ -335,7 +337,12 @@ main {
 
 /* Upload from YouTube */
 .input-box {
+    color: white !important;
     margin-bottom: 1.5rem;
+    background: none;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    border-color: #EBEF2F;
 }
 
 
@@ -1083,7 +1090,7 @@ header {
     /* Meiyao's YouTube */
     .card {
         display: flex;
-
+        width: 600px; 
     }
 
     .instructions img {
@@ -1116,6 +1123,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
     padding: 15px 35px;
     font-size: 15px;
+    text-align: center;
 }
   
 .badge-pill:hover {
@@ -1179,18 +1187,6 @@ body {
     cursor: pointer;
     border-radius: 50%;
     text-align: center;
-}
-
-.VisibilityButton {
-    font-size: 18px;
-    cursor: pointer;
-    text-align: left;
-    width: 100%;
-    height: 40px;
-    color: white !important;
-    background-color: black;
-    border-color: yellow;
-    border-radius: 10px;
 }
 
 /* responsive */

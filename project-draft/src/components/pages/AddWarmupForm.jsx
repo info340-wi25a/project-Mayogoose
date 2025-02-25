@@ -82,9 +82,3 @@ const AddWarmupForm = () => {
   };
   
   export default AddWarmupForm;
-
-
-
-
-
-  
