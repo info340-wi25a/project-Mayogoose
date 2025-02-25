@@ -14,11 +14,10 @@ import { Footer } from "../navigation/footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
 import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
-import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
+import { CreateButton } from "../utils/SelectButton.jsx"; // Component 3
 import warmupData from '../../data/warmup.json'; // Add warmup data
 
-
-const AddWarmupForm = () => {
+function AddWarmupForm() {
     // State to store selected warmups and search query
     const [selectedWarmups, setSelectedWarmups] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
@@ -31,12 +30,15 @@ const AddWarmupForm = () => {
   }));
     
   
-    // Prevent duplicate warmups
     const handleAddWarmup = (warmup) => {
-      if (!selectedWarmups.some(selected => selected.id === warmup.id)) {
-          setSelectedWarmups([...selectedWarmups, warmup]);
-      }
+      setSelectedWarmups([...selectedWarmups, warmup]); 
+    };
+
+    const handleCreatePlaylist = () => {
+      // Navigate to the playlistdetails page 
+      navigate('/PlaylistDetails.jsx', { state: { selectedWarmups } });
   };
+
 
   
     return (
@@ -46,10 +48,10 @@ const AddWarmupForm = () => {
         <div className="main-content">
           <div className="search-select-container">
             <SearchBar query={searchQuery} setQuery={setSearchQuery} />
-            <SelectButton text="Upload your own warm-ups" destination="/createWarmup" />  
+            <CreateButton text="Upload your own warm-ups" destination="/createWarmup" />  
           </div>
 
-          <h2>Suggested Warm-ups</h2>
+          <h1>Suggested Warm-ups</h1>
                 <div className="warmups-list">
                     {warmupsList.map((warmup) => (
                         <WarmupItem
@@ -74,10 +76,9 @@ const AddWarmupForm = () => {
           
           <NavButton 
             text="Create!" 
-            destination="/PlaylistDetails" 
-            state={{ selectedWarmups }} 
+            onClick={handleCreatePlaylist}
           />
-          
+
           <Footer />
         </div>
       </div>

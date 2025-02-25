@@ -22,12 +22,6 @@ import AddWarmupForm from "./AddWarmupForm.jsx"
 
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 import { CreatePlayListForm } from "./CreatePlaylistForm.jsx"
-<<<<<<< HEAD
-=======
-import albumsData from '../../data/playlist.json'
-
->>>>>>> 756c4689bef037e624f01d242374f6836f9ebe27
-
 
 
 function App() {
