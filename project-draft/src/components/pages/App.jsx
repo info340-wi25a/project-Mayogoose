@@ -20,7 +20,7 @@ import AddWarmupForm from "./AddWarmupForm.jsx"
 
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 import { CreatePlayListForm } from "./CreatePlaylistForm.jsx"
-import albumsData from '../../data/playlist.json'
+import albumsData from '../../data/data.json'
 
 
 
@@ -57,8 +57,12 @@ function App() {
                     }
                 />
                 <Route path="/createWarmup" element={<CreateWarmupForm />} />
+<<<<<<< HEAD
+                {/* <Route path="/addWarmup" element={<AddWarmupForm />} /> */}
+=======
                 <Route path="/addWarmup" element={<AddWarmupForm />} />
                 <Route path="/create-playlist" element={<CreatePlayListForm />} />
+>>>>>>> d2cfd77e17e7f67d936df1a794cedd8714f3f59d
             </Routes>
         </Router>
     );
