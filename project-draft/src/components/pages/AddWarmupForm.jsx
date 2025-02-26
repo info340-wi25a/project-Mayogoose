@@ -14,9 +14,9 @@ import { Footer } from "../navigation/Footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
 import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
-import { CreateButton } from "../utils/SelectButton.jsx"; // Component 3
+import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
 import warmupData from '../../data/warmup.json'; // Add warmup data
-import platlistData from '../../data/playlist.json'; // Add playlist data
+// import platlistData from '../../data/playlist.json'; // Add playlist data
 
 
 function AddWarmupForm() {
@@ -50,7 +50,7 @@ function AddWarmupForm() {
         <div className="main-content">
           <div className="search-select-container">
             <SearchBar query={searchQuery} setQuery={setSearchQuery} />
-            <CreateButton text="Upload your own warm-ups" destination="/createWarmup" />  
+            <SelectButton text="Upload your own warm-ups" destination="/createWarmup"/>  
           </div>
 
           <h1>Suggested Warm-ups</h1>
