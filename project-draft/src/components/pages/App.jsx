@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
-
+import { CreatePlaylistForm } from "./CreatePlaylistForm.jsx";
 // Import other pages
 // import { upload } from "./Upload.jsx"; // meiyao: upload individual warmup
 // import { NewPlaylist } from "./NewPlaylist.jsx"; // ellie: upload playlist
@@ -18,7 +18,6 @@ import { SearchBar } from '../utils/SearchBar.jsx';
 import AddWarmupForm from "./AddWarmupForm.jsx"
 
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
-import { CreatePlayListForm } from "./CreatePlaylistForm.jsx"
 import albumsData from '../../data/playlist.json'
 
 
@@ -57,7 +56,7 @@ function App() {
                 />
                 <Route path="/createWarmup" element={<CreateWarmupForm />} />
                 <Route path="/addWarmup" element={<AddWarmupForm />} />
-                <Route path="/create-playlist" element={<CreatePlayListForm />} />
+                <Route path="/create-playlist" element={<CreatePlaylistForm />} />
             </Routes>
         </Router>
     );

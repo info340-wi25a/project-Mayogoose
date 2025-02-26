@@ -18,7 +18,7 @@ export function SelectBar({props}) {
 
     // turn [string, string, string] into [<>, <>, <>]
     const selectBar = options.map(option => (
-        <option value={option}>{option}</option>
+        <option key={option} value={option}>{option}</option>
     ));
 
     return (

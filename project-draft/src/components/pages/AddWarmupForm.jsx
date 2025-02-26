@@ -16,7 +16,7 @@ import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
 import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
 import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
 import warmupData from '../../data/warmup.json'; // Add warmup data
-// import platlistData from '../../data/playlist.json'; // Add playlist data
+import platlistData from '../../data/playlist.json'; // Add playlist data
 
 
 function AddWarmupForm() {
@@ -64,9 +64,13 @@ function AddWarmupForm() {
                     ))}
                 </div>
 
-                {/* 选中的 warmups */}
+                <div className="line-container">
+                    <div className="line"></div>
+                    <p>Selected Warm-ups ({selectedWarmups.length})</p>
+                    <div className="line"></div>
+                </div>
+
                 <div className="selected-warmups">
-                    <h2>Selected Warmups ({selectedWarmups.length})</h2>
                     {selectedWarmups.map((warmup) => (
                         <WarmupItem
                             key={warmup.id}
@@ -78,13 +82,14 @@ function AddWarmupForm() {
           
           <NavButton 
             text="Create!" 
-            onClick={handleCreatePlaylist}
+            destination="/PlaylistDetails" 
+            state={{ selectedWarmups }} 
           />
-
+          
           <Footer />
         </div>
       </div>
     );
-  };
+};
   
   export default AddWarmupForm;

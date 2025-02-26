@@ -1,6 +1,7 @@
 // Owner: Meiyao
 
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react"; // for upload
 
 export function UploadImageForm({elements}) {
     const navigate = useNavigate();
@@ -29,6 +30,32 @@ export function UploadImageForm({elements}) {
 
 // private helper
 function UploadButton(){
+    const fileInputRef = useRef(null);
+
+    const handleUpload = (event) => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();  // Opens file picker
+        }
+    };
+
+    return (
+        <div className="createWrap">
+            <button className="uploadButton" onClick={handleUpload}>
+                Upload
+            </button>
+            {/* Hidden input for file selection */}
+            <input className="fileInput"
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                style={{ display: "none" }}  /* disable default styling of upload */
+            />
+        </div>
+    )
+}
+
+// private helper
+function AbandonedUploadButton(){
 
     const handleSelect = (event) => {
         const value = event.target.value;

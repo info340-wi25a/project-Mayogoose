@@ -12,6 +12,14 @@ import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import albumsData from "../../data/playlist.json";
 
 function CreateWarmupForm(props) {
+    // ask prof: CreatePlaylistForm use these data too
+    // should I store this as a prop (array of arrays) and pass them in
+    // what's the most efficient way to not store the same data twice?
+    const voiceType = ['Soprano', 'Alto', 'Tenor', 'Base'];
+    const voiceRegister = ['Chest Voice', 'Head Voice', 'Mixed', 'Vocal Fry'];
+    const difficulty = ['Beginner', 'Intermediate', 'Advanced'];
+    const style = ['Classical', 'Musical', 'Jazz', 'Pop', 'A Cappella'];
+
     return (
         <div>
             <NavBar />
@@ -23,46 +31,65 @@ function CreateWarmupForm(props) {
                         <p>Add your warm-up exercise here!</p>
                     </div>
 
-                    {/* Divider: Step 1 */}
-                    <div className="line-container">
-                            <div className="line"></div>
-                                <p>Step 1</p>
-                            <div className="line"></div>
+                    <div>
+                        {/* Divider: Step 1 */}
+                        <div className="line-container">
+                        <div className="line"></div>
+                            <p>Step 1</p>
+                        <div className="line"></div>
+                        </div>
+
+                        {/* collect Name */}
+                        <h2>Name</h2>
+                        <div className="d-flex flex-column">
+                            <InputBar placeholder="e.g. Box Breathing "/>   
+                        </div>
+
+                        {/* collect url */}
+                        <h2>Upload Warmup from URL:</h2>
+                        <div className="d-flex flex-column">
+                            <InputBar placeholder="e.g. https://www.youtube.com/.." />   
+                        </div>
+
+                        {/* collect warmup id for playlist.json */}
+                        <h2>Select Playlist</h2>
+                        <SelectPlaylistBar />
+
+                        {/* collect visibility for warmup.json */}
+                        <h2>Visibility</h2>
+                        <VisibilityBar />
                     </div>
 
-                    {/* collect Name */}
-                    <h2>Upload Image:</h2>
-                    <UploadImageForm />
-
-                    {/* collect Name */}
-                    <h2>Name</h2>
-                    <InputBar /> 
-
-                    {/* collect warmup id for playlist.json */}
-                    <h2>Select Playlist</h2>
-                    <SelectPlaylistBar />
-
-                    {/* collect visibility for warmup.json */}
-                    <h2>Visibility</h2>
-                    <VisibilityBar />
-
                     <div>
-                        
-                        
                         {/* Divider: Step 2 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p>Step 2</p>
+                                <p>Step 2 (Optional)</p>
                             <div className="line"></div>
                         </div>
-
-                        <h2>Upload Warmup from URL:</h2>
-                        <div className="d-flex flex-column">
-                            <InputBar />
-                            <NavButton text={"Create New Warmup"} destination={"/"}/>    
-                        </div>
                         
+                        {/* collect Name */}
+                        <h2>Upload Image:</h2>
+                        <UploadImageForm />
+
+                        {/* collect voice type for warmup.json */}
+                        <h2>Voice Type</h2>
+                        <SelectBar props={voiceType} />
+
+                        {/* collect voice register for warmup.json */}
+                        <h2>Voice Register</h2>
+                        <SelectBar props={voiceRegister} />
+
+                        {/* collect difficulty for warmup.json */}
+                        <h2>Difficulty Level</h2>
+                        <SelectBar props={difficulty} />
+
+                        {/* collect style for warmup.json */}
+                        <h2>Style</h2>
+                        <SelectBar props={style} />
                     </div>
+
+                    <NavButton text={"Create New Warmup"} destination={"/"}/> 
                 </div>
             </div>
             <Footer />
