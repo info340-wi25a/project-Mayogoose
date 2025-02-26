@@ -7,8 +7,6 @@
 // </div>
 
 import React from 'react';
-import YouTube from 'react-youtube';
-
 import { useState } from "react";
 
 export function InputBar({ placeholder, onChange, onEnterPress}) {
