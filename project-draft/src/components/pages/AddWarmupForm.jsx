@@ -19,70 +19,60 @@ import warmupData from '../../data/warmup.json'; // Add warmup data
 // import platlistData from '../../data/playlist.json'; // Add playlist data
 
 
-function AddWarmupForm() {
-    // State to store selected warmups and search query
-    const [selectedWarmups, setSelectedWarmups] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
-    const navigate = useNavigate();
+function AddWarmupForm({ selectedWarmups, addWarmup }) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
-    const warmupsList = warmupData.map(warmup => ({
+  const warmupsList = warmupData.map(warmup => ({
       id: warmup.Id, 
       name: warmup.Name,
       image: warmup.Img
-  }));
-    
+  })); 
   
-    const handleAddWarmup = (warmup) => {
-      setSelectedWarmups([...selectedWarmups, warmup]); 
-    };
-
-  
-    return (
+  return (
       <div className="add-warmup-container">
-        <NavBar />
+          <NavBar />
         
-        <div className="main-content">
-          <div className="search-select-container">
-            <SearchBar query={searchQuery} setQuery={setSearchQuery} />
-          </div>
-
-          <h1>Suggested Warm-ups</h1>
-                <div className="warmups-list">
-                    {warmupsList.map((warmup) => (
-                        <WarmupItem
-                            key={warmup.id}
-                            warmup={warmup}
-                            onAdd={handleAddWarmup}
-                        />
-                    ))}
-                </div>
-
-                <div className="line-container">
-                    <div className="line"></div>
-                    <p>Selected Warm-ups ({selectedWarmups.length})</p>
-                    <div className="line"></div>
-                </div>
-
-                <div className="selected-warmups">
-                    {selectedWarmups.map((warmup) => (
-                        <WarmupItem
-                            key={warmup.id}
-                            warmup={warmup}
-                            isSelected={true}
-                        />
-                    ))}
-                </div>
-          
-          <NavButton 
-            text="Create!" 
-            destination="/PlaylistDetails" 
-            state={{ selectedWarmups }} 
-          />
-          
-          <Footer />
+      <div className="main-content">
+        <div className="search-select-container">
+          <SearchBar query={searchQuery} setQuery={setSearchQuery} />
         </div>
+
+        <h1>Suggested Warm-ups</h1>
+              <div className="warmups-list">
+                  {warmupsList.map((warmup) => (
+                      <WarmupItem
+                          key={warmup.id}
+                          warmup={warmup}
+                          onAdd={() => addWarmup(warmup)}
+                      />
+                  ))}
+              </div>
+
+              <div className="line-container">
+                  <div className="line"></div>
+                  <p>Selected Warm-ups ({selectedWarmups.length})</p>
+                  <div className="line"></div>
+              </div>
+
+              <div className="selected-warmups">
+                  {selectedWarmups.map((warmup) => (
+                      <WarmupItem
+                          key={warmup.id}
+                          warmup={warmup}
+                          isSelected={true}
+                      />
+                  ))}
+              </div>
+              <NavButton 
+                text="Create!" 
+                destination="/PlaylistDetails" 
+                state={{ selectedWarmups }} 
+              />
+            <Footer />
       </div>
-    );
+    </div>
+  );
 };
-  
-  export default AddWarmupForm;
+
+export default AddWarmupForm;

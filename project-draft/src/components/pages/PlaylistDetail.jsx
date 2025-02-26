@@ -4,7 +4,7 @@
 // 2. recommended playlist from the main page
 
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
 import { Footer } from "../navigation/Footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
@@ -13,13 +13,8 @@ import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import warmupData from '../../data/warmup.json'; // Add warmup data
 
 
-function PlaylistDetail() {
-    const location = useLocation();
+function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
     const navigate = useNavigate();
-    let selectedWarmups = [];
-    if (location.state && location.state.selectedWarmups) {
-        selectedWarmups = location.state.selectedWarmups;
-    }
 
     return (
         <div className="playlist-detail-container">
@@ -38,6 +33,16 @@ function PlaylistDetail() {
                 </div>
                  
                 {/* TODO: add warmups list */}
+                <div className="warmups-list">
+                    <h3>Selected Warm-ups</h3>
+                    {selectedWarmups.length > 0 ? (
+                        selectedWarmups.map((warmup) => (
+                            <WarmupItem key={warmup.id} warmup={warmup} isSelected={true} />
+                        ))
+                    ) : (
+                        <p>No warmups selected.</p>
+                    )}
+                </div>
 
                 <div className="navigation-buttons">
                     <NavButton 

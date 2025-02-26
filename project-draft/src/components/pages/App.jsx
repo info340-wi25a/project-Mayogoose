@@ -24,8 +24,8 @@ import albumsData from '../../data/playlist.json'
 
 
 function App() {
-
     const [query, setQuery] = useState("");
+    const [selectedWarmups, setSelectedWarmups] = useState([]);
 
     const getFilteredAlbums = (query, albums) => {
         if (!query) {
@@ -35,6 +35,18 @@ function App() {
     }    
 
     const filteredAlbums = getFilteredAlbums(query, albumsData);
+
+
+    // runa: selectedWarmups
+    const addWarmupToPlaylist = (warmup) => {
+        setSelectedWarmups([...selectedWarmups, warmup]);
+    };
+
+    // Function to clear playlist
+    const clearPlaylist = () => {
+        setSelectedWarmups([]);
+    };
+    
 
     return (
         <Router>
@@ -56,9 +68,17 @@ function App() {
                     }
                 />
                 <Route path="/createWarmup" element={<CreateWarmupForm />} />
-                <Route path="/addWarmup" element={<AddWarmupForm />} />
+                {/*<Route path="/addWarmup" element={<AddWarmupForm />} />*/}
+                <Route 
+                    path="/addWarmup" 
+                    element={<AddWarmupForm selectedWarmups={selectedWarmups} addWarmup={addWarmupToPlaylist} />} 
+                />
                 <Route path="/create-playlist" element={<CreatePlaylistForm />} />
-                <Route path="/PlaylistDetails" element={<PlaylistDetail />} />
+                {/*<Route path="/PlaylistDetails" element={<PlaylistDetail />} />*/}
+                <Route 
+                    path="/PlaylistDetails" 
+                    element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} 
+                />
             </Routes>
         </Router>
     );
