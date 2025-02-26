@@ -28,20 +28,17 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                     </div>
                     <h2>My Playlist</h2>
                     <button className="play-button">
-                        <span className="material-icons">play</span> {/* didn't finish the play buttonyet */}
+                            <div className="play-icon"></div>
                     </button>
                 </div>
                  
                 {/* TODO: add warmups list */}
                 <div className="warmups-list">
                     <h3>Selected Warm-ups</h3>
-                    {selectedWarmups.length > 0 ? (
-                        selectedWarmups.map((warmup) => (
-                            <WarmupItem key={warmup.id} warmup={warmup} isSelected={true} />
-                        ))
-                    ) : (
-                        <p>No warmups selected.</p>
-                    )}
+                    {selectedWarmups.length > 0 && selectedWarmups.map((warmup) => (
+                        <WarmupItem key={warmup.id} warmup={warmup} isSelected={true} />
+                    ))}
+                    {selectedWarmups.length === 0 && <p>No warmups selected.</p>}
                 </div>
 
                 <div className="navigation-buttons">

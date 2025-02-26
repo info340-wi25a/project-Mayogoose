@@ -28,6 +28,21 @@ function AddWarmupForm({ selectedWarmups, addWarmup }) {
       name: warmup.Name,
       image: warmup.Img
   })); 
+
+  const handleAddWarmup = (warmup) => {
+    // Check if the warmup is already selected
+    let isAlreadySelected = false;
+    for (let i = 0; i < selectedWarmups.length; i++) {
+      if (selectedWarmups[i].id === warmup.id) {
+        isAlreadySelected = true;
+        break;
+      }
+    }
+    
+    if (!isAlreadySelected) {
+      addWarmup(warmup);
+    }
+  };
   
   return (
       <div className="add-warmup-container">
@@ -44,7 +59,7 @@ function AddWarmupForm({ selectedWarmups, addWarmup }) {
                       <WarmupItem
                           key={warmup.id}
                           warmup={warmup}
-                          onAdd={() => addWarmup(warmup)}
+                          onAdd={() => handleAddWarmup(warmup)}
                       />
                   ))}
               </div>
