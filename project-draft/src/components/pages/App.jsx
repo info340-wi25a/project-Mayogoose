@@ -16,6 +16,7 @@ import { SearchBar } from '../utils/SearchBar.jsx';
 // Runa's warmup form
 // import { WarmupItem } from "../utils/WarmupItem.jsx"
 import AddWarmupForm from "./AddWarmupForm.jsx"
+import PlaylistDetail from "./PlaylistDetail.jsx"
 
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 import albumsData from '../../data/playlist.json'
@@ -57,6 +58,7 @@ function App() {
                 <Route path="/createWarmup" element={<CreateWarmupForm />} />
                 <Route path="/addWarmup" element={<AddWarmupForm />} />
                 <Route path="/create-playlist" element={<CreatePlaylistForm />} />
+                <Route path="/PlaylistDetails" element={<PlaylistDetail />} />
             </Routes>
         </Router>
     );

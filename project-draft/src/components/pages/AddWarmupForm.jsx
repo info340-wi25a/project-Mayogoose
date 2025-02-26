@@ -16,7 +16,7 @@ import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
 import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
 import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
 import warmupData from '../../data/warmup.json'; // Add warmup data
-import platlistData from '../../data/playlist.json'; // Add playlist data
+// import platlistData from '../../data/playlist.json'; // Add playlist data
 
 
 function AddWarmupForm() {
@@ -36,12 +36,6 @@ function AddWarmupForm() {
       setSelectedWarmups([...selectedWarmups, warmup]); 
     };
 
-    const handleCreatePlaylist = () => {
-      // Navigate to the playlistdetails page 
-      navigate('/PlaylistDetails.jsx', { state: { selectedWarmups } });
-  };
-
-
   
     return (
       <div className="add-warmup-container">
@@ -50,7 +44,6 @@ function AddWarmupForm() {
         <div className="main-content">
           <div className="search-select-container">
             <SearchBar query={searchQuery} setQuery={setSearchQuery} />
-            <SelectButton text="Upload your own warm-ups" destination="/createWarmup"/>  
           </div>
 
           <h1>Suggested Warm-ups</h1>

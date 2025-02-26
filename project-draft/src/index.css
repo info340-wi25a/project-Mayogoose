@@ -545,7 +545,7 @@ h2 {
 /* Plus button inside warmup items */
 .add-warmup-btn {
     color: white !important;
-    font-size: 24px;  /* 稍微减小字体大小以适应更小的按钮 */
+    font-size: 24px;  
     background: grey;
     border: none;
     width: 40px;
