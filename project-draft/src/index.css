@@ -623,28 +623,27 @@ header {
 }
 
 .play-button {
-    position: absolute;
-    bottom: 10px;
-    right: 300px;
-    width: 50px;
-    height: 50px;
-    background: white !important;
+    position: relative;
+    z-index: 10;
+    background-color: transparent;
     border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 48px; 
+    color: #ffffff; 
+    transition: transform 0.2s ease-in-out;
+    margin: 10px;
 }
 
-.play-icon {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 10px 0 10px 20px;
-    border-color: transparent transparent transparent black;
-    margin-left: 4px;
+.play-button:hover {
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+.play-button span {
+    font-size: 48px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tag-button {
@@ -1018,3 +1017,37 @@ body {
   .uploadButton {
     color: white;
   }
+
+
+/* Runa */
+/* Add warmup form */
+
+
+/* Play button */
+.play-button {
+    position: relative;
+    z-index: 10;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 48px; 
+    color: #ffffff; 
+    transition: transform 0.2s ease-in-out;
+    margin: 10px;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+.play-button span {
+    font-size: 48px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+  
