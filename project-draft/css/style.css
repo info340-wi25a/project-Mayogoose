@@ -1089,3 +1089,37 @@ footer {
     width: 100%;
     text-align: center;
 }
+
+
+
+/* Form Fields */
+.d-flex.flex-column {
+    margin-bottom: 1.5rem;
+}
+
+.card h2 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+/* AddWarmupForm Styles */
+.add-warmup-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.main-content {
+    background-color: #181818;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 80px;
+}
+
+.search-select-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}

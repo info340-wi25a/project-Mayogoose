@@ -19,7 +19,6 @@ import warmupData from '../../data/warmup.json'; // Add warmup data
 import platlistData from '../../data/playlist.json'; // Add playlist data
 
 
-
 const AddWarmupForm = () => {
     // State to store selected warmups and search query
     const [selectedWarmups, setSelectedWarmups] = useState([]);
@@ -62,9 +61,13 @@ const AddWarmupForm = () => {
                     ))}
                 </div>
 
-                {/* 选中的 warmups */}
+                <div className="line-container">
+                    <div className="line"></div>
+                    <p>Selected Warm-ups ({selectedWarmups.length})</p>
+                    <div className="line"></div>
+                </div>
+
                 <div className="selected-warmups">
-                    <h2>Selected Warmups ({selectedWarmups.length})</h2>
                     {selectedWarmups.map((warmup) => (
                         <WarmupItem
                             key={warmup.id}
@@ -73,17 +76,18 @@ const AddWarmupForm = () => {
                         />
                     ))}
                 </div>
-          
-          <NavButton 
-            text="Create!" 
-            destination="/PlaylistDetails" 
-            state={{ selectedWarmups }} 
-          />
-          
-          <Footer />
+                
+                <div className="d-flex flex-column">
+                    <NavButton 
+                        text="Create!" 
+                        destination="/PlaylistDetails" 
+                        state={{ selectedWarmups }} 
+                    />
+                </div>
+            </div>
+            <Footer />
         </div>
-      </div>
     );
-  };
+};
   
   export default AddWarmupForm;
