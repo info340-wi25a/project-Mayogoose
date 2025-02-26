@@ -1,10 +1,7 @@
-// Meiyao's upload.html from draft 1
-
+import { useState } from "react";
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
-import { NavButton } from "../utils/NavButton.jsx";
-import { InputBar } from "../utils/InputBar.jsx";
 import { SelectBar } from "../utils/SelectBar.jsx";
 import { VisibilityBar } from "../utils/VisibilityBar.jsx";
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
@@ -20,35 +17,98 @@ function CreateWarmupForm(props) {
     const difficulty = ['Beginner', 'Intermediate', 'Advanced'];
     const style = ['Classical', 'Musical', 'Jazz', 'Pop', 'A Cappella'];
 
+    // Step 1: State for each input (what I know)
+    const [warmupName, setWarmupName] = useState("");
+    const [urlInput, setUrlInput] = useState("");
+
+    // Step 2: Micro managing input and change states
+    const nameHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user typed name: " + value);
+        setWarmupName(value);
+    };
+
+    const urlHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user typed url: " + value);
+        setUrlInput(value);
+    }
+
+    // extract YouTube Preview Links
+    const extractVideoId = (url) => {
+        const match = url.match(
+        /(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+        );
+        return match ? match[1] : null;
+    };
+    const extractedVideoId = extractVideoId(urlInput);
+
+
+    // Step 3: How I look like 
+    // Validation logic (is the input red or green)
+    let nameInputValid = true;
+    let urlInputValid = true;
+
+    if(warmupName.length <= 0) {
+        nameInputValid = false;
+    }
+    if(urlInput <= 0 || !urlInput.match(/^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/)) {
+        urlInputValid = false;
+    }
+
+    // Callback for submit form
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("submitting form")
+    }
+
     return (
         <div>
             <NavBar />
+            {/* This form collect data for warmup.json */}
             <div className="grid-container">
-                {/* This form collect data for warmup.json */}
                 <div className="card"> 
                     <div className="instructions">
                         <h1>New Warmup</h1>
                         <p>Add your warm-up exercise here!</p>
                     </div>
+        
+                    <form onSubmit={handleSubmit} noValidate>
 
-                    <div>
                         {/* Divider: Step 1 */}
                         <div className="line-container">
-                        <div className="line"></div>
-                            <p>Step 1</p>
-                        <div className="line"></div>
+                            <div className="line"></div>
+                                <p>Step 1</p>
+                            <div className="line"></div>
                         </div>
 
                         {/* collect Name */}
-                        <h2>Name</h2>
                         <div className="d-flex flex-column">
-                            <InputBar placeholder="e.g. Box Breathing "/>   
+                            <h2>Name</h2> 
+                            <input
+                            value={warmupName}
+                            placeholder="e.g. Box Breathing"
+                            onChange={nameHandleChange}
+                            className="input"
+                            />
+                            {/* conditional rendering for invalid input*/}
+                            {!nameInputValid
+                            && <div className="invalid-feedback">Please enter a valid name for warmup</div>
+                            }
                         </div>
 
                         {/* collect url */}
                         <h2>Upload Warmup from URL:</h2>
                         <div className="d-flex flex-column">
-                            <InputBar placeholder="e.g. https://www.youtube.com/.." />   
+                            <input
+                            placeholder="e.g. https://www.youtube.com/.."
+                            onChange={urlHandleChange}
+                            className="input"
+                            />
+                            {/* Only render video preview if url is valid */}
+                            {urlInputValid
+                            && <YouTube videoId={extractedVideoId} opts={{ width: "100%", height: "300" }} />
+                            }
                         </div>
 
                         {/* collect warmup id for playlist.json */}
@@ -58,9 +118,7 @@ function CreateWarmupForm(props) {
                         {/* collect visibility for warmup.json */}
                         <h2>Visibility</h2>
                         <VisibilityBar />
-                    </div>
 
-                    <div>
                         {/* Divider: Step 2 */}
                         <div className="line-container">
                             <div className="line"></div>
@@ -87,9 +145,9 @@ function CreateWarmupForm(props) {
                         {/* collect style for warmup.json */}
                         <h2>Style</h2>
                         <SelectBar props={style} />
-                    </div>
-
-                    <NavButton text={"Create New Warmup"} destination={"/"}/> 
+                    </form>
+                    
+                    <button>Submit</button>
                 </div>
             </div>
             <Footer />
@@ -111,3 +169,10 @@ function SelectPlaylistBar(props) {
         <SelectBar props={playlistNames}/>
     )
 }
+
+
+
+// Youtube testing links
+  // https://www.youtube.com/watch?v=zjGNmDqTgeo&t=15s // true
+  // https://www.example.com/watch?v=dQw4w9WgXcQ // false
+  // https://youtu.be/YCLyAmXtpfY?si=o7e5YkTgjZm4QJcS // true

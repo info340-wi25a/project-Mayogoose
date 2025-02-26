@@ -12,9 +12,9 @@ import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import React from 'react';
 import { useState } from 'react';
 import { NavButton } from "../utils/NavButton.jsx";
-import { InputBar } from "../utils/InputBar.jsx";
 
 export function CreatePlaylistForm() {
+    // Step 1: State for each input
     const [playlistName, setPlaylistName] = useState('');
     const [voiceType, setVoiceType] = useState('');
     const [voiceRegister, setVoiceRegister] = useState('');
@@ -27,6 +27,29 @@ export function CreatePlaylistForm() {
     const difficultyOptions = ['Beginner', 'Intermediate', 'Advanced'];
     const styleOptions = ['Classical', 'Musical', 'Jazz', 'Pop', 'A Cappella'];
     const visibilityOptions = ['Public', 'Private'];
+
+    // Step 2: Micro managing input and change states
+    const playlistHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user typed name: " + value);
+        setNameInput(value);
+    };
+
+
+    // Step 3: How I look like 
+    // Validation logic (is the input red or green)
+    let nameInputValid = true;
+
+    if(playlistName.length <= 0) {
+        nameInputValid = false;
+    }
+
+    // Callback for submit form
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("submitting form")
+    }
+
 
     return (
         <div>
@@ -53,11 +76,15 @@ export function CreatePlaylistForm() {
                         {/* Name Input */}
                         <h2>Name</h2>
                         <div className="d-flex flex-column">
-                            <InputBar 
+                            <input
                                 value={playlistName}
-                                onChange={setPlaylistName}
                                 placeholder="e.g. playlist 1"
+                                onChange={playlistHandleChange}
                             />
+                            {/* conditional rendering for invalid input*/}
+                            {!nameInputValid
+                            && <div className="invalid-feedback">Please enter a valid name for playlist</div>
+                            }
                         </div>
 
                         {/* Voice Type */}
