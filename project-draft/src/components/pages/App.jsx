@@ -10,6 +10,7 @@ import { CreatePlaylistForm } from "./CreatePlaylistForm.jsx";
 
 import { NavButton } from "../utils/NavButton.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import { Navigate } from 'react-router';
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
 
@@ -20,7 +21,6 @@ import PlaylistDetail from "./PlaylistDetail.jsx"
 
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 import albumsData from '../../data/playlist.json'
-
 
 
 function App() {
@@ -46,7 +46,6 @@ function App() {
     const clearPlaylist = () => {
         setSelectedWarmups([]);
     };
-    
 
     return (
         <Router>
@@ -68,17 +67,17 @@ function App() {
                     }
                 />
                 <Route path="/createWarmup" element={<CreateWarmupForm />} />
-                {/*<Route path="/addWarmup" element={<AddWarmupForm />} />*/}
                 <Route 
                     path="/addWarmup" 
                     element={<AddWarmupForm selectedWarmups={selectedWarmups} addWarmup={addWarmupToPlaylist} />} 
                 />
                 <Route path="/create-playlist" element={<CreatePlaylistForm />} />
-                {/*<Route path="/PlaylistDetails" element={<PlaylistDetail />} />*/}
                 <Route 
                     path="/PlaylistDetails" 
                     element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} 
                 />
+                <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} />
+                <Route path="*" element={<Navigate to ="/"/>} />
             </Routes>
         </Router>
     );
