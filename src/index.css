@@ -51,15 +51,6 @@ nav {
     padding-top: 15px;
 }
 
-.search-input {
-    background-color: white !important;
-    color: black;
-}
-
-.search-input::placeholder {
-    color: #767676 !important;
-}
-
 .albums-container {
     display: flex;
     justify-content: center;
@@ -132,7 +123,7 @@ main {
     /* styling */
     padding: 2rem;
     border-style: dashed;
-    border-color: #EBEF2F;
+    border-color: #EFC52F;
     border-radius: 20px;
     background-color: #242424;
     margin-bottom: 1.5rem;
@@ -140,7 +131,7 @@ main {
 
 .material-symbols-outlined {
     font-size: 4rem;
-    color: #EBEF2F;
+    color: #EFC52F;
 }
 
 /* CreateWarmupForm & CreatePlaylistForm */
@@ -166,7 +157,7 @@ main {
     background: none;
     font-size: 1rem;
     padding: 0.3rem 1.2rem;
-    border: 1px solid #EBEF2F;
+    border: 1px solid #EFC52F;
 }
 
 /* Divider for visual hierarchy */
@@ -201,7 +192,7 @@ select {
 }
 
 select:focus {
-    border-color: #EBEF2F; 
+    border-color: #EFC52F; 
 }
 
 /* not used
@@ -242,7 +233,7 @@ select:focus {
   }
   
   .input:focus {
-    border-color: #EBEF2F;
+    border-color: #EFC52F;
   }
 
   /* Tags Styling */
@@ -263,14 +254,14 @@ select:focus {
   }
   
   .tag:hover {
-    background-color: #EBEF2F;
+    background-color: #EFC52F;
     color: #fff;
   }
   
   /* Button */
   .button-yellow {
     display: inline-block;
-    background-color: #EBEF2F;
+    background-color: #EFC52F;
     color: #333;
     padding: 12px 20px;
     font-size: 1rem;
@@ -293,96 +284,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.profile {
-    font-size: 18px;
-    cursor: pointer;
-}
-
-/* Search Bar */
-.search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 15px;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    background: white !important;
-    border-radius: 50px;
-    padding: 10px 15px;
-    width: 500px;
-    max-width: 90%;
-}
-
-.search-bar i {
-    color: gray;
-    margin-right: 10px;
-}
-
-.search-bar input {
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 16px;
-    color: black;
-    width: 100%;
-}
-
-/* Add Button (Search Bar)*/
-.add-btn {
-    font-size: 30px; 
-    background: white !important;
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-/* Create Button */
-.button-yellow {
-    display: block;
-    margin: 20px auto;
-    background-color: #FFC107;
-    color: black;
-    font-size: 16px; 
-    font-weight: bold;
-    padding: 10px 20px; 
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 150px;
-    text-align: center;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.button-yellow:hover {
-    background-color: #e0a800;
-}
-
 
 /* Suggested Warm-ups */
 main {
@@ -435,41 +336,6 @@ main {
     justify-content: center;
     cursor: pointer;
     margin-left: auto;
-}
-
-
-/* Runa's after */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: black;
-    color: white !important;
-}
-
-/* Header styles */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    width: 100%;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.profile-pic {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
 }
 
 /* Playlist header */
@@ -761,7 +627,7 @@ header {
 
     .material-symbols-outlined {
         font-size: 6rem;
-        color: #EBEF2F;
+        color: #EFC52F;
     }
 
     .upload-box {
@@ -850,7 +716,14 @@ body {
     padding: 10px 20px;
     border-radius: 50px;
     font-size: 16px;
+    border: 2px solid;
     text-align: left;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.searchBar:focus {
+    border-color: #EFC52F !important;
 }
 
 /* Amelia's Select Button */
