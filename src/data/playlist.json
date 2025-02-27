@@ -33,7 +33,7 @@
         "warmupIDs": ["2", "3"]
     },
     {
-        "Id": "4",
+        "playlistId": "4",
         "Name": "Intensive Exercise for Mezzo Soprano",
         "Img": "../../../img/playlist_covers/mezzo_soprano.png",
         "alt": "",
