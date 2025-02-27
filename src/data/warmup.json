@@ -18,7 +18,7 @@
         "alt": "",
         "technique": "Articulation",
         "Voice Type": "Full-Range",
-        "Voice Register": "",
+        "Voice Register": "Vocal Fry",
         "Difficulty Level": "Beginner"
     },
     {
@@ -29,7 +29,7 @@
         "alt": "",
         "technique": "Articulation",
         "Voice Type": "Full-Range",
-        "Voice Register": "",
+        "Voice Register": "Chest Voice",
         "Difficulty Level": "Beginner"
     },
     {
@@ -40,7 +40,7 @@
         "alt": "",
         "technique": "Breath Support",
         "Voice Type": "Full-Range",
-        "Voice Register": "",
+        "Voice Register": "Chest Voice",
         "Difficulty Level": "Beginner"
     },
     {
@@ -51,7 +51,7 @@
         "alt": "",
         "technique": "Vocalization",
         "Voice Type": "Full-Range",
-        "Voice Register": "",
+        "Voice Register": "Mixed",
         "Difficulty Level": "Intermediate"
     },
     {
@@ -61,7 +61,7 @@
         "alt": "",
         "technique": "Vocalization",
         "Voice Type": "Soprano",
-        "Voice Register": "",
+        "Voice Register": "Head Voice",
         "Difficulty Level": "Intermediate"
     },
     {
@@ -71,7 +71,7 @@
         "alt": "",
         "technique": "Vocalization",
         "Voice Type": "Full-Range",
-        "Voice Register": "",
+        "Voice Register": "Mixed",
         "Difficulty Level": "Intermediate"
     },
     {
@@ -82,7 +82,7 @@
         "alt": "",
         "technique": "Breath Support",
         "Voice Type": "Full-Range",
-        "Voice Register": "",
+        "Voice Register": "Mixed",
         "Difficulty Level": "Beginner"
     },
     {
@@ -92,7 +92,7 @@
         "alt": "",
         "technique": "Diction",
         "Voice Type": "Full-Range",
-        "Voice Register": "",
+        "Voice Register": "Chest Voice",
         "Difficulty Level": "Beginner"
     },
     {
@@ -103,7 +103,7 @@
         "alt": "",
         "technique": "Articulation",
         "Voice Type": "Full-Range",
-        "Voice Register": "",
+        "Voice Register": "Vocal Fry",
         "Difficulty Level": "Intermediate"
     },
     {

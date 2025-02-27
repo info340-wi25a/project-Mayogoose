@@ -60,18 +60,27 @@ nav {
     margin-right: 20px;
     margin-bottom: 50px;
 }
+ 
+.playlist {
+    /* flexbox */
+    display: flex;
+    flex-wrap: wrap;
+    
+    /* styling */
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: #181818;
+    height: 100%;
+    width: 250px;
 
-.album {
-    width: 175px;
-    height: 250px;
-    overflow: hidden;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
-.album img {
-    width: 175px;
-    height: 175px;
+.albumName {
+    margin-top: 20px;
+}
+
+.playlist img {
+    width: 100%;
     border-radius: 5px;
     overflow: hidden;
 }
@@ -95,7 +104,8 @@ h2 {
 p {
     color: white;
     font-size: 1rem;
-    line-height: 1.5rem;
+    line-height: 1rem;
+    margin-top: 1rem;
 }
 
 main {
@@ -258,23 +268,6 @@ select:focus {
     color: #fff;
   }
   
-  /* Button */
-  .button-yellow {
-    display: inline-block;
-    background-color: #EFC52F;
-    color: #333;
-    padding: 12px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button-yellow:hover {
-    background-color: #ffbf00;
-  } 
 
 /* Runa's add song */
 body {
@@ -367,29 +360,6 @@ main {
     font-weight: bold;
 }
 
-.play-button {
-    position: relative;
-    z-index: 10;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 48px; 
-    color: #ffffff; 
-    transition: transform 0.2s ease-in-out;
-    margin: 10px;
-}
-
-.play-button:hover {
-    transform: scale(1.1);
-    color: #ffffff;
-}
-
-.play-button span {
-    font-size: 48px; 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .tag-button {
     padding: 6px 14px;
@@ -603,7 +573,7 @@ main {
         margin-right: -80px !important;
     }
     
-    .album img {
+    .playlist img {
         width: 175px;
         height: 175px;
     }
@@ -691,10 +661,6 @@ body {
     margin-left: 30 px;
     margin-right: 30px;
     margin-bottom: 30px;
-}
-
-.albumName {
-    margin-top: 0px;
 }
 
 /* search bar */

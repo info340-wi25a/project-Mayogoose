@@ -28,7 +28,7 @@ function CreateWarmupForm(props) {
 
     const techniqueOptions = ['Breath Support', 'Vocalization', 'Articulation', 'Diction', 'Rhythm', 'Harmony'];
     const voiceTypeOptions = ['Full-Range','Soprano', 'Alto', 'Tenor', 'Base'];
-    const voiceRegisterOptions = ['Chest Voice', 'Head Voice', 'Mixed', 'Vocal Fry', 'Falsetto'];
+    const voiceRegisterOptions = ['Chest Voice', 'Head Voice', 'Mixed', 'Vocal Fry'];
     const difficultyOptions = ['Beginner', 'Intermediate', 'Advanced'];
 
 
