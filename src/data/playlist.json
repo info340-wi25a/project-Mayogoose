@@ -1,46 +1,42 @@
 [
     {
         "playlistId": "1",
-        "Name": "Breath Exercise",
+        "Name": "Breathing Exercises",
         "Img": "../../../img/playlist_covers/breathexercise.png",
         "alt": "",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": "",
+        "goal": "Vocal Health",
+        "genre": "general",
+        "visibility": "public",
         "warmupIDs": ["1", "4", "8"]
     },
     {
         "playlistId": "2",
-        "Name": "Vocalization",
+        "Name": "Vocalization Techniques for Classical Singers",
         "Img": "../../../img/playlist_covers/vocalization.png",
         "alt": "",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": "",
+        "goal": "Vocal Techniques",
+        "genre": "Classical",
+        "visibility": "public",
         "warmupIDs": ["5", "6", "7"]
     },
     {
         "playlistId": "3",
-        "Name": "Diction",
+        "Name": "Prep before Musical Audition",
         "Img": "../../../img/playlist_covers/diction.png",
         "alt": "",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": "",
-        "warmupIDs": ["2", "3"]
+        "goal": "Performance / Audition",
+        "genre": "Musical",
+        "visibility": "public",
+        "warmupIDs": ["2", "3", "9"]
     },
     {
         "playlistId": "4",
-        "Name": "Intensive Exercise for Mezzo Soprano",
+        "Name": "Belting for mezzo soprano",
         "Img": "../../../img/playlist_covers/mezzo_soprano.png",
         "alt": "",
-        "Voice Type": "",
-        "Voice Register": "",
-        "Difficulty Level": "",
-        "Style": "",
-        "warmupIDs": ["1", "2", "4", "5", "7"]
+        "goal": "Improvisation",
+        "genre": "Musical",
+        "visibility": "public",
+        "warmupIDs": ["1", "2", "6", "7", "11"]
     }
 ]

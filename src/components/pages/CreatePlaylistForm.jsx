@@ -16,17 +16,16 @@ import { NavButton } from "../utils/NavButton.jsx";
 export function CreatePlaylistForm() {
     // Step 1: State for each input
     const [playlistName, setPlaylistName] = useState('');
-    const [voiceType, setVoiceType] = useState('');
-    const [voiceRegister, setVoiceRegister] = useState('');
-    const [difficulty, setDifficulty] = useState('');
-    const [style, setStyle] = useState('');
+
+    const [goal, setGoal] = useState('');
+    const [genre, setGenre] = useState('');
     const [visibility, setVisibility] = useState('public');
 
-    const voiceTypeOptions = ['Soprano', 'Alto', 'Base', 'Tenor'];
-    const voiceRegisterOptions = ['Chest Voice', 'Head Voice', 'Mixed', 'Vocal Fry'];
-    const difficultyOptions = ['Beginner', 'Intermediate', 'Advanced'];
-    const styleOptions = ['Classical', 'Musical', 'Jazz', 'Pop', 'A Cappella'];
-    const visibilityOptions = ['Public', 'Private'];
+    const goalOptions = ['Improvisation', 'Performance / Audition',
+                        'Vocal Health', 'Vocal Techniques']
+    const genreOptions = ['general', 'Classical', 'Musical', 'Jazz', 'Pop', 'A Cappella'];
+    const visibilityOptions = ['Public', 'Private', 'Unlisted'];
+
 
     // Step 2: Micro managing input and change states
     const playlistHandleChange = (event) => {
@@ -62,11 +61,10 @@ export function CreatePlaylistForm() {
                     </div>
 
                     <div>
-
                         {/* Upload Image */}
                         <h2>Upload Image:</h2>
                         <UploadImageForm />
-
+                        
                         {/* Name Input */}
                         <h2>Name</h2>
                         <div className="d-flex flex-column">
@@ -74,6 +72,7 @@ export function CreatePlaylistForm() {
                                 value={playlistName}
                                 placeholder="e.g. playlist 1"
                                 onChange={playlistHandleChange}
+                                className="input"
                             />
                             {/* conditional rendering for invalid input*/}
                             {!nameInputValid
@@ -81,36 +80,12 @@ export function CreatePlaylistForm() {
                             }
                         </div>
 
-                        {/* Voice Type */}
-                        <h2>Voice Type</h2>
+                        {/* Genre */}
+                        <h2>Genre</h2>
                         <SelectBar
-                            value={voiceType}
-                            onChange={setVoiceType}
-                            props={voiceTypeOptions}
-                        />
-
-                        {/* Voice Register */}
-                        <h2>Voice Register</h2>
-                        <SelectBar
-                            value={voiceRegister}
-                            onChange={setVoiceRegister}
-                            props={voiceRegisterOptions}
-                        />
-
-                        {/* Difficulty Level */}
-                        <h2>Difficulty Level</h2>
-                        <SelectBar
-                            value={difficulty}
-                            onChange={setDifficulty}
-                            props={difficultyOptions}
-                        />
-
-                        {/* Style */}
-                        <h2>Style</h2>
-                        <SelectBar
-                            value={style}
-                            onChange={setStyle}
-                            props={styleOptions}
+                            value={genre}
+                            onChange={setGenre}
+                            props={genreOptions}
                         />
 
                         {/* Visibility */}
@@ -122,7 +97,7 @@ export function CreatePlaylistForm() {
                         />
                     </div>
 
-                    <NavButton text={"Create New Playlist"} destination={"/addWarmup"}/> 
+                    <NavButton text={"Add Warmups"} destination={"/addWarmup"}/> 
                 </div>
             </div>
             <Footer />

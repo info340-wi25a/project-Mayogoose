@@ -1,12 +1,7 @@
-// 3
-// Runa's addSongs.html from draft 1
+// Owner: Runa
 // functionalities:
-    // search for warmups (use #2 searchbar)
-    // add individual warmups (use #7 warmup)
-    // "create" link to the next page "myPlaylist.jsx" (use #6 button)
-
-// Import Components (1, 2, 3, 9)
-
+    // search for warmups
+    // add individual warmups to the new playlist
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
@@ -18,15 +13,20 @@ import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
 import warmupData from '../../data/warmup.json'; // Add warmup data
 // import platlistData from '../../data/playlist.json'; // Add playlist data
 
+// Meiyao: I think we can add a flexbox to put "suggested" and "selected" as side 
+// by side cards for better view, and move "selected Warm-up" to the top
+// We should prevent duplicates (a warmup being added more than once)
+// Ideally, the plus button can has two states. After being pressed, it turned into
+// a "minus" sign, so if user click the button again, the warmup gets unselected
 
 function AddWarmupForm({ selectedWarmups, addWarmup }) {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
   const warmupsList = warmupData.map(warmup => ({
-      id: warmup.Id, 
-      name: warmup.Name,
-      image: warmup.Img
+      id: warmup.warmupId, 
+      name: warmup.warmupName,
+      image: warmup.img
   })); 
 
   const handleAddWarmup = (warmup) => {

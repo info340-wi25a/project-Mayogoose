@@ -1,25 +1,36 @@
+// React imports
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import YouTube from 'react-youtube';
+import { Routes, Route } from 'react-router'; // class example
+// Components imports
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import { SelectBar } from "../utils/SelectBar.jsx";
 import { VisibilityBar } from "../utils/VisibilityBar.jsx";
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import { NavButton } from "../utils/NavButton.jsx";
+// Playlist Data
 import albumsData from "../../data/playlist.json";
 
+
+
 function CreateWarmupForm(props) {
-    // ask prof: CreatePlaylistForm use these data too
-    // should I store this as a prop (array of arrays) and pass them in
-    // what's the most efficient way to not store the same data twice?
-    const voiceType = ['Soprano', 'Alto', 'Tenor', 'Base'];
-    const voiceRegister = ['Chest Voice', 'Head Voice', 'Mixed', 'Vocal Fry'];
-    const difficulty = ['Beginner', 'Intermediate', 'Advanced'];
-    const style = ['Classical', 'Musical', 'Jazz', 'Pop', 'A Cappella'];
 
     // Step 1: State for each input (what I know)
     const [warmupName, setWarmupName] = useState("");
     const [urlInput, setUrlInput] = useState("");
+    const [technique, setTechnique] = useState('');
+    const [voiceType, setVoiceType] = useState('');
+    const [voiceRegister, setVoiceRegister] = useState('');
+    const [difficulty, setDifficulty] = useState('');
+
+    const techniqueOptions = ['Breath Support', 'Vocalization', 'Articulation', 'Diction', 'Rhythm', 'Harmony'];
+    const voiceTypeOptions = ['Full-Range','Soprano', 'Alto', 'Tenor', 'Base'];
+    const voiceRegisterOptions = ['Chest Voice', 'Head Voice', 'Mixed', 'Vocal Fry', 'Falsetto'];
+    const difficultyOptions = ['Beginner', 'Intermediate', 'Advanced'];
+
 
     // Step 2: Micro managing input and change states
     const nameHandleChange = (event) => {
@@ -62,6 +73,17 @@ function CreateWarmupForm(props) {
         console.log("submitting form")
     }
 
+    // Modal Navigations
+    // State
+    const [show, setShow] = useState(false);
+    // Recipes
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const handleGoBack = () => {
+        console.log ("going back to the last page (App or Playlist)");
+        window.history.back();
+    }
+
     return (
         <div>
             <NavBar />
@@ -70,6 +92,13 @@ function CreateWarmupForm(props) {
                     <div className="instructions">
                         <h1>New Warmup</h1>
                         <p class="smallText">Upload a new warm-up exercise for the Community!</p>
+                    </div>
+
+                    {/* Divider: Step 1 */}
+                    <div className="line-container">
+                        <div className="line"></div>
+                            <p class="smallText">Step 1: Upload Warmup</p>
+                        <div className="line"></div>
                     </div>
 
                     {/* This form collect data for warmup.json */}
@@ -102,6 +131,13 @@ function CreateWarmupForm(props) {
                             && <YouTube videoId={extractedVideoId} opts={{ width: "100%", height: "300" }} />
                             }
                         </div>
+                        
+                        {/* Divider: Step 2 */}
+                        <div className="line-container">
+                            <div className="line"></div>
+                                <p class="smallText">Step 2: Add to a Playlist</p>
+                            <div className="line"></div>
+                        </div>
 
                         {/* collect warmup id for playlist.json */}
                         <div>
@@ -109,43 +145,66 @@ function CreateWarmupForm(props) {
                             <SelectPlaylistBar />
                         </div>
 
-                        {/* collect visibility for warmup.json */}
+                        {/* Divider: Step 3 */}
+                        <div className="line-container">
+                            <div className="line"></div>
+                                <p class="smallText">Step 3: Make it Discoverable!</p>
+                            <div className="line"></div>
+                        </div>
+
+                        {/* collect difficulty for warmup.json */}
                         <div>
-                            <h2>Visibility</h2>
-                            <VisibilityBar />
+                            <h2>Difficulty Level</h2>
+                            <SelectBar props={difficultyOptions} />    
+                        </div>
+
+                        {/* collect technique for warmup.json */}
+                        <div>
+                            <h2>Technique</h2>
+                            <SelectBar props={techniqueOptions} /> 
                         </div>
                     
 
                         {/* collect voice type for warmup.json */}
                         <div>
                             <h2>Voice Type</h2>
-                            <SelectBar props={voiceType} /> 
+                            <SelectBar props={voiceTypeOptions} /> 
                         </div>
 
                         {/* collect voice register for warmup.json */}
                         <div>
                             <h2>Voice Register</h2>
-                            <SelectBar props={voiceRegister} /> 
-                        </div>
-
-                        {/* collect difficulty for warmup.json */}
-                        <div>
-                            <h2>Difficulty Level</h2>
-                            <SelectBar props={difficulty} />    
+                            <SelectBar props={voiceRegisterOptions} /> 
                         </div>
                         
-                        {/* collect style for warmup.json */}
-                        <div>
-                            <h2>Style</h2>
-                            <SelectBar props={style} />
+                        {/* Divider: Step 4 */}
+                        <div className="line-container">
+                            <div className="line"></div>
+                                <p class="smallText">Step 4: Publish Online!</p>
+                            <div className="line"></div>
                         </div>
 
                         {/* Submit button should be centered */}
-                        {/* <button className="badge-pill">Submit</button> */}
+                        <button className="badge-pill" onClick={handleShow}>Submit</button>
 
-                        <NavButton text={"Submit"} destination={"/"}/>
+                        {/* Confirmation Model */}
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title className="text-dark">Congratulations!</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body className="text-dark">Your warmup is successfully uploaded</Modal.Body>
+                            <Modal.Footer>
+                            <Button variant="secondary" onClick={handleGoBack}>
+                                Go Back
+                            </Button>
+                            <NavButton text="View in Profile" destination="">
+                                View in Profile
+                            </NavButton>
+                            </Modal.Footer>
+                        </Modal>                        
                     </form>
                 </div>
+                
             </div>
             <Footer />
         </div>

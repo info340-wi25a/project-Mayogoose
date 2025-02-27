@@ -169,7 +169,7 @@ main {
     border: 1px solid #EBEF2F;
 }
 
-/* An "OR" divider for visual hierarchy */
+/* Divider for visual hierarchy */
 .line-container {
     display: flex;
     align-items: center;
@@ -180,7 +180,6 @@ main {
     flex-grow: 1;
     height: 0.1px;
     background-color: grey;
-    margin-bottom: 0.9rem;
   }
 
 /* Form flexbox adjust */
@@ -192,14 +191,17 @@ form {
 
 /* SelectBar Component */
 select {
-    display: flex;
     width: 100%;
-    background: none;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    border-color: #EBEF2F;
-    /* margin: 0rem 1.5rem 1.5rem 0rem; */
-    color: white !important;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+select:focus {
+    border-color: #EBEF2F; 
 }
 
 /* not used
@@ -231,7 +233,6 @@ select {
 /* Input Bar in Forms */
  .input {
     width: 100%;
-    max-width: 400px;
     padding: 10px;
     font-size: 1rem;
     border: 2px solid ;
@@ -758,18 +759,11 @@ header {
         max-height: 75vh;
     }
 
-
-    /* Meiyao's upload page (not used)
-    .record-box .press-text {
-        display: none;
-    }
-    .record-box .click-text {
-        display: block;
-    }
     .material-symbols-outlined {
         font-size: 6rem;
         color: #EBEF2F;
     }
+
     .upload-box {
         padding: 4rem;
     }
@@ -781,7 +775,7 @@ header {
     .instructions img {
         width: 30%;
     }
-    */
+   
 }
 
 
@@ -859,11 +853,12 @@ body {
     text-align: left;
 }
 
+/* Amelia's Select Button */
 .selectButton {
     appearance: none;
     color: black !important;
-    background-color: white !important;
-    border: none !important;
+    background-color: white;
+    border: none;
     width: 40px;
     height: 40px;
     padding: 0px;
