@@ -1,7 +1,0 @@
-Feature (1): upload new warm-up exercises
-// Refer to YouTube, ed discussion board
-0. if organize playlist want new exercises to be added to the playlist, navigate to this page
-1. before.html: 2 buttons prompting users to upload either .mp3 or a YouTube link
-    collapse to two options based on user's choices
-2. during.html: file is uploaded, now add name, tags, and other configurations
-3. after.html: show "uploaded" screen, show a preview, and prompt them back to main page

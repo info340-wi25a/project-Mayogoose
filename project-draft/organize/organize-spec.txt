@@ -1,8 +1,0 @@
-Feature (1): Create new playlists
-// Inspirations: Spotify, Pinterest
-0. Click "+" to navigate from main page to this page 
-1. new-playlist.html: Create new playlists (name, tag, type, team access)
-2. add-exercise.html: Interface showing all collected exercises & recently played, each having "+" button
-    (pseudo class :click changes states from "+" to check-mark)
-    navigate to upload/before.html if user wants to add new exercises
-3. after.html: Show final page of playlist that is ready to be played
