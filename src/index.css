@@ -640,6 +640,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
     padding: 15px 35px;
     font-size: 15px;
+    text-decoration: none;
 }
   
 .badge-pill:hover {
