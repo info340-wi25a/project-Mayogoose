@@ -9,6 +9,7 @@ import { NavBar } from "../navigation/NavBar.jsx";
 import { Footer } from '../navigation/Footer.jsx';
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import React from 'react';
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useState } from 'react';
 import { NavButton } from "../utils/NavButton.jsx";
 
@@ -18,6 +19,8 @@ export function CreatePlaylistForm() {
     const [goal, setGoal] = useState('');
     const [genre, setGenre] = useState('');
     const [visibility, setVisibility] = useState('public');
+    const navigate = useNavigate(); // Initialize navigate function
+
 
     const goalOptions = ['Improvisation', 'Performance / Audition','Vocal Health', 'Vocal Techniques']
     const genreOptions = ['general', 'Classical', 'Musical', 'Jazz', 'Pop', 'A Cappella'];
@@ -28,7 +31,7 @@ export function CreatePlaylistForm() {
     const playlistHandleChange = (event) => {
         const value = event.target.value;
         console.log("user typed name: " + value);
-        setNameInput(value);
+        setPlaylistName(value);
     };
 
     const goalHandleChange = (event) => {
@@ -66,6 +69,7 @@ export function CreatePlaylistForm() {
         console.log("goal: " + goal);
         console.log("genre: " + genre);
         console.log("visibility: " + visibility);
+        navigate("/addWarmup");
     }
 
 
@@ -79,9 +83,9 @@ export function CreatePlaylistForm() {
                         <p>Create your playlist here!</p>
                     </div>
 
-                    <div>
+                    <form onSubmit={handleSubmit} className="flex-containers">
                         {/* Upload Image */}
-                        <h2>Upload Image:</h2>
+                        <h2>Upload Playlist Cover:</h2>
                         <UploadImageForm />
                         
                         {/* Name Input */}
@@ -103,25 +107,24 @@ export function CreatePlaylistForm() {
                         <h2>Goal</h2>
                         <SelectBar
                             options={goalOptions}
-                            handleChange={goalHandleChange}
+                            handleSelect={goalHandleChange}
                         />
 
                         {/* Genre */}
                         <h2>Genre</h2>
                         <SelectBar
                             options={genreOptions}
-                            handleChange={genreHandleChange}
+                            handleSelect={genreHandleChange}
                         />
 
                         {/* Visibility */}
                         <h2>Visibility</h2>
                         <SelectBar
                             options={visibilityOptions}
-                            handleChange={setVisibility}
+                            handleSelect={visibilityHandleChange}
                         />
-                    </div>
-
-                    <NavButton text={"Add Warmups"} destination={"/addWarmup"}/> 
+                        <button className="badge-pill" type="submit">Add Playlist</button>
+                    </form>
                 </div>
             </div>
             <Footer />

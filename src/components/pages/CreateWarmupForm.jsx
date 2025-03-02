@@ -236,7 +236,7 @@ function CreateWarmupForm(props) {
                         </div>
 
                         {/* Submit button should be centered */}
-                        <button className="badge-pill" onClick={handleShow}>Submit</button>
+                        <button className="badge-pill" onClick={handleShow}>Submit</button>2
 
                         {/* Confirmation Model */}
                         <Modal show={show} onHide={handleClose}>
