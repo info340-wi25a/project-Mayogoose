@@ -1,3 +1,4 @@
+// Owner: Meiyao Li
 // React imports
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
@@ -7,8 +8,6 @@ import { Routes, Route } from 'react-router'; // class example
 // Components imports
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
-import { SelectBar } from "../utils/SelectBar.jsx";
-import { VisibilityBar } from "../utils/VisibilityBar.jsx";
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import { NavButton } from "../utils/NavButton.jsx";
 // Playlist Data
@@ -21,18 +20,19 @@ function CreateWarmupForm(props) {
     // Step 1: State for each input (what I know)
     const [warmupName, setWarmupName] = useState("");
     const [urlInput, setUrlInput] = useState("");
+    const [playlistId, setPlaylistId] = useState("");
+    const [difficulty, setDifficulty] = useState('');
     const [technique, setTechnique] = useState('');
     const [voiceType, setVoiceType] = useState('');
     const [voiceRegister, setVoiceRegister] = useState('');
-    const [difficulty, setDifficulty] = useState('');
 
+    const difficultyOptions = ['Beginner', 'Intermediate', 'Advanced'];
     const techniqueOptions = ['Breath Support', 'Vocalization', 'Articulation', 'Diction', 'Rhythm', 'Harmony'];
     const voiceTypeOptions = ['Full-Range','Soprano', 'Alto', 'Tenor', 'Base'];
     const voiceRegisterOptions = ['Chest Voice', 'Head Voice', 'Mixed', 'Vocal Fry'];
-    const difficultyOptions = ['Beginner', 'Intermediate', 'Advanced'];
 
 
-    // Step 2: Micro managing input and change states
+    // Step 2: Micro managing input and change states (what I do)
     const nameHandleChange = (event) => {
         const value = event.target.value;
         console.log("user typed name: " + value);
@@ -45,6 +45,38 @@ function CreateWarmupForm(props) {
         setUrlInput(value);
     }
 
+    const playlistHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user selected playlist: " + value);
+        setPlaylistId(value);
+    }
+
+    const difficultyHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user selected difficulty: " + value);
+        setDifficulty(value);
+    }
+
+    const techniqueHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user selected technique: " + value);
+        setTechnique(value);
+    }
+
+    const voiceTypeHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user selected voice type: " + value);
+        setVoiceType(value);
+    }
+
+    const voiceRegisterHandleChange = (event) => {
+        const value = event.target.value;   
+        console.log("user selected voice register: " + value);
+        setVoiceRegister(value);
+    }
+
+
+
     // extract YouTube Preview Links
     const extractVideoId = (url) => {
         const match = url.match(
@@ -55,7 +87,7 @@ function CreateWarmupForm(props) {
     const extractedVideoId = extractVideoId(urlInput);
 
 
-    // Step 3: How I look like 
+    // Step 3: Change ClassName (How I look like)
     // Validation logic (is the input red or green)
     let nameInputValid = true;
     let urlInputValid = true;
@@ -67,13 +99,20 @@ function CreateWarmupForm(props) {
         urlInputValid = false;
     }
 
-    // Callback for submit form
+    // Callback for submit form (Warmup info that the form collects)
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("submitting form")
+        console.log("warmupName: " + warmupName);
+        console.log("urlInput: " + urlInput);
+        console.log("playlistId: " + playlistId);
+        console.log("difficulty: " + difficulty);
+        console.log("technique: " + technique);
+        console.log("voiceType: " + voiceType);
+        console.log("voiceRegister: " + voiceRegister);
     }
 
-    // Modal Navigations
+    // Modal Navigations (Pop-up)
     // State
     const [show, setShow] = useState(false);
     // Recipes
@@ -91,13 +130,13 @@ function CreateWarmupForm(props) {
                 <div className="card"> 
                     <div className="instructions">
                         <h1>New Warmup</h1>
-                        <p class="smallText">Upload a new warm-up exercise for the Community!</p>
+                        <p className="smallText">Upload a new warm-up exercise for the Community!</p>
                     </div>
 
                     {/* Divider: Step 1 */}
                     <div className="line-container">
                         <div className="line"></div>
-                            <p class="smallText">Step 1: Upload Warmup</p>
+                            <p className="smallText">Step 1: Upload Warmup</p>
                         <div className="line"></div>
                     </div>
 
@@ -135,52 +174,64 @@ function CreateWarmupForm(props) {
                         {/* Divider: Step 2 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p class="smallText">Step 2: Add to a Playlist</p>
+                                <p className="smallText">Step 2: Add to a Playlist</p>
                             <div className="line"></div>
                         </div>
 
                         {/* collect warmup id for playlist.json */}
                         <div>
                             <h2>Select Playlist</h2>
-                            <SelectPlaylistBar />
+                            <SelectPlaylistBar
+                            onChange={playlistHandleChange} />
                         </div>
 
                         {/* Divider: Step 3 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p class="smallText">Step 3: Make it Discoverable!</p>
+                                <p className="smallText">Step 3: Make it Discoverable!</p>
                             <div className="line"></div>
                         </div>
 
                         {/* collect difficulty for warmup.json */}
                         <div>
                             <h2>Difficulty Level</h2>
-                            <SelectBar props={difficultyOptions} />    
+                            <SelectBar 
+                            options={difficultyOptions}
+                            handleSelect={difficultyHandleChange}
+                            /> 
                         </div>
 
                         {/* collect technique for warmup.json */}
                         <div>
                             <h2>Technique</h2>
-                            <SelectBar props={techniqueOptions} /> 
+                            <SelectBar 
+                            options={techniqueOptions}
+                            handleSelect={techniqueHandleChange} /> 
                         </div>
                     
 
                         {/* collect voice type for warmup.json */}
                         <div>
                             <h2>Voice Type</h2>
-                            <SelectBar props={voiceTypeOptions} /> 
+                            <SelectBar 
+                            options={voiceTypeOptions}
+                            handleSelect={voiceTypeHandleChange}
+                            /> 
                         </div>
 
                         {/* collect voice register for warmup.json */}
                         <div>
                             <h2>Voice Register</h2>
-                            <SelectBar props={voiceRegisterOptions} /> 
+                            <SelectBar 
+                            options={voiceRegisterOptions}
+                            handleSelect={voiceRegisterHandleChange} 
+                            /> 
                         </div>
                         
                         {/* Divider: Step 4 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p class="smallText">Step 4: Publish Online!</p>
+                                <p className="smallText">Step 4: Publish Online!</p>
                             <div className="line"></div>
                         </div>
 
@@ -197,7 +248,7 @@ function CreateWarmupForm(props) {
                             <Button variant="secondary" onClick={handleGoBack}>
                                 Go Back
                             </Button>
-                            <NavButton text="View in Profile" destination="">
+                            <NavButton text="View in Profile" destination="/profile">
                                 View in Profile
                             </NavButton>
                             </Modal.Footer>
@@ -214,7 +265,7 @@ function CreateWarmupForm(props) {
 export default CreateWarmupForm;
 
 
-function SelectPlaylistBar(props) {
+function SelectPlaylistBar({playlistHandleChange}) {
     // turn [{}, {}, {}] into [" ", " ", " "]
     const playlists = albumsData;
     const playlistNames = playlists.map(playlist => {
@@ -222,10 +273,26 @@ function SelectPlaylistBar(props) {
     })
 
     return (
-        <SelectBar props={playlistNames}/>
+        <SelectBar 
+        options={playlistNames}
+        handleSelect={playlistHandleChange}/>
     )
 }
 
+function SelectBar({options, handleSelect}) {
+    // turn [string, string, string] into [<>, <>, <>]
+    const selectBar = options.map(option => (
+        <option key={option} value={option}>{option}</option>
+    ));
+
+    return (
+        <div> 
+            <select className="select" onChange={handleSelect}>
+                {selectBar};  
+            </select>
+        </div>
+    );
+}
 
 
 // Youtube testing links

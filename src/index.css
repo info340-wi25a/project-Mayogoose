@@ -632,7 +632,7 @@ body {
 
 /* nav button */
 .badge-pill {
-    text-align: center;
+    text-align: center !important;
     color: black;
     background-color: #EFC52F;
     border-radius: 90px;

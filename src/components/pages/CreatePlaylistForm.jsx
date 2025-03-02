@@ -1,4 +1,4 @@
-// Ellie's new-playlist.html
+// Owner: Ellie
 // Functionalities:
     // Name your playlist (use #10 text input bar)
     // Tag your playlist (use #5 Tag bar)
@@ -7,7 +7,6 @@
 
 import { NavBar } from "../navigation/NavBar.jsx";
 import { Footer } from '../navigation/Footer.jsx';
-import { SelectBar } from "../utils/SelectBar.jsx";
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import React from 'react';
 import { useState } from 'react';
@@ -16,13 +15,11 @@ import { NavButton } from "../utils/NavButton.jsx";
 export function CreatePlaylistForm() {
     // Step 1: State for each input
     const [playlistName, setPlaylistName] = useState('');
-
     const [goal, setGoal] = useState('');
     const [genre, setGenre] = useState('');
     const [visibility, setVisibility] = useState('public');
 
-    const goalOptions = ['Improvisation', 'Performance / Audition',
-                        'Vocal Health', 'Vocal Techniques']
+    const goalOptions = ['Improvisation', 'Performance / Audition','Vocal Health', 'Vocal Techniques']
     const genreOptions = ['general', 'Classical', 'Musical', 'Jazz', 'Pop', 'A Cappella'];
     const visibilityOptions = ['Public', 'Private', 'Unlisted'];
 
@@ -33,6 +30,24 @@ export function CreatePlaylistForm() {
         console.log("user typed name: " + value);
         setNameInput(value);
     };
+
+    const goalHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user typed goal: " + value);
+        setGoal(value);
+    }
+
+    const genreHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user typed genre: " + value);
+        setGenre(value);
+    }
+
+    const visibilityHandleChange = (event) => {
+        const value = event.target.value;
+        console.log("user typed visibility: " + value);
+        setVisibility(value);
+    }
 
 
     // Step 3: How I look like 
@@ -46,7 +61,11 @@ export function CreatePlaylistForm() {
     // Callback for submit form
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("submitting form")
+        console.log("submitting form");
+        console.log("playlistName: " + playlistName);
+        console.log("goal: " + goal);
+        console.log("genre: " + genre);
+        console.log("visibility: " + visibility);
     }
 
 
@@ -80,20 +99,25 @@ export function CreatePlaylistForm() {
                             }
                         </div>
 
+                        {/* Goal */}
+                        <h2>Goal</h2>
+                        <SelectBar
+                            options={goalOptions}
+                            handleChange={goalHandleChange}
+                        />
+
                         {/* Genre */}
                         <h2>Genre</h2>
                         <SelectBar
-                            value={genre}
-                            onChange={setGenre}
-                            props={genreOptions}
+                            options={genreOptions}
+                            handleChange={genreHandleChange}
                         />
 
                         {/* Visibility */}
                         <h2>Visibility</h2>
                         <SelectBar
-                            value={visibility}
-                            onChange={setVisibility}
-                            props={visibilityOptions}
+                            options={visibilityOptions}
+                            handleChange={setVisibility}
                         />
                     </div>
 
@@ -106,3 +130,18 @@ export function CreatePlaylistForm() {
 }
 
 export default CreatePlaylistForm;
+
+function SelectBar({options, handleSelect}) {
+    // turn [string, string, string] into [<>, <>, <>]
+    const selectBar = options.map(option => (
+        <option key={option} value={option}>{option}</option>
+    ));
+
+    return (
+        <div> 
+            <select className="select" onChange={handleSelect}>
+                {selectBar};  
+            </select>
+        </div>
+    );
+}
