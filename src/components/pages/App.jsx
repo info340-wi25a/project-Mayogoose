@@ -23,6 +23,7 @@ import albumsData from '../../data/playlist.json'
 function App() {
     const [query, setQuery] = useState("");
     const [selectedWarmups, setSelectedWarmups] = useState([]);
+    console.log("Selected warmups id: " + selectedWarmups)
 
     const getFilteredAlbums = (query, albums) => {
         if (!query) {
@@ -32,7 +33,6 @@ function App() {
     }    
 
     const filteredAlbums = getFilteredAlbums(query, albumsData);
-
 
     // runa: selectedWarmups
     const addWarmupToPlaylist = (warmup) => {
@@ -63,7 +63,7 @@ function App() {
                 }
             />
             <Route path="/createWarmup" element={<CreateWarmupForm />} />
-            <Route path="/create-playlist" element={<CreatePlaylistForm />} />
+            <Route path="/createPlaylist" element={<CreatePlaylistForm />} />
             <Route path="/profile" element={<UserLib />} />
             <Route 
                 path="/addWarmup" 

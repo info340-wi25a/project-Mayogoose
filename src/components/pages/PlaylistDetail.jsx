@@ -12,9 +12,7 @@ import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import warmupData from '../../data/warmup.json'; // Add warmup data
 
-
 function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
-    const navigate = useNavigate();
 
     return (
         <div className="playlist-detail-container">

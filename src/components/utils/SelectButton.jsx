@@ -13,7 +13,7 @@ export function SelectButton({ elements }) {
         if (value === "warmup") {
             navigate("/createWarmup");
         } else if (value === "playlist") {
-            navigate("/create-playlist");
+            navigate("/createPlaylist");
         }
         event.target.value = "";
     };
