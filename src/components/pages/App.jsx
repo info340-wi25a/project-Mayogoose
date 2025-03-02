@@ -72,7 +72,7 @@ function App() {
                 element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} 
             />
             <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} />
-            <Route path="*" element={<Navigate to ="/"/>} />
+            <Route path="*" element={<Navigate to ="/"/>} /> c
         </Routes>
     );
 }
