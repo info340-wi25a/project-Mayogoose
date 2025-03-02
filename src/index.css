@@ -525,6 +525,17 @@ main {
     .song-info p {
         font-size: 12px;
     }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 2px solid;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+    
 }
 
 
@@ -659,7 +670,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
-    margin-left: 30 px;
+    margin-left: 30px;
     margin-right: 30px;
     margin-bottom: 30px;
 }
