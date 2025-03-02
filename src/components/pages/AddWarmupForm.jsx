@@ -31,6 +31,7 @@ function AddWarmupForm({ selectedWarmups, addWarmup }) {
 
   const handleAddWarmup = (warmup) => {
     // Check if the warmup is already selected
+
     let isAlreadySelected = false;
     for (let i = 0; i < selectedWarmups.length; i++) {
       if (selectedWarmups[i].id === warmup.id) {
@@ -42,7 +43,10 @@ function AddWarmupForm({ selectedWarmups, addWarmup }) {
     if (!isAlreadySelected) {
       addWarmup(warmup);
     }
+
+    console.log("User Added Warmup: " + warmup.id);
   };
+
   
   return (
       <div className="add-warmup-container">
@@ -54,15 +58,7 @@ function AddWarmupForm({ selectedWarmups, addWarmup }) {
         </div>
 
         <h1>Suggested Warm-ups</h1>
-              <div className="warmups-list">
-                  {warmupsList.map((warmup) => (
-                      <WarmupItem
-                          key={warmup.id}
-                          warmup={warmup}
-                          onAdd={() => handleAddWarmup(warmup)}
-                      />
-                  ))}
-              </div>
+              
 
               <div className="line-container">
                   <div className="line"></div>
@@ -79,6 +75,23 @@ function AddWarmupForm({ selectedWarmups, addWarmup }) {
                       />
                   ))}
               </div>
+
+              <div className="line-container">
+                  <div className="line"></div>
+                  <p>Suggested Warm-ups ({warmupData.length})</p>
+                  <div className="line"></div>
+              </div>
+
+              <div className="warmups-list">
+                  {warmupsList.map((warmup) => (
+                      <WarmupItem
+                          key={warmup.id}
+                          warmup={warmup}
+                          onAdd={() => handleAddWarmup(warmup)}
+                      />
+                  ))}
+              </div>
+
               <NavButton 
                 text="Create!" 
                 destination="/PlaylistDetails" 
