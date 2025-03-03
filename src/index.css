@@ -159,10 +159,11 @@ main {
     justify-content: center;
     flex-wrap: wrap;
     height: 100%; /* Take up available space */
-    width: 400px;
+    width: 100%;
+    max-width: 500px;
 
     /* styling */
-    margin-top: 2rem;
+    margin: 2rem auto;
     padding: 2rem;
     border-radius: 20px;
     background-color: #181818;
@@ -392,7 +393,7 @@ main {
     gap: 20px; 
     justify-content: center;
     padding: 20px;
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto; 
 }
 
@@ -563,10 +564,12 @@ body {
 .grid-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     gap: 40px;
-    margin-bottom: 30px;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 900px;
 }
 
 /* search bar */
@@ -767,12 +770,14 @@ h3 {
 /* Warm-ups */
 .warmups-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 默认两列 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px; 
     justify-content: center;
+    align-items: center;
     padding: 20px;
     max-width: 900px;
-    margin: 0 auto; 
+    margin: 0 auto;
+    width: 100%;
 }
 
 .warmup-item {
@@ -875,12 +880,12 @@ footer {
 }
 
 /* Display warm-up items vertically */
-.warmups-list {
+/* .warmups-list {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-}
+} */
 
 
 .playlist-image {
