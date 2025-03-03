@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
 import { Footer } from "../navigation/Footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
-import { WarmupItem } from "../utils/WarmupItem.jsx"; // Component 9
+import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import warmupData from '../../data/warmup.json'; // Add warmup data
 import playlistData from '../../data/playlist.json'; // Add playlist data

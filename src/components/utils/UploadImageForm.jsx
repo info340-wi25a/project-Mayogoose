@@ -21,7 +21,7 @@ export function UploadImageForm({elements}) {
             <span className="material-symbols-outlined">
                 upload_file
             </span>
-            <p class="smallText"> Max 5 MB files are allowed</p>
+            <p className="smallText"> Max 5 MB files are allowed</p>
             <UploadButton />
         </div>
     );
