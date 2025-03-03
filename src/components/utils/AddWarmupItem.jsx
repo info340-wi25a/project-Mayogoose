@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-export function WarmupItem({ warmup, onAdd, isSelected }) {
+export function AddWarmupItem({ warmup, onAdd, isSelected }) {
   const name = warmup.Name || warmup.name;
   const image = warmup.Img || warmup.image;
   const voiceType = warmup["Voice Type"] || warmup.voiceType || "";

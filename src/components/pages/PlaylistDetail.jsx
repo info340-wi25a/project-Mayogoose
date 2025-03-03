@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
 import { Footer } from "../navigation/Footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
-import { WarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
+import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import warmupData from '../../data/warmup.json'; // Add warmup data
 
@@ -34,7 +34,7 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                 <div className="warmups-list">
                     <h3>Selected Warm-ups</h3>
                     {selectedWarmups.length > 0 && selectedWarmups.map((warmup) => (
-                        <WarmupItem key={warmup.id} warmup={warmup} isSelected={true} />
+                        <AddWarmupItem key={warmup.id} warmup={warmup} isSelected={true} />
                     ))}
                     {selectedWarmups.length === 0 && <p>No warmups selected.</p>}
                 </div>
