@@ -141,7 +141,7 @@ function CreateWarmupForm(props) {
                     </div>
 
                     {/* This form collect data for warmup.json */}
-                    <form onSubmit={handleSubmit} className="flex-containers">
+                    <form onSubmit={handleSubmit} className="flex-container">
                         {/* collect Name */}
                         <div>
                             <h2>Name</h2> 
