@@ -538,11 +538,13 @@ body {
     border-radius: 90px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    padding: 15px 35px;
-    font-size: 15px;
+    padding: 18px 30px;
+    font-size: 18px;
+    font-weight: bold;
     text-decoration: none;
     display: block;
     margin: 20px auto;
+    width: fit-content;
 }
   
 .badge-pill:hover {
