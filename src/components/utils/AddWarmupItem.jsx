@@ -37,4 +37,3 @@ export function AddWarmupItem({ warmup, onAdd, isSelected }) {
     </div>
   );
 }
-

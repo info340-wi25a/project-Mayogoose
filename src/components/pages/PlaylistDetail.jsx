@@ -34,7 +34,6 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
     } else {
         warmups = selectedWarmups;
     }
-
     const renderWarmups = (warmups) => {
         return warmups.map((warmup) => (
             <div key={warmup.warmupId} className="warmup-item">
@@ -53,6 +52,7 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
             <AddWarmupItem key={warmup.warmupId} warmup={warmup} isSelected={true} />
         ));
     };
+
 
     return (
         <div className="playlist-detail-container">
@@ -81,19 +81,20 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                     <>
                         <div className="playlist-header">
                             <div className="upload-image-container">
-                                <h2>Upload Your Playlist Image:</h2>
+                                <h1>Upload Your Playlist Image:</h1>
                                 <UploadImageForm />
                             </div>
-                            <h3>My Playlist</h3>
+                            <h2>My Playlist</h2>
                         </div>
 
-                        {selectedWarmups.length > 0 ? (
+                        {selectedWarmups.length > 0 && (
                             <div className="warmups-list">
-                                {renderSelectedWarmups(selectedWarmups)}
+                                {selectedWarmups.map((warmup) => (
+                                    <WarmupItem key={warmup.warmupId} warmup={warmup} isSelected={true} />
+                                ))}
                             </div>
-                        ) : (
-                            <p>Nothing here, add your warmups!</p>
                         )}
+                        {selectedWarmups.length === 0 && <p>Add Your Warmups</p>}
                     </>
                 )}
 
