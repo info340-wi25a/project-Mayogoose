@@ -35,12 +35,14 @@ function UserProfile(props) {
 
                 <div className="card">
                     <h1>Your Playlists</h1>
-                    {albumsData.map((warmup) => (
-                        <UploadedItem
-                          key={warmup.id}
-                          warmup={warmup}
-                        />
-                    ))}
+                    <div className="playlists-list">
+                        {albumsData.map((warmup) => (
+                            <UploadedItem
+                              key={warmup.id}
+                              warmup={warmup}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
             <Footer />
