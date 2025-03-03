@@ -56,8 +56,8 @@ nav {
     justify-content: center;
     flex-wrap: wrap;
     gap: 5px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
     margin-bottom: 50px;
 }
  
@@ -70,8 +70,7 @@ nav {
     padding: 2rem;
     border-radius: 10px;
     background-color: #181818;
-    height: 100%;
-    width: 250px;
+    width: 240px;
 
 }
 
@@ -561,56 +560,6 @@ main {
         height: 64px;
     }
 
-    /* Amelia's index page */
-
-    .pagecontent {
-        margin-left: 50px;
-        margin-right: 50px;
-    }
-
-    .justify-content-center {
-        margin-left: -80px !important;
-        margin-right: -80px !important;
-    }
-    
-    .playlist img {
-        width: 175px;
-        height: 175px;
-    }
-
-    .bottom-nav {
-        display: none !important;
-    }
-
-    .d-flex.justify-content-left.mt-3 select {
-        display: block;
-    }
-
-    /* filter modal */
-    #filtermodal .modal-dialog {
-        width: 800px !important;
-    }
-
-    #filtermodal .modal-content {
-        max-height: 75vh;
-    }
-
-    .material-symbols-outlined {
-        font-size: 6rem;
-        color: #EFC52F;
-    }
-
-    .upload-box {
-        padding: 4rem;
-    }
-    .card {
-        display: flex;
-        width: 600px; 
-    }
-
-    .instructions img {
-        width: 30%;
-    }
    
 }
 
@@ -632,7 +581,7 @@ body {
 
 /* nav button */
 .badge-pill {
-    text-align: center !important;
+    text-align: center;
     color: black;
     background-color: #EFC52F;
     border-radius: 90px;
@@ -657,11 +606,12 @@ body {
 .grid-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 40px;
-    margin-left: 30 px;
-    margin-right: 30px;
-    margin-bottom: 30px;
+    gap: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
 }
 
 /* search bar */
