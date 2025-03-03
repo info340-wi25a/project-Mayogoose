@@ -60,7 +60,7 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
 
             <div className="playlist-content">
                 {/* Recommended Playlist on homepage */}
-                { /*ChatGPT provided this ternary operator to help me display either the recommended playlist on the homepage 
+                {/* ChatGPT provided this ternary operator to help me display either the recommended playlist on the homepage 
                 or the user's custom playlist. If we click on the recommended playlist, its details are displayed; 
                 otherwise, it shows the user's custom playlist with options to add warmups. */}
                 {playlist ? (
