@@ -11,11 +11,11 @@
     },
     {
         "playlistId": "2",
-        "Name": "Vocalization Techniques for Classical Singers",
+        "Name": "Vocalization Techniques",
         "Img": "../../../img/playlist_covers/vocalization.png",
-        "alt": "Vocalization Techniques for Classical Singers Playlist Cover",
+        "alt": "Vocalization Techniques Playlist Cover",
         "goal": "Vocal Techniques",
-        "genre": "Classical",
+        "genre": "general",
         "visibility": "public",
         "warmupIDs": ["5", "6", "7"]
     },
