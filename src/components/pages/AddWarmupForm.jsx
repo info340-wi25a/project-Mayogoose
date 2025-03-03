@@ -11,16 +11,9 @@ import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
 import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
 import warmupData from '../../data/warmup.json'; // Add warmup data
-// import platlistData from '../../data/playlist.json'; // Add playlist data
 
-// Meiyao: I think we can add a flexbox to put "suggested" and "selected" as side 
-// by side cards for better view, and move "selected Warm-up" to the top
-// We should prevent duplicates (a warmup being added more than once)
-// Ideally, the plus button can has two states. After being pressed, it turned into
-// a "minus" sign, so if user click the button again, the warmup gets unselected
-
-function AddWarmupForm({ selectedWarmups, addWarmup }) {
-  const [searchQuery, setSearchQuery] = useState('');
+function AddWarmupForm({ selectedWarmups, addWarmup, removeWarmup }) {
+  //const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
   const warmupsList = warmupData.map(warmup => ({
@@ -29,75 +22,84 @@ function AddWarmupForm({ selectedWarmups, addWarmup }) {
       image: warmup.img
   })); 
 
-  const handleAddWarmup = (warmup) => {
-    // Check if the warmup is already selected
-
-    let isAlreadySelected = false;
+  const handleToggleWarmup = (warmup) => {
+    let isSelected = false;
     for (let i = 0; i < selectedWarmups.length; i++) {
       if (selectedWarmups[i].id === warmup.id) {
-        isAlreadySelected = true;
+        isSelected = true;
         break;
       }
     }
     
-    if (!isAlreadySelected) {
-      addWarmup(warmup);
+    if (isSelected) {
+      removeWarmup(warmup.id); 
+    } else {
+      addWarmup(warmup); 
     }
-
-    console.log("User Added Warmup: " + warmup.id);
   };
 
-  
   return (
-      <div className="add-warmup-container">
-          <NavBar />
-        
+    <div className="add-warmup-container">
+      <NavBar />
       <div className="main-content">
         <div className="search-select-container">
-          <SearchBar query={searchQuery} setQuery={setSearchQuery} />
+          <SearchBar />
+        </div>
+        
+        <div className="warmups-container">
+          <div className="warmups-column">
+            <h2>Selected Warm-ups ({selectedWarmups.length})</h2>
+            <div className="warmups-list">
+              {selectedWarmups.length > 0 && (
+                selectedWarmups.map(function(warmup) {
+                  return (
+                    <AddWarmupItem
+                      key={warmup.id}
+                      warmup={warmup}
+                      onAdd={function() { handleToggleWarmup(warmup); }}
+                      isSelected={true}
+                    />
+                  );
+                })
+              )}
+              {selectedWarmups.length === 0 && (
+                <p>No warm-ups selected.</p>
+              )}
+            </div>
+          </div>
+          
+          <div className="warmups-column">
+            <h2>Suggested Warm-ups ({warmupData.length})</h2>
+            <div className="warmups-list">
+              {warmupsList.map(function(warmup) {
+                let found = false;
+                for (let i = 0; i < selectedWarmups.length; i++) {
+                  if (selectedWarmups[i].id === warmup.id) {
+                    found = true;
+                    break;
+                  }
+                }
+                return (
+                  <AddWarmupItem
+                    key={warmup.id}
+                    warmup={warmup}
+                    onAdd={function() { handleToggleWarmup(warmup); }}
+                    isSelected={found}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        <h1>Suggested Warm-ups</h1>
-              
-
-              <div className="line-container">
-                  <div className="line"></div>
-                  <p>Selected Warm-ups ({selectedWarmups.length})</p>
-                  <div className="line"></div>
-              </div>
-
-              <div className="selected-warmups">
-                  {selectedWarmups.map((warmup) => (
-                      <AddWarmupItem
-                          key={warmup.id}
-                          warmup={warmup}
-                          isSelected={true}
-                      />
-                  ))}
-              </div>
-
-              <div className="line-container">
-                  <div className="line"></div>
-                  <p>Suggested Warm-ups ({warmupData.length})</p>
-                  <div className="line"></div>
-              </div>
-
-              <div className="warmups-list">
-                  {warmupsList.map((warmup) => (
-                      <AddWarmupItem
-                          key={warmup.id}
-                          warmup={warmup}
-                          onAdd={() => handleAddWarmup(warmup)}
-                      />
-                  ))}
-              </div>
-
-              <NavButton 
-                text="Create!" 
-                destination="/PlaylistDetails" 
-                state={{ selectedWarmups }} 
-              />
-            <Footer />
+        <div className="create-button-container">
+          <NavButton 
+            text="Create!" 
+            destination="/PlaylistDetails" 
+            state={{ selectedWarmups }} 
+          />
+        </div>
+        <Footer />
       </div>
     </div>
   );

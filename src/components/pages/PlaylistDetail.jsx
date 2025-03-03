@@ -35,6 +35,25 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
         warmups = selectedWarmups;
     }
 
+    const renderWarmups = (warmups) => {
+        return warmups.map((warmup) => (
+            <div key={warmup.warmupId} className="warmup-item">
+                <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
+                <div className="warmup-details">
+                    <h3>{warmup.warmupName}</h3>
+                    <p><strong>Technique:</strong> {warmup.technique}</p>
+                    <p><strong>Difficulty:</strong> {warmup["Difficulty Level"]}</p>
+                </div>
+            </div>
+        ));
+    };
+
+    const renderSelectedWarmups = (selectedWarmups) => {
+        return selectedWarmups.map((warmup) => (
+            <AddWarmupItem key={warmup.warmupId} warmup={warmup} isSelected={true} />
+        ));
+    };
+
     return (
         <div className="playlist-detail-container">
             <NavBar />
@@ -47,22 +66,13 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                 {playlist ? (
                     <>
                         <img src={playlist.Img} alt={playlist.Name} className="playlist-image" />
-                        <h2>{playlist.Name}</h2>
+                        <h1>{playlist.Name}</h1>
                         <p><strong>Goal:</strong> {playlist.goal}</p>
                         <p><strong>Genre:</strong> {playlist.genre}</p>
 
                         <div className="warmups-list">
-                            <h3>Warm-ups</h3>
-                            {warmups.length > 0 && warmups.map((warmup) => (
-                                <div key={warmup.warmupId} className="warmup-item">
-                                    <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
-                                    <div className="warmup-details">
-                                        <h4>{warmup.warmupName}</h4>
-                                        <p><strong>Technique:</strong> {warmup.technique}</p>
-                                        <p><strong>Difficulty:</strong> {warmup["Difficulty Level"]}</p>
-                                    </div>
-                                </div>
-                            ))}
+                            <h2>Warm-ups</h2>
+                            {warmups.length > 0 && renderWarmups(warmups)}
                         </div>
                     </>
                 ) : (
@@ -71,20 +81,19 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                     <>
                         <div className="playlist-header">
                             <div className="upload-image-container">
-                                <h1>Upload Your Playlist Image:</h1>
+                                <h2>Upload Your Playlist Image:</h2>
                                 <UploadImageForm />
                             </div>
-                            <h2>My Playlist</h2>
+                            <h3>My Playlist</h3>
                         </div>
 
-                        {selectedWarmups.length > 0 && (
+                        {selectedWarmups.length > 0 ? (
                             <div className="warmups-list">
-                                {selectedWarmups.map((warmup) => (
-                                    <WarmupItem key={warmup.warmupId} warmup={warmup} isSelected={true} />
-                                ))}
+                                {renderSelectedWarmups(selectedWarmups)}
                             </div>
+                        ) : (
+                            <p>Nothing here, add your warmups!</p>
                         )}
-                        {selectedWarmups.length === 0 && <p>Add Your Warmups</p>}
                     </>
                 )}
 

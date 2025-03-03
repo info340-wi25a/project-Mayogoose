@@ -694,11 +694,116 @@ body {
 
 /* Runa */
 /* Add warmup form */
-/* .warmups-list {
+/* .warmups-list */
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: black;
+    text-align: center;
+}
 
-} */
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 
 
+.line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #666;
+    margin: 0 10px;
+}
+
+/* Warm-ups */
+.warmups-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 默认两列 */
+    gap: 20px; /* 间距 */
+    justify-content: center;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto; /* 居中 */
+}
+
+.warmup-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #222;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 100px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.warmup-item:hover {
+    transform: scale(1.05);
+}
+
+.warmup-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.warmup-details h4 {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+.warmup-details p {
+    font-size: 1rem;
+    color: #bbb;
+}
+
+/* Create Button */
+.nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+    color: black;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-align: center;
+    width: 200px;
+    margin: 30px auto; /* 居中 */
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-button:hover {
+    background-color: #ffcc00;
+}
+
+@media (max-width: 768px) {
+    .warmups-list {
+        grid-template-columns: 1fr; 
+    }
+}
+
+
+/* Playlist Detail */
 /* Play button */
 .play-button {
     position: relative;

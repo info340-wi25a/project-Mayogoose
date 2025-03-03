@@ -7,23 +7,21 @@ export function AddWarmupItem({ warmup, onAdd, isSelected }) {
   const name = warmup.Name || warmup.name;
   const image = warmup.Img || warmup.image;
   const voiceType = warmup["Voice Type"] || warmup.voiceType || "";
+  
+  let buttonClass = "add-warmup-btn";
+  if (isSelected) {
+    buttonClass += " remove"; 
+  } else {
+    buttonClass += " add"; 
+  }
 
-//   return (
-//     <div className="warmup">
-//       {/* Warm-up Image */}
-//       <img src={image} alt={name} className="warmup-img" />
+  let buttonText;
+  if (isSelected) {
+    buttonText = "−"; 
+  } else {
+    buttonText = "+"; 
+  }
 
-//       {/* Warm-up Info */}
-//       <div className="warmup-info">
-//         <p className="title">{name}</p>
-//         <p className="category">{voiceType}</p>
-//       </div>
-
-//       {/* Add Button */}
-//       <button className="add-warmup-btn" onClick={() => onAdd(warmup)}>+</button>
-//     </div>
-//   );
-// }
   return (
     <div className="warmup">
       <img src={image} alt={name} className="warmup-img" />
@@ -31,9 +29,11 @@ export function AddWarmupItem({ warmup, onAdd, isSelected }) {
         <p className="title">{name}</p>
         <p className="category">{voiceType}</p>
       </div>
-      {!isSelected && (
-        <button className="add-warmup-btn" onClick={() => onAdd(warmup)}>+</button>
-      )}
+      <button 
+        className={buttonClass} 
+        onClick={function() { onAdd(warmup); }}>
+      {buttonText}
+      </button>
     </div>
   );
 }

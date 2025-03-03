@@ -34,11 +34,15 @@ function App() {
 
     const filteredAlbums = getFilteredAlbums(query, albumsData);
 
-    // runa: selectedWarmups
+    // runa: select/remove warmups
     const addWarmupToPlaylist = (warmup) => {
         setSelectedWarmups([...selectedWarmups, warmup]);
     };
 
+    const removeWarmupFromPlaylist = (warmupId) => {
+        setSelectedWarmups(selectedWarmups.filter(w => w.id !== warmupId));
+    };
+    
     // Function to clear playlist
     const clearPlaylist = () => {
         setSelectedWarmups([]);
@@ -67,7 +71,11 @@ function App() {
             <Route path="/profile" element={<UserLib />} />
             <Route 
                 path="/addWarmup" 
-                element={<AddWarmupForm selectedWarmups={selectedWarmups} addWarmup={addWarmupToPlaylist} />} 
+                element={<AddWarmupForm 
+                    selectedWarmups={selectedWarmups} 
+                    addWarmup={addWarmupToPlaylist} 
+                    removeWarmup={removeWarmupFromPlaylist}
+                />} 
             />
             <Route 
                 path="/PlaylistDetails" 
