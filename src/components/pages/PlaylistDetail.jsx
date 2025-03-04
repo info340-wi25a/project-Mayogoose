@@ -85,12 +85,15 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                                 <UploadImageForm />
                             </div>
                             <h2>My Playlist</h2>
+                            <button className="play-button">
+                                <span>▶</span> 
+                            </button>
                         </div>
 
                         {selectedWarmups.length > 0 && (
                             <div className="warmups-list">
                                 {selectedWarmups.map((warmup) => (
-                                    <WarmupItem key={warmup.warmupId} warmup={warmup} isSelected={true} />
+                                    <AddWarmupItem key={warmup.warmupId} warmup={warmup} isSelected={true} />
                                 ))}
                             </div>
                         )}
