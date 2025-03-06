@@ -80,7 +80,7 @@ export function CreatePlaylistForm() {
                 <div className="card">
                     <div className="instructions">
                         <h1>New Playlist</h1>
-                        <p>Create your playlist here!</p>
+                        <br/>
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex-containers">

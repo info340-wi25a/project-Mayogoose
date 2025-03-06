@@ -57,9 +57,10 @@ function App() {
                         <NavBar />
                         <br/>
                         <br/>
+                        <h1>Vocal Warmup Made Easy</h1>
+                        <br/>
+                        <br/>
                         <SearchBar query={query} setQuery={setQuery} />
-                        <br/>
-                        <br/>
                         <br/>
                         <PlaylistCards albumsData={filteredAlbums} />
                         <Footer />

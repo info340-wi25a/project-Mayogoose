@@ -205,7 +205,7 @@ function CreateWarmupForm(props) {
                 <div className="card"> 
                     <div className="instructions">
                         <h1>New Warmup</h1>
-                        <p className="smallText">Upload a new warm-up exercise for the Community!</p>
+                        <p className="smallText">Contribute new warmups for the singer Community!</p>
                     </div>
 
                     {/* Divider: Step 1 */}
