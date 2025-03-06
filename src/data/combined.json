@@ -1,0 +1,61 @@
+[
+    {
+        "PlaylistName": "Breathing Exercises",
+        "Img": "../../../img/playlist_covers/breathexercise.png",
+        "alt": "Breathing Exercises Playlist Cover",
+        "goal": "Vocal Health",
+        "genre": "general",
+        "visibility": "public",
+        "warmupIDs": [
+            {
+                "warmupName": "Box Breathing",
+                "url": "",
+                "img": "../../../img/warmup-cover/Box Breathing.png",
+                "alt": "Box Breathing Warmup Cover",
+                "technique": "Breath Support",
+                "Voice Type": "Full-Range",
+                "Voice Register": "",
+                "Difficulty Level": "Beginner"
+            },
+            {
+                "warmupName": "Vocal straw exercise",
+                "url": "",
+                "img": "../../../img/warmup-cover/Vocal straw exercise.png",
+                "alt": "Vocal straw exercise Warmup Cover",
+                "technique": "Breath Support",
+                "Voice Type": "Full-Range",
+                "Voice Register": "Chest Voice",
+                "Difficulty Level": "Beginner"
+            }
+        ]
+    },
+    {
+        "PlaylistName": "Vocalization Techniques",
+        "Img": "../../../img/playlist_covers/vocalization.png",
+        "alt": "Vocalization Techniques Playlist Cover",
+        "goal": "Vocal Techniques",
+        "genre": "general",
+        "visibility": "public",
+        "warmupIDs": [
+            {
+                "warmupName": "Riff and Runs",
+                "url": "",
+                "img": "../../../img/warmup-cover/Riff and Runs.png",
+                "alt": "Riff and Runs Warmup Cover",
+                "technique": "Vocalization",
+                "Voice Type": "Full-Range",
+                "Voice Register": "Mixed",
+                "Difficulty Level": "Intermediate"
+            },
+            {
+                "warmupName": "Vocal Sirens",
+                "img": "../../../img/warmup-cover/Vocal Sirens.png",
+                "alt": "Vocal Sirens Warmup Cover",
+                "technique": "Vocalization",
+                "Voice Type": "Full-Range",
+                "Voice Register": "Mixed",
+                "Difficulty Level": "Intermediate"
+            }
+        ]
+    }
+]
