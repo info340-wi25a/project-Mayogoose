@@ -8,7 +8,7 @@ function PlaylistCard({ item }) {
                 <img className="homepageCover" src={item.Img} alt={item.alt}/>
             </Link>
             <div>
-                <p className="albumName">{item.Name}</p>
+                <h2 className="center">{item.Name}</h2>
             </div>
         </div>
     );

@@ -84,13 +84,23 @@ export function CreatePlaylistForm() {
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex-containers">
+
+                        {/* Divider: Step 1 */}
+                        <div className="line-container">
+                            <div className="line"></div>
+                                <p className="smallText">Step 1: Customize your Playlist</p>
+                            <div className="line"></div>
+                        </div>
+
                         {/* Upload Image */}
-                        <h2>Upload Playlist Cover:</h2>
-                        <UploadImageForm />
+                        <div>
+                            <h2>Upload Playlist Cover:</h2>
+                            <UploadImageForm />
+                        </div>
                         
                         {/* Name Input */}
-                        <h2>Name</h2>
-                        <div className="d-flex flex-column">
+                        <div>
+                            <h2>Name</h2>
                             <input
                                 value={playlistName}
                                 placeholder="e.g. playlist 1"
@@ -102,28 +112,48 @@ export function CreatePlaylistForm() {
                             && <div className="invalid-feedback">Please enter a valid name for playlist</div>
                             }
                         </div>
+                        
+                        {/* Divider: Step 2 */}
+                        <div className="line-container">
+                            <div className="line"></div>
+                                <p className="smallText">Step 2: What is this for?</p>
+                            <div className="line"></div>
+                        </div>
 
                         {/* Goal */}
-                        <h2>Goal</h2>
-                        <SelectBar
-                            options={goalOptions}
-                            handleSelect={goalHandleChange}
-                        />
+                        <div>
+                            <h2>Goal</h2>
+                            <SelectBar
+                                options={goalOptions}
+                                handleSelect={goalHandleChange}
+                            />
+                        </div>
 
                         {/* Genre */}
-                        <h2>Genre</h2>
-                        <SelectBar
-                            options={genreOptions}
-                            handleSelect={genreHandleChange}
-                        />
+                        <div>
+                            <h2>Genre</h2>
+                            <SelectBar
+                                options={genreOptions}
+                                handleSelect={genreHandleChange}
+                            />
+                        </div>
 
                         {/* Visibility */}
-                        <h2>Visibility</h2>
-                        <SelectBar
-                            options={visibilityOptions}
-                            handleSelect={visibilityHandleChange}
-                        />
-                        <button className="badge-pill" type="submit">Add Playlist</button>
+                        <div>
+                            <h2>Visibility</h2>
+                            <SelectBar
+                                options={visibilityOptions}
+                                handleSelect={visibilityHandleChange}
+                            />
+                        </div>
+
+                        {/* Divider: Step 3 */}
+                        <div className="line-container">
+                            <div className="line"></div>
+                                <p className="smallText">Step 3: Add Warmups to Your Playlist</p>
+                            <div className="line"></div>
+                        </div>
+                        <button className="badge-pill" type="submit">Add Warmups</button>
                     </form>
                 </div>
             </div>

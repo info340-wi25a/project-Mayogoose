@@ -74,10 +74,6 @@ nav {
 
 }
 
-.albumName {
-    margin-top: 20px;
-}
-
 .playlist img {
     width: 100%;
     border-radius: 5px;
@@ -88,6 +84,8 @@ nav {
 /* General Styling */
 body {
     text-align: center;
+    color: white;
+
 }
 
 
@@ -101,14 +99,17 @@ h1 {
 
 h2 {
     color: white;
-    font-size: 1.5rem;
-    line-height: 1rem;
-    font-size: 18px !important;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    margin-top: 20px;
     text-align: left;
 }
 
+h2.center {
+    text-align: center;
+}
+
 p {
-    color: white;
     font-size: 1rem;
     line-height: 1rem;
     margin-top: 1rem;
@@ -120,10 +121,6 @@ p {
 main {
     margin: 1.5rem;
 }
-
-/* .instructions {
-    margin-bottom: 2rem;
-} */
 
 .smallText {
     color: grey;
@@ -149,7 +146,8 @@ main {
     border-color: #EFC52F;
     border-radius: 20px;
     background-color: #242424;
-    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .material-symbols-outlined {
