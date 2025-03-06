@@ -3,13 +3,13 @@
 
 import React from 'react';
 
-export function UploadedItem({ warmup, onAdd, isSelected }) {
+export function UploadedItem({ warmup, onClick}) {
   const name = warmup.Name || warmup.name;
   const image = warmup.Img || warmup.image;
   const voiceType = warmup["Voice Type"] || warmup.voiceType || "";
-  
+
   return (
-    <div className="warmup">
+    <div className="warmup" onClick={onClick}>
       <img src={image} alt={name} className="warmup-img" />
       <div className="warmup-info">
         <p className="title">{name}</p>

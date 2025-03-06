@@ -287,13 +287,7 @@ main {
     padding: 20px;
 }
 
-
-.warmups {
-    display: grid;
-    gap: 20px;
-}
-
-/* Song Items */
+/* Runa's Items */
 .warmup {
     display: flex;
     align-items: center;
@@ -635,12 +629,10 @@ body {
 .grid-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 40px;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-bottom: 30px;
+    margin: 30px;
 }
 
 /* search bar */
@@ -751,12 +743,12 @@ h3 {
 
 /* Warm-ups */
 .warmups-list {
-    display: grid;
+    display: column;
     grid-template-columns: repeat(2, 1fr); 
-    gap: 20px;
+    gap: 0px;
     justify-content: center;
     padding: 20px;
-    max-width: 900px;
+    width: 100%;
     margin: 0 auto;
 }
 

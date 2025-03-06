@@ -23,7 +23,7 @@ import albumsData from '../../data/playlist.json'
 function App() {
     const [query, setQuery] = useState("");
     const [selectedWarmups, setSelectedWarmups] = useState([]);
-    console.log("Selected warmups id: " + selectedWarmups)
+    console.log("Selected warmups id: " + selectedWarmups); // Runa's AddWarmupForm for Routing
 
     const getFilteredAlbums = (query, albums) => {
         if (!query) {
