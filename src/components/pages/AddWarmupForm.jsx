@@ -56,7 +56,7 @@
                         <AddWarmupItem
                           key={warmup.id}
                           warmup={warmup}
-                          onAdd={function() { handleToggleWarmup(warmup); }}
+                          onAdd={() => handleToggleWarmup(warmup)}
                           isSelected={true}
                         />
                       );

@@ -16,12 +16,7 @@ import playlistData from '../../data/playlist.json'; // Add playlist data
 
 function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
     const { playlistId } = useParams(); 
-    let playlist;
-    playlistData.forEach(p => {
-        if (p.playlistId === playlistId) {
-            playlist = p;
-        }
-    });
+    const playlist = playlistData.find(p => p.playlistId === playlistId);
 
     let warmups = [];
     if (playlist) {
@@ -65,7 +60,7 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                 otherwise, it shows the user's custom playlist with options to add warmups. */}
                 {playlist ? (
                     <>
-                        <img src={playlist.Img} alt={playlist.Name} className="playlist-image" />
+                        <img src={playlist.Img} alt={"Cover image for " + playlist.Name + " playlist"} className="playlist-image" />
                         <h1>{playlist.Name}</h1>
                         <p><strong>Goal:</strong> {playlist.goal}</p>
                         <p><strong>Genre:</strong> {playlist.genre}</p>
@@ -85,19 +80,17 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                                 <UploadImageForm />
                             </div>
                             <h2>My Playlist</h2>
-                            <button className="play-button">
+                            <button className="play-button" aria-label="Play playlist">
                                 <span>▶</span> 
                             </button>
                         </div>
 
                         {selectedWarmups.length > 0 && (
-                            <div className="warmups-list">
-                                {selectedWarmups.map((warmup) => (
-                                    <AddWarmupItem key={warmup.warmupId} warmup={warmup} isSelected={true} />
-                                ))}
-                            </div>
-                        )}
-                        {selectedWarmups.length === 0 && <p>Add Your Warmups</p>}
+                        <div className="warmups-list">
+                            {renderSelectedWarmups(selectedWarmups)}
+                        </div>
+                    )}
+                    {selectedWarmups.length === 0 && <p>Add Your Warmups</p>}
                     </>
                 )}
 

@@ -31,8 +31,8 @@ export function AddWarmupItem({ warmup, onAdd, isSelected }) {
       </div>
       <button 
         className={buttonClass} 
-        onClick={function() { onAdd(warmup); }}>
-      {buttonText}
+        onClick={() => onAdd(warmup)}>
+        {buttonText}
       </button>
     </div>
   );
