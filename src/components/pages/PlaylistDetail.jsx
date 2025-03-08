@@ -76,10 +76,10 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                     <>
                         <div className="playlist-header">
                             <div className="upload-image-container">
-                                <h1>Upload Your Playlist Image:</h1>
+                                <h2>Upload Your Playlist Image:</h2> {/* Will delete later */}
                                 <UploadImageForm />
                             </div>
-                            <h2>My Playlist</h2>
+                            <h3>My Playlist</h3>
                             <button className="play-button" aria-label="Play playlist">
                                 <span>▶</span> 
                             </button>
