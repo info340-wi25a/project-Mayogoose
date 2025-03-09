@@ -1,7 +1,7 @@
 [
     {
-        "PlaylistName": "Breathing Exercises",
-        "Img": "../../../img/playlist_covers/breathexercise.png",
+        "playlistName": "Breathing Exercises",
+        "img": "../../../img/playlist_covers/breathexercise.png",
         "alt": "Breathing Exercises Playlist Cover",
         "goal": "Vocal Health",
         "genre": "general",
@@ -30,8 +30,8 @@
         ]
     },
     {
-        "PlaylistName": "Vocalization Techniques",
-        "Img": "../../../img/playlist_covers/vocalization.png",
+        "playlistName": "Vocalization Techniques",
+        "img": "../../../img/playlist_covers/vocalization.png",
         "alt": "Vocalization Techniques Playlist Cover",
         "goal": "Vocal Techniques",
         "genre": "general",

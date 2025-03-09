@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
 
-import { getDatabase, ref, set as firebaseSet } from "firebase/database";
+import { getDatabase, ref, set as firebaseSet, push as firebasePush } from "firebase/database";
 // Components Imports
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
@@ -148,25 +148,11 @@ function CreateWarmupForm(props) {
     }
 
     // Step 4: What to do with what I know
-    const addWarmup = () => {
+    const addWarmupToDatabase = () => {
+        // get a reference (pointer) to the database
+        const db = getDatabase();
 
-        const db = getDatabase(); // get a reference (pointer) to the database
-    
-        // line 154 - 159 is AI-assisted to get matching playlist key from firebase
-        let matchingPlaylistKey = null;
-        Object.keys(playlists).forEach((key) => {
-            if (playlists[key].Name === playlistId) {
-                matchingPlaylistKey = key;
-            }
-        });
-
-        if(!matchingPlaylistKey) {
-            console.error("No matching playlist key found for: " + playlistId);
-            return;
-        }
-
-        const warmupRef = ref(db, 'playlist/warmup'); // a link to firebase's warmup node
-
+        // create a new warmup object to be added to database
         const newWarmupObj = {
             warmupName: warmupName,
             url: urlInput,
@@ -177,10 +163,11 @@ function CreateWarmupForm(props) {
             voiceType: voiceType,
             voiceRegister: voiceRegister
         }
-        console.log("Adding warmup to playlist: ", playlistId);
-        console.log("newWarmupObj: " + JSON.stringify(newWarmupObj));
 
-        firebaseSet(warmupRef, newWarmupObj)
+        // 1. add individual warmup to warmup.json:
+        console.log("Adding warmup");
+        const warmupRef = ref(db, 'warmup'); // a link to firebase's warmup node
+        firebasePush(warmupRef, newWarmupObj)
             .then(() => {
                 console.log("Warmup added successfully!");
             })
@@ -188,16 +175,31 @@ function CreateWarmupForm(props) {
                 console.error("Error adding warmup: ", error);
             });
 
-    }
 
-    // Store data in Firebase
-    const saveToDatabase = async (userInput) => {
-        try {
-            const docRef = await addDoc(collection(db, 'userInputs'), userInput);
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
+        // 2. add warmup to playlist.json (conditional)
+        if (playlistId !== "") {
+            console.log("Adding warmup to playlist: ", playlistId);
+
+            // the matchingPlaylistKey portion is AI-assisted
+            let matchingPlaylistKey = null;
+            Object.keys(playlist).map((key) => {
+                if (playlist[key].playlistName === playlistId) {
+                    matchingPlaylistKey = key;
+                    console.log("Matching playlist key found: " + matchingPlaylistKey);
+                }
+            });
+
+            if(!matchingPlaylistKey) {
+                console.error("No matching playlist key found for: " + playlistId);
+                return;
+            } else {
+                console.log("Matching playlist key found: " + matchingPlaylistKey);
+                const playlistRef = ref(db, 'playlist/' + matchingPlaylistKey + '/warmups');
+                firebasePush(playlistRef);
+            }
+
         }
+
     }
         
 
@@ -226,7 +228,7 @@ function CreateWarmupForm(props) {
             console.log("voiceType: " + voiceType);
             console.log("voiceRegister: " + voiceRegister);
             // save to database
-            addWarmup();
+            addWarmupToDatabase();
         } else {
             console.log("Form is invalid, please check your inputs");
         }
