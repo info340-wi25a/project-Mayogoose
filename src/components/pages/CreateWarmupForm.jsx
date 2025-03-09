@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
+
+import { getDatabase, ref, set as firebaseSet } from "firebase/database";
 // Components Imports
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
@@ -17,8 +19,8 @@ import { useNavigate } from 'react-router';
 
 function CreateWarmupForm(props) {
 
-    // Step 1: State (what I know)
-    // User Inputs
+    // Step 1: what I know:
+    // State: User Inputs
     const [warmupName, setWarmupName] = useState("");
     const [urlInput, setUrlInput] = useState("");
     const [imgInput, setImgInput] = useState("");
@@ -40,17 +42,7 @@ function CreateWarmupForm(props) {
         navigateTo(-1); // equavalent of window.history.back();
     }
 
-    // Store data in Firebase
-    const saveToDatabase = async (userInput) => {
-        try {
-            const docRef = await addDoc(collection(db, 'userInputs'), userInput);
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-    }
-    
-    // Options for SelectBar
+    // Options for SelectBar:
     const playlists = albumsData;
     const playlistNames = playlists.map(playlist => {
         return playlist.Name;
@@ -60,7 +52,8 @@ function CreateWarmupForm(props) {
     const voiceTypeOptions = ['Full-Range','Soprano', 'Alto', 'Tenor', 'Base'];
     const voiceRegisterOptions = ['Chest Voice', 'Head Voice', 'Mixed', 'Vocal Fry'];
 
-    // Step 2: Micro managing input and change states (Change what I know)
+    // Step 2: Change what I know:
+    // Micro managing input and change states (
     const nameHandleChange = (event) => {
         const value = event.target.value;
         console.log("user typed name: " + value);
@@ -130,7 +123,7 @@ function CreateWarmupForm(props) {
         }
       }
 
-    // Step 3: When to show error messages (Is what I know valid?)
+    // Step 3: When to test what I know & show error messages
     // Validation Logic that Change ClassName for <input>
     // takes no arguments, references the state variables
     // return {name: true, age: true, playlist: false}
@@ -154,8 +147,28 @@ function CreateWarmupForm(props) {
         }
     }
 
-    // Step 4: Handle form submission (Tell users what I know is valid or not)
-    // Start displaying error messages when user clicks submit
+    // Step 4: What to do with what I know
+    const addWarmup = (warmup, playlist) => {
+        // add to database
+        const db = getDatabase(); // get a reference (pointer) to the database
+        const warmupRef = ref(db, {playlist} + "/warmup"); // a link to firebase's warmup node
+        firebaseSet(warmupRef, warmup); // set the value of the warmup node
+        
+    }
+
+    // Store data in Firebase
+    const saveToDatabase = async (userInput) => {
+        try {
+            const docRef = await addDoc(collection(db, 'userInputs'), userInput);
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
+        
+
+    // Step 5: Handle form submission
+    // When user clicks submit, display error messages or store data if there's no error
     const handleSubmit = (event) => {
         event.preventDefault();
         setShowErrorMessages(true);
@@ -179,17 +192,16 @@ function CreateWarmupForm(props) {
             console.log("voiceType: " + voiceType);
             console.log("voiceRegister: " + voiceRegister);
             // save to database
-            saveToDatabase({
+            addWarmup({
                 warmupName: warmupName,
-                urlInput: urlInput,
+                url: urlInput,
                 img: imgInput,
                 alt: altInput,
-                playlistId: playlistId,
                 difficulty: difficulty,
                 technique: technique,
                 voiceType: voiceType,
                 voiceRegister: voiceRegister
-            })
+            }, playlistId)
         } else {
             console.log("Form is invalid, please check your inputs");
         }
