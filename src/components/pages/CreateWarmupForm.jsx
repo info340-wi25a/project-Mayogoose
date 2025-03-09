@@ -126,7 +126,7 @@ function CreateWarmupForm(props) {
     // Step 3: When to test what I know & show error messages
     // Validation Logic that Change ClassName for <input>
     // takes no arguments, references the state variables
-    // return {name: true, age: true, playlist: false}
+    // return {name: true, age: true, playlist: false} a validity object
     const getCurrentValidity = () => {
         const nameInputValid = warmupName.length > 0;
         const urlInputValid = extractedVideoId !== null;
@@ -148,12 +148,46 @@ function CreateWarmupForm(props) {
     }
 
     // Step 4: What to do with what I know
-    const addWarmup = (warmup, playlist) => {
-        // add to database
+    const addWarmup = () => {
+
         const db = getDatabase(); // get a reference (pointer) to the database
-        const warmupRef = ref(db, {playlist} + "/warmup"); // a link to firebase's warmup node
-        firebaseSet(warmupRef, warmup); // set the value of the warmup node
-        
+    
+        // line 154 - 159 is AI-assisted to get matching playlist key from firebase
+        let matchingPlaylistKey = null;
+        Object.keys(playlists).forEach((key) => {
+            if (playlists[key].Name === playlistId) {
+                matchingPlaylistKey = key;
+            }
+        });
+
+        if(!matchingPlaylistKey) {
+            console.error("No matching playlist key found for: " + playlistId);
+            return;
+        }
+
+        const warmupRef = ref(db, 'playlist/warmup'); // a link to firebase's warmup node
+
+        const newWarmupObj = {
+            warmupName: warmupName,
+            url: urlInput,
+            img: imgInput,
+            alt: altInput,
+            difficulty: difficulty,
+            technique: technique,
+            voiceType: voiceType,
+            voiceRegister: voiceRegister
+        }
+        console.log("Adding warmup to playlist: ", playlistId);
+        console.log("newWarmupObj: " + JSON.stringify(newWarmupObj));
+
+        firebaseSet(warmupRef, newWarmupObj)
+            .then(() => {
+                console.log("Warmup added successfully!");
+            })
+            .catch((error) => {
+                console.error("Error adding warmup: ", error);
+            });
+
     }
 
     // Store data in Firebase
@@ -192,16 +226,7 @@ function CreateWarmupForm(props) {
             console.log("voiceType: " + voiceType);
             console.log("voiceRegister: " + voiceRegister);
             // save to database
-            addWarmup({
-                warmupName: warmupName,
-                url: urlInput,
-                img: imgInput,
-                alt: altInput,
-                difficulty: difficulty,
-                technique: technique,
-                voiceType: voiceType,
-                voiceRegister: voiceRegister
-            }, playlistId)
+            addWarmup();
         } else {
             console.log("Form is invalid, please check your inputs");
         }
