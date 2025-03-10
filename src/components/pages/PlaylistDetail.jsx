@@ -52,7 +52,7 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
 
 
     return (
-        <div className="playlist-detail-container">
+        <div className="playlist-container">
             <NavBar />
 
             <div className="playlist-content">
@@ -62,11 +62,14 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
                 otherwise, it shows the user's custom playlist with options to add warmups. */}
                 {playlist ? (
                     <>
-                        <img src={playlist.Img} alt={"Cover image for " + playlist.Name + " playlist"} className="playlist-image" />
-                        <h1>{playlist.Name}</h1>
-                        <p><strong>Goal:</strong> {playlist.goal}</p>
-                        <p><strong>Genre:</strong> {playlist.genre}</p>
-
+                        <div className="playlist-detail-header">
+                            <img src={playlist.Img} alt={"Cover image for " + playlist.Name + " playlist"} className="playlist-detail-image" />
+                            <h1>{playlist.Name}</h1>
+                            <div className="playlist-detail-info">
+                                <p><strong>Goal:</strong> {playlist.goal}</p>
+                                <p><strong>Genre:</strong> {playlist.genre}</p>
+                            </div>
+                        </div>
                         <div className="warmups-list">
                             <h2>Warm-ups</h2>
                             {warmups.length > 0 && renderWarmups(warmups)}
