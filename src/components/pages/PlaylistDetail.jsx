@@ -14,7 +14,7 @@ import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import warmupData from '../../data/warmup.json'; // Add warmup data
 import playlistData from '../../data/playlist.json'; // Add playlist data
-import PlaylistPlayer from "../components/PlaylistPlayer.jsx"; // Import the player
+// import PlaylistPlayer from "../components/PlaylistPlayer.jsx"; // Import the player
 
 function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
     const { playlistId } = useParams(); 
