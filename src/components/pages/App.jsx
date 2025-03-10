@@ -101,7 +101,7 @@ function App() {
             <Route 
                 path="/addWarmup" 
                 element={<AddWarmupForm 
-                    selectedPlaylists={selectedPlaylists} 
+                    selectedWarmups={selectedPlaylists} 
                     addWarmup={addWarmupToPlaylist} 
                     removeWarmup={removeWarmupFromPlaylist}
                 />} 
@@ -111,7 +111,7 @@ function App() {
                 element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} 
             />
             <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} />
-            <Route path="*" element={<Navigate to ="/"/>} /> c
+            <Route path="*" element={<Navigate to ="/"/>} /> 
         </Routes>
     );
 }
