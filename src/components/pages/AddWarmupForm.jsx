@@ -12,7 +12,7 @@
     import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
     import warmupData from '../../data/warmup.json'; // Add warmup data
     
-    function AddWarmupForm({ selectedWarmups, addWarmup, removeWarmup }) {
+    function AddWarmupForm({ selectedWarmups = [], addWarmup, removeWarmup }) {
       const navigate = useNavigate();
     
       const warmupsList = warmupData.map(warmup => ({

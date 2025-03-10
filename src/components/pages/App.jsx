@@ -9,12 +9,9 @@ import { CreatePlaylistForm } from "./CreatePlaylistForm.jsx";
 import { Navigate } from 'react-router';
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
-import { NavButton } from '../utils/NavButton.jsx';
-
-// import { WarmupItem } from "../utils/WarmupItem.jsx"
 import AddWarmupForm from "./AddWarmupForm.jsx"
 import PlaylistDetail from "./PlaylistDetail.jsx"
-import UserLib from "./UserLib.jsx"
+import UserLib from "./UserProfile.jsx"
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 
 import { getDatabase, ref, push as firebasePush, onValue } from "firebase/database";
@@ -39,20 +36,34 @@ function App() {
                 goal: playlistData[key].goal,
                 genre: playlistData[key].genre,
                 visibility: playlistData[key].visibility,
-            }));    
-            
-            setselectedPlaylists(playlistArray);
-            
+                warmups: Object.keys(playlistData[key].warmups).map((warmupKey) => ({
+                    warmupId: warmupKey,
+                    warmupName: playlistData[key].warmups[warmupKey].warmupName,
+                }))
+            }));
+
+            if (query === "") {
+                setselectedPlaylists(playlistArray);
+            }
+            else {
+                setselectedPlaylists(playlistArray.filter(
+                    (playlist) =>
+                        playlist.Name.toLowerCase().includes(query.toLowerCase())
+                        || playlist.goal.toLowerCase().includes(query.toLowerCase())
+                        || playlist.genre.toLowerCase().includes(query.toLowerCase())
+                        || playlist.warmups.some((warmup) => warmup.warmupName.toLowerCase().includes(query.toLowerCase()))
+                ))
+            }
         })
 
-    }, [])
+    }, [query])
 
 
-    const getFilteredAlbums = (query, albums) => {
+    const FilteredPlaylists = (query, playlists) => {
         if (!query) {
-            return albums;
+            return playlists;
         }
-        return albums.filter(album => album.Name.includes(query))
+        return playlists.filter(playlists => playlist.Name.includes(query))
     }    
 
 
@@ -82,7 +93,7 @@ function App() {
                         <h1>Vocal Warmup Made Easy</h1>
                         <br/>
                         <br/>
-                        <SearchBar query={query} setQuery={setQuery} />
+                        <SearchBar setQuery={setQuery} />
                         <br/>
                         <PlaylistCards albumsData={selectedPlaylists} />
                         <Footer />
@@ -95,7 +106,7 @@ function App() {
             <Route 
                 path="/addWarmup" 
                 element={<AddWarmupForm 
-                    selectedPlaylists={selectedPlaylists} 
+                    selectedWarmups={selectedPlaylists} 
                     addWarmup={addWarmupToPlaylist} 
                     removeWarmup={removeWarmupFromPlaylist}
                 />} 
@@ -105,7 +116,7 @@ function App() {
                 element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} 
             />
             <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} />
-            <Route path="*" element={<Navigate to ="/"/>} /> c
+            <Route path="*" element={<Navigate to ="/"/>} /> 
         </Routes>
     );
 }
