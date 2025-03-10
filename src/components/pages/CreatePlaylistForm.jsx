@@ -9,25 +9,25 @@ import { NavBar } from "../navigation/NavBar.jsx";
 import { Footer } from '../navigation/Footer.jsx';
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import React from 'react';
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { NavButton } from "../utils/NavButton.jsx";
+import { getDatabase, ref, push as firebasePush } from "firebase/database";
 
 export function CreatePlaylistForm() {
     // Step 1: State for each input
     const [playlistName, setPlaylistName] = useState('');
     const [goal, setGoal] = useState('');
     const [genre, setGenre] = useState('');
-    const [visibility, setVisibility] = useState('public');
-    const navigate = useNavigate(); // Initialize navigate function
-
+    const [visibility, setVisibility] = useState('');
+    const [showErrorMessages, setShowErrorMessages] = useState(false);
+    const navigate = useNavigate();
 
     const goalOptions = ['Improvisation', 'Performance / Audition','Vocal Health', 'Vocal Techniques']
     const genreOptions = ['general', 'Classical', 'Musical', 'Jazz', 'Pop', 'A Cappella'];
     const visibilityOptions = ['Public', 'Private', 'Unlisted'];
 
-
-    // Step 2: Micro managing input and change states
+    // Step 2: Input handlers
     const playlistHandleChange = (event) => {
         const value = event.target.value;
         console.log("user typed name: " + value);
@@ -52,26 +52,72 @@ export function CreatePlaylistForm() {
         setVisibility(value);
     }
 
+    // Step 3: Validation
+    const getCurrentValidity = () => {
+        const nameInputValid = playlistName.length > 0;
+        const goalInputValid = goal.length > 0;
+        const genreInputValid = genre.length > 0;
+        const visibilityInputValid = visibility.length > 0;
 
-    // Step 3: How I look like 
-    // Validation logic (is the input red or green)
-    let nameInputValid = true;
-
-    if(playlistName.length <= 0) {
-        nameInputValid = false;
+        return {
+            name: nameInputValid,
+            goal: goalInputValid,
+            genre: genreInputValid,
+            visibility: visibilityInputValid
+        }
     }
 
-    // Callback for submit form
+    // Step 4: Add to Database
+    const addPlaylistToDatabase = () => {
+        // get a reference to the database
+        const db = getDatabase();
+        
+        // create a new playlist object
+        const newPlaylistObj = {
+            playlistName: playlistName,
+            goal: goal,
+            genre: genre,
+            visibility: visibility,
+            createdAt: new Date().toISOString(),
+            warmups: [] // Initialize empty warmups array
+        }
+
+        // Add to Firebase
+        console.log("Adding playlist");
+        const playlistRef = ref(db, 'playlists'); // reference to firebase's playlists node
+        firebasePush(playlistRef, newPlaylistObj)
+            .then((snapshot) => {
+                console.log("Playlist added successfully with key:", snapshot.key);
+                // Navigate to add warmups page with the new playlist ID
+                navigate("/addWarmup", { 
+                    state: { 
+                        playlistId: snapshot.key,
+                        playlistName: playlistName 
+                    } 
+                });
+            })
+            .catch((error) => {
+                console.error("Error adding playlist: ", error);
+            });
+    }
+
+    // Step 5: Handle form submission
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("submitting form");
-        console.log("playlistName: " + playlistName);
-        console.log("goal: " + goal);
-        console.log("genre: " + genre);
-        console.log("visibility: " + visibility);
-        navigate("/addWarmup");
+        setShowErrorMessages(true);
+
+        const validityObj = getCurrentValidity();
+        const isFormValid = Object.values(validityObj).every(value => value === true);
+
+        if(isFormValid) {
+            console.log("Form is valid, submitting...");
+            addPlaylistToDatabase();
+        } else {
+            console.log("Form is invalid, please check your inputs");
+        }
     }
 
+    const validityObj = getCurrentValidity();
 
     return (
         <div>
@@ -84,7 +130,6 @@ export function CreatePlaylistForm() {
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex-containers">
-
                         {/* Divider: Step 1 */}
                         <div className="line-container">
                             <div className="line"></div>
@@ -105,11 +150,10 @@ export function CreatePlaylistForm() {
                                 value={playlistName}
                                 placeholder="e.g. playlist 1"
                                 onChange={playlistHandleChange}
-                                className="input"
+                                className={showErrorMessages && !validityObj.name ? 'input is-invalid' : 'input'}
                             />
-                            {/* conditional rendering for invalid input*/}
-                            {!nameInputValid
-                            && <div className="invalid-feedback">Please enter a valid name for playlist</div>
+                            {showErrorMessages && !validityObj.name &&
+                                <div className="invalid-feedback">Please enter a valid name for playlist</div>
                             }
                         </div>
                         
@@ -126,7 +170,11 @@ export function CreatePlaylistForm() {
                             <SelectBar
                                 options={goalOptions}
                                 handleSelect={goalHandleChange}
+                                showErrorMessagesSelect={showErrorMessages && !validityObj.goal}
                             />
+                            {showErrorMessages && !validityObj.goal &&
+                                <div className="invalid-feedback">Please select a goal</div>
+                            }
                         </div>
 
                         {/* Genre */}
@@ -135,7 +183,11 @@ export function CreatePlaylistForm() {
                             <SelectBar
                                 options={genreOptions}
                                 handleSelect={genreHandleChange}
+                                showErrorMessagesSelect={showErrorMessages && !validityObj.genre}
                             />
+                            {showErrorMessages && !validityObj.genre &&
+                                <div className="invalid-feedback">Please select a genre</div>
+                            }
                         </div>
 
                         {/* Visibility */}
@@ -144,7 +196,11 @@ export function CreatePlaylistForm() {
                             <SelectBar
                                 options={visibilityOptions}
                                 handleSelect={visibilityHandleChange}
+                                showErrorMessagesSelect={showErrorMessages && !validityObj.visibility}
                             />
+                            {showErrorMessages && !validityObj.visibility &&
+                                <div className="invalid-feedback">Please select visibility</div>
+                            }
                         </div>
 
                         {/* Divider: Step 3 */}
@@ -153,7 +209,7 @@ export function CreatePlaylistForm() {
                                 <p className="smallText">Step 3: Add Warmups to Your Playlist</p>
                             <div className="line"></div>
                         </div>
-                        <button className="badge-pill" type="submit">Add Warmups</button>
+                        <button className="badge-pill" type="submit">Create Playlist</button>
                     </form>
                 </div>
             </div>
@@ -162,18 +218,19 @@ export function CreatePlaylistForm() {
     );
 }
 
-export default CreatePlaylistForm;
-
-function SelectBar({options, handleSelect}) {
-    // turn [string, string, string] into [<>, <>, <>]
+function SelectBar({options, handleSelect, showErrorMessagesSelect}) {
     const selectBar = options.map(option => (
         <option key={option} value={option}>{option}</option>
     ));
 
     return (
         <div> 
-            <select className="select" onChange={handleSelect}>
-                {selectBar};  
+            <select 
+                className={showErrorMessagesSelect ? 'select is-invalid' : 'select'}
+                onChange={handleSelect}
+            >
+                <option value="">Select an option</option>
+                {selectBar}
             </select>
         </div>
     );
