@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
 
-import { getDatabase, ref, set as firebaseSet, push as firebasePush } from "firebase/database";
+import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue, get as firebaseGet } from "firebase/database";
 // Components Imports
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
@@ -15,7 +15,6 @@ import { NavButton } from "../utils/NavButton.jsx";
 import albumsData from "../../data/playlist.json";
 
 import { useNavigate } from 'react-router';
-
 
 function CreateWarmupForm(props) {
 
@@ -72,6 +71,11 @@ function CreateWarmupForm(props) {
         const value = event.target.value;
         console.log("user selected playlist: " + value);
         setPlaylistId(value);
+        // not using useEffect here because we want it to update without reloading page
+        // get a database reference for playlist so that we know where this warmup will be added to
+        const db = getDatabase();
+        Object.keys
+        console.log("user selected a different playlist, change the ref key");
     }
 
     const difficultyHandleChange = (event) => {
@@ -121,7 +125,7 @@ function CreateWarmupForm(props) {
         } else {
           return { error: "Invalid YouTube URL" };
         }
-      }
+    }
 
     // Step 3: When to test what I know & show error messages
     // Validation Logic that Change ClassName for <input>
@@ -175,32 +179,35 @@ function CreateWarmupForm(props) {
                 console.error("Error adding warmup: ", error);
             });
 
+        // 2. add warmup to playlist.json:
+        const playlistRef = ref(db, 'playlist/' + matchingPlaylistKey + '/warmups');
+        firebasePush(playlistRef);
 
-        // 2. add warmup to playlist.json (conditional)
-        if (playlistId !== "") {
-            console.log("Adding warmup to playlist: ", playlistId);
-
-            // the matchingPlaylistKey portion is AI-assisted
-            let matchingPlaylistKey = null;
-            Object.keys(playlist).map((key) => {
-                if (playlist[key].playlistName === playlistId) {
-                    matchingPlaylistKey = key;
-                    console.log("Matching playlist key found: " + matchingPlaylistKey);
-                }
-            });
-
-            if(!matchingPlaylistKey) {
-                console.error("No matching playlist key found for: " + playlistId);
-                return;
-            } else {
-                console.log("Matching playlist key found: " + matchingPlaylistKey);
-                const playlistRef = ref(db, 'playlist/' + matchingPlaylistKey + '/warmups');
-                firebasePush(playlistRef);
-            }
-
+      
         }
 
     }
+
+
+    const fetchPlaylistKeys = async () => {
+        const db = getDatabase();
+        const playlistRef = ref(db, 'playlist');
+        firebaseGet(playlistRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    const keys = Object.keys(data);
+                    console.log("Playlist keys: ", keys);
+                    return keys;
+                } else {
+                    console.log("No data available");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching data: ", error);
+            });
+    }
+    
         
 
     // Step 5: Handle form submission
