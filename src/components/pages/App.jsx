@@ -36,6 +36,10 @@ function App() {
                 goal: playlistData[key].goal,
                 genre: playlistData[key].genre,
                 visibility: playlistData[key].visibility,
+                warmups: Object.keys(playlistData[key].warmups).map((warmupKey) => ({
+                    warmupId: warmupKey,
+                    warmupName: playlistData[key].warmups[warmupKey].warmupName,
+                }))
             }));
 
             if (query === "") {
@@ -43,7 +47,11 @@ function App() {
             }
             else {
                 setselectedPlaylists(playlistArray.filter(
-                    (playlist) => playlist.Name.toLowerCase().includes(query.toLowerCase())
+                    (playlist) =>
+                        playlist.Name.toLowerCase().includes(query.toLowerCase())
+                        || playlist.goal.toLowerCase().includes(query.toLowerCase())
+                        || playlist.genre.toLowerCase().includes(query.toLowerCase())
+                        || playlist.warmups.some((warmup) => warmup.warmupName.toLowerCase().includes(query.toLowerCase()))
                 ))
             }
         })
@@ -98,7 +106,7 @@ function App() {
             <Route 
                 path="/addWarmup" 
                 element={<AddWarmupForm 
-                    selectedPlaylists={selectedPlaylists} 
+                    selectedWarmups={selectedPlaylists} 
                     addWarmup={addWarmupToPlaylist} 
                     removeWarmup={removeWarmupFromPlaylist}
                 />} 
@@ -108,7 +116,7 @@ function App() {
                 element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} 
             />
             <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} />
-            <Route path="*" element={<Navigate to ="/"/>} /> c
+            <Route path="*" element={<Navigate to ="/"/>} /> 
         </Routes>
     );
 }
