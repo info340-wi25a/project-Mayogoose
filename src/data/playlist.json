@@ -1,7 +1,7 @@
 [
     {
-        "playlistId": "1",
-        "Name": "Breathing Exercises",
+        "playlistId": "-OKxPfrxkUy3oD8qqAl3",
+        "playlistName": "Breathing Exercises",
         "Img": "../../../img/playlist_covers/breathexercise.png",
         "alt": "Breathing Exercises Playlist Cover",
         "goal": "Vocal Health",
@@ -10,8 +10,8 @@
         "warmupIDs": ["1", "4", "8"]
     },
     {
-        "playlistId": "2",
-        "Name": "Vocalization Techniques",
+        "playlistId": "-OKxS4TJzBHKdY1fxicz",
+        "playlistName": "Vocalization Techniques",
         "Img": "../../../img/playlist_covers/vocalization.png",
         "alt": "Vocalization Techniques Playlist Cover",
         "goal": "Vocal Techniques",
@@ -20,8 +20,8 @@
         "warmupIDs": ["5", "6", "7"]
     },
     {
-        "playlistId": "3",
-        "Name": "Prep before Musical Audition",
+        "playlistId": "-OKxV8dNfCF5D4mwxMia",
+        "playlistName": "Prep before Musical Audition",
         "Img": "../../../img/playlist_covers/diction.png",
         "alt": "Prep before Musical Audition Playlist Cover",
         "goal": "Performance / Audition",
@@ -30,8 +30,8 @@
         "warmupIDs": ["2", "3", "9"]
     },
     {
-        "playlistId": "4",
-        "Name": "Belting for mezzo soprano",
+        "playlistId": "OKxPfrxkUy3oD8qqAl4",
+        "playlistName": "Belting for mezzo soprano",
         "Img": "../../../img/playlist_covers/mezzo_soprano.png",
         "alt": "Belting for mezzo soprano Playlist Cover",
         "goal": "Improvisation",

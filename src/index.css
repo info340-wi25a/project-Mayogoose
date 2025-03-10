@@ -833,8 +833,6 @@ body {
     padding: 20px;
 }
 
-
-
 .playlist-detail-header {
     display: flex;
     flex-direction: column;
@@ -846,6 +844,7 @@ body {
     width: 250px;
     height: 250px;
     border-radius: 10px;
+    margin-top: 30px;
     object-fit: cover;
     margin-bottom: 30px;
 }
@@ -891,9 +890,17 @@ body {
 
 .play-button:hover {
     transform: scale(1.1);
-    background-color: lightgray;
+    background-color: lightgray; 
 }
 
 .play-button span {
     font-size: 24px;
 }
+
+/* Footer */
+footer {
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+}
+

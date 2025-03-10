@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import { SelectButton } from "./SelectButton";
 
-export function SearchBar({ query, setQuery }) {
+export function SearchBar({ setQuery }) {
 
     const handleChange = (event) => {
         const value = event.target.value;
