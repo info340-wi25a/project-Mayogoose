@@ -68,14 +68,19 @@ function CreateWarmupForm(props) {
     }
 
     const playlistHandleChange = (event) => {
-        const value = event.target.value;
-        console.log("user selected playlist: " + value);
-        setPlaylistId(value);
         // not using useEffect here because we want it to update without reloading page
         // get a database reference for playlist so that we know where this warmup will be added to
         const db = getDatabase();
-        Object.keys
-        console.log("user selected a different playlist, change the ref key");
+        const value = event.target.value;
+        console.log("user selected playlist: " + value);
+        Object.keys(playlists).map((key) => {
+            if (playlists[key].playlistName === value) {
+                console.log("found matching playlist: " + key);
+                setPlaylistId(key);
+            } else {
+                console.log("no matching playlist: " + key);
+            }
+        });  
     }
 
     const difficultyHandleChange = (event) => {
@@ -179,36 +184,11 @@ function CreateWarmupForm(props) {
                 console.error("Error adding warmup: ", error);
             });
 
-        // 2. add warmup to playlist.json:
-        const playlistRef = ref(db, 'playlist/' + matchingPlaylistKey + '/warmups');
+        // 2. add warmup to playlist.json (conditional)
+        const playlistRef = ref(db, 'playlists/' + playlistId + '/warmups');
         firebasePush(playlistRef);
 
-      
-        }
-
     }
-
-
-    const fetchPlaylistKeys = async () => {
-        const db = getDatabase();
-        const playlistRef = ref(db, 'playlist');
-        firebaseGet(playlistRef)
-            .then((snapshot) => {
-                if (snapshot.exists()) {
-                    const data = snapshot.val();
-                    const keys = Object.keys(data);
-                    console.log("Playlist keys: ", keys);
-                    return keys;
-                } else {
-                    console.log("No data available");
-                }
-            })
-            .catch((error) => {
-                console.error("Error fetching data: ", error);
-            });
-    }
-    
-        
 
     // Step 5: Handle form submission
     // When user clicks submit, display error messages or store data if there's no error
