@@ -16,7 +16,6 @@ import warmupData from '../../data/warmup.json'; // Add warmup data
 import playlistData from '../../data/playlist.json'; // Add playlist data
 // import PlaylistPlayer from "../components/PlaylistPlayer.jsx"; // Import the player
 
-
 function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
     const { playlistId } = useParams(); 
     const playlist = playlistData.find(p => p.playlistId === playlistId);
