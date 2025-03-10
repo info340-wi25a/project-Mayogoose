@@ -39,20 +39,26 @@ function App() {
                 goal: playlistData[key].goal,
                 genre: playlistData[key].genre,
                 visibility: playlistData[key].visibility,
-            }));    
-            
-            setselectedPlaylists(playlistArray);
-            
+            }));
+
+            if (query === "") {
+                setselectedPlaylists(playlistArray);
+            }
+            else {
+                setselectedPlaylists(playlistArray.filter(
+                    (playlist) => playlist.Name.toLowerCase().includes(query.toLowerCase())
+                ))
+            }
         })
 
-    }, [])
+    }, [query])
 
 
-    const getFilteredAlbums = (query, albums) => {
+    const FilteredPlaylists = (query, playlists) => {
         if (!query) {
-            return albums;
+            return playlists;
         }
-        return albums.filter(album => album.Name.includes(query))
+        return playlists.filter(playlists => playlist.Name.includes(query))
     }    
 
 
@@ -82,7 +88,7 @@ function App() {
                         <h1>Vocal Warmup Made Easy</h1>
                         <br/>
                         <br/>
-                        <SearchBar query={query} setQuery={setQuery} />
+                        <SearchBar setQuery={setQuery} />
                         <br/>
                         <PlaylistCards albumsData={selectedPlaylists} />
                         <Footer />

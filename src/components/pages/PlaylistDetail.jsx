@@ -50,7 +50,6 @@ function PlaylistDetail({ selectedWarmups, clearPlaylist }) {
         ));
     };
 
-
     return (
         <div className="playlist-container">
             <NavBar />
