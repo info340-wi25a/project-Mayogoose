@@ -9,12 +9,9 @@ import { CreatePlaylistForm } from "./CreatePlaylistForm.jsx";
 import { Navigate } from 'react-router';
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
-import { NavButton } from '../utils/NavButton.jsx';
-
-// import { WarmupItem } from "../utils/WarmupItem.jsx"
 import AddWarmupForm from "./AddWarmupForm.jsx"
 import PlaylistDetail from "./PlaylistDetail.jsx"
-import UserLib from "./UserLib.jsx"
+import UserLib from "./UserProfile.jsx"
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 
 import { getDatabase, ref, push as firebasePush, onValue } from "firebase/database";
