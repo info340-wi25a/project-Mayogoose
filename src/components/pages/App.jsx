@@ -1,8 +1,8 @@
 // Owner: Amelia
 // index.html, main.jsx first render this page
 import React from 'react';
-import { useState } from 'react';
-import { Routes, Route } from 'react-router';
+import { useEffect, useState } from 'react';
+import { Routes, Route, data } from 'react-router';
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
 import { CreatePlaylistForm } from "./CreatePlaylistForm.jsx";
@@ -15,15 +15,38 @@ import { NavButton } from '../utils/NavButton.jsx';
 import AddWarmupForm from "./AddWarmupForm.jsx"
 import PlaylistDetail from "./PlaylistDetail.jsx"
 import UserLib from "./UserLib.jsx"
-
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
-import albumsData from '../../data/playlist.json'
 
+import { getDatabase, ref, push as firebasePush, onValue } from "firebase/database";
 
 function App() {
     const [query, setQuery] = useState("");
-    const [selectedWarmups, setSelectedWarmups] = useState([]);
-    console.log("Selected warmups id: " + selectedWarmups); // Runa's AddWarmupForm for Routing
+    const [selectedPlaylists, setselectedPlaylists] = useState([]);
+    console.log("Selected warmups id: " + selectedPlaylists); // Runa's AddWarmupForm for Routing
+    
+    useEffect(() => {
+        const db = getDatabase();
+        const playlistRef = ref(db, 'playlists');
+
+        onValue(playlistRef, (snapshot) => {
+            const playlistData = snapshot.val();
+
+            const playlistArray = Object.keys(playlistData).map((key) => ({
+                playlistId: key,
+                Name: playlistData[key].playlistName,
+                Img: playlistData[key].Img,
+                alt: playlistData[key].alt,
+                goal: playlistData[key].goal,
+                genre: playlistData[key].genre,
+                visibility: playlistData[key].visibility,
+            }));    
+            
+            setselectedPlaylists(playlistArray);
+            
+        })
+
+    }, [])
+
 
     const getFilteredAlbums = (query, albums) => {
         if (!query) {
@@ -32,20 +55,19 @@ function App() {
         return albums.filter(album => album.Name.includes(query))
     }    
 
-    const filteredAlbums = getFilteredAlbums(query, albumsData);
 
     // runa: select/remove warmups
     const addWarmupToPlaylist = (warmup) => {
-        setSelectedWarmups([...selectedWarmups, warmup]);
+        setselectedPlaylists([...selectedPlaylists, warmup]);
     };
 
     const removeWarmupFromPlaylist = (warmupId) => {
-        setSelectedWarmups(selectedWarmups.filter(w => w.id !== warmupId));
+        setselectedPlaylists(selectedPlaylists.filter(w => w.id !== warmupId));
     };
     
     // Function to clear playlist
     const clearPlaylist = () => {
-        setSelectedWarmups([]);
+        setselectedPlaylists([]);
     };
 
     return (
@@ -62,7 +84,7 @@ function App() {
                         <br/>
                         <SearchBar query={query} setQuery={setQuery} />
                         <br/>
-                        <PlaylistCards albumsData={filteredAlbums} />
+                        <PlaylistCards albumsData={selectedPlaylists} />
                         <Footer />
                     </div>
                 }
@@ -73,16 +95,16 @@ function App() {
             <Route 
                 path="/addWarmup" 
                 element={<AddWarmupForm 
-                    selectedWarmups={selectedWarmups} 
+                    selectedPlaylists={selectedPlaylists} 
                     addWarmup={addWarmupToPlaylist} 
                     removeWarmup={removeWarmupFromPlaylist}
                 />} 
             />
             <Route 
                 path="/PlaylistDetails" 
-                element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} 
+                element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} 
             />
-            <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} />
+            <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} />
             <Route path="*" element={<Navigate to ="/"/>} /> c
         </Routes>
     );

@@ -2,7 +2,7 @@
     {
         "warmupId": "1",
         "warmupName": "Box Breathing",
-        "url": "",
+        "url": "https://www.youtube.com/watch?v=ZfMA0YA1IVA",
         "img": "../../../img/warmup-cover/Box Breathing.png",
         "alt": "Box Breathing Warmup Cover",
         "technique": "Breath Support",
@@ -13,7 +13,7 @@
     {
         "warmupId": "2",
         "warmupName": "Lip Buzz",
-        "url": "",
+        "url": "https://www.youtube.com/watch?v=pkg3C3D7T6s&t=108s",
         "img": "../../../img/warmup-cover/Lip Buzz.png",
         "alt": "Lip Buzz Warmup Cover",
         "technique": "Articulation",
@@ -24,7 +24,7 @@
     {
         "warmupId": "3",
         "warmupName": "Tongue Trill",
-        "url": "",
+        "url": "https://www.youtube.com/watch?v=2yI8nZOM0m4&t=683s",
         "img": "../../../img/warmup-cover/Tongue Trill.png",
         "alt": "Tongue Trill Warmup Cover",
         "technique": "Articulation",
@@ -35,7 +35,7 @@
     {
         "warmupId": "4",
         "warmupName": "Vocal straw exercise",
-        "url": "",
+        "url": "https://www.youtube.com/watch?v=eC_BFfTzhYE",
         "img": "../../../img/warmup-cover/Vocal straw exercise.png",
         "alt": "Vocal straw exercise Warmup Cover",
         "technique": "Breath Support",
@@ -46,7 +46,7 @@
     {
         "warmupId": "5",
         "warmupName": "Riff and Runs",
-        "url": "",
+        "url": "https://www.youtube.com/watch?v=5wcZ9KOatSk",
         "img": "../../../img/warmup-cover/Riff and Runs.png",
         "alt": "Riff and Runs Warmup Cover",
         "technique": "Vocalization",
@@ -57,6 +57,7 @@
     {
         "warmupId": "6",
         "warmupName": "Vocal Sirens",
+        "url": "https://www.youtube.com/watch?v=KGrfkAvZ_ek",
         "img": "../../../img/warmup-cover/Vocal Sirens.png",
         "alt": "Vocal Sirens Warmup Cover",
         "technique": "Vocalization",
@@ -67,6 +68,7 @@
     {
         "warmupId": "7",
         "warmupName": "Two-Octave Pitch Glide",
+        "url": "https://www.youtube.com/watch?v=LS6YhjN-NMI",
         "img": "../../../img/warmup-cover/Two-Octave Pitch Glide.jpeg",
         "alt": "Two-Octave Pitch Glide Warmup Cover",
         "technique": "Vocalization",
@@ -77,7 +79,7 @@
     {
         "warmupId": "8",
         "warmupName": "Yawn Sigh",
-        "url": "",
+        "url": "https://www.youtube.com/watch?v=SyvOZJZddyc",
         "img": "../../../img/warmup-cover/Yawn Sigh.png",
         "alt": "Yawn Sigh Warmup Cover",
         "technique": "Breath Support",
@@ -88,6 +90,7 @@
     {
         "warmupId": "9",
         "warmupName": "Tongue Twisters",
+        "url": "https://www.youtube.com/watch?v=mZ9UJHXgj58",
         "img": "../../../img/warmup-cover/Tongue Twisters.png",
         "alt": "Tongue Twisters Warmup Cover",
         "technique": "Diction",
@@ -98,7 +101,7 @@
     {
         "warmupId": "10",
         "warmupName": "Jaw Losening",
-        "url": "",
+        "url": "https://www.youtube.com/watch?v=EdbAl7PJlxg",
         "img": "../../../img/warmup-cover/Jaw Losening.png",
         "alt": "Jaw Losening Warmup Cover",
         "technique": "Articulation",
@@ -109,7 +112,7 @@
     {
         "warmupId": "11",
         "warmupName": "BELT Vocal Warm Up",
-        "url": "",
+        "url": "https://www.youtube.com/watch?v=TmJYZ8y-VmM",
         "img": "../../../img/warmup-cover/MIX BELT Vocal Warm Up.png",
         "alt": "MIX BELT Vocal Warm Up Cover",
         "technique": "Vocalization",

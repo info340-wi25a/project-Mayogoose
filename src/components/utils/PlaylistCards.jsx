@@ -16,11 +16,14 @@ function PlaylistCard({ item }) {
 
 // Used by App.jsx
 export function PlaylistCards({ albumsData }) {
+
+    const playlists = albumsData.map((item) => (
+        <PlaylistCard key={item.playlistId} item={item}/>
+    ));
+
     return (
         <div className="grid-container">
-            {albumsData.map((item) => (
-                <PlaylistCard key={item.playlistId} item={item}/>
-            ))}
+            {playlists}
         </div>
     );
 }
