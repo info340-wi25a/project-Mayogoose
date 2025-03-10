@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
-
+import { useEffect } from "react";
 import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue, get as firebaseGet } from "firebase/database";
 // Components Imports
 import { NavBar } from '../navigation/NavBar.jsx';
@@ -24,7 +24,9 @@ function CreateWarmupForm(props) {
     const [urlInput, setUrlInput] = useState("");
     const [imgInput, setImgInput] = useState("");
     const [altInput, setAltInput] = useState("");
-    const [playlistId, setPlaylistId] = useState("");
+    const [playlistObj, setPlaylistObj] = useState(albumsData);
+    const [playlistId, setPlaylistId ] = useState('');
+    const [selectedPlaylist, setSelectedPlaylist] = useState('');
     const [difficulty, setDifficulty] = useState('');
     const [technique, setTechnique] = useState('');
     const [voiceType, setVoiceType] = useState('');
@@ -41,11 +43,30 @@ function CreateWarmupForm(props) {
         navigateTo(-1); // equavalent of window.history.back();
     }
 
-    // Options for SelectBar:
-    const playlists = albumsData;
-    const playlistNames = playlists.map(playlist => {
-        return playlist.Name;
+    // Options Select Bars:
+    // 1. Real time playlist dataObj from firebase
+    useEffect(() => {
+        const db = getDatabase(); // get a reference to the database
+        const playlistsRef = ref(db, 'playlists'); // a link to firebase's playlist node
+
+        // addEventlistner('databaseChange', callback to update playlist options & ref)
+        onValue(playlistsRef, (snapshot) => {
+            console.log("playlists change in firebase:");
+            const dataObj = snapshot.val();
+            setPlaylistObj(dataObj);
+            console.log("playlist object: ", dataObj);
+        });
+    }, []);
+
+    // update playlist options for users
+    const playlistKeys = Object.keys(playlistObj);
+    const playlistOptions = playlistKeys.map((keyString) => {
+        const transformed = playlistObj[keyString].playlistName;
+        return transformed;
     });
+    console.log("Playlist options = ", playlistOptions)
+
+    // 2. Static Data for user-defined tags
     const difficultyOptions = ['Beginner', 'Intermediate', 'Advanced'];
     const techniqueOptions = ['Breath Support', 'Vocalization', 'Articulation', 'Diction', 'Rhythm', 'Harmony'];
     const voiceTypeOptions = ['Full-Range','Soprano', 'Alto', 'Tenor', 'Base'];
@@ -68,17 +89,15 @@ function CreateWarmupForm(props) {
     }
 
     const playlistHandleChange = (event) => {
-        // not using useEffect here because we want it to update without reloading page
-        // get a database reference for playlist so that we know where this warmup will be added to
-        const db = getDatabase();
         const value = event.target.value;
         console.log("user selected playlist: " + value);
-        Object.keys(playlists).map((key) => {
-            if (playlists[key].playlistName === value) {
+        setSelectedPlaylist(value);
+
+        // set ref key for database
+        Object.keys(playlistObj).map((key) => {
+            if (playlistObj[key].playlistName === value) {
                 console.log("found matching playlist: " + key);
                 setPlaylistId(key);
-            } else {
-                console.log("no matching playlist: " + key);
             }
         });  
     }
@@ -139,7 +158,7 @@ function CreateWarmupForm(props) {
     const getCurrentValidity = () => {
         const nameInputValid = warmupName.length > 0;
         const urlInputValid = extractedVideoId !== null;
-        const playlistInputValid = playlistId.length > 0;
+        const playlistInputValid = playlistObj.length > 0;
         const difficultyInputValid = difficulty.length > 0;
         const techniqueInputValid = technique.length > 0;
         const voiceTypeInputValid = voiceType.length > 0;
@@ -185,9 +204,8 @@ function CreateWarmupForm(props) {
             });
 
         // 2. add warmup to playlist.json (conditional)
-        const playlistRef = ref(db, 'playlists/' + playlistId + '/warmups');
-        firebasePush(playlistRef);
-
+        const warmupPlaylistRef = ref(db, 'playlists/' + playlistId + '/warmups');
+        firebasePush(warmupPlaylistRef, newWarmupObj);
     }
 
     // Step 5: Handle form submission
@@ -200,7 +218,7 @@ function CreateWarmupForm(props) {
 
         const isFormValid = validityObj.name &&
                             validityObj.url &&
-                            validityObj.playlist &&
+                            // validityObj.playlist &&
                             validityObj.difficulty &&
                             validityObj.technique &&
                             validityObj.voiceType &&
@@ -209,7 +227,7 @@ function CreateWarmupForm(props) {
             console.log("Form submitted successfully!");
             console.log("warmupName: " + warmupName);
             console.log("urlInput: " + urlInput);
-            console.log("playlistId: " + playlistId);
+            // console.log("playlist: " + playlistObj);
             console.log("difficulty: " + difficulty);
             console.log("technique: " + technique);
             console.log("voiceType: " + voiceType);
@@ -286,7 +304,7 @@ function CreateWarmupForm(props) {
                         <div>
                             <h2>Select Playlist</h2>
                             <SelectBar
-                                options={playlistNames}
+                                options={playlistOptions}
                                 handleSelect={playlistHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.playlist}
                             />
