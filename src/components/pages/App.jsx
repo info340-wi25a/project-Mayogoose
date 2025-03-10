@@ -39,6 +39,10 @@ function App() {
                 goal: playlistData[key].goal,
                 genre: playlistData[key].genre,
                 visibility: playlistData[key].visibility,
+                warmups: Object.keys(playlistData[key].warmups).map((warmupKey) => ({
+                    warmupId: warmupKey,
+                    warmupName: playlistData[key].warmups[warmupKey].warmupName,
+                }))
             }));
 
             if (query === "") {
@@ -46,7 +50,11 @@ function App() {
             }
             else {
                 setselectedPlaylists(playlistArray.filter(
-                    (playlist) => playlist.Name.toLowerCase().includes(query.toLowerCase())
+                    (playlist) =>
+                        playlist.Name.toLowerCase().includes(query.toLowerCase())
+                        || playlist.goal.toLowerCase().includes(query.toLowerCase())
+                        || playlist.genre.toLowerCase().includes(query.toLowerCase())
+                        || playlist.warmups.some((warmup) => warmup.warmupName.toLowerCase().includes(query.toLowerCase()))
                 ))
             }
         })
