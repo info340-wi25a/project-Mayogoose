@@ -81,6 +81,9 @@ function App() {
         setselectedPlaylists([]);
     };
 
+
+    // unauthorized users can view warmups from homepage
+    // but if they wanna create new warmup/playlists, render firebase's auth pop-ups
     return (
         <Routes>
             <Route
