@@ -129,14 +129,14 @@ function App() {
                 element={<PlaylistDetail 
                     selectedWarmups={selectedWarmups} 
                     clearWarmups={clearWarmups} 
-                    //removeWarmup={removeWarmupFromPlaylist} 
+                    removeWarmup={removeWarmupFromPlaylist} 
                 />} 
             />
             <Route path="/playlist/:playlistId" 
             element={<PlaylistDetail 
             selectedWarmups={selectedWarmups} 
             clearWarmups={clearWarmups} 
-            // removeWarmup={removeWarmupFromPlaylist} 
+            removeWarmup={removeWarmupFromPlaylist} 
             />} />
             <Route path="*" element={<Navigate to ="/"/>} /> 
         </Routes>

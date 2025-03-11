@@ -33,7 +33,7 @@ export function AddWarmupItem({ warmup, onAdd, isSelected, onRemove}) {
         className={buttonClass} 
         onClick={() => {
           if (isSelected) {
-            onRemove(warmup.warmupId); 
+            onRemove(warmup.id); 
           } else {
             onAdd(warmup);
           }

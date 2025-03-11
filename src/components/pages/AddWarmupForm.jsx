@@ -14,17 +14,17 @@
     
     function AddWarmupForm({ selectedWarmups = [], addWarmup, removeWarmup }) {
       const navigate = useNavigate();
-  
+    
       const warmupsList = warmupData.map(warmup => ({
           id: warmup.warmupId, 
           name: warmup.warmupName,
           image: warmup.img
       })); 
-  
+    
       const isWarmupSelected = (warmupId) => {
           return selectedWarmups.some(w => w.id === warmupId);
       };
-  
+    
       const handleToggleWarmup = (warmup) => {
           if (isWarmupSelected(warmup.id)) {
               removeWarmup(warmup.id);
@@ -32,7 +32,7 @@
               addWarmup(warmup);
           }
       };
-  
+    
       let selectedWarmupItems;
       if (selectedWarmups.length > 0) {
           selectedWarmupItems = selectedWarmups.map(warmup => (
@@ -40,22 +40,24 @@
                   key={warmup.id}
                   warmup={warmup}
                   onAdd={() => handleToggleWarmup(warmup)}
+                  onRemove={removeWarmup}
                   isSelected={true}
               />
           ));
       } else {
           selectedWarmupItems = <p>No warm-ups selected.</p>;
       }
-  
+    
       const suggestedWarmupItems = warmupsList.map((warmup) => (
           <AddWarmupItem
               key={warmup.id}
               warmup={warmup}
               onAdd={() => handleToggleWarmup(warmup)}
+              onRemove={removeWarmup}
               isSelected={isWarmupSelected(warmup.id)}
           />
       ));
-  
+    
       return (
           <div className="add-warmup-container">
               <NavBar />
@@ -79,7 +81,7 @@
                           <div className="warmups-list">{suggestedWarmupItems}</div>
                       </div>
                   </div>
-  
+    
                   <div className="create-button-container">
                       <NavButton 
                           text="Create!" 
@@ -91,90 +93,6 @@
               </div>
           </div>
       );
-  }
-  
-    
-  //   function AddWarmupForm({ selectedWarmups = [], addWarmup, removeWarmup }) {
-  //     const navigate = useNavigate();
-    
-  //     const warmupsList = warmupData.map(warmup => ({
-  //         id: warmup.warmupId, 
-  //         name: warmup.warmupName,
-  //         image: warmup.img
-  //     })); 
-
-  //     const isWarmupSelected = (warmupId) => {
-  //       return selectedWarmups.some(w => w.id === warmupId);
-  //   };
-    
-  //     const handleToggleWarmup = (warmup) => {
-  //       if (isWarmupSelected(warmup.id)) {
-  //           removeWarmup(warmup.id);
-  //       } else {
-  //           addWarmup(warmup);
-  //       }
-  //   };
-
-  //     let selectedWarmupItems;
-  //     if (selectedWarmups.length > 0) {
-  //       selectedWarmupItems = selectedWarmups.map(warmup => (
-  //         <AddWarmupItem
-  //           key={warmup.id}
-  //           warmup={warmup}
-  //           onAdd={() => handleToggleWarmup(warmup)}
-  //           onRemove={() => removeWarmup(warmup.id)}
-  //           isSelected={true}
-  //         />
-  //       ));
-  //     } else {
-  //       selectedWarmupItems = <p>No warm-ups selected.</p>;
-  //     }
-
-  //     const suggestedWarmupItems = warmupsList.map((warmup) => (
-  //       <AddWarmupItem
-  //           key={warmup.id}
-  //           warmup={warmup}
-  //           onAdd={() => handleToggleWarmup(warmup)}
-  //           onRemove={() => removeWarmup(warmup.id)}
-  //           isSelected={isWarmupSelected(warmup.id)}
-  //       />
-  //     ));
-    
-  //     return (
-  //       <div className="add-warmup-container">
-  //           <NavBar />
-  //           <div className="main-content">
-  //               <h1>Add Warm-ups</h1> 
-                
-  //               <div className="search-select-container">
-  //                   <SearchBar />
-  //               </div>
-                
-  //               <div className="warmups-container">
-  //                   {/* Selected Warm-ups Section */}
-  //                   <div className="warmups-column">
-  //                       <h2>Selected Warm-ups ({selectedWarmups.length})</h2>
-  //                       <div className="warmups-list">{selectedWarmupItems}</div>
-  //                   </div>
-                    
-  //                   {/* Suggested Warm-ups Section */}
-  //                   <div className="warmups-column">
-  //                       <h2>Suggested Warm-ups ({warmupData.length})</h2>
-  //                       <div className="warmups-list">{suggestedWarmupItems}</div>
-  //                   </div>
-  //               </div>
-
-  //               <div className="create-button-container">
-  //                   <NavButton 
-  //                       text="Create!" 
-  //                       destination="/PlaylistDetails" 
-  //                       state={{ selectedWarmups }} 
-  //                   />
-  //               </div>
-  //               <Footer />
-  //           </div>
-  //       </div>
-  //   );
-  // }
+    }
     
   export default AddWarmupForm;
