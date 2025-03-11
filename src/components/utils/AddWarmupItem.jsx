@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-export function AddWarmupItem({ warmup, onAdd, isSelected }) {
+export function AddWarmupItem({ warmup, onAdd, isSelected, onRemove}) {
   const name = warmup.Name || warmup.name;
   const image = warmup.Img || warmup.image;
   const voiceType = warmup["Voice Type"] || warmup.voiceType || "";
@@ -31,7 +31,13 @@ export function AddWarmupItem({ warmup, onAdd, isSelected }) {
       </div>
       <button 
         className={buttonClass} 
-        onClick={() => onAdd(warmup)}>
+        onClick={() => {
+          if (isSelected) {
+            onRemove(warmup.warmupId); 
+          } else {
+            onAdd(warmup);
+          }
+        }}>
         {buttonText}
       </button>
     </div>

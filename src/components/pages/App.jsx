@@ -21,68 +21,79 @@ import { getDatabase, ref, push as firebasePush, onValue } from "firebase/databa
 
 function App() {
     const [query, setQuery] = useState("");
-    const [selectedPlaylists, setselectedPlaylists] = useState([]);
-    console.log("Selected warmups id: " + selectedPlaylists); // Runa's AddWarmupForm for Routing
-    
+    const [selectedPlaylists, setselectedPlaylists] = useState([]); // For playlist
+    const [selectedWarmups, setSelectedWarmups] = useState([]); // For warm-ups
+    console.log("Selected warmups id: " + selectedWarmups); // Runa's AddWarmupForm for Routing
+
     useEffect(() => {
         const db = getDatabase();
         const playlistRef = ref(db, 'playlists');
-
+    
         onValue(playlistRef, (snapshot) => {
             const playlistData = snapshot.val();
-
-            const playlistArray = Object.keys(playlistData).map((key) => ({
-                playlistId: key,
-                Name: playlistData[key].playlistName,
-                Img: playlistData[key].Img,
-                alt: playlistData[key].alt,
-                goal: playlistData[key].goal,
-                genre: playlistData[key].genre,
-                visibility: playlistData[key].visibility,
-                warmups: Object.keys(playlistData[key].warmups).map((warmupKey) => ({
-                    warmupId: warmupKey,
-                    warmupName: playlistData[key].warmups[warmupKey].warmupName,
-                }))
-            }));
-
-            if (query === "") {
-                setselectedPlaylists(playlistArray);
+    
+            if (playlistData) {
+                const playlistArray = Object.keys(playlistData).map((key) => {
+                    let warmups = [];
+                    if (playlistData[key].warmups) {
+                        warmups = Object.keys(playlistData[key].warmups).map((warmupKey) => ({
+                            warmupId: warmupKey,
+                            warmupName: playlistData[key].warmups[warmupKey].warmupName,
+                        }));
+                    }
+    
+                    return {
+                        playlistId: key,
+                        Name: playlistData[key].playlistName,
+                        Img: playlistData[key].Img,
+                        alt: playlistData[key].alt,
+                        goal: playlistData[key].goal,
+                        genre: playlistData[key].genre,
+                        visibility: playlistData[key].visibility,
+                        warmups: warmups,
+                    };
+                });
+    
+                if (query === "") {
+                    setselectedPlaylists(playlistArray);
+                } else {
+                    setselectedPlaylists(playlistArray.filter(
+                        (playlist) =>
+                            playlist.Name.toLowerCase().includes(query.toLowerCase())
+                            || playlist.goal.toLowerCase().includes(query.toLowerCase())
+                            || playlist.genre.toLowerCase().includes(query.toLowerCase())
+                            || playlist.warmups.some((warmup) => warmup.warmupName.toLowerCase().includes(query.toLowerCase()))
+                    ));
+                }
+            } else {
+                setselectedPlaylists([]);
             }
-            else {
-                setselectedPlaylists(playlistArray.filter(
-                    (playlist) =>
-                        playlist.Name.toLowerCase().includes(query.toLowerCase())
-                        || playlist.goal.toLowerCase().includes(query.toLowerCase())
-                        || playlist.genre.toLowerCase().includes(query.toLowerCase())
-                        || playlist.warmups.some((warmup) => warmup.warmupName.toLowerCase().includes(query.toLowerCase()))
-                ))
-            }
-        })
-
-    }, [query])
-
+        });
+    }, [query]);
+    
 
     const FilteredPlaylists = (query, playlists) => {
         if (!query) {
             return playlists;
         }
-        return playlists.filter(playlists => playlist.Name.includes(query))
+        return playlists.filter(playlists => playlists.Name.includes(query))
     }    
 
 
-    // runa: select/remove warmups
+    // runa: select/remove warmups bug
     const addWarmupToPlaylist = (warmup) => {
-        setselectedPlaylists([...selectedPlaylists, warmup]);
+        setSelectedWarmups([...selectedWarmups, warmup]);
     };
 
     const removeWarmupFromPlaylist = (warmupId) => {
-        setselectedPlaylists(selectedPlaylists.filter(w => w.id !== warmupId));
+        setSelectedWarmups(selectedWarmups.filter(w => w.id !== warmupId));
     };
     
-    // Function to clear playlist
-    const clearPlaylist = () => {
-        setselectedPlaylists([]);
+    // Function to clear selected warm-ups
+    const clearWarmups = () => {
+        setSelectedWarmups([]);
     };
+
 
     return (
         <Routes>
@@ -109,16 +120,25 @@ function App() {
             <Route 
                 path="/addWarmup" 
                 element={<AddWarmupForm 
-                    selectedWarmups={selectedPlaylists} 
+                    selectedWarmups={selectedWarmups} 
                     addWarmup={addWarmupToPlaylist} 
                     removeWarmup={removeWarmupFromPlaylist}
                 />} 
             />
             <Route 
                 path="/PlaylistDetails" 
-                element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} 
+                element={<PlaylistDetail 
+                    selectedWarmups={selectedWarmups} 
+                    clearWarmups={clearWarmups} 
+                    //removeWarmup={removeWarmupFromPlaylist} 
+                />} 
             />
-            <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedPlaylists={selectedPlaylists} clearPlaylist={clearPlaylist} />} />
+            <Route path="/playlist/:playlistId" 
+            element={<PlaylistDetail 
+            selectedWarmups={selectedWarmups} 
+            clearWarmups={clearWarmups} 
+            // removeWarmup={removeWarmupFromPlaylist} 
+            />} />
             <Route path="*" element={<Navigate to ="/"/>} /> 
         </Routes>
     );
