@@ -1,10 +1,14 @@
 // Owner: Meiyao
 
+import React, { useRef, useState } from 'react';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getApp } from 'firebase/app';
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react"; // for upload
 
-export function UploadImageForm({elements}) {
+export function UploadImageForm({elements, onImageUpload}) {
     const navigate = useNavigate();
+    const [imageFile, setImageFile] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
 
     const handleSelect = (event) => {
         const value = event.target.value;
@@ -16,20 +20,29 @@ export function UploadImageForm({elements}) {
     };
 
     return (
-
         <div className="upload-box">
             <span className="material-symbols-outlined">
                 upload_file
             </span>
-            <p className="smallText"> Max 5 MB files are allowed</p>
-            <UploadButton />
+            <p className="smallText">Max 5 MB files are allowed</p>
+            <UploadButton 
+                onFileSelect={setImageFile} 
+                onPreviewChange={setPreviewUrl} 
+                onImageUpload={onImageUpload} 
+            />
+            {previewUrl && (
+                <img 
+                    src={previewUrl} 
+                    alt="Preview" 
+                    className="preview-image"
+                />
+            )}
         </div>
     );
-    
 }
 
 // private helper
-function UploadButton(){
+function UploadButton({ onFileSelect, onPreviewChange, onImageUpload }){
     const fileInputRef = useRef(null);
 
     const handleUpload = (event) => {
@@ -38,17 +51,42 @@ function UploadButton(){
         }
     };
 
+    const handleFileChange = async (event) => {
+        if (event.target.files.length > 0 && event.target.files[0]) {
+            const file = event.target.files[0];
+            onFileSelect(file);
+            onPreviewChange(URL.createObjectURL(file));
+
+            try {
+                const storage = getStorage(getApp(), "gs://info340-media.firebasestorage.app");
+                const storageReference = storageRef(storage, "group-AA4/path/to/file.png");
+                
+                // Upload the file
+                await uploadBytes(storageReference, file);
+                
+                // Get the download URL
+                const downloadURL = await getDownloadURL(storageReference);
+                if (onImageUpload) {
+                    onImageUpload(downloadURL);
+                }
+                console.log("Upload completed, URL:", downloadURL);
+            } catch (error) {
+                console.error("Error uploading image:", error);
+            }
+        }
+    };
+
     return (
         <div className="createWrap">
             <button className="uploadButton" onClick={handleUpload}>
                 Upload
             </button>
-            {/* Hidden input for file selection */}
             <input className="fileInput"
                 type="file"
                 accept="image/*"
                 ref={fileInputRef}
-                style={{ display: "none" }}  /* disable default styling of upload */
+                onChange={handleFileChange}
+                style={{ display: "none" }}
             />
         </div>
     )
@@ -56,7 +94,6 @@ function UploadButton(){
 
 // private helper
 function AbandonedUploadButton(){
-
     const handleSelect = (event) => {
         const value = event.target.value;
         if (value === "Photo Library") {

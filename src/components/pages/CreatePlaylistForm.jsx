@@ -20,6 +20,7 @@ export function CreatePlaylistForm() {
     const [goal, setGoal] = useState('');
     const [genre, setGenre] = useState('');
     const [visibility, setVisibility] = useState('');
+    const [coverImageUrl, setCoverImageUrl] = useState('');
     const [showErrorMessages, setShowErrorMessages] = useState(false);
     const navigate = useNavigate();
 
@@ -52,6 +53,11 @@ export function CreatePlaylistForm() {
         setVisibility(value);
     }
 
+    const handleImageUpload = (downloadURL) => {
+        console.log("Image uploaded, URL:", downloadURL);
+        setCoverImageUrl(downloadURL);
+    }
+
     // Step 3: Validation
     const getCurrentValidity = () => {
         const nameInputValid = playlistName.length > 0;
@@ -78,6 +84,7 @@ export function CreatePlaylistForm() {
             goal: goal,
             genre: genre,
             visibility: visibility,
+            coverImageUrl: coverImageUrl,
             createdAt: new Date().toISOString(),
             warmups: [] // Initialize empty warmups array
         }
@@ -140,7 +147,7 @@ export function CreatePlaylistForm() {
                         {/* Upload Image */}
                         <div>
                             <h2>Upload Playlist Cover:</h2>
-                            <UploadImageForm />
+                            <UploadImageForm onImageUpload={handleImageUpload} />
                         </div>
                         
                         {/* Name Input */}
