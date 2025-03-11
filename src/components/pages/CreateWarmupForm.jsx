@@ -1,15 +1,19 @@
 // Owner: Meiyao Li
 // React Library Imports
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
-import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from "firebase/database";
+import { useEffect } from "react";
+import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue, get as firebaseGet } from "firebase/database";
 // Components Imports
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
+import { NavButton } from "../utils/NavButton.jsx";
 // Playlist Data for playlist selection
+import albumsData from "../../data/playlist.json";
+
 import { useNavigate } from 'react-router';
 
 function CreateWarmupForm(props) {
@@ -20,7 +24,7 @@ function CreateWarmupForm(props) {
     const [urlInput, setUrlInput] = useState("");
     const [imgInput, setImgInput] = useState("");
     const [altInput, setAltInput] = useState("");
-    const [playlistObj, setPlaylistObj] = useState(null);
+    const [playlistObj, setPlaylistObj] = useState(albumsData);
     const [playlistId, setPlaylistId ] = useState('');
     const [selectedPlaylist, setSelectedPlaylist] = useState('');
     const [difficulty, setDifficulty] = useState('');

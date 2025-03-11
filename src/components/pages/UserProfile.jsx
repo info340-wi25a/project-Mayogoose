@@ -4,10 +4,10 @@ import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-// import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-// import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-// import { getDatabase, ref, onValue } from "firebase/database";
-// import { onAuthStateChanged } from 'firebase/auth';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { getDatabase, ref, onValue } from "firebase/database";
+import { onAuthStateChanged } from 'firebase/auth';
 
 
 function UserProfile(props) {
