@@ -26,6 +26,7 @@ export function SelectButton({ userObj, elements, auth, firebaseUIConfig}) {
             } else if (value === "playlist") {
                 navigate("/createPlaylist");
             }
+            setShowModal(false);
         }
         event.target.value = "";
         
@@ -41,11 +42,22 @@ export function SelectButton({ userObj, elements, auth, firebaseUIConfig}) {
 
             <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title className="text-dark">You're not logged in yet.</Modal.Title>
+                        {!userObj
+                        && <Modal.Title className="text-dark">Log in to VoxTune</Modal.Title>
+                        }
+                        {userObj
+                        && <Modal.Title className="text-dark">You're In!</Modal.Title>}
                      </Modal.Header>
                     <Modal.Body className="text-dark">
                         <div>
-                            <StyledFirebaseAuth firebaseAuth={auth} uiConfig={firebaseUIConfig} />
+                            {!userObj
+                            &&  <div>
+                                    <p className="m-3 text-center">Unlock features such as uploading your own vocal warmups and creating custom playlists!  </p>
+                                    <StyledFirebaseAuth firebaseAuth={auth} uiConfig={firebaseUIConfig} />
+                                </div>
+                            }
+                            {userObj
+                            && <p>Start exploring and make VoxTune truly yours!</p>}
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
