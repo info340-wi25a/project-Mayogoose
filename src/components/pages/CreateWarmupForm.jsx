@@ -10,7 +10,6 @@ import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue, ge
 // Components Imports
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
-import { NavButton } from "../utils/NavButton.jsx";
 // Playlist Data for playlist selection
 import albumsData from "../../data/playlist.json";
 
@@ -31,16 +30,29 @@ function CreateWarmupForm(props) {
     const [technique, setTechnique] = useState('');
     const [voiceType, setVoiceType] = useState('');
     const [voiceRegister, setVoiceRegister] = useState('');
+    const [isFormValid, setIsFormValid] = useState(false);
     const [showErrorMessages, setShowErrorMessages] = useState(false);
-    // Modal Navigations
+
+    // State: Modal display
     const navigateTo = useNavigate();
+    // Modal Navigations
     const [show, setShow] = useState(false);
-    // Model Functions
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => {
+        setShow(false);
+        navigateTo("/profile");
+    }
+    const handleShow = () => {
+        if(isFormValid) {
+            setShow(true);
+        }
+    }
     const handleGoBack = () => {
         setShow(false);
         navigateTo(-1); // equavalent of window.history.back();
+    }
+    const handlePlay = () => {
+        setShow(false);
+        navigateTo("/PlaylistDetails")
     }
 
     // Options Select Bars:
@@ -224,15 +236,7 @@ function CreateWarmupForm(props) {
                             validityObj.voiceType &&
                             validityObj.voiceRegister;
         if(isFormValid){
-            console.log("Form submitted successfully!");
-            console.log("warmupName: " + warmupName);
-            console.log("urlInput: " + urlInput);
-            // console.log("playlist: " + playlistObj);
-            console.log("difficulty: " + difficulty);
-            console.log("technique: " + technique);
-            console.log("voiceType: " + voiceType);
-            console.log("voiceRegister: " + voiceRegister);
-            // save to database
+            setIsFormValid(true);
             addWarmupToDatabase();
         } else {
             console.log("Form is invalid, please check your inputs");
@@ -382,25 +386,24 @@ function CreateWarmupForm(props) {
                             <div className="line"></div>
                         </div>
 
-                        {/* Submit button should be centered */}
-                        <button className="badge-pill" onClick={handleShow}>Submit</button>
+                        <button className="badge-pill mx-auto" onClick={handleShow}>Submit</button>
                         {/* <button className="badge-pill" onClick={handleShow} disabled={!isFormValid}>Submit</button> */}
 
                         {/* Confirmation Model */}
-                        {/* <Modal show={show} onHide={handleClose}>
+                        <Modal show={show} onHide={handleClose}>
                             <Modal.Header closeButton>
                                 <Modal.Title className="text-dark">Congratulations!</Modal.Title>
                             </Modal.Header>
                             <Modal.Body className="text-dark">Your warmup is successfully uploaded</Modal.Body>
                             <Modal.Footer>
-                            <Button variant="secondary" onClick={handleGoBack}>
+                            <Button className="badge-pill grey" onClick={handleGoBack}>
                                 Go Back
                             </Button>
-                            <NavButton text="View in Profile" destination="/profile">
-                                View in Profile
-                            </NavButton>
+                            <button className="badge-pill" onClick={handlePlay}>
+                                Play Now!
+                            </button>
                             </Modal.Footer>
-                        </Modal>                         */}
+                        </Modal>                        
                     </form>
                 </div>
                 

@@ -154,7 +154,7 @@ function App() {
                 element={
                     <UserProfile 
                         currUser={userObj}
-                        allPlaylist={playlistArr}
+                        allPlaylists={playlistArr}
                     />
                 } 
             />
