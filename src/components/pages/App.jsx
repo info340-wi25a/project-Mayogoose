@@ -5,25 +5,43 @@ import { useEffect, useState } from 'react';
 import { Routes, Route, data } from 'react-router';
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
-import { CreatePlaylistForm } from "./CreatePlaylistForm.jsx";
 import { Navigate } from 'react-router';
 import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
 import AddWarmupForm from "./AddWarmupForm.jsx"
 import PlaylistDetail from "./PlaylistDetail.jsx"
-import UserLib from "./UserProfile.jsx"
+import UserProfile from "./UserProfile.jsx"
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
+import { CreatePlaylistForm } from "./CreatePlaylistForm.jsx";
+// for firebase auth
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
+// for firebase real-time database
 import { getDatabase, ref, push as firebasePush, onValue } from "firebase/database";
 
 function App() {
     const [query, setQuery] = useState("");
-    const [selectedPlaylists, setselectedPlaylists] = useState([]); // For playlist
+    const [playlistArr, setPlaylistArr] = useState([]); // For retrieve playlist from firebase
+    const [searchedPlaylists, setSearchedPlaylists] = useState([]); // For playlist
     const [selectedWarmups, setSelectedWarmups] = useState([]); // For warm-ups
+    const [userObj, setUserObj] = useState(null); // For logic 
+    const auth = getAuth(); // only authenticated user can navigate to CreateWarmupForm, CreatePlaylistForm, & UserProfile
     console.log("Selected warmups id: " + selectedWarmups); // Runa's AddWarmupForm for Routing
+
 
     useEffect(() => {
         const db = getDatabase();
         const playlistRef = ref(db, 'playlists');
+
+        onAuthStateChanged(auth, (firebaseUser) => {
+            console.log("login status changed")
+            console.log(firebaseUser)
+
+            if(firebaseUser) {
+                setUserObj(firebaseUser); // retrieve User UID
+            }
+        })
     
         onValue(playlistRef, (snapshot) => {
             const playlistData = snapshot.val();
@@ -49,11 +67,13 @@ function App() {
                         warmups: warmups,
                     };
                 });
+                
+                setPlaylistArr(playlistArray);
     
                 if (query === "") {
-                    setselectedPlaylists(playlistArray);
+                    setSearchedPlaylists(playlistArray);
                 } else {
-                    setselectedPlaylists(playlistArray.filter(
+                    setSearchedPlaylists(playlistArray.filter(
                         (playlist) =>
                             playlist.Name.toLowerCase().includes(query.toLowerCase())
                             || playlist.goal.toLowerCase().includes(query.toLowerCase())
@@ -62,7 +82,7 @@ function App() {
                     ));
                 }
             } else {
-                setselectedPlaylists([]);
+                setSearchedPlaylists([]);
             }
         });
     }, [query]);
@@ -90,6 +110,21 @@ function App() {
         setSelectedWarmups([]);
     };
 
+    // meiyao: auth UI
+    //object of configuration values for firebase auth
+    const firebaseUIConfig = {
+        signInOptions: [ 
+            GoogleAuthProvider.PROVIDER_ID,
+        { provider: EmailAuthProvider.PROVIDER_ID, requiredDisplayName: true }, ],
+        signInFlow: 'popup', //don't redirect to authenticate
+        credentialHelper: 'none', //don't show the email account chooser
+        callbacks: {
+            signInSuccessWithAuthResult: () => {
+                return false; //don't redirect after authentication
+            }
+        }
+    }
+
 
     // unauthorized users can view warmups from homepage
     // but if they wanna create new warmup/playlists, render firebase's auth pop-ups
@@ -107,14 +142,22 @@ function App() {
                         <br/>
                         <SearchBar setQuery={setQuery} />
                         <br/>
-                        <PlaylistCards albumsData={selectedPlaylists} />
+                        <PlaylistCards albumsData={searchedPlaylists} />
                         <Footer />
                     </div>
                 }
             />
             <Route path="/createWarmup" element={<CreateWarmupForm />} />
             <Route path="/createPlaylist" element={<CreatePlaylistForm />} />
-            <Route path="/profile" element={<UserLib />} />
+            <Route 
+                path="/profile" 
+                element={
+                    <UserProfile 
+                        currUser={userObj}
+                        allPlaylist={playlistArr}
+                    />
+                } 
+            />
             <Route 
                 path="/addWarmup" 
                 element={<AddWarmupForm 
