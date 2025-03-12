@@ -3,8 +3,6 @@
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
 import { useNavigate } from 'react-router';
-import { useState, useEffect } from "react";
-
 
 function UserProfile({currUser, allPlaylists}) {
 
@@ -14,8 +12,8 @@ function UserProfile({currUser, allPlaylists}) {
 
     // show "you haven't created any warmup/playlist yet" & add buttons if this user has no playlist in firebase
     // show playlists that user uploaded
-    const playlistList = playlistObj 
-    ? Object.values(playlistObj).map((playlist) => (
+    const userPlaylistsList = userPlaylists 
+    ? Object.values(userPlaylists).map((playlist) => (
         <PlaylistItem playlistObj={playlist} />
       ))
     : <p>Loading playlists...</p>;
@@ -28,16 +26,7 @@ function UserProfile({currUser, allPlaylists}) {
                     <div className="d-flex flex-column gap-3 mt-3">
                         <h1>Your Playlists</h1>
                         <p className="smallText">See what warmups / playlists you've uploaded!</p>
-                        {/* Conditionally render based on user's auth status*/}
-                        {!userObj // user doesn't exist 
-                        &&
-                        <div>
-                            <p className="smallText">You haven't signed in!</p>
-                            <StyledFirebaseAuth firebaseAuth={auth} uiConfig={firebaseUIConfig} />
-                        </div>
-                        }
-                        {userObj // user exist
-                        && playlistList}
+                        {userPlaylistsList}
                     </div>
                 </div>
             </div>
@@ -66,7 +55,6 @@ function PlaylistItem({ playlistObj, key }) {
         // in App.jsx, <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} />
     };
 
-  
     return (
       <div className="warmup" onClick={handleClick}>
         <img src={img} alt={name} className="warmup-img" />

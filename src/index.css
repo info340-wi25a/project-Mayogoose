@@ -118,6 +118,10 @@ p {
     font-style: normal;
 }
 
+.text-dark {
+    text-align: left;
+}
+
 main {
     margin: 1.5rem;
 }
@@ -616,7 +620,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* nav button */
+/* button */
 .badge-pill {
     text-align: center;
     color: black;
@@ -627,12 +631,21 @@ body {
     padding: 15px 35px;
     font-size: 15px;
     text-decoration: none;
-    margin: auto;
-    
 }
   
 .badge-pill:hover {
     background-color: darkgoldenrod;
+}
+
+.grey {
+    background-color: grey;
+    color: white;
+    
+
+}
+
+.grey:hover {
+    background-color: rgb(91, 91, 91);
 }
 
 /* homepage */

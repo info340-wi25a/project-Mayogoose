@@ -3,9 +3,9 @@
 // 1. user's custom playlist after adding warmups
 // 2. recommended playlist from the main page
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getDatabase, ref} from "firebase/database";
+import { getDatabase, ref, onValue} from "firebase/database";
 import { useNavigate } from 'react-router-dom';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
 import { Footer } from "../navigation/Footer.jsx"; // Footer
@@ -14,11 +14,13 @@ import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import warmupData from '../../data/warmup.json'; // Add warmup data
 import playlistData from '../../data/playlist.json'; // Add playlist data
-// import PlaylistPlayer from "../components/PlaylistPlayer.jsx"; // Import the player
+// import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
 
 function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
     const { playlistId } = useParams(); 
     const playlist = playlistData.find(p => p.playlistId === playlistId);
+    // const [currentVideoUrl, setCurrentVideoUrl] = useState(null); // Store current playing video
+
 
     let warmups = [];
     if (playlist) {
@@ -45,6 +47,7 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
     } else {
         selectedWarmupItems = <p>No warm-ups selected.</p>;
     }
+    
 
     // warmups for rendering
     const warmupItems = warmups.map(warmup => (
