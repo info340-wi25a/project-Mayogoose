@@ -13,7 +13,6 @@ import AddWarmupForm from "./AddWarmupForm.jsx"
 import PlaylistDetail from "./PlaylistDetail.jsx"
 import UserLib from "./UserProfile.jsx"
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
-
 import { getDatabase, ref, push as firebasePush, onValue } from "firebase/database";
 
 function App() {
