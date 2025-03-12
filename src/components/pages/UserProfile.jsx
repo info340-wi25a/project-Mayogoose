@@ -4,60 +4,13 @@ import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-import { getDatabase, ref, onValue } from "firebase/database";
-import { onAuthStateChanged } from 'firebase/auth';
 
 
-function UserProfile(props) {
-    const [playlistObj, setPlaylistObj] = useState(null);
-    const [userObj, setUserObj] = useState(false);
-    const auth = getAuth();
+function UserProfile({currUser, allPlaylists}) {
 
-    // when database change, update playlist & user auth in real-time
-    useEffect(() => {
-        const db = getDatabase(); // get a reference to the database
-        const playlistsRef = ref(db, 'playlists'); // a link to firebase's playlist node
-
-        // listen for user auth
-        onAuthStateChanged(auth, (firebaseUser) => {
-            console.log("login status changed")
-            console.log(firebaseUser)
-
-            if(firebaseUser) {
-                // ask joel ross about this restructure:
-                // firebaseUser.playlists: find all playlists that has the user displayName in their "author" field
-                // when user add warmup/playlist, it should automatically have their displayName as "author"
-                // but that requires 
-                setUserObj(firebaseUser);
-            }
-        })
-
-
-
-        // listen for playlist data change
-        onValue(playlistsRef, (snapshot) => {
-            console.log("playlists change in firebase:");
-            const dataObj = snapshot.val();
-            setPlaylistObj(dataObj);
-            console.log("playlist object: ", dataObj);
-        });
-    }, []);
-    
-    //object of configuration values for firebase auth
-    const firebaseUIConfig = {
-        signInOptions: [ 
-            GoogleAuthProvider.PROVIDER_ID,
-        { provider: EmailAuthProvider.PROVIDER_ID, requiredDisplayName: true }, ],
-        signInFlow: 'popup', //don't redirect to authenticate
-        credentialHelper: 'none', //don't show the email account chooser
-        callbacks: {
-            signInSuccessWithAuthResult: () => {
-                return false; //don't redirect after authentication
-            }
-        }
-    }
+    const userPlaylists = allPlaylists.filter((playlist) => {
+        return playlist.ownerId == currUser.uid;
+    })
 
     // show "you haven't created any warmup/playlist yet" & add buttons if this user has no playlist in firebase
     // show playlists that user uploaded
