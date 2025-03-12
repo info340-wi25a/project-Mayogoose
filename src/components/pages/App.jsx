@@ -140,7 +140,7 @@ function App() {
                         <h1>Vocal Warmup Made Easy</h1>
                         <br/>
                         <br/>
-                        <SearchBar setQuery={setQuery} />
+                        <SearchBar userObj={userObj} setQuery={setQuery} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
                         <br/>
                         <PlaylistCards albumsData={searchedPlaylists} />
                         <Footer />
