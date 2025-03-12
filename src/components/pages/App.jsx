@@ -10,7 +10,7 @@ import { PlaylistCards } from '../utils/PlaylistCards.jsx';
 import { SearchBar } from '../utils/SearchBar.jsx';
 import AddWarmupForm from "./AddWarmupForm.jsx"
 import PlaylistDetail from "./PlaylistDetail.jsx"
-import UserLib from "./UserProfile.jsx"
+import UserProfile from "./UserProfile.jsx"
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 import { CreatePlaylistForm } from "./CreatePlaylistForm.jsx";
 // for firebase auth
@@ -22,8 +22,8 @@ import { getDatabase, ref, push as firebasePush, onValue } from "firebase/databa
 
 function App() {
     const [query, setQuery] = useState("");
-    const [playlistObj, setPlaylistObj] = useState(null); // For retrieve playlist from firebase
-    const [selectedPlaylists, setselectedPlaylists] = useState([]); // For playlist
+    const [playlistArr, setPlaylistArr] = useState([]); // For retrieve playlist from firebase
+    const [searchedPlaylists, setSearchedPlaylists] = useState([]); // For playlist
     const [selectedWarmups, setSelectedWarmups] = useState([]); // For warm-ups
     const [userObj, setUserObj] = useState(null); // For logic 
     const auth = getAuth(); // only authenticated user can navigate to CreateWarmupForm, CreatePlaylistForm, & UserProfile
@@ -67,11 +67,13 @@ function App() {
                         warmups: warmups,
                     };
                 });
+                
+                setPlaylistArr(playlistArray);
     
                 if (query === "") {
-                    setselectedPlaylists(playlistArray);
+                    setSearchedPlaylists(playlistArray);
                 } else {
-                    setselectedPlaylists(playlistArray.filter(
+                    setSearchedPlaylists(playlistArray.filter(
                         (playlist) =>
                             playlist.Name.toLowerCase().includes(query.toLowerCase())
                             || playlist.goal.toLowerCase().includes(query.toLowerCase())
@@ -80,7 +82,7 @@ function App() {
                     ));
                 }
             } else {
-                setselectedPlaylists([]);
+                setSearchedPlaylists([]);
             }
         });
     }, [query]);
@@ -140,14 +142,22 @@ function App() {
                         <br/>
                         <SearchBar setQuery={setQuery} />
                         <br/>
-                        <PlaylistCards albumsData={selectedPlaylists} />
+                        <PlaylistCards albumsData={searchedPlaylists} />
                         <Footer />
                     </div>
                 }
             />
             <Route path="/createWarmup" element={<CreateWarmupForm />} />
             <Route path="/createPlaylist" element={<CreatePlaylistForm />} />
-            <Route path="/profile" element={<UserLib />} />
+            <Route 
+                path="/profile" 
+                element={
+                    <UserProfile 
+                        currUser={userObj}
+                        allPlaylist={playlistArr}
+                    />
+                } 
+            />
             <Route 
                 path="/addWarmup" 
                 element={<AddWarmupForm 
