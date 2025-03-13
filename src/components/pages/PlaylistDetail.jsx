@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDatabase, ref, onValue} from "firebase/database";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
 import { Footer } from "../navigation/Footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
@@ -16,10 +16,13 @@ import warmupData from '../../data/warmup.json'; // Add warmup data
 import playlistData from '../../data/playlist.json'; // Add playlist data
 // import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
 
+
 function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
     const { playlistId } = useParams(); 
+    const navigate = useNavigate(); 
     const playlist = playlistData.find(p => p.playlistId === playlistId);
     // const [currentVideoUrl, setCurrentVideoUrl] = useState(null); // Store current playing video
+    const location = useLocation();
 
 
     let warmups = [];
@@ -89,35 +92,44 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
                         <UploadImageForm />
                     </div>
                     <h3>My Playlist</h3>
-                    <button className="play-button" aria-label="Play playlist">
+                    {/* <button className="play-button" aria-label="Play playlist">
                         <span>▶</span> 
-                    </button>
+                    </button> 改为在每一个warmup后面有个play button */}
                 </div>
 
                 {selectedWarmups.length > 0 && (
                     <div className="warmups-list">
-                        {selectedWarmupItems}
+                        {selectedWarmups}
                     </div>
                 )}
-                {selectedWarmups.length === 0 && <p>Add Your Warmups</p>}
-            </>
-        );
-    }
+                {selectedWarmups.length === 0 && (
+                    <div className="add-warmup-button-container">
+                        <button 
+                            className="add-warmup-button" 
+                            onClick={() => navigate("/addWarmup", { state: { playlistId } })}
+                        >
+                            Add Warmups
+                        </button>
+                    </div>
+                )}
+                </>
+            );
+        }
 
-    return (
-        <div className="playlist-container">
-            <NavBar />
+        return (
+            <div className="playlist-container">
+                <NavBar />
 
-            <div className="playlist-content">
-                {playlistContent}
-                <div className="navigation-buttons">
-                    <NavButton text="Back to Home" destination="/" />
+                <div className="playlist-content">
+                    {playlistContent}
+                    <div className="navigation-buttons">
+                        <NavButton text="Back to Home" destination="/" />
+                    </div>
                 </div>
-            </div>
 
-            <Footer />
-        </div>
-    );
+                <Footer />
+            </div>
+        );
 }
 
 export default PlaylistDetail;

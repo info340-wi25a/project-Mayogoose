@@ -884,6 +884,30 @@ body {
     line-height: 1.5rem;
 }
 
+.add-warmup-button {
+    width: 180px; 
+    height: 50px; 
+    background-color: transparent;
+    color: white; 
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid white; 
+    border-radius: 20px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px auto; 
+}
+
+.add-warmup-button:hover {
+    background-color: white; 
+    color: black; 
+}
+
+
+
 /* Play button styles */
 .play-button {
     position: absolute;
