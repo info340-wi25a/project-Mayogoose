@@ -16,7 +16,7 @@ import warmupData from '../../data/warmup.json'; // Add warmup data
 import playlistData from '../../data/playlist.json'; // Add playlist data
 // import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
 
-function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
+function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
     const { playlistId } = useParams(); 
     const playlist = playlistData.find(p => p.playlistId === playlistId);
     // const [currentVideoUrl, setCurrentVideoUrl] = useState(null); // Store current playing video

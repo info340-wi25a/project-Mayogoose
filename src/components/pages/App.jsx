@@ -31,6 +31,7 @@ function App() {
     console.log("Selected warmups id: " + selectedWarmups); // Runa's AddWarmupForm for Routing
     console.log("set playlist array:", playlistArr); // Meiyao's UserProfile for private list of playlist
 
+    // fetch data from firebase every time the page load
     useEffect(() => {
         const db = getDatabase();
         const playlistRef = ref(db, 'playlists');
@@ -202,15 +203,17 @@ function App() {
                 element={<PlaylistDetail 
                     selectedWarmups={selectedWarmups} 
                     clearWarmups={clearWarmups} 
-                    removeWarmup={removeWarmupFromPlaylist} 
+                    removeWarmup={removeWarmupFromPlaylist}
                 />} 
             />
-            <Route path="/playlist/:playlistId" 
-            element={<PlaylistDetail 
-            selectedWarmups={selectedWarmups} 
-            clearWarmups={clearWarmups} 
-            removeWarmup={removeWarmupFromPlaylist} 
-            />} />
+            <Route 
+                path="/playlist/:playlistId" 
+                element={<PlaylistDetail 
+                    selectedWarmups={selectedWarmups} 
+                    clearWarmups={clearWarmups} 
+                    removeWarmup={removeWarmupFromPlaylist}
+                />} 
+            />
             <Route path="*" element={<Navigate to ="/"/>} /> 
         </Routes>
     );
