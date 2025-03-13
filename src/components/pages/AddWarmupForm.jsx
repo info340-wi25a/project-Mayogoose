@@ -3,15 +3,14 @@
     // search for warmups
     // add individual warmups to the new playlist
     import React, { useState } from 'react';
-    import { useNavigate } from 'react-router-dom';
+    import { useNavigate, useLocation } from 'react-router-dom';
     import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
     import { Footer } from "../navigation/Footer.jsx"; // Footer
     import { NavButton } from "../utils/NavButton.jsx"; // Component 1
     import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
     import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
-    import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
+    // import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3 didn't use it
     // import warmupData from '../../data/warmup.json'; // hard-coded warmup data (not used)
-    
     function AddWarmupForm({ warmupData, selectedWarmups = [], addWarmup, removeWarmup }) {
       const navigate = useNavigate(); 
     
