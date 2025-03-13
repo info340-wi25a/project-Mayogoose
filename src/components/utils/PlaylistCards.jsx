@@ -5,10 +5,10 @@ function PlaylistCard({ item }) {
     return (
         <div key={item.Id} className="playlist">
             <Link to={`/playlist/${item.playlistId}`}>
-                <img className="homepageCover" src={item.Img} alt={item.alt}/>
+                <img className="homepageCover" src={item.coverImageUrl} alt={item.alt}/>
             </Link>
             <div>
-                <h2 className="center">{item.Name}</h2>
+                <h2 className="center">{item.playlistName}</h2>
             </div>
         </div>
     );

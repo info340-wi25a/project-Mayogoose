@@ -15,7 +15,7 @@ import albumsData from "../../data/playlist.json";
 
 import { useNavigate } from 'react-router';
 
-function CreateWarmupForm(props) {
+function CreateWarmupForm({userID}) {
 
     // Step 1: what I know:
     // State: User Inputs
@@ -32,6 +32,7 @@ function CreateWarmupForm(props) {
     const [voiceRegister, setVoiceRegister] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
     const [showErrorMessages, setShowErrorMessages] = useState(false);
+    console.log("image extracted from youtube:", imgInput);
 
     // State: Modal display
     const navigateTo = useNavigate();
@@ -42,9 +43,7 @@ function CreateWarmupForm(props) {
         navigateTo("/profile");
     }
     const handleShow = () => {
-        if(isFormValid) {
-            setShow(true);
-        }
+        setShow(true);
     }
     const handleGoBack = () => {
         setShow(false);
@@ -99,6 +98,7 @@ function CreateWarmupForm(props) {
         setImgInput(getYouTubeThumbnail(value).thumbnailUrl);
         setAltInput(getYouTubeThumbnail(value).altText);
     }
+    
 
     const playlistHandleChange = (event) => {
         const value = event.target.value;
@@ -138,7 +138,7 @@ function CreateWarmupForm(props) {
         setVoiceRegister(value);
     }
 
-    // extract YouTube Preview Links
+    // extract YouTube Preview Links (AI-assisted)
     const extractVideoId = (url) => {
         const match = url.match(
         /(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
@@ -147,19 +147,26 @@ function CreateWarmupForm(props) {
     };
     const extractedVideoId = extractVideoId(urlInput);
 
-    // extract YouTube thumbnails (AI-Generated to help with a trivial feature)
+    // extract YouTube thumbnails to store as warmup cover image (AI-assisted)
     function getYouTubeThumbnail(url) {
         // Extract the video ID from the URL
-        const videoId = new URLSearchParams(new URL(url).search).get('v');
-        
-        if (videoId) {
-          // Construct the thumbnail URL
-          const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-          const altText = "YouTube video thumbnail"; // Default alt text
-      
-          return { thumbnailUrl, altText };
-        } else {
-          return { error: "Invalid YouTube URL" };
+        try {
+            let videoId = '';
+            if(url.includes("youtu.be/")) { // URL structure 1: 'https://youtu.be/VIDEO_ID
+                videoId = url.split("youtu.be")[1]?.split("?")[0];
+            } else if (url.includes("youtube.com/watch")) { // URL structure 2: 'https://youtube.com/watch?v=VIDEO_ID
+                videoId = new URLSearchParams(new URL(url).search).get('v');
+            }
+            
+            if (videoId) {
+                // Construct the thumbnail URL
+                const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                const altText = "YouTube video thumbnail";
+                return { thumbnailUrl, altText };
+            }
+        } catch (error) {
+            console.error("Error extracting thumbnail:", error);
+            return { error: "Invalid YouTube URL" };
         }
     }
 
@@ -194,10 +201,11 @@ function CreateWarmupForm(props) {
 
         // create a new warmup object to be added to database
         const newWarmupObj = {
+            ownerId: userID,
             warmupName: warmupName,
             url: urlInput,
             img: imgInput,
-            alt: altInput,
+            alt: altInput + " for " + warmupName,
             difficulty: difficulty,
             technique: technique,
             voiceType: voiceType,
@@ -237,6 +245,7 @@ function CreateWarmupForm(props) {
                             validityObj.voiceRegister;
         if(isFormValid){
             setIsFormValid(true);
+            handleShow();
             addWarmupToDatabase();
         } else {
             console.log("Form is invalid, please check your inputs");
@@ -386,7 +395,7 @@ function CreateWarmupForm(props) {
                             <div className="line"></div>
                         </div>
 
-                        <button className="badge-pill mx-auto" onClick={handleShow}>Submit</button>
+                        <button className="badge-pill mx-auto" onClick={handleSubmit}>Submit</button>
                         {/* <button className="badge-pill" onClick={handleShow} disabled={!isFormValid}>Submit</button> */}
 
                         {/* Confirmation Model */}

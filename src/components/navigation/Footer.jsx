@@ -7,7 +7,7 @@ export const Footer = () => {
     return (
       <footer>
         <div>
-          © 2025 Intune. All rights reserved.
+          © 2025 VoxTune. All rights reserved.
         </div>
       </footer>
     );

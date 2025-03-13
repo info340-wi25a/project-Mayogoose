@@ -3,20 +3,32 @@
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
 import { useNavigate } from 'react-router';
+import { SelectButton } from '../utils/SelectButton.jsx';
 
-function UserProfile({currUser, allPlaylists}) {
+function UserProfile({userID, allPlaylists}) {
+    console.log("playlist before filtered", allPlaylists);
 
     const userPlaylists = allPlaylists.filter((playlist) => {
-        return playlist.ownerId == currUser.uid;
+        return playlist.ownerId == userID;
     })
+
+    console.log("filtered user playlist", userPlaylists);
 
     // show "you haven't created any warmup/playlist yet" & add buttons if this user has no playlist in firebase
     // show playlists that user uploaded
-    const userPlaylistsList = userPlaylists 
+    const userPlaylistsList = userPlaylists && Object.keys(userPlaylists.length > 0)
     ? Object.values(userPlaylists).map((playlist) => (
-        <PlaylistItem playlistObj={playlist} />
+        <PlaylistItem 
+          key={playlist.id}
+          playlistObj={playlist} 
+        />
       ))
-    : <p>Loading playlists...</p>;
+    : (
+      <div>
+        <p>You haven't created any playlists yet!</p>
+        <SelectButton />
+      </div>
+    );
 
     return (
         <div>
@@ -38,11 +50,11 @@ function UserProfile({currUser, allPlaylists}) {
 export default UserProfile;
 
 
-function PlaylistItem({ playlistObj, key }) {
+function PlaylistItem({ key, playlistObj }) {
     const navigate = useNavigate();
 
     const name = playlistObj.playlistName;
-    const img = "../img/profile.png"; // waiting for ellie
+    const img = playlistObj.coverImageUrl;
     const timeStamp = playlistObj.createdAt.slice(0, 7); // only include first 7 digits (e.g. 2025-03)
     // const warmupNum = playlistObj.warmups.length; // how many warmups are currently in this playlist
 

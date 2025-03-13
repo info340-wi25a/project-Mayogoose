@@ -10,10 +10,10 @@
     import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
     import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
     import { SelectButton } from "../utils/SelectButton.jsx"; // Component 3
-    import warmupData from '../../data/warmup.json'; // Add warmup data
+    // import warmupData from '../../data/warmup.json'; // hard-coded warmup data (not used)
     
-    function AddWarmupForm({ selectedWarmups = [], addWarmup, removeWarmup }) {
-      const navigate = useNavigate();
+    function AddWarmupForm({ warmupData, selectedWarmups = [], addWarmup, removeWarmup }) {
+      const navigate = useNavigate(); 
     
       const warmupsList = warmupData.map(warmup => ({
           id: warmup.warmupId, 

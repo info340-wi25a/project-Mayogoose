@@ -23,26 +23,41 @@ import { getDatabase, ref, push as firebasePush, onValue } from "firebase/databa
 function App() {
     const [query, setQuery] = useState("");
     const [playlistArr, setPlaylistArr] = useState([]); // For retrieve playlist from firebase
+    const [warmupArr, setWarmupArr] = useState([]);
     const [searchedPlaylists, setSearchedPlaylists] = useState([]); // For playlist
     const [selectedWarmups, setSelectedWarmups] = useState([]); // For warm-ups
-    const [userObj, setUserObj] = useState(null); // For logic 
+    const [userID, setUserID] = useState(null); // For logic 
     const auth = getAuth(); // only authenticated user can navigate to CreateWarmupForm, CreatePlaylistForm, & UserProfile
     console.log("Selected warmups id: " + selectedWarmups); // Runa's AddWarmupForm for Routing
-
+    console.log("set playlist array:", playlistArr); // Meiyao's UserProfile for private list of playlist
 
     useEffect(() => {
         const db = getDatabase();
         const playlistRef = ref(db, 'playlists');
+        const warmupRef = ref(db, 'warmup');
 
         onAuthStateChanged(auth, (firebaseUser) => {
             console.log("login status changed")
-            console.log(firebaseUser)
+            console.log("user's uid:", firebaseUser.uid);
 
             if(firebaseUser) {
-                setUserObj(firebaseUser); // retrieve User UID
+                setUserID(firebaseUser.uid); // retrieve User UID
             }
         })
-    
+
+        // update warmup data
+        onValue(warmupRef, (snapshot) => {
+            const warmupData = snapshot.val();
+            if (warmupData) {
+                const warmupArray = Object.keys(warmupData).map((warmupId) => ({
+                    warmupId,
+                    ...warmupData[warmupId]
+                }))
+                setWarmupArr(warmupArray);
+            }
+        })
+        
+        // update playlist data
         onValue(playlistRef, (snapshot) => {
             const playlistData = snapshot.val();
     
@@ -58,8 +73,10 @@ function App() {
     
                     return {
                         playlistId: key,
-                        Name: playlistData[key].playlistName,
-                        Img: playlistData[key].Img,
+                        createdAt: playlistData[key].createdAt,
+                        ownerId: playlistData[key].ownerId,
+                        playlistName: playlistData[key].playlistName,
+                        coverImageUrl: playlistData[key].coverImageUrl,
                         alt: playlistData[key].alt,
                         goal: playlistData[key].goal,
                         genre: playlistData[key].genre,
@@ -86,7 +103,6 @@ function App() {
             }
         });
     }, [query]);
-    
 
     const FilteredPlaylists = (query, playlists) => {
         if (!query) {
@@ -140,20 +156,34 @@ function App() {
                         <h1>Vocal Warmup Made Easy</h1>
                         <br/>
                         <br/>
-                        <SearchBar userObj={userObj} setQuery={setQuery} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
+                        <SearchBar userObj={userID} setQuery={setQuery} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
                         <br/>
                         <PlaylistCards albumsData={searchedPlaylists} />
                         <Footer />
                     </div>
                 }
             />
-            <Route path="/createWarmup" element={<CreateWarmupForm />} />
-            <Route path="/createPlaylist" element={<CreatePlaylistForm />} />
+            <Route 
+                path="/createWarmup"
+                element={
+                    <CreateWarmupForm
+                        userID={userID}
+                    />
+                } 
+            />
+            <Route 
+                path="/createPlaylist" 
+                element={
+                    <CreatePlaylistForm
+                        userID={userID}
+                    />
+                } 
+            />
             <Route 
                 path="/profile" 
                 element={
                     <UserProfile 
-                        currUser={userObj}
+                        userID={userID}
                         allPlaylists={playlistArr}
                     />
                 } 
@@ -161,6 +191,7 @@ function App() {
             <Route 
                 path="/addWarmup" 
                 element={<AddWarmupForm 
+                    warmupData={warmupArr}
                     selectedWarmups={selectedWarmups} 
                     addWarmup={addWarmupToPlaylist} 
                     removeWarmup={removeWarmupFromPlaylist}

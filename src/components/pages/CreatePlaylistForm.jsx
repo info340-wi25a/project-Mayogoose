@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { getDatabase, ref, push as firebasePush } from "firebase/database";
 
-export function CreatePlaylistForm() {
+export function CreatePlaylistForm({userID}) {
     // Step 1: State for each input
     const [playlistName, setPlaylistName] = useState('');
     const [goal, setGoal] = useState('');
@@ -84,8 +84,10 @@ export function CreatePlaylistForm() {
             genre: genre,
             visibility: visibility,
             coverImageUrl: coverImageUrl,
+            alt: "playlist cover for" + playlistName,
             createdAt: new Date().toISOString(),
-            warmups: [] // Initialize empty warmups array
+            warmups: [], // Initialize empty warmups array
+            ownerId: userID
         }
 
         // Add to Firebase
@@ -143,12 +145,6 @@ export function CreatePlaylistForm() {
                             <div className="line"></div>
                         </div>
 
-                        {/* Upload Image */}
-                        <div>
-                            <h2>Upload Playlist Cover:</h2>
-                            <UploadImageForm onImageUpload={handleImageUpload} />
-                        </div>
-                        
                         {/* Name Input */}
                         <div>
                             <h2>Name</h2>
@@ -162,6 +158,14 @@ export function CreatePlaylistForm() {
                                 <div className="invalid-feedback">Please enter a valid name for playlist</div>
                             }
                         </div>
+                        
+
+                        {/* Upload Image */}
+                        <div>
+                            <h2>Upload Playlist Cover:</h2>
+                            <UploadImageForm onImageUpload={handleImageUpload} />
+                        </div>
+                        
                         
                         {/* Divider: Step 2 */}
                         <div className="line-container">
@@ -215,7 +219,7 @@ export function CreatePlaylistForm() {
                                 <p className="smallText">Step 3: Add Warmups to Your Playlist</p>
                             <div className="line"></div>
                         </div>
-                        <button className="badge-pill" type="submit">Create Playlist</button>
+                        <button className="badge-pill mx-auto" type="submit">Create Playlist</button>
                     </form>
                 </div>
             </div>
