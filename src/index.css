@@ -61,17 +61,18 @@ nav {
     margin-bottom: 50px;
 }
  
+/* Amelia's cards in homepage */
 .playlist {
     /* flexbox */
     display: flex;
     flex-wrap: wrap;
-    
     /* styling */
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #181818;
     width: 240px;
-
+    /* ensure all cards are even height no matter the content */
+    min-height: 320px; 
 }
 
 .playlist img {
@@ -171,7 +172,6 @@ main {
     width: 550px;
 
     /* styling */
-    margin-top: 2rem;
     padding: 2rem;
     border-radius: 20px;
     background-color: #181818;
@@ -664,7 +664,7 @@ body {
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 40px;
-    margin: 30px;
+    margin: 4rem;
 }
 
 /* search bar */

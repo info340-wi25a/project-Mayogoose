@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 // private helper
 function PlaylistCard({ item }) {
     return (
-        <div key={item.Id} className="playlist">
+        <div className="playlist">
             <Link to={`/playlist/${item.playlistId}`}>
                 <img className="homepageCover" src={item.coverImageUrl} alt={item.alt}/>
             </Link>

@@ -34,13 +34,16 @@ function UserProfile({userID, allPlaylists}) {
         <div>
             <NavBar />
             <div className="grid-container">
-                <div className="card">
-                    <div className="d-flex flex-column gap-3 mt-3">
-                        <h1>Your Playlists</h1>
-                        <p className="smallText">See what warmups / playlists you've uploaded!</p>
-                        {userPlaylistsList}
-                    </div>
+              <div>
+
+              </div>
+              <div className="card">
+                <div className="d-flex flex-column gap-3 mt-3">
+                  <h1>Your Playlists</h1>
+                  <p className="smallText">See what warmups / playlists you've uploaded!</p>
+                  {userPlaylistsList}
                 </div>
+              </div>
             </div>
             <Footer />
         </div>

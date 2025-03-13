@@ -153,14 +153,14 @@ function CreateWarmupForm({userID}) {
         try {
             let videoId = '';
             if(url.includes("youtu.be/")) { // URL structure 1: 'https://youtu.be/VIDEO_ID
-                videoId = url.split("youtu.be")[1]?.split("?")[0];
+                videoId = url.split("youtu.be/")[1]?.split("?")[0];
             } else if (url.includes("youtube.com/watch")) { // URL structure 2: 'https://youtube.com/watch?v=VIDEO_ID
                 videoId = new URLSearchParams(new URL(url).search).get('v');
             }
             
             if (videoId) {
                 // Construct the thumbnail URL
-                const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
                 const altText = "YouTube video thumbnail";
                 return { thumbnailUrl, altText };
             }
