@@ -75,7 +75,7 @@
             return;
         }
         const db = getDatabase();
-        const warmupRef = ref(db, `playlists/${playlistId}/warmups`);
+        const playlistWarmupRef = ref(db, `playlists/${playlistId}`);
 
         const warmupsObject = {};
         selectedWarmups.forEach(warmup => {
@@ -85,16 +85,17 @@
             };
         });
 
-        update(warmupRef, warmupsObject)
-            .then(() => {
-                navigate(`/playlist/${playlistId}`);
-            })
-            .catch(function(error) {
-                console.log("Got error:", error);
-                setAlertMessage(error.message);
-                setIsSearching(false);
-            });
+    // Perform the update the playlist warmup
+    update(playlistWarmupRef, { warmups: warmupsObject })
+        .then(() => {
+            navigate(`/playlist/${playlistId}`);
+        })
+        .catch(error => {
+            console.log("Got error:", error);
+        });
     }
+
+    const suggestedWarmups = warmupData.filter(warmup => !isWarmupSelected(warmup.warmupId));
 
     let selectedWarmupsList = selectedWarmups.map(warmup => (
         <AddWarmupItem
@@ -106,13 +107,13 @@
         />
     ));
 
-    let warmupDataList = warmupData.map(warmup => (
+    let suggestedWarmupsList = suggestedWarmups.map(warmup => (
         <AddWarmupItem
             key={warmup.warmupId}
             warmup={warmup}
             onAdd={() => handleToggleWarmup(warmup)}
             onRemove={() => handleToggleWarmup(warmup)}
-            isSelected={isWarmupSelected(warmup.warmupId)}
+            isSelected={false}
         />
     ));
 
@@ -136,10 +137,10 @@
                             </div>
                         </div>
                         <div className="warmups-column">
-                            <h2>Suggested Warm-ups ({warmupData.length})</h2>
+                            <h2>Suggested Warm-ups ({suggestedWarmups.length})</h2>
                             <div className="warmups-list">
-                                {warmupData.length === 0 && <p>No warm-ups available.</p>}
-                                {warmupDataList}
+                                {suggestedWarmups.length === 0 && <p>No warm-ups available.</p>}
+                                {suggestedWarmupsList}
                             </div>
                         </div>
                     </div>

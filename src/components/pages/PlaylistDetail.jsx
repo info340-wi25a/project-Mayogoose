@@ -15,11 +15,11 @@ import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import warmupData from '../../data/warmup.json'; // Add warmup data
 import playlistData from '../../data/playlist.json'; // Add playlist data
 // import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
-function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
+function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
     const { playlistId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
-    const [playlist, setPlaylist] = useState(null);
+    const [playlist, setPlaylist] = useState(playlistObj || null);
     const [warmups, setWarmups] = useState([]);
 
     useEffect(() => {
