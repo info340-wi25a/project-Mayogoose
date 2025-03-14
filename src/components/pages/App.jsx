@@ -14,8 +14,7 @@ import UserProfile from "./UserProfile.jsx"
 import CreateWarmupForm from "./CreateWarmupForm.jsx"
 import { CreatePlaylistForm } from "./CreatePlaylistForm.jsx";
 // for firebase auth
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, EmailAuthProvider, GoogleAuthProvider, signOut } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 // for firebase real-time database
 import { getDatabase, ref, push as firebasePush, onValue } from "firebase/database";
@@ -26,11 +25,13 @@ function App() {
     const [warmupArr, setWarmupArr] = useState([]);
     const [searchedPlaylists, setSearchedPlaylists] = useState([]); // For playlist
     const [selectedWarmups, setSelectedWarmups] = useState([]); // For warm-ups
-    const [userID, setUserID] = useState(null); // For logic 
+    const [currUserID, setCurrUserID] = useState(''); // For logic 
     const auth = getAuth(); // only authenticated user can navigate to CreateWarmupForm, CreatePlaylistForm, & UserProfile
     console.log("Selected warmups id: " + selectedWarmups); // Runa's AddWarmupForm for Routing
     console.log("set playlist array:", playlistArr); // Meiyao's UserProfile for private list of playlist
+    console.log("current user: ", currUserID);
 
+    // fetch data from firebase every time the page load
     useEffect(() => {
         const db = getDatabase();
         const playlistRef = ref(db, 'playlists');
@@ -38,10 +39,9 @@ function App() {
 
         onAuthStateChanged(auth, (firebaseUser) => {
             console.log("login status changed")
-            console.log("user's uid:", firebaseUser.uid);
 
             if(firebaseUser) {
-                setUserID(firebaseUser.uid); // retrieve User UID
+                setCurrUserID(firebaseUser.uid); // retrieve User UID
             }
         })
 
@@ -126,7 +126,7 @@ function App() {
         setSelectedWarmups([]);
     };
 
-    // meiyao: auth UI
+    // meiyao: auth login UI
     //object of configuration values for firebase auth
     const firebaseUIConfig = {
         signInOptions: [ 
@@ -140,7 +140,6 @@ function App() {
             }
         }
     }
-
 
     // unauthorized users can view warmups from homepage
     // but if they wanna create new warmup/playlists, render firebase's auth pop-ups
@@ -156,7 +155,7 @@ function App() {
                         <h1>Vocal Warmup Made Easy</h1>
                         <br/>
                         <br/>
-                        <SearchBar userObj={userID} setQuery={setQuery} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
+                        <SearchBar userObj={currUserID} setQuery={setQuery} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
                         <br/>
                         <PlaylistCards albumsData={searchedPlaylists} />
                         <Footer />
@@ -167,7 +166,7 @@ function App() {
                 path="/createWarmup"
                 element={
                     <CreateWarmupForm
-                        userID={userID}
+                        userID={currUserID}
                     />
                 } 
             />
@@ -175,7 +174,7 @@ function App() {
                 path="/createPlaylist" 
                 element={
                     <CreatePlaylistForm
-                        userID={userID}
+                        userID={currUserID}
                     />
                 } 
             />
@@ -183,7 +182,7 @@ function App() {
                 path="/profile" 
                 element={
                     <UserProfile 
-                        userID={userID}
+                        userID={currUserID}
                         allPlaylists={playlistArr}
                     />
                 } 
@@ -202,15 +201,17 @@ function App() {
                 element={<PlaylistDetail 
                     selectedWarmups={selectedWarmups} 
                     clearWarmups={clearWarmups} 
-                    removeWarmup={removeWarmupFromPlaylist} 
+                    removeWarmup={removeWarmupFromPlaylist}
                 />} 
             />
-            <Route path="/playlist/:playlistId" 
-            element={<PlaylistDetail 
-            selectedWarmups={selectedWarmups} 
-            clearWarmups={clearWarmups} 
-            removeWarmup={removeWarmupFromPlaylist} 
-            />} />
+            <Route 
+                path="/playlist/:playlistId" 
+                element={<PlaylistDetail 
+                    selectedWarmups={selectedWarmups} 
+                    clearWarmups={clearWarmups} 
+                    removeWarmup={removeWarmupFromPlaylist}
+                />} 
+            />
             <Route path="*" element={<Navigate to ="/"/>} /> 
         </Routes>
     );
