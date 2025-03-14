@@ -833,6 +833,31 @@ body {
     background-color: #ffcc00;
 }
 
+/* Save Warmups Button */
+.create-button-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px; 
+    width: 100%;
+}
+
+.create-button {
+    background-color: #ffdb4d; 
+    color: black; 
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px; 
+    border: none;
+    border-radius: 30px; 
+    cursor: pointer;
+    text-align: center;
+    min-width: 180px; 
+}
+
+.create-button:hover {
+    background-color: #ffcc00; 
+}
 
 
 /* Playlist Detail */
@@ -884,15 +909,16 @@ body {
     line-height: 1.5rem;
 }
 
+/* Add Warmups Button */
 .add-warmup-button {
-    width: 180px; 
+    width: 160px; 
     height: 50px; 
     background-color: transparent;
     color: white; 
     font-size: 16px;
     font-weight: bold;
     border: 2px solid white; 
-    border-radius: 20px; 
+    border-radius: 30px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -905,7 +931,6 @@ body {
     background-color: white; 
     color: black; 
 }
-
 
 
 /* Play button styles */

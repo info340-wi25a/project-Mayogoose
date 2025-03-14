@@ -9,7 +9,7 @@ import { NavBar } from "../navigation/NavBar.jsx";
 import { Footer } from '../navigation/Footer.jsx';
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useState } from 'react';
 import { getDatabase, ref, push as firebasePush } from "firebase/database";
 

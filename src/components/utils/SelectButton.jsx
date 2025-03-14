@@ -3,7 +3,7 @@
 // On AddWarmupFrom, pass in only "create warmup"
 // Looks like a + button that opens a dropdown menu with "New Warm-up" and "New Playlist" options
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';

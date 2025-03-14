@@ -3,7 +3,7 @@
 import React, { useRef, useState } from 'react';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getApp } from 'firebase/app';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export function UploadImageForm({elements, onImageUpload}) {
     const navigate = useNavigate();

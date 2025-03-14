@@ -4,9 +4,9 @@
 // 2. recommended playlist from the main page
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { getDatabase, ref, onValue} from "firebase/database";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
 import { Footer } from "../navigation/Footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
@@ -15,31 +15,47 @@ import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import warmupData from '../../data/warmup.json'; // Add warmup data
 import playlistData from '../../data/playlist.json'; // Add playlist data
 // import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
-
-
 function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
-    const { playlistId } = useParams(); 
-    const navigate = useNavigate(); 
-    const playlist = playlistData.find(p => p.playlistId === playlistId);
-    // const [currentVideoUrl, setCurrentVideoUrl] = useState(null); // Store current playing video
+    const { playlistId } = useParams();
+    const navigate = useNavigate();
     const location = useLocation();
+    const [playlist, setPlaylist] = useState(null);
+    const [warmups, setWarmups] = useState([]);
 
+    useEffect(() => {
+        if (!playlistId) return;
+        const db = getDatabase();
+        const playlistRef = ref(db, "playlists/" + playlistId);
 
-    let warmups = [];
-    if (playlist) {
-        playlist.warmupIDs.forEach(id => {
-            const warmup = warmupData.find(w => w.warmupId.toString() === id.toString());
-            if (warmup) {
-                warmups.push(warmup);
+        onValue(playlistRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                setPlaylist(data);
+                if (data.warmups) {
+                    setWarmups(Object.values(data.warmups));
+                } else {
+                    setWarmups([]);
+                }
             }
         });
-    } else {
-        warmups = selectedWarmups;
-    }
+    }, [playlistId]);
 
-    let selectedWarmupItems;
-    if (selectedWarmups.length > 0) {
-        selectedWarmupItems = selectedWarmups.map(warmup => (
+    let warmupItems;
+    if (playlist) {
+        warmupItems = warmups.map(warmup => (
+            <div key={warmup.warmupId} className="warmup-item">
+                <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
+                <div className="warmup-details">
+                    <h3>{warmup.warmupName}</h3>
+                    <p><strong>Technique:</strong> {warmup.technique}</p>
+                    <p><strong>Difficulty:</strong> {warmup.difficulty}</p>
+                    <p><strong>Voice Register:</strong> {warmup.voiceRegister}</p>
+                    <p><strong>Voice Type:</strong> {warmup.voiceType}</p>
+                </div>
+            </div>
+        ));
+    } else {
+        warmupItems = selectedWarmups.map(warmup => (
             <AddWarmupItem 
                 key={warmup.warmupId} 
                 warmup={warmup} 
@@ -47,31 +63,22 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
                 onRemove={removeWarmup} 
             />
         ));
-    } else {
-        selectedWarmupItems = <p>No warm-ups selected.</p>;
     }
-    
 
-    // warmups for rendering
-    const warmupItems = warmups.map(warmup => (
-        <div key={warmup.warmupId} className="warmup-item">
-            <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
-            <div className="warmup-details">
-                <h3>{warmup.warmupName}</h3>
-                <p><strong>Technique:</strong> {warmup.technique}</p>
-                <p><strong>Difficulty:</strong> {warmup["Difficulty Level"]}</p>
-            </div>
-        </div>
-    ));
+    let warmupContent;
+    if (warmupItems.length > 0) {
+        warmupContent = warmupItems;
+    } else {
+        warmupContent = <p>No warm-ups in this playlist.</p>;
+    }
 
-    // Render playlist details or user's custom playlist
     let playlistContent;
     if (playlist) {
         playlistContent = (
             <>
                 <div className="playlist-detail-header">
-                    <img src={playlist.Img} alt={"Cover image for " + playlist.Name + " playlist"} className="playlist-detail-image" />
-                    <h1>{playlist.Name}</h1>
+                    <img src={playlist.coverImageUrl} alt={"Cover image for " + playlist.playlistName} className="playlist-detail-image" />
+                    <h1>{playlist.playlistName}</h1>
                     <div className="playlist-detail-info">
                         <p><strong>Goal:</strong> {playlist.goal}</p>
                         <p><strong>Genre:</strong> {playlist.genre}</p>
@@ -79,7 +86,13 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
                 </div>
                 <div className="warmups-list">
                     <h2>Warm-ups</h2>
-                    {warmupItems}
+                    {warmupContent}
+                    <button 
+                        className="add-warmup-button" 
+                        onClick={() => navigate("/addWarmup", { state: { playlistId } })}
+                    >
+                        Add Warmups
+                    </button>
                 </div>
             </>
         );
@@ -88,19 +101,14 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
             <>
                 <div className="playlist-header">
                     <div className="upload-image-container">
-                        <h2>Upload Your Playlist Image:</h2> {/* Will delete later */}
+                        <h2>Upload Your Playlist Image:</h2>
                         <UploadImageForm />
                     </div>
                     <h3>My Playlist</h3>
-                    {/* <button className="play-button" aria-label="Play playlist">
-                        <span>▶</span> 
-                    </button> 改为在每一个warmup后面有个play button */}
                 </div>
 
                 {selectedWarmups.length > 0 && (
-                    <div className="warmups-list">
-                        {selectedWarmups}
-                    </div>
+                    <div className="warmups-list">{warmupItems}</div>
                 )}
                 {selectedWarmups.length === 0 && (
                     <div className="add-warmup-button-container">
@@ -112,24 +120,138 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
                         </button>
                     </div>
                 )}
-                </>
-            );
-        }
-
-        return (
-            <div className="playlist-container">
-                <NavBar />
-
-                <div className="playlist-content">
-                    {playlistContent}
-                    <div className="navigation-buttons">
-                        <NavButton text="Back to Home" destination="/" />
-                    </div>
-                </div>
-
-                <Footer />
-            </div>
+            </>
         );
+    }
+
+    return (
+        <div className="playlist-container">
+            <NavBar />
+            <div className="playlist-content">
+                {playlistContent}
+                <div className="navigation-buttons">
+                    <NavButton text="Back to Home" destination="/" />
+                </div>
+            </div>
+            <Footer />
+        </div>
+    );
 }
+
+// the original code:
+// function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
+//     const { playlistId } = useParams(); 
+//     const navigate = useNavigate(); 
+//     const playlist = playlistData.find(p => p.playlistId === playlistId);
+//     // const [currentVideoUrl, setCurrentVideoUrl] = useState(null); // Store current playing video
+//     const location = useLocation();
+
+
+//     let warmups = [];
+//     if (playlist) {
+//         playlist.warmupIDs.forEach(id => {
+//             const warmup = warmupData.find(w => w.warmupId.toString() === id.toString());
+//             if (warmup) {
+//                 warmups.push(warmup);
+//             }
+//         });
+//     } else {
+//         warmups = selectedWarmups;
+//     }
+
+//     let selectedWarmupItems;
+//     if (selectedWarmups.length > 0) {
+//         selectedWarmupItems = selectedWarmups.map(warmup => (
+//             <AddWarmupItem 
+//                 key={warmup.warmupId} 
+//                 warmup={warmup} 
+//                 isSelected={true} 
+//                 onRemove={removeWarmup} 
+//             />
+//         ));
+//     } else {
+//         selectedWarmupItems = <p>No warm-ups selected.</p>;
+//     }
+    
+
+//     // warmups for rendering
+//     const warmupItems = warmups.map(warmup => (
+//         <div key={warmup.warmupId} className="warmup-item">
+//             <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
+//             <div className="warmup-details">
+//                 <h3>{warmup.warmupName}</h3>
+//                 <p><strong>Technique:</strong> {warmup.technique}</p>
+//                 <p><strong>Difficulty:</strong> {warmup["Difficulty Level"]}</p>
+//             </div>
+//         </div>
+//     ));
+
+//     // Render playlist details or user's custom playlist
+//     let playlistContent;
+//     if (playlist) {
+//         playlistContent = (
+//             <>
+//                 <div className="playlist-detail-header">
+//                     <img src={playlist.Img} alt={"Cover image for " + playlist.Name + " playlist"} className="playlist-detail-image" />
+//                     <h1>{playlist.Name}</h1>
+//                     <div className="playlist-detail-info">
+//                         <p><strong>Goal:</strong> {playlist.goal}</p>
+//                         <p><strong>Genre:</strong> {playlist.genre}</p>
+//                     </div>
+//                 </div>
+//                 <div className="warmups-list">
+//                     <h2>Warm-ups</h2>
+//                     {warmupItems}
+//                 </div>
+//             </>
+//         );
+//     } else {
+//         playlistContent = (
+//             <>
+//                 <div className="playlist-header">
+//                     <div className="upload-image-container">
+//                         <h2>Upload Your Playlist Image:</h2> {/* Will delete later */}
+//                         <UploadImageForm />
+//                     </div>
+//                     <h3>My Playlist</h3>
+//                     {/* <button className="play-button" aria-label="Play playlist">
+//                         <span>▶</span> 
+//                     </button> 改为在每一个warmup后面有个play button */}
+//                 </div>
+
+//                 {selectedWarmups.length > 0 && (
+//                     <div className="warmups-list">
+//                         {selectedWarmups}
+//                     </div>
+//                 )}
+//                 {selectedWarmups.length === 0 && (
+//                     <div className="add-warmup-button-container">
+//                         <button 
+//                             className="add-warmup-button" 
+//                             onClick={() => navigate("/addWarmup", { state: { playlistId } })}
+//                         >
+//                             Add Warmups
+//                         </button>
+//                     </div>
+//                 )}
+//                 </>
+//             );
+//         }
+
+//         return (
+//             <div className="playlist-container">
+//                 <NavBar />
+
+//                 <div className="playlist-content">
+//                     {playlistContent}
+//                     <div className="navigation-buttons">
+//                         <NavButton text="Back to Home" destination="/" />
+//                     </div>
+//                 </div>
+
+//                 <Footer />
+//             </div>
+//         );
+// }
 
 export default PlaylistDetail;
