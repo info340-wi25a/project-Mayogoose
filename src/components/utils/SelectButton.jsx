@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-export function SelectButton({ userObj, elements, auth, firebaseUIConfig}) {
+export function SelectButton({ userObj, elements, auth, firebaseUIConfig }) {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const handleClose = () => setShowModal(false);

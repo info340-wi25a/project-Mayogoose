@@ -92,7 +92,7 @@ function App() {
                 } else {
                     setSearchedPlaylists(playlistArray.filter(
                         (playlist) =>
-                            playlist.Name.toLowerCase().includes(query.toLowerCase())
+                            playlist.playlistName.toLowerCase().includes(query.toLowerCase())
                             || playlist.goal.toLowerCase().includes(query.toLowerCase())
                             || playlist.genre.toLowerCase().includes(query.toLowerCase())
                             || playlist.warmups.some((warmup) => warmup.warmupName.toLowerCase().includes(query.toLowerCase()))
@@ -149,7 +149,7 @@ function App() {
                 path="/"
                 element={
                     <div>
-                        <NavBar />
+                        <NavBar userObj={currUserID} auth={auth} firebaseUIConfig={firebaseUIConfig} />
                         <br/>
                         <br/>
                         <h1>Vocal Warmup Made Easy</h1>
