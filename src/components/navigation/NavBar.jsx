@@ -6,19 +6,23 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router";
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import '../../../src/index.css';
 
 export const NavBar = ({ userObj, auth, firebaseUIConfig }) => {
-
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
 
   const handleProfileClick = () => {
-    if (!userObj) {
+    if (userObj) {
+      navigate('/profile');
+    } else {
       setShowModal(true);
     }
   };
+
 
   return (
     <nav >
@@ -32,9 +36,8 @@ export const NavBar = ({ userObj, auth, firebaseUIConfig }) => {
         <img 
           src="../img/profile.png" 
           alt="Profile" 
-          onClick={handleProfileClick}
+          onClick={handleProfileClick} 
         />
-        {userObj && <Link to="/profile" className="profile-link">Profile</Link>}
       </div>
 
       <Modal show={showModal} onHide={handleClose}>
