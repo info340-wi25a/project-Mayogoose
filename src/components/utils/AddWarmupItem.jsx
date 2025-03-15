@@ -4,9 +4,9 @@
 import React from 'react';
 
 export function AddWarmupItem({ warmup, onAdd, isSelected, onRemove}) {
-  const name = warmup.Name || warmup.name;
-  const image = warmup.Img || warmup.image;
-  const voiceType = warmup["Voice Type"] || warmup.voiceType || "";
+  const name = warmup.warmupName || "";
+  const image = warmup.img || "";
+  const voiceType = warmup.voiceType|| "";
   
   let buttonClass = "add-warmup-btn";
   if (isSelected) {

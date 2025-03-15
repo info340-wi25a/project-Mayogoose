@@ -14,7 +14,7 @@
     function AddWarmupForm() {
     const navigate = useNavigate();
     const location = useLocation();
-    const playlistId = location.state && location.state.playlistId; // make sure to get the correct playlistId
+    const playlistId = location.state && location.state.playlistId; 
     const [selectedWarmups, setSelectedWarmups] = useState([]);
     const [warmupData, setWarmupData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -30,8 +30,8 @@
                     warmupId: id,
                     warmupName: data[id].warmupName,  
                     img: data[id].img,                
-                    technique: data[id].technique,
-                    difficulty: data[id].difficulty
+                    // technique: data[id].technique,
+                    // difficulty: data[id].difficulty
                 }));
                 setWarmupData(warmupsArray);
                 }
@@ -64,7 +64,15 @@
             if (isWarmupSelected(warmup.warmupId)) {
                 return prev.filter(w => w.warmupId !== warmup.warmupId); 
             } else {
-                return [...prev, warmup]; 
+                return [...prev, {
+                warmupId: warmup.warmupId,
+                warmupName: warmup.warmupName,
+                img: warmup.img,
+                technique: warmup.technique,
+                difficulty: warmup.difficulty,
+                voiceRegister: warmup.voiceRegister,
+                voiceType: warmup.voiceType
+            }]; 
             }
         });
     };
@@ -81,7 +89,11 @@
         selectedWarmups.forEach(warmup => {
             warmupsObject[warmup.warmupId] = {
                 warmupName: warmup.warmupName,
-                img: warmup.img
+                img: warmup.img,
+                technique: warmup.technique || "",
+                difficulty: warmup.difficulty || "",
+                voiceRegister: warmup.voiceRegister || "",
+                voiceType: warmup.voiceType || ""
             };
         });
 

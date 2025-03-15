@@ -12,15 +12,19 @@ import { Footer } from "../navigation/Footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
-import warmupData from '../../data/warmup.json'; // Add warmup data
-import playlistData from '../../data/playlist.json'; // Add playlist data
-// import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
+// import warmupData from '../../data/warmup.json'; // Add warmup data
+// import playlistData from '../../data/playlist.json'; // Add playlist data
+import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
+
 function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
     const { playlistId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const [playlist, setPlaylist] = useState(playlistObj || null);
     const [warmups, setWarmups] = useState([]);
+    const [selectedUrl, setSelectedUrl] = useState(null); // for youtube preview
+    const [playingWarmupId, setPlayingWarmupId] = useState(null); // track which warmup is playing
+    const [isPlaying, setIsPlaying] = useState(false); // track play/pause state
 
     useEffect(() => {
         if (!playlistId) return;
@@ -32,7 +36,33 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
             if (data) {
                 setPlaylist(data);
                 if (data.warmups) {
-                    setWarmups(Object.values(data.warmups));
+                    // Fetch complete warmup details from the warmup node
+                    const warmupIds = Object.keys(data.warmups);
+                    if (warmupIds.length > 0) {
+                        const warmupRef = ref(db, "warmup");
+                        onValue(warmupRef, (warmupSnapshot) => {
+                            const warmupData = warmupSnapshot.val();
+                            if (warmupData) {
+                                const completeWarmups = warmupIds.map(id => {
+                                    const basicInfo = data.warmups[id];
+                                    const fullInfo = warmupData[id] || {};
+                                    return {
+                                        warmupId: id,
+                                        warmupName: basicInfo.warmupName || fullInfo.warmupName || "",
+                                        img: basicInfo.img || fullInfo.img || "",
+                                        technique: fullInfo.technique || "",
+                                        difficulty: fullInfo.difficulty || "",
+                                        voiceRegister: fullInfo.voiceRegister || "",
+                                        voiceType: fullInfo.voiceType || "",
+                                        url: fullInfo.url || ""
+                                    };
+                                });
+                                setWarmups(completeWarmups);
+                            }
+                        });
+                    } else {
+                        setWarmups([]);
+                    }
                 } else {
                     setWarmups([]);
                 }
@@ -40,20 +70,93 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
         });
     }, [playlistId]);
 
+
+    // Refer to /CreateWarmupForm.jsx
+    const extractVideoId = (url) => {
+        const match = url.match(
+            /(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+        );
+        return match ? match[1] : null;
+    };
+
+    const handlePlayWarmup = (warmup) => {
+        if (!warmup.url) return;
+        const videoId = extractVideoId(warmup.url);
+        if (!videoId) return;
+        
+        // If clicking the same warmup that's already selected
+        if (playingWarmupId === warmup.warmupId) {
+            setIsPlaying(!isPlaying);
+        } else {
+            const videoId = extractVideoId(warmup.url);
+            if (videoId) {
+                setSelectedUrl(videoId);
+                setPlayingWarmupId(warmup.warmupId);
+                setIsPlaying(true); 
+            }
+        }
+    };
+
     let warmupItems;
+    
+    // the original one
+    // if (playlist) {
+    //     warmupItems = warmups.map(warmup => (
+            
+    //         <div key={warmup.warmupId} className="warmup-item">
+    //             <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
+    //             <div className="warmup-details">
+    //                 <h3>{warmup.warmupName}</h3>
+    //                 <p><strong>Technique:</strong> {warmup.technique}</p>
+    //                 <p><strong>Difficulty:</strong> {warmup.difficulty}</p>
+    //                 <p><strong>Voice Register:</strong> {warmup.voiceRegister}</p>
+    //                 <p><strong>Voice Type:</strong> {warmup.voiceType}</p>
+    //                 <button 
+    //                     className={`play-button ${playingWarmupId === warmup.warmupId ? 'playing' : ''}`}
+    //                     onClick={() => handlePlayWarmup(warmup)} 
+    //                     disabled={!warmup.url}
+    //                 >
+    //                     {playingWarmupId === warmup.warmupId ? '⏸️' : '▶'}
+    //                 </button>
+    //             </div>
+    //         </div>
+    //     ));
+    // } else {
+    //     warmupItems = selectedWarmups.map(warmup => (
+    //         <AddWarmupItem 
+    //             key={warmup.warmupId} 
+    //             warmup={warmup} 
+    //             isSelected={true} 
+    //             onRemove={removeWarmup} 
+    //         />
+    //     ));
+    // }
     if (playlist) {
-        warmupItems = warmups.map(warmup => (
-            <div key={warmup.warmupId} className="warmup-item">
-                <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
-                <div className="warmup-details">
-                    <h3>{warmup.warmupName}</h3>
-                    <p><strong>Technique:</strong> {warmup.technique}</p>
-                    <p><strong>Difficulty:</strong> {warmup.difficulty}</p>
-                    <p><strong>Voice Register:</strong> {warmup.voiceRegister}</p>
-                    <p><strong>Voice Type:</strong> {warmup.voiceType}</p>
+        warmupItems = warmups.map(warmup => {
+            const isThisWarmupPlaying = playingWarmupId === warmup.warmupId && isPlaying;
+            const hasUrl = !!extractVideoId(warmup.url);
+            
+            return (
+                <div key={warmup.warmupId} className="warmup-item">
+                    <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
+                    <div className="warmup-details">
+                        <h3>{warmup.warmupName}</h3>
+                        <p><strong>Technique:</strong> {warmup.technique}</p>
+                        <p><strong>Difficulty:</strong> {warmup.difficulty}</p>
+                        <p><strong>Voice Register:</strong> {warmup.voiceRegister}</p>
+                        <p><strong>Voice Type:</strong> {warmup.voiceType}</p>
+                        {hasUrl && (
+                            <button 
+                                className={`play-button ${isThisWarmupPlaying ? 'playing' : ''}`}
+                                onClick={() => handlePlayWarmup(warmup)}
+                            >
+                                {isThisWarmupPlaying ? '⏸️' : '▶️'}
+                            </button>
+                        )}
+                    </div>
                 </div>
-            </div>
-        ));
+            );
+        });
     } else {
         warmupItems = selectedWarmups.map(warmup => (
             <AddWarmupItem 
@@ -77,7 +180,13 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
         playlistContent = (
             <>
                 <div className="playlist-detail-header">
-                    <img src={playlist.coverImageUrl} alt={"Cover image for " + playlist.playlistName} className="playlist-detail-image" />
+                    {selectedUrl ? (
+                        <PlaylistPlayer selectedUrl={selectedUrl} isPlaying={isPlaying}  /> // Show YouTube player
+                    ) : (
+                        <img src={playlist.coverImageUrl} 
+                             alt={"Cover image for " + playlist.playlistName} 
+                             className="playlist-detail-image" />
+                    )}
                     <h1>{playlist.playlistName}</h1>
                     <div className="playlist-detail-info">
                         <p><strong>Goal:</strong> {playlist.goal}</p>
