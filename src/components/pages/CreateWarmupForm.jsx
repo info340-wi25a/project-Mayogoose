@@ -6,6 +6,8 @@ import Modal from 'react-bootstrap/Modal';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
 import { useEffect } from "react";
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue, get as firebaseGet } from "firebase/database";
 // Components Imports
 import { NavBar } from '../navigation/NavBar.jsx';
@@ -13,7 +15,6 @@ import { Footer } from '../navigation/Footer.jsx';
 // Playlist Data for playlist selection
 import albumsData from "../../data/playlist.json";
 
-import { useNavigate } from 'react-router';
 
 function CreateWarmupForm({userID}) {
 
@@ -33,6 +34,7 @@ function CreateWarmupForm({userID}) {
     const [isFormValid, setIsFormValid] = useState(false);
     const [showErrorMessages, setShowErrorMessages] = useState(false);
     console.log("image extracted from youtube:", imgInput);
+    console.log("playlist ID: ", playlistId);
 
     // State: Modal display
     const navigateTo = useNavigate();
@@ -50,8 +52,8 @@ function CreateWarmupForm({userID}) {
         navigateTo(-1); // equavalent of window.history.back();
     }
     const handlePlay = () => {
+        console.log("handleplay triggered, redirecting to playlist page");
         setShow(false);
-        navigateTo("/PlaylistDetails")
     }
 
     // Options Select Bars:
@@ -409,7 +411,7 @@ function CreateWarmupForm({userID}) {
                                 Go Back
                             </Button>
                             <button className="badge-pill" onClick={handlePlay}>
-                                Play Now!
+                                <Link className="text-decoration-none text-dark" to={`/playlist/${playlistId}`}>Play Now!</Link>
                             </button>
                             </Modal.Footer>
                         </Modal>                        
