@@ -12,11 +12,9 @@ import { Footer } from "../navigation/Footer.jsx"; // Footer
 import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
-// import warmupData from '../../data/warmup.json'; // Add warmup data
-// import playlistData from '../../data/playlist.json'; // Add playlist data
 import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
 
-function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
+function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userObj, auth, firebaseUIConfig}) {
     const { playlistId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
@@ -81,10 +79,10 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
 
     const handlePlayWarmup = (warmup) => {
         if (!warmup.url) return;
+        // Added a null check in the extractVideoId function to prevent errors when URL is undefined (AI-assisted)
         const videoId = extractVideoId(warmup.url);
         if (!videoId) return;
         
-        // If clicking the same warmup that's already selected
         if (playingWarmupId === warmup.warmupId) {
             setIsPlaying(!isPlaying);
         } else {
@@ -98,43 +96,10 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
     };
 
     let warmupItems;
-    
-    // the original one
-    // if (playlist) {
-    //     warmupItems = warmups.map(warmup => (
-            
-    //         <div key={warmup.warmupId} className="warmup-item">
-    //             <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
-    //             <div className="warmup-details">
-    //                 <h3>{warmup.warmupName}</h3>
-    //                 <p><strong>Technique:</strong> {warmup.technique}</p>
-    //                 <p><strong>Difficulty:</strong> {warmup.difficulty}</p>
-    //                 <p><strong>Voice Register:</strong> {warmup.voiceRegister}</p>
-    //                 <p><strong>Voice Type:</strong> {warmup.voiceType}</p>
-    //                 <button 
-    //                     className={`play-button ${playingWarmupId === warmup.warmupId ? 'playing' : ''}`}
-    //                     onClick={() => handlePlayWarmup(warmup)} 
-    //                     disabled={!warmup.url}
-    //                 >
-    //                     {playingWarmupId === warmup.warmupId ? '⏸️' : '▶'}
-    //                 </button>
-    //             </div>
-    //         </div>
-    //     ));
-    // } else {
-    //     warmupItems = selectedWarmups.map(warmup => (
-    //         <AddWarmupItem 
-    //             key={warmup.warmupId} 
-    //             warmup={warmup} 
-    //             isSelected={true} 
-    //             onRemove={removeWarmup} 
-    //         />
-    //     ));
-    // }
     if (playlist) {
         warmupItems = warmups.map(warmup => {
             const isThisWarmupPlaying = playingWarmupId === warmup.warmupId && isPlaying;
-            const hasUrl = !!extractVideoId(warmup.url);
+            const hasUrl = !!extractVideoId(warmup.url);  
             
             return (
                 <div key={warmup.warmupId} className="warmup-item">
@@ -180,17 +145,23 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
         playlistContent = (
             <>
                 <div className="playlist-detail-header">
-                    {selectedUrl ? (
-                        <PlaylistPlayer selectedUrl={selectedUrl} isPlaying={isPlaying}  /> // Show YouTube player
-                    ) : (
-                        <img src={playlist.coverImageUrl} 
-                             alt={"Cover image for " + playlist.playlistName} 
-                             className="playlist-detail-image" />
-                    )}
-                    <h1>{playlist.playlistName}</h1>
-                    <div className="playlist-detail-info">
-                        <p><strong>Goal:</strong> {playlist.goal}</p>
-                        <p><strong>Genre:</strong> {playlist.genre}</p>
+                    <div className="playlist-media-container">
+                        {selectedUrl ? (
+                            <PlaylistPlayer selectedUrl={selectedUrl} isPlaying={isPlaying} />
+                        ) : (
+                            <img 
+                                src={playlist.coverImageUrl} 
+                                alt={"Cover image for " + playlist.playlistName} 
+                                className="playlist-detail-image" 
+                            />
+                        )}
+                    </div>
+                    <div className="playlist-info-container">
+                        <h1>{playlist.playlistName}</h1>
+                        <div className="playlist-detail-info">
+                            <p><strong>Goal:</strong> {playlist.goal}</p>
+                            <p><strong>Genre:</strong> {playlist.genre}</p>
+                        </div>
                     </div>
                 </div>
                 <div className="warmups-list">
@@ -235,7 +206,7 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
 
     return (
         <div className="playlist-container">
-            <NavBar />
+            <NavBar userObj={userObj} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
             <div className="playlist-content">
                 {playlistContent}
                 <div className="navigation-buttons">

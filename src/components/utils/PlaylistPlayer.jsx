@@ -1,4 +1,4 @@
-// // Manage playing and pausing warmups in the playlist
+// // Manage playing and pausing warmup player in the playlist
 // // owner: Runa
 import React, { useEffect, useRef } from 'react';
 
