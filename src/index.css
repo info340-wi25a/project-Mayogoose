@@ -803,10 +803,6 @@ body {
     border-radius: 8px; 
 }
 
-.warmup-details p {
-    font-size: 1rem;
-    color: #bbb;
-}
 
 /* Create Button */
 .nav-button {
@@ -870,14 +866,6 @@ body {
     object-fit: contain;
 }
   
-.playlist-detail-header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-  
 .playlist-info-container {
     width: 100%;
     max-width: 800px;
@@ -905,7 +893,6 @@ body {
     height: 250px;
     border-radius: 10px;
     margin-top: 30px;
-    object-fit: cover;
     margin-bottom: 30px;
 }
 
@@ -916,12 +903,6 @@ body {
     padding: 0;
     text-align: center;
     line-height: 3rem;
-}
-
-.playlist-detail-info {
-    text-align: center;
-    margin: 20px 0;
-    width: 100%;
 }
 
 .playlist-detail-info p {

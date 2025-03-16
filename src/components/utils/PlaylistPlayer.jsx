@@ -23,7 +23,7 @@ function PlaylistPlayer({ selectedUrl, isPlaying = true }) {
             playerElement.id = `youtube-player-${Date.now()}`;
             playerContainerRef.current.appendChild(playerElement);
             
-            // Initialize YouTube player - AI assisted
+            // Initialize YouTube player - ChatGPT assisted
             loadYouTubeAPI().then(() => {
                 playerRef.current = new window.YT.Player(playerElement.id, {
                     height: '360',
