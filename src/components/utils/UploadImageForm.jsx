@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getApp } from 'firebase/app';
 import { useNavigate } from "react-router";
+import { v4 as uuidv4 } from 'uuid'; // Reference: Asked google by how to create a unqiue ID 
 
 export function UploadImageForm({elements, onImageUpload}) {
     const navigate = useNavigate();
@@ -50,7 +51,7 @@ function UploadButton({ onFileSelect, onPreviewChange, onImageUpload }){
             fileInputRef.current.click();  // Opens file picker
         }
     };
-
+// Reference: Lecture note and chatgpt for debugging 
     const handleFileChange = async (event) => {
         if (event.target.files.length > 0 && event.target.files[0]) {
             const file = event.target.files[0];
@@ -59,8 +60,9 @@ function UploadButton({ onFileSelect, onPreviewChange, onImageUpload }){
 
             try {
                 const storage = getStorage(getApp(), "gs://info340-media.firebasestorage.app");
-                const storageReference = storageRef(storage, "group-AA4/path/to/file.png");
-                
+                const uniqueId = uuidv4(); // Generate a unique ID
+                const storageReference = storageRef(storage, `group-AA4/uploads/${uniqueId}.png`);
+
                 // Upload the file
                 await uploadBytes(storageReference, file);
                 

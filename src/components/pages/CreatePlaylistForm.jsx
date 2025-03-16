@@ -67,6 +67,7 @@ export function CreatePlaylistForm({userID}) {
     }
 
     // Step 4: Add to Database
+    // Asked chatgpt for debugging
     const addPlaylistToDatabase = () => {
         // get a reference to the database
         const db = getDatabase();
