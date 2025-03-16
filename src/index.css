@@ -627,6 +627,7 @@ body {
 .badge-pill {
     text-align: center;
     color: black;
+    border: none;
     background-color: #EFC52F;
     border-radius: 90px;
     cursor: pointer;
