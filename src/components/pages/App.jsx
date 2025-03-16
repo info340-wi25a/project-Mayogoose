@@ -175,6 +175,9 @@ function App() {
                 element={
                     <CreatePlaylistForm
                         userID={currUserID}
+                        userObj={currUserID}
+                        auth={auth}
+                        firebaseUIConfig={firebaseUIConfig}
                     />
                 } 
             />
@@ -196,20 +199,23 @@ function App() {
                     removeWarmup={removeWarmupFromPlaylist}
                 />} 
             />
-            <Route 
+            {/* <Route 
                 path="/PlaylistDetails" 
                 element={<PlaylistDetail 
                     selectedWarmups={selectedWarmups} 
                     clearWarmups={clearWarmups} 
                     removeWarmup={removeWarmupFromPlaylist}
                 />} 
-            />
+            /> */}
             <Route 
                 path="/playlist/:playlistId" 
                 element={<PlaylistDetail 
                     selectedWarmups={selectedWarmups} 
                     clearWarmups={clearWarmups} 
                     removeWarmup={removeWarmupFromPlaylist}
+                    userObj={currUserID}
+                    auth={auth}
+                    firebaseUIConfig={firebaseUIConfig}
                 />} 
             />
             <Route path="*" element={<Navigate to ="/"/>} /> 

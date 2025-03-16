@@ -16,7 +16,7 @@ import { Footer } from '../navigation/Footer.jsx';
 import albumsData from "../../data/playlist.json";
 
 
-function CreateWarmupForm({userID}) {
+function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
     // Step 1: what I know:
     // State: User Inputs
@@ -259,7 +259,7 @@ function CreateWarmupForm({userID}) {
 
     return (
         <div>
-            <NavBar />
+            <NavBar userObj={userID} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
             <div className="grid-container">
                 <div className="card"> 
                     <div className="instructions">
