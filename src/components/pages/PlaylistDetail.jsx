@@ -14,7 +14,7 @@ import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
 
-function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
+function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userObj, auth, firebaseUIConfig}) {
     const { playlistId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
@@ -206,7 +206,7 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj }) {
 
     return (
         <div className="playlist-container">
-            <NavBar />
+            <NavBar userObj={userObj} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
             <div className="playlist-content">
                 {playlistContent}
                 <div className="navigation-buttons">

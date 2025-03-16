@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import { useState } from 'react';
 import { getDatabase, ref, push as firebasePush } from "firebase/database";
 
-export function CreatePlaylistForm({userID}) {
+export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
     // Step 1: State for each input
     const [playlistName, setPlaylistName] = useState('');
     const [goal, setGoal] = useState('');
@@ -123,7 +123,7 @@ export function CreatePlaylistForm({userID}) {
 
     return (
         <div>
-            <NavBar />
+            <NavBar userObj={userID} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
             <div className="grid-container">
                 <div className="card">
                     <div className="instructions">
