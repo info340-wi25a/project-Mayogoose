@@ -593,8 +593,8 @@ body {
 
 
 /* Add Warmups Button */
-.add-warmup-button {
-    width: 160px; 
+.manage-warmup-button {
+    width: auto;
     height: 50px; 
     background-color: transparent;
     color: white; 
@@ -607,7 +607,6 @@ body {
     justify-content: center;
     text-align: center;
     cursor: pointer;
-    margin: 20px auto; 
 }
 
 .add-warmup-button:hover {

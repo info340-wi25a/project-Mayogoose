@@ -190,6 +190,9 @@ function App() {
                     selectedWarmups={selectedWarmups} 
                     addWarmup={addWarmupToPlaylist} 
                     removeWarmup={removeWarmupFromPlaylist}
+                    userObj={currUserID}
+                    auth={auth}
+                    firebaseUIConfig={firebaseUIConfig}
                 />} 
             />
             <Route 
