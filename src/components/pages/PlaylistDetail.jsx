@@ -86,7 +86,6 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
         if (playingWarmupId === warmup.warmupId) {
             setIsPlaying(!isPlaying);
         } else {
-            const videoId = extractVideoId(warmup.url);
             if (videoId) {
                 setSelectedUrl(videoId);
                 setPlayingWarmupId(warmup.warmupId);
