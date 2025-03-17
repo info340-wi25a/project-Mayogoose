@@ -466,6 +466,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
+    margin: 30px;
 }
 
 .warmup-item {
@@ -473,10 +474,13 @@ body {
     align-items: center; 
     background-color: #222;
     border-radius: 10px;
-    min-height: 80px;
     max-width: 100%;
+    max-height: 130px;
     border-radius: 30px;
-    
+}
+
+.warmup-item p {
+    display: none;
 }
 
 .warmup-item:hover {
@@ -488,16 +492,38 @@ body {
     overflow: hidden;
     padding: 20px;
     text-align: left;
+}
 
+.warmup-details h3 {
+    font-size: 20px;
 }
 
 .warmup-image {
-    max-width: 350px;
+    width: 150px;
+    min-height: 130px;
     height: 100%;
     object-fit: cover;
     border-radius: 30px 0 0 30px;
 }
 
+@media (min-width: 768px) {
+    .warmup-image {
+        width: 325px;
+        height: 175px;
+    }
+
+    .warmup-item {
+        min-height: 175px;
+    }
+
+    .warmup-item p {
+        display: block;
+    }
+
+    .warmup-details h3 {
+        font-size: 27px;
+    }
+}
 
 /* Create Button */
 .nav-button {
