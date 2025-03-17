@@ -61,7 +61,17 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
         onValue(playlistsRef, (snapshot) => {
             console.log("playlists data changes in firebase:");
             const dataObj = snapshot.val();
-            setPlaylistObj(dataObj);
+            
+            if (dataObj) {
+                setPlaylistObj(dataObj);
+            } else {
+                console.warn("No Playlist data found in firebase.");
+                setPlaylistObj({});
+            }
+        },
+            (error) => {
+                console.error("Error fetching playlist data: ", error.message);
+                setPlaylistObj({}); // Fallback value to prevent UI crashes
         });
     }, []);
 
