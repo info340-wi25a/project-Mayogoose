@@ -79,7 +79,7 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
 
     const handlePlayWarmup = (warmup) => {
         if (!warmup.url) return;
-        // Added a null check in the extractVideoId function to prevent errors when URL is undefined (AI-assisted)
+        // Added a null check in the extractVideoId function to prevent errors when URL is undefined (ChatGPT-assisted)
         const videoId = extractVideoId(warmup.url);
         if (!videoId) return;
         

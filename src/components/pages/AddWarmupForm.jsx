@@ -29,9 +29,7 @@
                 const warmupsArray = Object.keys(data).map(id => ({
                     warmupId: id,
                     warmupName: data[id].warmupName,  
-                    img: data[id].img,                
-                    // technique: data[id].technique,
-                    // difficulty: data[id].difficulty
+                    img: data[id].img,              
                 }));
                 setWarmupData(warmupsArray);
                 }
