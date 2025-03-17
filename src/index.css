@@ -172,6 +172,7 @@ main {
     margin-bottom: 1rem;
 }
 
+
 .material-symbols-outlined {
     font-size: 4rem;
     color: #EFC52F;
@@ -181,8 +182,6 @@ main {
 .card {
     /* flexbox */
     display: flex;
-    /* flex-direction: column;
-    align-items: center; */
     justify-content: center;
     flex-wrap: wrap;
     height: 100%; /* Take up available space */

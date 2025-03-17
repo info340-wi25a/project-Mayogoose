@@ -3,31 +3,35 @@
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
 import { useNavigate } from 'react-router';
-import { SelectButton } from '../utils/SelectButton.jsx';
 
 function UserProfile({userID, allPlaylists}) {
+    const navigate = useNavigate();
     const userPlaylists = allPlaylists.filter((playlist) => {
         return playlist.ownerId == userID;
     })
     
-    const playlistIsEmpty = userPlaylists && userPlaylists.length > 0
+    const playlistIsEmpty = userPlaylists && userPlaylists.length > 0;
+    
+    const handleCreatePlaylist = () => {
+      navigate("/createPlaylist");
+    };
 
-    // show "you haven't created any warmup/playlist yet" & add buttons if this user has no playlist in firebase
     // show playlists that user uploaded
     const userPlaylistsList = playlistIsEmpty
-    // true
     ? Object.values(userPlaylists).map((playlist) => (
         <PlaylistItem 
           key={playlist.id}
           playlistObj={playlist} 
         />
       ))
-    // false
     : (
-      <div>
-        <SelectButton />
+      <div className="d-flex justify-content-center">
+          <button className="badge-pill" onClick={handleCreatePlaylist}>
+            Create Your Own Playlist
+          </button>
       </div>
     );
+    
 
     return (
         <div>

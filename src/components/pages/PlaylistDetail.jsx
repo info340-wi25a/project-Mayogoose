@@ -6,10 +6,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { getDatabase, ref, onValue} from "firebase/database";
-import { useNavigate, useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
 import { Footer } from "../navigation/Footer.jsx"; // Footer
-import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
@@ -171,7 +171,7 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                         onClick={() => navigate("/addWarmup", { state: { playlistId } })}>
                             Manage Warmups
                         </button>
-                        <NavButton text="Back to Home" destination="/" />
+                        <Link to="/" className="badge-pill">Back to Home</Link>
                     </div>
                 </div>
             </>

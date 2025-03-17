@@ -7,7 +7,6 @@
     import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
     import { Footer } from "../navigation/Footer.jsx"; // Footer
     import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
-    import CreateWarmupForm from "./CreateWarmupForm.jsx"
     import { getDatabase, ref, update, onValue } from "firebase/database";
 
     function AddWarmupForm({ userObj, auth, firebaseUIConfig }) {
