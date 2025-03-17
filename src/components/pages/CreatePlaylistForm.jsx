@@ -125,7 +125,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         <h1>New Playlist</h1>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="flex-containers">
+                    <form onSubmit={handleSubmit} className="d-flex">
                         {/* Divider: Step 1 */}
                         <div className="line-container">
                             <div className="line"></div>

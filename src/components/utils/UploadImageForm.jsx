@@ -80,7 +80,7 @@ function UploadButton({ content, onFileSelect, onPreviewChange, onImageUpload })
 
     return (
         <div className="createWrap">
-            <button className="uploadButton" onClick={handleUpload}>
+            <button className="badge-pill" onClick={handleUpload}>
                 {content}
             </button>
             <input className="fileInput"

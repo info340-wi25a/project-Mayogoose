@@ -128,7 +128,10 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                                 className={`play-button ${isThisWarmupPlaying ? 'playing' : ''}`}
                                 onClick={() => handlePlayWarmup(warmup)}
                             >
-                                {isThisWarmupPlaying ? '⏸️' : '▶️'}
+                                {isThisWarmupPlaying 
+                                ? (<span className="material-symbols-outlined">pause</span>) 
+                                : (<span className="material-symbols-outlined">play_arrow</span>)
+                                }
                             </button>
                         )}
                 </div>

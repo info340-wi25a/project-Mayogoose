@@ -267,7 +267,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                     </div>
 
                     {/* This form collect data for warmup.json */}
-                    <form onSubmit={handleSubmit} className="flex-container">
+                    <form onSubmit={handleSubmit} className="d-flex">
                         {/* Name Input */}
                         <div>
                             <label htmlFor="warmup-name">Warmup name:</label> 

@@ -145,7 +145,7 @@ function App() {
                         <NavBar userObj={currUserID} auth={auth} firebaseUIConfig={firebaseUIConfig} />
                         <br/>
                         <br/>
-                        <h1 className="mainTitle">Vocal Warmup Made Easy</h1>
+                        <h1>Vocal Warmup Made Easy</h1>
                         <br/>
                         <br/>
                         <SearchBar userObj={currUserID} setQuery={setQuery} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
