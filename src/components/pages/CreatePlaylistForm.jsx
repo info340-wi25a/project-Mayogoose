@@ -1,4 +1,5 @@
 // Owner: Ellie
+// Reference: Used Chatgpt for debugging
 import { NavBar } from "../navigation/NavBar.jsx";
 import { Footer } from '../navigation/Footer.jsx';
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
@@ -137,8 +138,8 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                     
 
                         <div>
-                            <label htmlFor="playlistName">Playlist Name:</label>
                             <input
+                                id="playlistName"
                                 value={playlistName}
                                 placeholder="e.g. playlist 1"
                                 onChange={playlistHandleChange}
@@ -167,7 +168,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         {/* Goal */}
                         <div>
                             <SelectBar
-                                id="Goal"
+                                id="goal"
                                 options={goalOptions}
                                 handleSelect={goalHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.goal}
@@ -180,7 +181,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         {/* Genre */}
                         <div>
                             <SelectBar
-                                id="Genre"
+                                id="genre"
                                 options={genreOptions}
                                 handleSelect={genreHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.genre}
@@ -193,7 +194,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         {/* Visibility */}
                         <div>
                             <SelectBar
-                                id="Visibility"
+                                id="visibility"
                                 options={visibilityOptions}
                                 handleSelect={visibilityHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.visibility}
@@ -221,19 +222,20 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
     );
 }
 
-function SelectBar({id, options, handleSelect, showErrorMessagesSelect}) {
-    const selectBar = options.map(option => (
-        <option key={option} value={option}>{option}</option>
+
+function SelectBar({ id, options, handleSelect, showErrorMessagesSelect }) {
+    const selectBar = options.map((option) => (
+        <option key={option} value={option}> {option}</option>
     ));
 
     return (
         <div> 
-            <label htmlFor={id}>{id}</label>
+            <label htmlFor={id}>{id + ": "}</label>
             <select 
-    
-                className={showErrorMessagesSelect ? 'select is-invalid' : 'select'}
-                onChange={handleSelect}
-            >
+                id={id}
+                className={!!showErrorMessagesSelect ? "select is-invalid" : "select"}
+                onChange={(event) => handleSelect(event.target.value)}  
+            >   
                 <option value="">Select an option</option>
                 {selectBar}
             </select>
