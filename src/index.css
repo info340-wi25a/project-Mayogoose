@@ -238,35 +238,10 @@ select:focus {
     border-color: #EFC52F;
   }
 
-  /* Tags Styling */
-  /* .tags {
-    margin: 10px 0;
-  }
-  
-  .tag {
-    display: inline-block;
-    padding: 8px 12px;
-    background-color: #f0f0f0;
-    color: #555;
-    border-radius: 20px;
-    margin: 5px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .tag:hover {
-    background-color: #EFC52F;
-    color: #fff;
-  } */
-  
 
 /* Runa's add song */
 
-/* Suggested Warm-ups
-main {
-    padding: 20px;
-} */
+/* Suggested Warm-ups */
 
 /* Runa's Items */
 .warmup {
@@ -310,93 +285,6 @@ main {
     cursor: pointer;
     margin-left: auto;
 }
-
-/* Playlist header */
-/* .playlist-header {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    text-align: center;
-    position: relative;
-} */
-
-/* .playlist-cover {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-top: -30px;
-} */
-
-/* .playlist-info {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 30px;
-} */
-
-/* .playlist-info h2 {
-    font-size: 24px;
-    font-weight: bold;
-} */
-
-/* 
-.tag-button {
-    padding: 6px 14px;
-    background: #333;
-    border: none;
-    border-radius: 20px;
-    color: white !important;
-    font-size: 14px;
-    position: absolute;
-    right: 400px;
-} */
-
-/* Songs list */
-/* .songs-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 50px;
-}
-
-.song-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
-}
-
-.song-img {
-    width: 48px;
-    height: 48px;
-    border-radius: 4px;
-    object-fit: cover;
-}
-
-.song-info {
-    flex: 1;
-}
-
-.song-info h3 {
-    font-size: 16px;
-    margin-bottom: 4px;
-}
-
-.song-info p {
-    font-size: 14px;
-    color: #999;
-}
-
-.more-options {
-    background: none;
-    border: none;
-    color: #999;
-    font-size: 24px;
-    padding: 8px;
-    cursor: pointer;
-} */
-
 
 /* From draft 2 */
 /* amelia */
@@ -648,7 +536,7 @@ body {
 /* Youtube player preview */
 .playlist-media-container {
     width: 100%;
-    max-width: 800px; 
+    max-width: 700px; 
 }
 
 .playlist-detail-image {
@@ -662,6 +550,12 @@ body {
     max-width: 800px;
 }
 
+/* .playlist-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+} */
+
 .playlist-content {
     padding: 20px;
 }
@@ -674,11 +568,8 @@ body {
 }
 
 .playlist-detail-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 10px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    width: 100%;
+    max-width: 700px; 
 }
 
 .playlist-detail-header h1 {
@@ -693,8 +584,6 @@ body {
 .playlist-detail-info p {
     font-size: 1.1rem;
     color: #b3b3b3;
-    margin: 15px 0;
-    line-height: 1.5rem;
 }
 
 .warmups-list h2 {
