@@ -653,11 +653,6 @@ body {
 }
 
 /* homepage */
-.homepageCover {
-    width: 175px;
-    height: 175px;
-    border-radius: 5px;
-}
 
 .grid-container {
     display: flex;
@@ -977,10 +972,9 @@ footer {
 }
 
 .preview-image {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     object-fit: cover;
     border-radius: 10px;
     margin-top: 20px;
 }
-
