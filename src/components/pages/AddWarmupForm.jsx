@@ -10,7 +10,7 @@
     import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
     import { getDatabase, ref, update, onValue } from "firebase/database";
 
-    function AddWarmupForm() {
+    function AddWarmupForm({ userObj, auth, firebaseUIConfig }) {
     const navigate = useNavigate();
     const location = useLocation();
     const playlistId = location.state && location.state.playlistId; 
@@ -128,7 +128,7 @@
 
     return (
         <div className="add-warmup-container">
-            <NavBar />
+            <NavBar userObj={userObj} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
             <div className="main-content">
                 <h1>Manage Warm-ups</h1> 
                 
