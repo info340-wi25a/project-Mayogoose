@@ -27,9 +27,6 @@ function App() {
     const [selectedWarmups, setSelectedWarmups] = useState([]); // For warm-ups
     const [currUserID, setCurrUserID] = useState(''); // For logic 
     const auth = getAuth(); // only authenticated user can navigate to CreateWarmupForm, CreatePlaylistForm, & UserProfile
-    console.log("Selected warmups id: " + selectedWarmups); // Runa's AddWarmupForm for Routing
-    console.log("set playlist array:", playlistArr); // Meiyao's UserProfile for private list of playlist
-    console.log("current user: ", currUserID);
 
     // fetch data from firebase every time the page load
     useEffect(() => {
@@ -38,8 +35,6 @@ function App() {
         const warmupRef = ref(db, 'warmup');
 
         onAuthStateChanged(auth, (firebaseUser) => {
-            console.log("login status changed")
-
             if(firebaseUser) {
                 setCurrUserID(firebaseUser.uid); // retrieve User UID
             }
@@ -145,7 +140,7 @@ function App() {
                         <NavBar userObj={currUserID} auth={auth} firebaseUIConfig={firebaseUIConfig} />
                         <br/>
                         <br/>
-                        <h1 class="mainTitle">Vocal Warmup Made Easy</h1>
+                        <h1 className="mainTitle">Vocal Warmup Made Easy</h1>
                         <br/>
                         <br/>
                         <SearchBar userObj={currUserID} setQuery={setQuery} auth={auth} firebaseUIConfig={firebaseUIConfig}/>

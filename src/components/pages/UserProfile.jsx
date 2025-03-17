@@ -6,26 +6,25 @@ import { useNavigate } from 'react-router';
 import { SelectButton } from '../utils/SelectButton.jsx';
 
 function UserProfile({userID, allPlaylists}) {
-    console.log("playlist before filtered", allPlaylists);
-
     const userPlaylists = allPlaylists.filter((playlist) => {
         return playlist.ownerId == userID;
     })
-
-    console.log("filtered user playlist", userPlaylists);
+    
+    const playlistIsEmpty = userPlaylists && userPlaylists.length > 0
 
     // show "you haven't created any warmup/playlist yet" & add buttons if this user has no playlist in firebase
     // show playlists that user uploaded
-    const userPlaylistsList = userPlaylists && Object.keys(userPlaylists.length > 0)
+    const userPlaylistsList = playlistIsEmpty
+    // true
     ? Object.values(userPlaylists).map((playlist) => (
         <PlaylistItem 
           key={playlist.id}
           playlistObj={playlist} 
         />
       ))
+    // false
     : (
       <div>
-        <p>You haven't created any playlists yet!</p>
         <SelectButton />
       </div>
     );
@@ -37,7 +36,12 @@ function UserProfile({userID, allPlaylists}) {
                 <div className="card">
                     <div className="d-flex flex-column gap-3 mt-3">
                         <h1>Your Playlists</h1>
-                        <p className="smallText">See what warmups / playlists you've uploaded!</p>
+                        {playlistIsEmpty &&
+                         <p className="smallText">See what playlists you've uploaded!</p>
+                        }
+                        {!playlistIsEmpty &&
+                         <p className="smallText">You haven't created any playlists yet!</p>
+                        }
                         {userPlaylistsList}
                     </div>
                 </div>

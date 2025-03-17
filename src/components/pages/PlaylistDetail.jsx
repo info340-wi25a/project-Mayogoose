@@ -17,7 +17,6 @@ import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
 function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userObj, auth, firebaseUIConfig}) {
     const { playlistId } = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
     const [playlist, setPlaylist] = useState(playlistObj || null);
     const [warmups, setWarmups] = useState([]);
     const [selectedUrl, setSelectedUrl] = useState(null); // for youtube preview

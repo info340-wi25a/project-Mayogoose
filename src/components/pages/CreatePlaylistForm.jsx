@@ -24,30 +24,25 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
     // Step 2: Input handlers
     const playlistHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed name: " + value);
         setPlaylistName(value);
     };
 
     const goalHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed goal: " + value);
         setGoal(value);
     }
 
     const genreHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed genre: " + value);
         setGenre(value);
     }
 
     const visibilityHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed visibility: " + value);
         setVisibility(value);
     }
 
     const handleImageUpload = (downloadURL) => {
-        console.log("Image uploaded, URL:", downloadURL);
         setCoverImageUrl(downloadURL);
     }
 
@@ -86,7 +81,6 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
         }
 
         // Add to Firebase
-        console.log("Adding playlist");
         const playlistRef = ref(db, 'playlists'); // reference to firebase's playlists node
         firebasePush(playlistRef, newPlaylistObj)
             .then((snapshot) => {
