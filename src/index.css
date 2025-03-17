@@ -420,13 +420,13 @@ select:focus {
 }
 
 .warmups-list h3 {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
 }
 
 .warmup-item {
     background-color: var(--background-color);
     border-radius: 30px;
-    max-height: 130px;
+    max-height: 110px;
     transition: transform 0.2s ease;
 }
 
@@ -447,7 +447,7 @@ select:focus {
 
 .warmup-image {
     width: 150px;
-    min-height: 130px;
+    min-height: 100px;
     height: 100%;
     object-fit: cover;
     border-radius: 30px 0 0 30px;
@@ -583,4 +583,18 @@ footer {
     .warmup-item p {
         display: block;
     }
+
+    .warmups-list {
+        gap: 20px;
+        margin: 20px;
+    }
+
+    .warmup-details {
+        font-size: 10px;
+    }
+
+    .warmups-list h3 {
+        font-size: 1.5rem;
+    }    
 }
+
