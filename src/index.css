@@ -421,7 +421,7 @@ select:focus {
 }
 
 .warmups-list h3 {
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 
 .warmup-item {
@@ -593,9 +593,27 @@ footer {
     .warmup-details {
         font-size: 10px;
     }
+}
 
-    .warmups-list h3 {
-        font-size: 1.5rem;
+@media (max-width: 480px) {  
+    .playlist-detail-header h1 {
+        font-size: 1.2rem;
     }    
+    
+    .warmup-item {
+        max-width: 380px;
+        max-height: 90px;
+    }
+      
+    .warmup-image {
+        width: 90px;
+        min-height: 90px;
+    }
+    
+    .play-button {
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+    }
 }
 
