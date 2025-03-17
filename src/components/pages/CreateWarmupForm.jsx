@@ -224,7 +224,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                 // Reference the warmup inside the playlist using the key instead of adding a duplicate warmup
                 const warmupPlaylistRef = ref(db, `playlists/${playlistId}/warmups/${warmupId}`);
-                firebasePush(warmupPlaylistRef, newWarmupObj)
+                firebaseSet(warmupPlaylistRef, newWarmupObj)
                 .then(() => console.log("Warmup added to playlist successfully")
                 .catch(error => console.log("Error adding warmup to playlist: ", error)));
             })

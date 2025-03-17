@@ -24,7 +24,7 @@ export function AddWarmupItem({ warmup, onAdd, isSelected, onRemove}) {
 
   return (
     <div className="warmup">
-      <img src={image} alt={name} className="warmup-img" />
+      <img src={image} alt={`Warmup's image: ${name}`} className="warmup-img" />
       <div className="warmup-info">
         <p className="title">{name}</p>
         <p className="category">{voiceType}</p>

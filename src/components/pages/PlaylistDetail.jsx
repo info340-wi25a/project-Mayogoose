@@ -109,7 +109,8 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                         <p><strong>Difficulty:</strong> {warmup.difficulty}</p>
                         <p><strong>Voice Register:</strong> {warmup.voiceRegister}</p>
                         <p><strong>Voice Type:</strong> {warmup.voiceType}</p>
-                        {hasUrl && (
+                    </div>
+                    {hasUrl && (
                             <button 
                                 className={`play-button ${isThisWarmupPlaying ? 'playing' : ''}`}
                                 onClick={() => handlePlayWarmup(warmup)}
@@ -117,7 +118,6 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                                 {isThisWarmupPlaying ? '⏸️' : '▶️'}
                             </button>
                         )}
-                    </div>
                 </div>
             );
         });
@@ -166,12 +166,14 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                 <div className="warmups-list">
                     <h2>Warm-ups</h2>
                     {warmupContent}
-                    <button 
-                        className="add-warmup-button" 
-                        onClick={() => navigate("/addWarmup", { state: { playlistId } })}
-                    >
-                        Add Warmups
-                    </button>
+                    <div className="grid-container">
+                        <button 
+                        className="manage-warmup-button" 
+                        onClick={() => navigate("/addWarmup", { state: { playlistId } })}>
+                            Manage Warmups
+                        </button>
+                        <NavButton text="Back to Home" destination="/" />
+                    </div>
                 </div>
             </>
         );
@@ -209,9 +211,6 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
             <div className="playlist-container">
                 <div className="playlist-content">
                     {playlistContent}
-                    <div className="navigation-buttons">
-                        <NavButton text="Back to Home" destination="/" />
-                    </div>
                 </div>
                 <Footer />
             </div>
@@ -219,121 +218,5 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
         
     );
 }
-
-// the original code:
-// function PlaylistDetail({ selectedWarmups = [], removeWarmup }) {
-//     const { playlistId } = useParams(); 
-//     const navigate = useNavigate(); 
-//     const playlist = playlistData.find(p => p.playlistId === playlistId);
-//     // const [currentVideoUrl, setCurrentVideoUrl] = useState(null); // Store current playing video
-//     const location = useLocation();
-
-
-//     let warmups = [];
-//     if (playlist) {
-//         playlist.warmupIDs.forEach(id => {
-//             const warmup = warmupData.find(w => w.warmupId.toString() === id.toString());
-//             if (warmup) {
-//                 warmups.push(warmup);
-//             }
-//         });
-//     } else {
-//         warmups = selectedWarmups;
-//     }
-
-//     let selectedWarmupItems;
-//     if (selectedWarmups.length > 0) {
-//         selectedWarmupItems = selectedWarmups.map(warmup => (
-//             <AddWarmupItem 
-//                 key={warmup.warmupId} 
-//                 warmup={warmup} 
-//                 isSelected={true} 
-//                 onRemove={removeWarmup} 
-//             />
-//         ));
-//     } else {
-//         selectedWarmupItems = <p>No warm-ups selected.</p>;
-//     }
-    
-
-//     // warmups for rendering
-//     const warmupItems = warmups.map(warmup => (
-//         <div key={warmup.warmupId} className="warmup-item">
-//             <img src={warmup.img} alt={warmup.warmupName} className="warmup-image" />
-//             <div className="warmup-details">
-//                 <h3>{warmup.warmupName}</h3>
-//                 <p><strong>Technique:</strong> {warmup.technique}</p>
-//                 <p><strong>Difficulty:</strong> {warmup["Difficulty Level"]}</p>
-//             </div>
-//         </div>
-//     ));
-
-//     // Render playlist details or user's custom playlist
-//     let playlistContent;
-//     if (playlist) {
-//         playlistContent = (
-//             <>
-//                 <div className="playlist-detail-header">
-//                     <img src={playlist.Img} alt={"Cover image for " + playlist.Name + " playlist"} className="playlist-detail-image" />
-//                     <h1>{playlist.Name}</h1>
-//                     <div className="playlist-detail-info">
-//                         <p><strong>Goal:</strong> {playlist.goal}</p>
-//                         <p><strong>Genre:</strong> {playlist.genre}</p>
-//                     </div>
-//                 </div>
-//                 <div className="warmups-list">
-//                     <h2>Warm-ups</h2>
-//                     {warmupItems}
-//                 </div>
-//             </>
-//         );
-//     } else {
-//         playlistContent = (
-//             <>
-//                 <div className="playlist-header">
-//                     <div className="upload-image-container">
-//                         <h2>Upload Your Playlist Image:</h2> {/* Will delete later */}
-//                         <UploadImageForm />
-//                     </div>
-//                     <h3>My Playlist</h3>
-//                     {/* <button className="play-button" aria-label="Play playlist">
-//                         <span>▶</span> 
-//                     </button> 改为在每一个warmup后面有个play button */}
-//                 </div>
-
-//                 {selectedWarmups.length > 0 && (
-//                     <div className="warmups-list">
-//                         {selectedWarmups}
-//                     </div>
-//                 )}
-//                 {selectedWarmups.length === 0 && (
-//                     <div className="add-warmup-button-container">
-//                         <button 
-//                             className="add-warmup-button" 
-//                             onClick={() => navigate("/addWarmup", { state: { playlistId } })}
-//                         >
-//                             Add Warmups
-//                         </button>
-//                     </div>
-//                 )}
-//                 </>
-//             );
-//         }
-
-//         return (
-//             <div className="playlist-container">
-//                 <NavBar />
-
-//                 <div className="playlist-content">
-//                     {playlistContent}
-//                     <div className="navigation-buttons">
-//                         <NavButton text="Back to Home" destination="/" />
-//                     </div>
-//                 </div>
-
-//                 <Footer />
-//             </div>
-//         );
-// }
 
 export default PlaylistDetail;

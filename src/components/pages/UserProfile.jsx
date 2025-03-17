@@ -69,7 +69,7 @@ function PlaylistItem({ key, playlistObj }) {
 
     return (
       <div className="warmup" onClick={handleClick}>
-        <img src={img} alt={name} className="warmup-img" />
+        <img src={img} alt={`Playlist/Warmup: ${name}`}  className="warmup-img" />
         <div className="warmup-info">
           <p className="title">{name}</p>
           <p className="timeStamp">{timeStamp}</p>

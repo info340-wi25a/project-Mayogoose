@@ -5,7 +5,7 @@ function PlaylistCard({ item }) {
     return (
         <div className="playlist">
             <Link to={`/playlist/${item.playlistId}`}>
-                <img className="preview-image" src={item.coverImageUrl} alt={item.alt}/>
+                <img className="preview-image" src={item.coverImageUrl} alt={`Cover image for ${item.playlistName}`}/>
             </Link>
             <div>
                 <h2 className="center">{item.playlistName}</h2>
