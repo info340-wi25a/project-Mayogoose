@@ -422,14 +422,7 @@ select {
     border: 1px solid #EBEF2F;
 }
 
-.label {
-    border: 0.5px solid #EBEF2F;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    color: white;
-    margin: 0.5rem;
-    margin-right: 0.1rem;
-}
+
 
 .caption {
     margin-top: 0.5rem;
@@ -1091,6 +1084,7 @@ footer {
     font-size: 1.2rem;
     margin-bottom: 1rem;
 }
+
 /* AddWarmupForm Styles */
 .add-warmup-container {
     max-width: 1200px;

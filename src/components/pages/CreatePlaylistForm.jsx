@@ -129,7 +129,6 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                 <div className="card">
                     <div className="instructions">
                         <h1>New Playlist</h1>
-                        <br/>
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex-containers">
@@ -141,8 +140,10 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         </div>
 
                         {/* Name Input */}
+                    
+
                         <div>
-                            <h2>Name</h2>
+                            <label htmlFor="playlistName">Playlist Name:</label>
                             <input
                                 value={playlistName}
                                 placeholder="e.g. playlist 1"
@@ -157,7 +158,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
 
                         {/* Upload Image */}
                         <div>
-                            <h2>Upload Playlist Cover:</h2>
+                        <label htmlFor="uploadImage">Upload Playlist Cover:</label>
                             <UploadImageForm onImageUpload={handleImageUpload} />
                         </div>
                         
@@ -171,7 +172,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
 
                         {/* Goal */}
                         <div>
-                            <h2>Goal</h2>
+                            <label htmlFor="goal">Goal:</label>
                             <SelectBar
                                 options={goalOptions}
                                 handleSelect={goalHandleChange}
@@ -184,7 +185,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
 
                         {/* Genre */}
                         <div>
-                            <h2>Genre</h2>
+                            <label htmlFor="genre">Genre:</label>
                             <SelectBar
                                 options={genreOptions}
                                 handleSelect={genreHandleChange}
@@ -197,7 +198,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
 
                         {/* Visibility */}
                         <div>
-                            <h2>Visibility</h2>
+                            <label htmlFor="visibility">Visibility:</label>
                             <SelectBar
                                 options={visibilityOptions}
                                 handleSelect={visibilityHandleChange}
@@ -212,11 +213,13 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         <div className="line-container">
                             <div className="line"></div>
                                 <p className="smallText">Step 3: Add Warmups to Your Playlist</p>
-                            <div className="line"></div>
                         </div>
-                        <button className="badge-pill mx-auto" type="submit">Create Playlist</button>
+                        <button className="badge-pill mx-auto" type="submit">
+                            Create Playlist
+                        </button>
                     </form>
                 </div>
+                
             </div>
             <Footer />
         </div>
