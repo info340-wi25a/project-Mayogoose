@@ -609,6 +609,11 @@ body {
     cursor: pointer;
 }
 
+.manage-warmup-button:hover {
+    background-color: white;
+    color: black;
+}
+
 .add-warmup-button:hover {
     background-color: white; 
     color: black; 
