@@ -29,9 +29,7 @@
                 const warmupsArray = Object.keys(data).map(id => ({
                     warmupId: id,
                     warmupName: data[id].warmupName,  
-                    img: data[id].img,                
-                    // technique: data[id].technique,
-                    // difficulty: data[id].difficulty
+                    img: data[id].img,              
                 }));
                 setWarmupData(warmupsArray);
                 }
@@ -133,7 +131,7 @@
         <div className="add-warmup-container">
             <NavBar />
             <div className="main-content">
-                <h1>Add Warm-ups</h1> 
+                <h1>Manage Warm-ups</h1> 
                 
                 <div className="search-select-container">
                     <SearchBar />

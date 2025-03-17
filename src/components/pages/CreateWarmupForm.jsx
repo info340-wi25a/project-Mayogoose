@@ -6,6 +6,8 @@ import Modal from 'react-bootstrap/Modal';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
 import { useEffect } from "react";
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue, get as firebaseGet } from "firebase/database";
 // Components Imports
 import { NavBar } from '../navigation/NavBar.jsx';
@@ -13,7 +15,6 @@ import { Footer } from '../navigation/Footer.jsx';
 // Playlist Data for playlist selection
 import albumsData from "../../data/playlist.json";
 
-import { useNavigate } from 'react-router';
 
 function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
@@ -33,6 +34,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
     const [isFormValid, setIsFormValid] = useState(false);
     const [showErrorMessages, setShowErrorMessages] = useState(false);
     console.log("image extracted from youtube:", imgInput);
+    console.log("playlist ID: ", playlistId);
 
     // State: Modal display
     const navigateTo = useNavigate();
@@ -50,8 +52,8 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
         navigateTo(-1); // equavalent of window.history.back();
     }
     const handlePlay = () => {
+        console.log("handleplay triggered, redirecting to playlist page");
         setShow(false);
-        navigateTo("/PlaylistDetails")
     }
 
     // Options Select Bars:
@@ -212,21 +214,29 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
             voiceRegister: voiceRegister
         }
 
-        // 1. add individual warmup to warmup.json:
         console.log("Adding warmup");
-        const warmupRef = ref(db, 'warmup'); // a link to firebase's warmup node
+        const warmupRef = ref(db, 'warmup');
+
         firebasePush(warmupRef, newWarmupObj)
-            .then(() => {
-                console.log("Warmup added successfully!");
+            .then((warmupSnapshot) => {
+                const warmupId = warmupSnapshot.key; // prevent firebase auto-regenerate new key
+                console.log("Warmup added successfully with ID: ", warmupId);
+
+                // Reference the warmup inside the playlist using the key instead of adding a duplicate warmup
+                const warmupPlaylistRef = ref(db, `playlists/${playlistId}/warmups/${warmupId}`);
+                firebasePush(warmupPlaylistRef, newWarmupObj)
+                .then(() => console.log("Warmup added to playlist successfully")
+                .catch(error => console.log("Error adding warmup to playlist: ", error)));
             })
             .catch((error) => {
                 console.error("Error adding warmup: ", error);
             });
 
-        // 2. add warmup to playlist.json (conditional)
-        const warmupPlaylistRef = ref(db, 'playlists/' + playlistId + '/warmups');
-        firebasePush(warmupPlaylistRef, newWarmupObj);
+        // // 2. add warmup to playlist.json (conditional)
+        // const warmupPlaylistRef = ref(db, 'playlists/' + playlistId + '/warmups');
+        // firebasePush(warmupPlaylistRef, newWarmupObj);
     }
+
 
     // Step 5: Handle form submission
     // When user clicks submit, display error messages or store data if there's no error
@@ -409,7 +419,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                                 Go Back
                             </Button>
                             <button className="badge-pill" onClick={handlePlay}>
-                                Play Now!
+                                <Link className="text-decoration-none text-dark" to={`/playlist/${playlistId}`}>Play Now!</Link>
                             </button>
                             </Modal.Footer>
                         </Modal>                        

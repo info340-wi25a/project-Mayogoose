@@ -79,14 +79,13 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
 
     const handlePlayWarmup = (warmup) => {
         if (!warmup.url) return;
-        // Added a null check in the extractVideoId function to prevent errors when URL is undefined (AI-assisted)
+        // Added a null check in the extractVideoId function to prevent errors when URL is undefined (ChatGPT-assisted)
         const videoId = extractVideoId(warmup.url);
         if (!videoId) return;
         
         if (playingWarmupId === warmup.warmupId) {
             setIsPlaying(!isPlaying);
         } else {
-            const videoId = extractVideoId(warmup.url);
             if (videoId) {
                 setSelectedUrl(videoId);
                 setPlayingWarmupId(warmup.warmupId);
@@ -205,16 +204,19 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
     }
 
     return (
-        <div className="playlist-container">
+        <div>
             <NavBar userObj={userObj} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
-            <div className="playlist-content">
-                {playlistContent}
-                <div className="navigation-buttons">
-                    <NavButton text="Back to Home" destination="/" />
+            <div className="playlist-container">
+                <div className="playlist-content">
+                    {playlistContent}
+                    <div className="navigation-buttons">
+                        <NavButton text="Back to Home" destination="/" />
+                    </div>
                 </div>
+                <Footer />
             </div>
-            <Footer />
         </div>
+        
     );
 }
 
