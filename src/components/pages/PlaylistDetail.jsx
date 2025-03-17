@@ -166,12 +166,14 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                 <div className="warmups-list">
                     <h2>Warm-ups</h2>
                     {warmupContent}
-                    <button 
-                        className="add-warmup-button" 
-                        onClick={() => navigate("/addWarmup", { state: { playlistId } })}
-                    >
-                        Add Warmups
-                    </button>
+                    <div className="grid-container">
+                        <button 
+                        className="manage-warmup-button" 
+                        onClick={() => navigate("/addWarmup", { state: { playlistId } })}>
+                            Manage Warmups
+                        </button>
+                        <NavButton text="Back to Home" destination="/" />
+                    </div>
                 </div>
             </>
         );
@@ -209,9 +211,6 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
             <div className="playlist-container">
                 <div className="playlist-content">
                     {playlistContent}
-                    <div className="navigation-buttons">
-                        <NavButton text="Back to Home" destination="/" />
-                    </div>
                 </div>
                 <Footer />
             </div>
