@@ -612,9 +612,19 @@ body {
     color: black; 
 }
 
+.warmups-list h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
 
 /* Play button styles */
 .play-button {
+    /* position: absolute;
+    right: 15px; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
     background-color: #444;
     color: white;
     border: none;

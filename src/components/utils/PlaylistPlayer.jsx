@@ -1,5 +1,5 @@
-// // Manage playing and pausing warmup player in the playlist
-// // owner: Runa
+// Manage playing and pausing warmup player in the playlist
+// owner: Runa
 import React, { useEffect, useRef } from 'react';
 
 function PlaylistPlayer({ selectedUrl, isPlaying = true }) {
