@@ -20,7 +20,9 @@ function UserProfile({userID, allPlaylists}) {
     const userPlaylistsList = playlistIsEmpty
     ? Object.values(userPlaylists).map((playlist) => (
         <PlaylistItem 
-          key={playlist.id}
+          // key={playlist.id}
+          key={playlist.playlistId}
+          id={playlist.playlistId}
           playlistObj={playlist} 
         />
       ))
@@ -58,7 +60,7 @@ function UserProfile({userID, allPlaylists}) {
 export default UserProfile;
 
 
-function PlaylistItem({ key, playlistObj }) {
+function PlaylistItem({ id, playlistObj }) {
     const navigate = useNavigate();
 
     const name = playlistObj.playlistName;
@@ -66,12 +68,13 @@ function PlaylistItem({ key, playlistObj }) {
     const timeStamp = playlistObj.createdAt.slice(0, 7); // only include first 7 digits (e.g. 2025-03)
     // const warmupNum = playlistObj.warmups.length; // how many warmups are currently in this playlist
 
-    console.log("key in playlistItem: " + key);
+    console.log("key in playlistItem: " + id);
 
     // user click playlists they uploaded, navigate to corresponding PlaylistDetail page with props
     const handleClick = (value) => {
         console.log("clicked");
-        navigate(`/playlist/:`, key);
+        // navigate(`/playlist/:`, key);
+        navigate(`/playlist/${id}`);
         // in App.jsx, <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} />
     };
 

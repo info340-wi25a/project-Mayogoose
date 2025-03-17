@@ -462,6 +462,7 @@ select:focus {
 }
 
 .playlist-detail-image {
+    margin-top: 20px;
     width: 100%;
     max-height: 400px;
     object-fit: cover;
