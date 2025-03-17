@@ -410,7 +410,6 @@ select:focus {
     grid-template-columns: 1fr;
     gap: 30px;
     margin: 30px;
-    align-items: center;
 }
 
 
