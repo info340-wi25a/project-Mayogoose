@@ -214,21 +214,29 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
             voiceRegister: voiceRegister
         }
 
-        // 1. add individual warmup to warmup.json:
         console.log("Adding warmup");
-        const warmupRef = ref(db, 'warmup'); // a link to firebase's warmup node
+        const warmupRef = ref(db, 'warmup');
+
         firebasePush(warmupRef, newWarmupObj)
-            .then(() => {
-                console.log("Warmup added successfully!");
+            .then((warmupSnapshot) => {
+                const warmupId = warmupSnapshot.key; // prevent firebase auto-regenerate new key
+                console.log("Warmup added successfully with ID: ", warmupId);
+
+                // Reference the warmup inside the playlist using the key instead of adding a duplicate warmup
+                const warmupPlaylistRef = ref(db, `playlists/${playlistId}/warmups/${warmupId}`);
+                firebasePush(warmupPlaylistRef, newWarmupObj)
+                .then(() => console.log("Warmup added to playlist successfully")
+                .catch(error => console.log("Error adding warmup to playlist: ", error)));
             })
             .catch((error) => {
                 console.error("Error adding warmup: ", error);
             });
 
-        // 2. add warmup to playlist.json (conditional)
-        const warmupPlaylistRef = ref(db, 'playlists/' + playlistId + '/warmups');
-        firebasePush(warmupPlaylistRef, newWarmupObj);
+        // // 2. add warmup to playlist.json (conditional)
+        // const warmupPlaylistRef = ref(db, 'playlists/' + playlistId + '/warmups');
+        // firebasePush(warmupPlaylistRef, newWarmupObj);
     }
+
 
     // Step 5: Handle form submission
     // When user clicks submit, display error messages or store data if there's no error
