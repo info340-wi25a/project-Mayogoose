@@ -109,7 +109,8 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                         <p><strong>Difficulty:</strong> {warmup.difficulty}</p>
                         <p><strong>Voice Register:</strong> {warmup.voiceRegister}</p>
                         <p><strong>Voice Type:</strong> {warmup.voiceType}</p>
-                        {hasUrl && (
+                    </div>
+                    {hasUrl && (
                             <button 
                                 className={`play-button ${isThisWarmupPlaying ? 'playing' : ''}`}
                                 onClick={() => handlePlayWarmup(warmup)}
@@ -117,7 +118,6 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                                 {isThisWarmupPlaying ? '⏸️' : '▶️'}
                             </button>
                         )}
-                    </div>
                 </div>
             );
         });

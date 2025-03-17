@@ -104,13 +104,6 @@ function App() {
         });
     }, [query]);
 
-    const FilteredPlaylists = (query, playlists) => {
-        if (!query) {
-            return playlists;
-        }
-        return playlists.filter(playlists => playlists.Name.includes(query))
-    }    
-
 
     // runa: select/remove warmups bug
     const addWarmupToPlaylist = (warmup) => {
@@ -199,14 +192,6 @@ function App() {
                     removeWarmup={removeWarmupFromPlaylist}
                 />} 
             />
-            {/* <Route 
-                path="/PlaylistDetails" 
-                element={<PlaylistDetail 
-                    selectedWarmups={selectedWarmups} 
-                    clearWarmups={clearWarmups} 
-                    removeWarmup={removeWarmupFromPlaylist}
-                />} 
-            /> */}
             <Route 
                 path="/playlist/:playlistId" 
                 element={<PlaylistDetail 

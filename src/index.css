@@ -436,7 +436,7 @@ body {
     text-align: center;
 }
 
-/* Warm-ups */
+/* Warm-ups on Playlist Detail Page*/
 .warmups-container {
     display: flex;
     flex-direction: column;
@@ -448,19 +448,18 @@ body {
 .warmups-list {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
-    padding: 10px;
+    gap: 30px;
 }
 
 .warmup-item {
     display: flex;
     align-items: center; 
-    margin-bottom: 20px;
-    padding: 10px;
     background-color: #222;
     border-radius: 10px;
     min-height: 80px;
     max-width: 100%;
+    border-radius: 30px;
+    
 }
 
 .warmup-item:hover {
@@ -470,12 +469,16 @@ body {
 .warmup-details {
     flex-grow: 1;
     overflow: hidden;
+    padding: 20px;
+    text-align: left;
+
 }
 
 .warmup-image {
-    width: 100px; 
-    height: auto; 
-    border-radius: 8px; 
+    max-width: 350px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px 0 0 30px;
 }
 
 
@@ -578,12 +581,13 @@ body {
 }
 
 
-.playlist-detail-info p {
-    font-size: 1.1rem;
+.playlist-container p {
+    font-size: 1rem;
     color: #b3b3b3;
     margin: 0;
     line-height: 1.5rem;
 }
+
 
 /* Add Warmups Button */
 .add-warmup-button {
@@ -611,10 +615,6 @@ body {
 
 /* Play button styles */
 .play-button {
-    /* position: absolute;
-    right: 15px; */
-    /* top: 50%; */
-    /* transform: translateY(-50%); */
     background-color: #444;
     color: white;
     border: none;
@@ -622,6 +622,7 @@ body {
     width: 60px;
     height: 60px;
     font-size: 20px;
+    margin: 30px;
     cursor: pointer;
     display: flex;
     align-items: center;
