@@ -86,7 +86,6 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
         if (playingWarmupId === warmup.warmupId) {
             setIsPlaying(!isPlaying);
         } else {
-            const videoId = extractVideoId(warmup.url);
             if (videoId) {
                 setSelectedUrl(videoId);
                 setPlayingWarmupId(warmup.warmupId);
@@ -205,16 +204,19 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
     }
 
     return (
-        <div className="playlist-container">
+        <div>
             <NavBar userObj={userObj} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
-            <div className="playlist-content">
-                {playlistContent}
-                <div className="navigation-buttons">
-                    <NavButton text="Back to Home" destination="/" />
+            <div className="playlist-container">
+                <div className="playlist-content">
+                    {playlistContent}
+                    <div className="navigation-buttons">
+                        <NavButton text="Back to Home" destination="/" />
+                    </div>
                 </div>
+                <Footer />
             </div>
-            <Footer />
         </div>
+        
     );
 }
 
