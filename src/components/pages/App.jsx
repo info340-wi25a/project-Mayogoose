@@ -68,7 +68,7 @@ function App() {
                     if (playlistData[key].warmups) {
                         warmups = Object.keys(playlistData[key].warmups).map((warmupKey) => ({
                             warmupId: warmupKey,
-                            warmupName: playlistData[key].warmups[warmupKey].warmupName,
+                            warmupName: playlistData[key].warmups[warmupKey].warmupName || "",
                         }));
                     }
     
