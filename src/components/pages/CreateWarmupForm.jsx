@@ -284,10 +284,13 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                     {/* This form collect data for warmup.json */}
                     <form onSubmit={handleSubmit} className="flex-container">
-                        {/* Name Inpute */}
+                        {/* Name Input */}
                         <div>
-                            <h2>Name</h2> 
+                            <label for="warmup-name">Warmup name:</label> 
                             <input
+                                type="text"
+                                name="warmup-name"
+                                id="warmup-name"
                                 value={warmupName}
                                 placeholder="e.g. Box Breathing"
                                 onChange={nameHandleChange}
@@ -301,8 +304,11 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect url */}
                         <div>
-                            <h2>Upload Warmup from URL:</h2>
+                            <label for="warmup-url">Upload Warmup from URL:</label> 
                             <input
+                                type="text"
+                                name="warmup-url"
+                                id="warmup-url"
                                 placeholder="e.g. https://www.youtube.com/.."
                                 onChange={urlHandleChange}
                                 className={classNames('input', { 'is-invalid': showErrorMessages && !validityObj.url })}
