@@ -7,7 +7,6 @@
     import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
     import { Footer } from "../navigation/Footer.jsx"; // Footer
     import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
-    import CreateWarmupForm from "./CreateWarmupForm.jsx"
     import { getDatabase, ref, update, onValue } from "firebase/database";
 
     function AddWarmupForm({ userObj, auth, firebaseUIConfig }) {
@@ -134,12 +133,8 @@
     return (
         <div className="add-warmup-container">
             <NavBar userObj={userObj} auth={auth} firebaseUIConfig={firebaseUIConfig}/>
-            <div className="main-content">
+            <main>
                 <h1>Add Warm-ups</h1> 
-                
-                {/* <div className="search-select-container">
-                    <SearchBar />
-                </div> */}
 
                 {loading ? <p>Loading warm-ups...</p> : (
                     <div className="warmups-container">
@@ -170,7 +165,7 @@
                 </div>
                 
                 <Footer />
-            </div>
+            </main>
         </div>
     );
 }

@@ -24,30 +24,25 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
     // Step 2: Input handlers
     const playlistHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed name: " + value);
         setPlaylistName(value);
     };
 
     const goalHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed goal: " + value);
         setGoal(value);
     }
 
     const genreHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed genre: " + value);
         setGenre(value);
     }
 
     const visibilityHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed visibility: " + value);
         setVisibility(value);
     }
 
     const handleImageUpload = (downloadURL) => {
-        console.log("Image uploaded, URL:", downloadURL);
         setCoverImageUrl(downloadURL);
     }
 
@@ -86,7 +81,6 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
         }
 
         // Add to Firebase
-        console.log("Adding playlist");
         const playlistRef = ref(db, 'playlists'); // reference to firebase's playlists node
         firebasePush(playlistRef, newPlaylistObj)
             .then((snapshot) => {
@@ -131,11 +125,11 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         <h1>New Playlist</h1>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="flex-containers">
+                    <form onSubmit={handleSubmit} className="d-flex">
                         {/* Divider: Step 1 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 1: Customize your Playlist</p>
+                            <p className="smallText">Step 1: Customize your Playlist</p>
                             <div className="line"></div>
                         </div>
 
@@ -166,7 +160,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 2 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 2: What is this for?</p>
+                            <p className="smallText">Step 2: What is this for?</p>
                             <div className="line"></div>
                         </div>
 
@@ -212,7 +206,8 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 3 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 3: Add Warmups to Your Playlist</p>
+                            <p className="smallText">Step 3: Add Warmups to Your Playlist</p>
+                            <div className="line"></div>
                         </div>
                         <button className="badge-pill mx-auto" type="submit">
                             Create Playlist

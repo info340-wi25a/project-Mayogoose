@@ -27,9 +27,6 @@ function App() {
     const [selectedWarmups, setSelectedWarmups] = useState([]); // For warm-ups
     const [currUserID, setCurrUserID] = useState(''); // For logic 
     const auth = getAuth(); // only authenticated user can navigate to CreateWarmupForm, CreatePlaylistForm, & UserProfile
-    console.log("Selected warmups id: " + selectedWarmups); // Runa's AddWarmupForm for Routing
-    console.log("set playlist array:", playlistArr); // Meiyao's UserProfile for private list of playlist
-    console.log("current user: ", currUserID);
 
     // fetch data from firebase every time the page load
     useEffect(() => {
@@ -38,10 +35,10 @@ function App() {
         const warmupRef = ref(db, 'warmup');
 
         onAuthStateChanged(auth, (firebaseUser) => {
-            console.log("login status changed")
-
             if(firebaseUser) {
                 setCurrUserID(firebaseUser.uid); // retrieve User UID
+            } else {
+                console.error("Error fetching authentication states: ", error.message);
             }
         })
 
@@ -55,7 +52,11 @@ function App() {
                 }))
                 setWarmupArr(warmupArray);
             }
-        })
+        },
+        (error) => {
+            console.error("Error fetching warmup data: ", error.message);
+        }
+    );
         
         // update playlist data
         onValue(playlistRef, (snapshot) => {
@@ -67,7 +68,7 @@ function App() {
                     if (playlistData[key].warmups) {
                         warmups = Object.keys(playlistData[key].warmups).map((warmupKey) => ({
                             warmupId: warmupKey,
-                            warmupName: playlistData[key].warmups[warmupKey].warmupName,
+                            warmupName: playlistData[key].warmups[warmupKey].warmupName || "",
                         }));
                     }
     
@@ -101,7 +102,11 @@ function App() {
             } else {
                 setSearchedPlaylists([]);
             }
-        });
+        },
+        (error) => {
+            console.error("Error fetching playlist data: ", error.message);
+        }
+    );
     }, [query]);
 
 
@@ -109,18 +114,15 @@ function App() {
     const addWarmupToPlaylist = (warmup) => {
         setSelectedWarmups([...selectedWarmups, warmup]);
     };
-
     const removeWarmupFromPlaylist = (warmupId) => {
         setSelectedWarmups(selectedWarmups.filter(w => w.id !== warmupId));
     };
-    
     // Function to clear selected warm-ups
     const clearWarmups = () => {
         setSelectedWarmups([]);
     };
 
     // meiyao: auth login UI
-    //object of configuration values for firebase auth
     const firebaseUIConfig = {
         signInOptions: [ 
             GoogleAuthProvider.PROVIDER_ID,
@@ -134,8 +136,6 @@ function App() {
         }
     }
 
-    // unauthorized users can view warmups from homepage
-    // but if they wanna create new warmup/playlists, render firebase's auth pop-ups
     return (
         <Routes>
             <Route
@@ -145,7 +145,7 @@ function App() {
                         <NavBar userObj={currUserID} auth={auth} firebaseUIConfig={firebaseUIConfig} />
                         <br/>
                         <br/>
-                        <h1 class="mainTitle">Vocal Warmup Made Easy</h1>
+                        <h1 className="mainTitle">Vocal Warmup Made Easy</h1>
                         <br/>
                         <br/>
                         <SearchBar userObj={currUserID} setQuery={setQuery} auth={auth} firebaseUIConfig={firebaseUIConfig}/>

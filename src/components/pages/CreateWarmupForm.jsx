@@ -12,9 +12,8 @@ import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue, ge
 // Components Imports
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
-// Playlist Data for playlist selection
+// Playlist Data for default playlist selection (to be replaced by Firebase data)
 import albumsData from "../../data/playlist.json";
-
 
 function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
@@ -26,20 +25,16 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
     const [altInput, setAltInput] = useState("");
     const [playlistObj, setPlaylistObj] = useState(albumsData);
     const [playlistId, setPlaylistId ] = useState('');
-    const [selectedPlaylist, setSelectedPlaylist] = useState('');
     const [difficulty, setDifficulty] = useState('');
     const [technique, setTechnique] = useState('');
     const [voiceType, setVoiceType] = useState('');
     const [voiceRegister, setVoiceRegister] = useState('');
-    const [isFormValid, setIsFormValid] = useState(false);
     const [showErrorMessages, setShowErrorMessages] = useState(false);
-    console.log("image extracted from youtube:", imgInput);
-    console.log("playlist ID: ", playlistId);
-
-    // State: Modal display
-    const navigateTo = useNavigate();
-    // Modal Navigations
+    // State: Modal Display
     const [show, setShow] = useState(false);
+
+    // Modal Navigation callback functions
+    const navigateTo = useNavigate();
     const handleClose = () => {
         setShow(false);
         navigateTo("/profile");
@@ -56,7 +51,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
         setShow(false);
     }
 
-    // Options Select Bars:
+    // Select Bar Options:
     // 1. Real time playlist dataObj from firebase
     useEffect(() => {
         const db = getDatabase(); // get a reference to the database
@@ -64,10 +59,19 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
         // addEventlistner('databaseChange', callback to update playlist options & ref)
         onValue(playlistsRef, (snapshot) => {
-            console.log("playlists change in firebase:");
+            console.log("playlists data changes in firebase:");
             const dataObj = snapshot.val();
-            setPlaylistObj(dataObj);
-            console.log("playlist object: ", dataObj);
+            
+            if (dataObj) {
+                setPlaylistObj(dataObj);
+            } else {
+                console.warn("No Playlist data found in firebase.");
+                setPlaylistObj({});
+            }
+        },
+            (error) => {
+                console.error("Error fetching playlist data: ", error.message);
+                setPlaylistObj({}); // Fallback value to prevent UI crashes
         });
     }, []);
 
@@ -77,9 +81,8 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
         const transformed = playlistObj[keyString].playlistName;
         return transformed;
     });
-    console.log("Playlist options = ", playlistOptions)
 
-    // 2. Static Data for user-defined tags
+    // 2. Static Data for pre-defined tags
     const difficultyOptions = ['Beginner', 'Intermediate', 'Advanced'];
     const techniqueOptions = ['Breath Support', 'Vocalization', 'Articulation', 'Diction', 'Rhythm', 'Harmony'];
     const voiceTypeOptions = ['Full-Range','Soprano', 'Alto', 'Tenor', 'Base'];
@@ -89,28 +92,22 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
     // Micro managing input and change states (
     const nameHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed name: " + value);
         setWarmupName(value);
     };
 
     const urlHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user typed url: " + value);
         setUrlInput(value);
         setImgInput(getYouTubeThumbnail(value).thumbnailUrl);
         setAltInput(getYouTubeThumbnail(value).altText);
     }
     
-
     const playlistHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user selected playlist: " + value);
-        setSelectedPlaylist(value);
 
         // set ref key for database
         Object.keys(playlistObj).map((key) => {
             if (playlistObj[key].playlistName === value) {
-                console.log("found matching playlist: " + key);
                 setPlaylistId(key);
             }
         });  
@@ -118,25 +115,21 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
     const difficultyHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user selected difficulty: " + value);
         setDifficulty(value);
     }
 
     const techniqueHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user selected technique: " + value);
         setTechnique(value);
     }
 
     const voiceTypeHandleChange = (event) => {
         const value = event.target.value;
-        console.log("user selected voice type: " + value);
         setVoiceType(value);
     }
 
     const voiceRegisterHandleChange = (event) => {
         const value = event.target.value;   
-        console.log("user selected voice register: " + value);
         setVoiceRegister(value);
     }
 
@@ -161,7 +154,6 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
             }
             
             if (videoId) {
-                // Construct the thumbnail URL
                 const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
                 const altText = "YouTube video thumbnail";
                 return { thumbnailUrl, altText };
@@ -198,7 +190,6 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
     // Step 4: What to do with what I know
     const addWarmupToDatabase = () => {
-        // get a reference (pointer) to the database
         const db = getDatabase();
 
         // create a new warmup object to be added to database
@@ -213,28 +204,22 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
             voiceType: voiceType,
             voiceRegister: voiceRegister
         }
-
-        console.log("Adding warmup");
         const warmupRef = ref(db, 'warmup');
 
         firebasePush(warmupRef, newWarmupObj)
             .then((warmupSnapshot) => {
+                // Step 1: add warmup to /warmup
                 const warmupId = warmupSnapshot.key; // prevent firebase auto-regenerate new key
                 console.log("Warmup added successfully with ID: ", warmupId);
-
-                // Reference the warmup inside the playlist using the key instead of adding a duplicate warmup
+                // Step 2: add warmup to /playlist
                 const warmupPlaylistRef = ref(db, `playlists/${playlistId}/warmups/${warmupId}`);
                 firebaseSet(warmupPlaylistRef, newWarmupObj)
-                .then(() => console.log("Warmup added to playlist successfully")
+                .then(() => console.log("Warmup added to", playlistId, "playlist successfully")
                 .catch(error => console.log("Error adding warmup to playlist: ", error)));
             })
             .catch((error) => {
                 console.error("Error adding warmup: ", error);
             });
-
-        // // 2. add warmup to playlist.json (conditional)
-        // const warmupPlaylistRef = ref(db, 'playlists/' + playlistId + '/warmups');
-        // firebasePush(warmupPlaylistRef, newWarmupObj);
     }
 
 
@@ -246,15 +231,14 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
         const validityObj = getCurrentValidity();
 
-        const isFormValid = validityObj.name &&
+        const formValid = validityObj.name &&
                             validityObj.url &&
-                            // validityObj.playlist &&
+                            validityObj.playlist &&
                             validityObj.difficulty &&
                             validityObj.technique &&
                             validityObj.voiceType &&
                             validityObj.voiceRegister;
-        if(isFormValid){
-            setIsFormValid(true);
+        if(formValid){
             handleShow();
             addWarmupToDatabase();
         } else {
@@ -278,16 +262,19 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                     {/* Divider: Step 1 */}
                     <div className="line-container">
                         <div className="line"></div>
-                            <p className="smallText">Step 1: Upload Warmup</p>
+                        <p className="smallText">Step 1: Upload Warmup</p>
                         <div className="line"></div>
                     </div>
 
                     {/* This form collect data for warmup.json */}
-                    <form onSubmit={handleSubmit} className="flex-container">
-                        {/* Name Inpute */}
+                    <form onSubmit={handleSubmit} className="d-flex">
+                        {/* Name Input */}
                         <div>
-                            <label htmlFor="warmupName">Name:</label>
+                            <label htmlFor="warmup-name">Warmup name:</label> 
                             <input
+                                type="text"
+                                name="warmup-name"
+                                id="warmup-name"
                                 value={warmupName}
                                 placeholder="e.g. Box Breathing"
                                 onChange={nameHandleChange}
@@ -301,8 +288,11 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect url */}
                         <div>
-                            <label htmlFor="urlInput">Upload Warmup from URL:</label>
+                            <label htmlFor="warmup-url">Upload Warmup from URL:</label> 
                             <input
+                                type="text"
+                                name="warmup-url"
+                                id="warmup-url"
                                 placeholder="e.g. https://www.youtube.com/.."
                                 onChange={urlHandleChange}
                                 className={classNames('input', { 'is-invalid': showErrorMessages && !validityObj.url })}
@@ -319,14 +309,14 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 2 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 2: Add to a Playlist</p>
+                            <p className="smallText">Step 2: Add to a Playlist</p>
                             <div className="line"></div>
                         </div>
 
                         {/* collect warmup id for playlist.json */}
                         <div>
                             <SelectBar
-                                id="Select Playlist:"
+                                id="Playlist"
                                 options={playlistOptions}
                                 handleSelect={playlistHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.playlist}
@@ -340,14 +330,14 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 3 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 3: Make it Discoverable!</p>
+                            <p className="smallText">Step 3: Make it Discoverable!</p>
                             <div className="line"></div>
                         </div>
 
                         {/* collect difficulty for warmup.json */}
                         <div>
                             <SelectBar 
-                                id="Difficulty Level:"
+                                id="Difficulty"
                                 options={difficultyOptions}
                                 handleSelect={difficultyHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.difficulty}                            
@@ -361,7 +351,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                         {/* collect technique for warmup.json */}
                         <div>
                             <SelectBar 
-                                id="Technique:"
+                                id="Technique"
                                 options={techniqueOptions}
                                 handleSelect={techniqueHandleChange} 
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.technique}                           
@@ -375,7 +365,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                         {/* collect voice type for warmup.json */}
                         <div>
                             <SelectBar 
-                                id="Voice Type:"
+                                id="Voice Type"
                                 options={voiceTypeOptions}
                                 handleSelect={voiceTypeHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.voiceType}                            
@@ -388,7 +378,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                         {/* collect voice register for warmup.json */}
                         <div>
                             <SelectBar 
-                                id= "Voice Register:"
+                                id="Voice Register"
                                 options={voiceRegisterOptions}
                                 handleSelect={voiceRegisterHandleChange} 
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.voiceRegister}
@@ -401,13 +391,12 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 4 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 4: Publish Online!</p>
+                            <p className="smallText">Step 4: Publish Online!</p>
                             <div className="line"></div>
                         </div>
 
                         <button className="badge-pill mx-auto" onClick={handleSubmit}>Submit</button>
-                        {/* <button className="badge-pill" onClick={handleShow} disabled={!isFormValid}>Submit</button> */}
-
+                        
                         {/* Confirmation Model */}
                         <Modal show={show} onHide={handleClose}>
                             <Modal.Header closeButton>
@@ -442,11 +431,13 @@ function SelectBar({id, options, handleSelect, showErrorMessagesSelect}) {
 
     return (
         <div> 
-            <label htmlFor={id}>{id}</label>
-            <select 
+            <label htmlFor={id}>{id + ": "}</label>
+            <select
+                id={id}
+                name={ "select-"+ id }
                 className={classNames('input', { 'is-invalid': showErrorMessagesSelect })}
                 onChange={handleSelect}>
-                <option value="">Select an option</option>
+                <option value="placeholder">Select an option</option>
                 {selectBar}
             </select>
         </div>
@@ -458,11 +449,3 @@ function SelectBar({id, options, handleSelect, showErrorMessagesSelect}) {
   // https://www.youtube.com/watch?v=zjGNmDqTgeo&t=15s // true
   // https://www.example.com/watch?v=dQw4w9WgXcQ // false
   // https://youtu.be/YCLyAmXtpfY?si=o7e5YkTgjZm4QJcS // true
-
-
-// {/* Divider: Step 1 */}
-// <div className="line-container">
-//     <div className="line"></div>
-//         <p class="smallText">Step 1: Upload Warmup</p>
-//     <div className="line"></div>
-// </div>

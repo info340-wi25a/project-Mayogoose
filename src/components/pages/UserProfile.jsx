@@ -3,32 +3,37 @@
 import { NavBar } from '../navigation/NavBar.jsx';
 import { Footer } from '../navigation/Footer.jsx';
 import { useNavigate } from 'react-router';
-import { SelectButton } from '../utils/SelectButton.jsx';
 
 function UserProfile({userID, allPlaylists}) {
-    console.log("playlist before filtered", allPlaylists);
-
+    const navigate = useNavigate();
     const userPlaylists = allPlaylists.filter((playlist) => {
         return playlist.ownerId == userID;
     })
+    
+    const playlistIsEmpty = userPlaylists && userPlaylists.length > 0;
+    
+    const handleCreatePlaylist = () => {
+      navigate("/createPlaylist");
+    };
 
-    console.log("filtered user playlist", userPlaylists);
-
-    // show "you haven't created any warmup/playlist yet" & add buttons if this user has no playlist in firebase
     // show playlists that user uploaded
-    const userPlaylistsList = userPlaylists && Object.keys(userPlaylists.length > 0)
+    const userPlaylistsList = playlistIsEmpty
     ? Object.values(userPlaylists).map((playlist) => (
         <PlaylistItem 
-          key={playlist.id}
+          // key={playlist.id}
+          key={playlist.playlistId}
+          id={playlist.playlistId}
           playlistObj={playlist} 
         />
       ))
     : (
-      <div>
-        <p>You haven't created any playlists yet!</p>
-        <SelectButton />
+      <div className="d-flex justify-content-center">
+          <button className="badge-pill" onClick={handleCreatePlaylist}>
+            Create Your Own Playlist
+          </button>
       </div>
     );
+    
 
     return (
         <div>
@@ -37,7 +42,12 @@ function UserProfile({userID, allPlaylists}) {
                 <div className="card">
                     <div className="d-flex flex-column gap-3 mt-3">
                         <h1>Your Playlists</h1>
-                        <p className="smallText">See what warmups / playlists you've uploaded!</p>
+                        {playlistIsEmpty &&
+                         <p className="smallText">See what playlists you've uploaded!</p>
+                        }
+                        {!playlistIsEmpty &&
+                         <p className="smallText">You haven't created any playlists yet!</p>
+                        }
                         {userPlaylistsList}
                     </div>
                 </div>
@@ -50,7 +60,7 @@ function UserProfile({userID, allPlaylists}) {
 export default UserProfile;
 
 
-function PlaylistItem({ key, playlistObj }) {
+function PlaylistItem({ id, playlistObj }) {
     const navigate = useNavigate();
 
     const name = playlistObj.playlistName;
@@ -58,12 +68,13 @@ function PlaylistItem({ key, playlistObj }) {
     const timeStamp = playlistObj.createdAt.slice(0, 7); // only include first 7 digits (e.g. 2025-03)
     // const warmupNum = playlistObj.warmups.length; // how many warmups are currently in this playlist
 
-    console.log("key in playlistItem: " + key);
+    console.log("key in playlistItem: " + id);
 
     // user click playlists they uploaded, navigate to corresponding PlaylistDetail page with props
     const handleClick = (value) => {
         console.log("clicked");
-        navigate(`/playlist/:`, key);
+        // navigate(`/playlist/:`, key);
+        navigate(`/playlist/${id}`);
         // in App.jsx, <Route path="/playlist/:playlistId" element={<PlaylistDetail selectedWarmups={selectedWarmups} clearPlaylist={clearPlaylist} />} />
     };
 

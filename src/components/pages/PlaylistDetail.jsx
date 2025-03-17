@@ -6,10 +6,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { getDatabase, ref, onValue} from "firebase/database";
-import { useNavigate, useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
 import { Footer } from "../navigation/Footer.jsx"; // Footer
-import { NavButton } from "../utils/NavButton.jsx"; // Component 1
 import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
 import { UploadImageForm } from "../utils/UploadImageForm.jsx";
 import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
@@ -17,7 +17,6 @@ import PlaylistPlayer from "../utils/PlaylistPlayer.jsx"; // Import the player
 function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userObj, auth, firebaseUIConfig}) {
     const { playlistId } = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
     const [playlist, setPlaylist] = useState(playlistObj || null);
     const [warmups, setWarmups] = useState([]);
     const [selectedUrl, setSelectedUrl] = useState(null); // for youtube preview
@@ -56,17 +55,31 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                                     };
                                 });
                                 setWarmups(completeWarmups);
+                            } else {
+                                console.warn("No warmup data found.");
+                                setWarmups([]);
                             }
+                        },
+                        (error) => {
+                            console.error("Error fetching warmup data: ", error.message);
+                            setWarmups([]);
                         });
                     } else {
+                        console.warn("No warmups associated with this playlist.");
                         setWarmups([]);
                     }
                 } else {
+                    console.warn("Playlist exists but has no warmups")
                     setWarmups([]);
                 }
             }
-        });
-    }, [playlistId]);
+        },
+        (error) => {
+            consol.error("Error fetching playlist data: ", error.message);
+            setPlaylist(null);
+        }
+    );
+}, [playlistId]);
 
 
     // Refer to /CreateWarmupForm.jsx
@@ -115,7 +128,10 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                                 className={`play-button ${isThisWarmupPlaying ? 'playing' : ''}`}
                                 onClick={() => handlePlayWarmup(warmup)}
                             >
-                                {isThisWarmupPlaying ? '⏸️' : '▶️'}
+                                {isThisWarmupPlaying 
+                                ? (<span className="material-symbols-outlined">pause</span>) 
+                                : (<span className="material-symbols-outlined">play_arrow</span>)
+                                }
                             </button>
                         )}
                 </div>
@@ -172,7 +188,7 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                         onClick={() => navigate("/addWarmup", { state: { playlistId } })}>
                             Manage Warmups
                         </button>
-                        <NavButton text="Back to Home" destination="/" />
+                        <Link to="/" className="badge-pill">Back to Home</Link>
                     </div>
                 </div>
             </>
