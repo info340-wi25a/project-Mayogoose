@@ -664,11 +664,11 @@ body {
     max-width: 800px;
 }
 
-.playlist-container {
+/* .playlist-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-}
+} */
 
 .playlist-content {
     padding: 20px;
