@@ -129,7 +129,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 1 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 1: Customize your Playlist</p>
+                            <p className="smallText">Step 1: Customize your Playlist</p>
                             <div className="line"></div>
                         </div>
 
@@ -160,7 +160,7 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 2 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 2: What is this for?</p>
+                            <p className="smallText">Step 2: What is this for?</p>
                             <div className="line"></div>
                         </div>
 
@@ -206,7 +206,8 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 3 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 3: Add Warmups to Your Playlist</p>
+                            <p className="smallText">Step 3: Add Warmups to Your Playlist</p>
+                            <div className="line"></div>
                         </div>
                         <button className="badge-pill mx-auto" type="submit">
                             Create Playlist

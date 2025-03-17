@@ -15,7 +15,7 @@ export function UploadImageForm({ onImageUpload }) {
                 <div className="upload-box">
                     <img
                         src={previewUrl} 
-                        alt="Preview" 
+                        alt="Image preview for playlist cover" 
                         className="preview-image mb-4"
                     />
                     <UploadButton 

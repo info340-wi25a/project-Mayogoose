@@ -252,7 +252,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                     {/* Divider: Step 1 */}
                     <div className="line-container">
                         <div className="line"></div>
-                            <p className="smallText">Step 1: Upload Warmup</p>
+                        <p className="smallText">Step 1: Upload Warmup</p>
                         <div className="line"></div>
                     </div>
 
@@ -299,7 +299,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 2 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 2: Add to a Playlist</p>
+                            <p className="smallText">Step 2: Add to a Playlist</p>
                             <div className="line"></div>
                         </div>
 
@@ -320,7 +320,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 3 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 3: Make it Discoverable!</p>
+                            <p className="smallText">Step 3: Make it Discoverable!</p>
                             <div className="line"></div>
                         </div>
 
@@ -381,7 +381,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
                         {/* Divider: Step 4 */}
                         <div className="line-container">
                             <div className="line"></div>
-                                <p className="smallText">Step 4: Publish Online!</p>
+                            <p className="smallText">Step 4: Publish Online!</p>
                             <div className="line"></div>
                         </div>
 
