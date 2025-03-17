@@ -301,7 +301,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect url */}
                         <div>
-                        <label htmlFor="urlInput">Upload Warmup from URL:</label>
+                            <label htmlFor="urlInput">Upload Warmup from URL:</label>
                             <input
                                 placeholder="e.g. https://www.youtube.com/.."
                                 onChange={urlHandleChange}
@@ -325,8 +325,8 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect warmup id for playlist.json */}
                         <div>
-                            <label htmlFor="playlist">Select Playlist:</label>
                             <SelectBar
+                                id="Select Playlist:"
                                 options={playlistOptions}
                                 handleSelect={playlistHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.playlist}
@@ -346,8 +346,8 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect difficulty for warmup.json */}
                         <div>
-                           <label htmlFor="difficulty">Difficulty Level:</label>
                             <SelectBar 
+                                id="Difficulty Level:"
                                 options={difficultyOptions}
                                 handleSelect={difficultyHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.difficulty}                            
@@ -360,8 +360,8 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect technique for warmup.json */}
                         <div>
-                            <label htmlFor="technique">Technique:</label>
                             <SelectBar 
+                                id="Technique:"
                                 options={techniqueOptions}
                                 handleSelect={techniqueHandleChange} 
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.technique}                           
@@ -374,8 +374,8 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect voice type for warmup.json */}
                         <div>
-                            <label htmlFor="voiceType">Voice Type:</label>
                             <SelectBar 
+                                id="Voice Type:"
                                 options={voiceTypeOptions}
                                 handleSelect={voiceTypeHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.voiceType}                            
@@ -387,8 +387,8 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect voice register for warmup.json */}
                         <div>
-                            <label htmlFor="voiceRegister">Voice Register:</label>
                             <SelectBar 
+                                id= "Voice Register:"
                                 options={voiceRegisterOptions}
                                 handleSelect={voiceRegisterHandleChange} 
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.voiceRegister}
@@ -434,7 +434,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
 export default CreateWarmupForm;
 
-function SelectBar({options, handleSelect, showErrorMessagesSelect}) {
+function SelectBar({id, options, handleSelect, showErrorMessagesSelect}) {
     // turn [string, string, string] into [<>, <>, <>]
     const selectBar = options.map(option => (
         <option key={option} value={option}>{option}</option>
@@ -442,6 +442,7 @@ function SelectBar({options, handleSelect, showErrorMessagesSelect}) {
 
     return (
         <div> 
+            <label htmlFor={id}>{id}</label>
             <select 
                 className={classNames('input', { 'is-invalid': showErrorMessagesSelect })}
                 onChange={handleSelect}>

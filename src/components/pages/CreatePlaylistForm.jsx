@@ -172,8 +172,8 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
 
                         {/* Goal */}
                         <div>
-                            <label htmlFor="goal">Goal:</label>
                             <SelectBar
+                                id="Goal"
                                 options={goalOptions}
                                 handleSelect={goalHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.goal}
@@ -185,8 +185,8 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
 
                         {/* Genre */}
                         <div>
-                            <label htmlFor="genre">Genre:</label>
                             <SelectBar
+                                id="Genre"
                                 options={genreOptions}
                                 handleSelect={genreHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.genre}
@@ -198,8 +198,8 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
 
                         {/* Visibility */}
                         <div>
-                            <label htmlFor="visibility">Visibility:</label>
                             <SelectBar
+                                id="Visibility"
                                 options={visibilityOptions}
                                 handleSelect={visibilityHandleChange}
                                 showErrorMessagesSelect={showErrorMessages && !validityObj.visibility}
@@ -226,14 +226,16 @@ export function CreatePlaylistForm({userID, auth, firebaseUIConfig}) {
     );
 }
 
-function SelectBar({options, handleSelect, showErrorMessagesSelect}) {
+function SelectBar({id, options, handleSelect, showErrorMessagesSelect}) {
     const selectBar = options.map(option => (
         <option key={option} value={option}>{option}</option>
     ));
 
     return (
         <div> 
+            <label htmlFor={id}>{id}</label>
             <select 
+    
                 className={showErrorMessagesSelect ? 'select is-invalid' : 'select'}
                 onChange={handleSelect}
             >
