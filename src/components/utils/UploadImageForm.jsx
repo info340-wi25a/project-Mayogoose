@@ -60,7 +60,7 @@ function UploadButton({ onFileSelect, onPreviewChange, onImageUpload }){
 
             try {
                 const storage = getStorage(getApp(), "gs://info340-media.firebasestorage.app");
-                const uniqueId = uuidv4(); // Generate a unique ID
+                const uniqueId = uuidv4(); // Generate a unique ID - in order to install this package the React version should between 15 - 18
                 const storageReference = storageRef(storage, `group-AA4/uploads/${uniqueId}.png`);
 
                 // Upload the file
