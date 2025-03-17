@@ -447,9 +447,6 @@ body {
 }
 
 .warmups-list {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
     gap: 15px;
@@ -586,12 +583,6 @@ body {
     color: #b3b3b3;
 }
 
-.warmups-list h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
 /* Add Warmups Button */
 .add-warmup-button {
     width: 160px; 
@@ -618,7 +609,10 @@ body {
 
 /* Play button styles */
 .play-button {
-    margin-left: auto;
+    /* position: absolute;
+    right: 15px; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
     background-color: #444;
     color: white;
     border: none;
