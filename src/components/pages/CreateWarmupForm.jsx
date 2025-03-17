@@ -284,10 +284,13 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                     {/* This form collect data for warmup.json */}
                     <form onSubmit={handleSubmit} className="flex-container">
-                        {/* Name Inpute */}
+                        {/* Name Input */}
                         <div>
-                            <h2>Name</h2> 
+                            <label for="warmup-name">Warmup name:</label> 
                             <input
+                                type="text"
+                                name="warmup-name"
+                                id="warmup-name"
                                 value={warmupName}
                                 placeholder="e.g. Box Breathing"
                                 onChange={nameHandleChange}
@@ -301,8 +304,11 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect url */}
                         <div>
-                            <h2>Upload Warmup from URL:</h2>
+                            <label for="warmup-url">Upload Warmup from URL:</label> 
                             <input
+                                type="text"
+                                name="warmup-url"
+                                id="warmup-url"
                                 placeholder="e.g. https://www.youtube.com/.."
                                 onChange={urlHandleChange}
                                 className={classNames('input', { 'is-invalid': showErrorMessages && !validityObj.url })}
@@ -325,7 +331,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect warmup id for playlist.json */}
                         <div>
-                            <h2>Select Playlist</h2>
+                            <label htmlFor="playlist">Select Playlist:</label>
                             <SelectBar
                                 options={playlistOptions}
                                 handleSelect={playlistHandleChange}
@@ -346,7 +352,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect difficulty for warmup.json */}
                         <div>
-                            <h2>Difficulty Level</h2>
+                           <label htmlFor="difficulty">Difficulty Level:</label>
                             <SelectBar 
                                 options={difficultyOptions}
                                 handleSelect={difficultyHandleChange}
@@ -360,7 +366,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect technique for warmup.json */}
                         <div>
-                            <h2>Technique</h2>
+                            <label htmlFor="technique">Technique:</label>
                             <SelectBar 
                                 options={techniqueOptions}
                                 handleSelect={techniqueHandleChange} 
@@ -374,7 +380,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect voice type for warmup.json */}
                         <div>
-                            <h2>Voice Type</h2>
+                            <label htmlFor="voiceType">Voice Type:</label>
                             <SelectBar 
                                 options={voiceTypeOptions}
                                 handleSelect={voiceTypeHandleChange}
@@ -387,7 +393,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
                         {/* collect voice register for warmup.json */}
                         <div>
-                            <h2>Voice Register</h2>
+                            <label htmlFor="voiceRegister">Voice Register:</label>
                             <SelectBar 
                                 options={voiceRegisterOptions}
                                 handleSelect={voiceRegisterHandleChange} 

@@ -1,6 +1,6 @@
 # VoxTune - Online tool for singers to warm up
 ## Project Overview
-**VoxTune** is an interactive online tool designed to help singers of all levels warm up effectively and perform vocal exercises tailored to their needs. VoxTune is different from a static web page or searching for keywords on YouTube every time you practice. It is a dynamic, data-driven web page that allows users to interact with and modify the content in a personalized way to create a playlist that is exclusive to them. And warmups are recommended based on the user's personal situation.
+**VoxTune** is an interactive online web tool designed to help singers of all levels warm up effectively and perform vocal exercises tailored to their needs. VoxTune is different from a static web page or searching for keywords on YouTube every time you practice. It is a dynamic, data-driven web page that allows users to interact with and modify the content in a personalized way to create a playlist that is exclusive to them. Additionally warmups are recommended based on the user's personal situation.
 
 ---
 ## Main Features
