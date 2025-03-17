@@ -7,7 +7,7 @@
     import { NavBar } from "../navigation/NavBar.jsx"; // NavBar
     import { Footer } from "../navigation/Footer.jsx"; // Footer
     import { AddWarmupItem } from "../utils/AddWarmupItem.jsx"; // Component 9
-    import { SearchBar } from "../utils/SearchBar.jsx"; // Component 2
+    import CreateWarmupForm from "./CreateWarmupForm.jsx"
     import { getDatabase, ref, update, onValue } from "firebase/database";
 
     function AddWarmupForm() {
@@ -74,6 +74,11 @@
         });
     };
 
+    const handleCreateWarmup = () => {
+        navigate("/createWarmup");
+    };
+    
+
     const handleSaveWarmups = () => {
         if (!playlistId) {
             alert("Error: No playlist ID provided!");
@@ -132,9 +137,9 @@
             <div className="main-content">
                 <h1>Manage Warm-ups</h1> 
                 
-                <div className="search-select-container">
+                {/* <div className="search-select-container">
                     <SearchBar />
-                </div>
+                </div> */}
 
                 {loading ? <p>Loading warm-ups...</p> : (
                     <div className="warmups-container">
@@ -155,11 +160,15 @@
                     </div>
                 )}
 
-                <div className="create-button-container">
+                <div className="button-container">
+                    <button className="create-warmup-button" onClick={handleCreateWarmup}>
+                        Create Your Own Warm-up
+                    </button>
                     <button className="create-button" onClick={handleSaveWarmups}>
                         Save Warm-ups
                     </button>
                 </div>
+                
                 <Footer />
             </div>
         </div>
