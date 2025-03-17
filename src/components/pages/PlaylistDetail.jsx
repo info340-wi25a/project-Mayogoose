@@ -55,17 +55,31 @@ function PlaylistDetail({ selectedWarmups = [], removeWarmup, playlistObj, userO
                                     };
                                 });
                                 setWarmups(completeWarmups);
+                            } else {
+                                console.warn("No warmup data found.");
+                                setWarmups([]);
                             }
+                        },
+                        (error) => {
+                            console.error("Error fetching warmup data: ", error.message);
+                            setWarmups([]);
                         });
                     } else {
+                        console.warn("No warmups associated with this playlist.");
                         setWarmups([]);
                     }
                 } else {
+                    console.warn("Playlist exists but has no warmups")
                     setWarmups([]);
                 }
             }
-        });
-    }, [playlistId]);
+        },
+        (error) => {
+            consol.error("Error fetching playlist data: ", error.message);
+            setPlaylist(null);
+        }
+    );
+}, [playlistId]);
 
 
     // Refer to /CreateWarmupForm.jsx
