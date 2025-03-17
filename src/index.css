@@ -560,6 +560,9 @@ body {
 }
 
 .warmups-list {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
     gap: 15px;
@@ -660,12 +663,6 @@ body {
     max-width: 800px;
 }
 
-/* .playlist-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-} */
-
 .playlist-content {
     padding: 20px;
 }
@@ -701,6 +698,12 @@ body {
     line-height: 1.5rem;
 }
 
+.warmups-list h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
 /* Add Warmups Button */
 .add-warmup-button {
     width: 160px; 
@@ -727,10 +730,7 @@ body {
 
 /* Play button styles */
 .play-button {
-    /* position: absolute;
-    right: 15px; */
-    /* top: 50%; */
-    /* transform: translateY(-50%); */
+    margin-left: auto;
     background-color: #444;
     color: white;
     border: none;
