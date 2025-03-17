@@ -428,8 +428,6 @@ body {
 .grey {
     background-color: grey;
     color: white;
-    
-
 }
 
 .grey:hover {
@@ -452,9 +450,11 @@ body {
     margin: 4rem;
 }
 
-/* .mainTitle {
-    margin-left: 20px;
-} */
+.mainTitle {
+    margin: 20px;
+    line-height: 1.5;
+    font-size: 2em;
+}
 
 /* search bar */
 .wholeSearchContainer {
@@ -507,6 +507,10 @@ body {
     .grid-container {
         margin-left: 150px;
         margin-right: 150px;
+    }
+
+    .mainTitle {
+        font-size: 2.3em;
     }
 }
 
