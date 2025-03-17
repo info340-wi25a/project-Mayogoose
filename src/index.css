@@ -428,8 +428,6 @@ body {
 .grey {
     background-color: grey;
     color: white;
-    
-
 }
 
 .grey:hover {
@@ -437,11 +435,6 @@ body {
 }
 
 /* homepage */
-.homepageCover {
-    width: 175px;
-    height: 175px;
-    border-radius: 5px;
-}
 
 .grid-container {
     display: flex;
@@ -452,9 +445,11 @@ body {
     margin: 4rem;
 }
 
-/* .mainTitle {
-    margin-left: 20px;
-} */
+.mainTitle {
+    margin: 20px;
+    line-height: 1.5;
+    font-size: 2em;
+}
 
 /* search bar */
 .wholeSearchContainer {
@@ -507,6 +502,10 @@ body {
     .grid-container {
         margin-left: 150px;
         margin-right: 150px;
+    }
+
+    .mainTitle {
+        font-size: 2.3em;
     }
 }
 
@@ -765,10 +764,9 @@ footer {
 }
 
 .preview-image {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     object-fit: cover;
     border-radius: 10px;
     margin-top: 20px;
 }
-
