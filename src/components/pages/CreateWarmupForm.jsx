@@ -233,7 +233,7 @@ function CreateWarmupForm({userID, auth, firebaseUIConfig}) {
 
         const formValid = validityObj.name &&
                             validityObj.url &&
-                            validityObj.playlist &&
+                            // validityObj.playlist &&
                             validityObj.difficulty &&
                             validityObj.technique &&
                             validityObj.voiceType &&
